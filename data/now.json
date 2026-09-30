@@ -1,0 +1,106 @@
+{
+ "items": [
+  {
+   "date": "2026-10-01",
+   "ja": "TOMORAの東京ガーデンシアター公演（予定）",
+   "en": "TOMORA at Tokyo Garden Theater (scheduled)",
+   "src": [
+    "lf-2026"
+   ]
+  },
+  {
+   "date": "2026-09-30",
+   "ja": "公式サイトで『Go: Apex and Beyond』の予約を受付中（この日に確認）",
+   "en": "Go: Apex and Beyond is up for pre-order on the official site (checked on this date)",
+   "src": [
+    "cb-home"
+   ],
+   "work": "go"
+  },
+  {
+   "date": "2026-07-25",
+   "ja": "TOMORAがフジロックに出演。トムは苗場食堂でも急きょDJ",
+   "en": "TOMORA play Fuji Rock; Tom also DJs at Naeba Shokudo",
+   "src": [
+    "fsn-2026",
+    "sak-2026"
+   ]
+  },
+  {
+   "date": "2026-05",
+   "ja": "「Go」がNetflix映画『Apex』をきっかけにUK4位。Shazamでは世界1位",
+   "en": "\"Go\" reaches No. 4 in the UK after Apex, and No. 1 on Shazam worldwide",
+   "src": [
+    "wp-go",
+    "cb-news"
+   ],
+   "work": "go"
+  },
+  {
+   "date": "2026-04-17",
+   "ja": "TOMORAのアルバム『Come Closer』",
+   "en": "TOMORA's album Come Closer",
+   "src": [
+    "wp-disc",
+    "cb-comecloser"
+   ]
+  },
+  {
+   "date": "2026-03-06",
+   "ja": "TOMORAのDJミックス『Live from the Aura Motor』",
+   "en": "TOMORA's DJ mix Live from the Aura Motor",
+   "src": [
+    "wp-tomora"
+   ]
+  },
+  {
+   "date": "2025-12-04",
+   "ja": "トムとオーロラがTOMORAを始動",
+   "en": "Tom and Aurora launch TOMORA",
+   "src": [
+    "spin-2025",
+    "cb-tomora"
+   ]
+  },
+  {
+   "date": "2025-06-28",
+   "ja": "『Exit Planet Dust』30周年",
+   "en": "Exit Planet Dust turns 30",
+   "src": [
+    "cb-epd30"
+   ],
+   "work": "epd"
+  },
+  {
+   "date": "2025-06-10",
+   "ja": "トム・ローランズ名義の12インチ『We Are Nothing / All Night』",
+   "en": "Tom Rowlands' 12\" We Are Nothing / All Night",
+   "src": [
+    "cb-wearenothing"
+   ]
+  }
+ ],
+ "delayed": [
+  {
+   "work": "go",
+   "from": "2015",
+   "to": "2026",
+   "ja": "発売時46位の曲が、11年後にUK4位",
+   "en": "A No. 46 hit on release reaches No. 4 eleven years later",
+   "src": [
+    "oc-go",
+    "wp-go"
+   ]
+  },
+  {
+   "work": "ooc",
+   "from": "1999",
+   "to": "2019",
+   "ja": "20年後、The Avalanchesのリミックスに新しいMVが付く",
+   "en": "Twenty years on, a new video for The Avalanches remix",
+   "src": [
+    "wp-disc"
+   ]
+  }
+ ]
+}

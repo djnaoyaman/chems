@@ -1,0 +1,342 @@
+[
+ {
+  "id": "noel-gallagher",
+  "name": {
+   "ja": "ノエル・ギャラガー",
+   "en": "Noel Gallagher"
+  },
+  "notes": []
+ },
+ {
+  "id": "q-tip",
+  "name": {
+   "ja": "Q-Tip",
+   "en": "Q-Tip"
+  },
+  "notes": [
+   {
+    "ja": "「Go」は「Galvanize」に続く2度目の共作",
+    "en": "\"Go\" was his second collaboration with the band, after \"Galvanize\"",
+    "src": [
+     "cb-news"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "the-flaming-lips",
+  "name": {
+   "ja": "ザ・フレーミング・リップス",
+   "en": "The Flaming Lips"
+  },
+  "notes": []
+ },
+ {
+  "id": "k-os",
+  "name": {
+   "ja": "k-os",
+   "en": "k-os"
+  },
+  "notes": []
+ },
+ {
+  "id": "fatlip",
+  "name": {
+   "ja": "ファットリップ",
+   "en": "Fatlip"
+  },
+  "notes": []
+ },
+ {
+  "id": "st-vincent",
+  "name": {
+   "ja": "セイント・ヴィンセント",
+   "en": "St. Vincent"
+  },
+  "notes": []
+ },
+ {
+  "id": "beck",
+  "name": {
+   "ja": "ベック",
+   "en": "Beck"
+  },
+  "notes": []
+ },
+ {
+  "id": "halo-maud",
+  "name": {
+   "ja": "Halo Maud",
+   "en": "Halo Maud"
+  },
+  "notes": []
+ },
+ {
+  "id": "aurora",
+  "name": {
+   "ja": "オーロラ",
+   "en": "Aurora"
+  },
+  "notes": [
+   {
+    "ja": "トム・ローランズとTOMORAを結成（2025年12月に発表）",
+    "en": "Formed TOMORA with Tom Rowlands (announced December 2025)",
+    "src": [
+     "spin-2025",
+     "cb-tomora"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "walter-a-stern",
+  "name": {
+   "ja": "Walter A. Stern",
+   "en": "Walter A. Stern"
+  },
+  "notes": []
+ },
+ {
+  "id": "dom-and-nic",
+  "name": {
+   "ja": "ドム＆ニック",
+   "en": "Dom and Nic"
+  },
+  "notes": [
+   {
+    "ja": "1996年の「Setting Sun」から、2023年の「Live Again」で10回目の共作になった",
+    "en": "From \"Setting Sun\" in 1996 to \"Live Again\" in 2023, their tenth video with the band",
+    "src": [
+     "wp-domnic",
+     "nialler-ftbf"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "spike-jonze",
+  "name": {
+   "ja": "スパイク・ジョーンズ",
+   "en": "Spike Jonze"
+  },
+  "notes": []
+ },
+ {
+  "id": "michel-gondry",
+  "name": {
+   "ja": "ミシェル・ゴンドリー",
+   "en": "Michel Gondry"
+  },
+  "notes": []
+ },
+ {
+  "id": "olivier-gondry",
+  "name": {
+   "ja": "オリヴィエ・ゴンドリー",
+   "en": "Olivier Gondry"
+  },
+  "notes": []
+ },
+ {
+  "id": "wiz",
+  "name": {
+   "ja": "W.I.Z.",
+   "en": "W.I.Z."
+  },
+  "notes": []
+ },
+ {
+  "id": "chris-milk",
+  "name": {
+   "ja": "クリス・ミルク",
+   "en": "Chris Milk"
+  },
+  "notes": []
+ },
+ {
+  "id": "joseph-kahn",
+  "name": {
+   "ja": "ジョセフ・カーン",
+   "en": "Joseph Kahn"
+  },
+  "notes": []
+ },
+ {
+  "id": "adam-smith",
+  "name": {
+   "ja": "アダム・スミス",
+   "en": "Adam Smith"
+  },
+  "notes": [
+   {
+    "ja": "1994年の初ライブからバンドのライブ映像を手がけている",
+    "en": "Has worked on the band's live visuals since their first gig in 1994",
+    "src": [
+     "ce-adam"
+    ]
+   },
+   {
+    "ja": "フジロック2011のヘッドライナー公演を撮ったライブ映画『Don't Think』を監督",
+    "en": "Directed Don't Think, the concert film of their Fuji Rock 2011 headline set",
+    "src": [
+     "ra-2011",
+     "nme-2012b"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "marcus-lyall",
+  "name": {
+   "ja": "マーカス・ライアル",
+   "en": "Marcus Lyall"
+  },
+  "notes": []
+ },
+ {
+  "id": "ne-o",
+  "name": {
+   "ja": "Ne-o",
+   "en": "Ne-o"
+  },
+  "notes": []
+ },
+ {
+  "id": "michael-haussman",
+  "name": {
+   "ja": "マイケル・ハウスマン",
+   "en": "Michael Haussman"
+  },
+  "notes": []
+ },
+ {
+  "id": "ninian-doff",
+  "name": {
+   "ja": "Ninian Doff",
+   "en": "Ninian Doff"
+  },
+  "notes": []
+ },
+ {
+  "id": "ruffmercy",
+  "name": {
+   "ja": "Ruffmercy",
+   "en": "Ruffmercy"
+  },
+  "notes": []
+ },
+ {
+  "id": "pensacola",
+  "name": {
+   "ja": "Pensacola",
+   "en": "Pensacola"
+  },
+  "notes": []
+ },
+ {
+  "id": "kate-gibb",
+  "name": {
+   "ja": "ケイト・ギブ",
+   "en": "Kate Gibb"
+  },
+  "notes": [
+   {
+    "ja": "『Surrender』とそのシングルのアートワークをシルクスクリーンで制作",
+    "en": "Made the silkscreen artwork for Surrender and its singles",
+    "src": [
+     "wp-surrender",
+     "nyab-2017"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "tim-burgess",
+  "name": {
+   "ja": "ティム・バージェス",
+   "en": "Tim Burgess"
+  },
+  "notes": []
+ },
+ {
+  "id": "beth-orton",
+  "name": {
+   "ja": "ベス・オートン",
+   "en": "Beth Orton"
+  },
+  "notes": []
+ },
+ {
+  "id": "richard-ashcroft",
+  "name": {
+   "ja": "リチャード・アシュクロフト",
+   "en": "Richard Ashcroft"
+  },
+  "notes": []
+ },
+ {
+  "id": "bernard-sumner",
+  "name": {
+   "ja": "バーナード・サムナー",
+   "en": "Bernard Sumner"
+  },
+  "notes": []
+ },
+ {
+  "id": "bobby-gillespie",
+  "name": {
+   "ja": "ボビー・ギレスピー",
+   "en": "Bobby Gillespie"
+  },
+  "notes": []
+ },
+ {
+  "id": "hope-sandoval",
+  "name": {
+   "ja": "ホープ・サンドヴァル",
+   "en": "Hope Sandoval"
+  },
+  "notes": []
+ },
+ {
+  "id": "jonathan-donahue",
+  "name": {
+   "ja": "ジョナサン・ドナヒュー",
+   "en": "Jonathan Donahue"
+  },
+  "notes": []
+ },
+ {
+  "id": "kele-okereke",
+  "name": {
+   "ja": "ケリー・オケレケ",
+   "en": "Kele Okereke"
+  },
+  "notes": []
+ },
+ {
+  "id": "ali-love",
+  "name": {
+   "ja": "アリ・ラヴ",
+   "en": "Ali Love"
+  },
+  "notes": []
+ },
+ {
+  "id": "nene",
+  "name": {
+   "ja": "Nene",
+   "en": "Nene"
+  },
+  "notes": [
+   {
+    "ja": "日本のラッパー。『No Geography』の「Eve of Destruction」に参加し、MVではオーロラとともに特撮番組のようなヒーローを演じた",
+    "en": "Japanese rapper on \"Eve of Destruction\" from No Geography; in the video she and Aurora play tokusatsu-style heroes",
+    "src": [
+     "quietus-ng",
+     "numero-2019"
+    ]
+   }
+  ]
+ }
+]

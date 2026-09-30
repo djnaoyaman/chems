@@ -1,0 +1,9 @@
+{
+  "site_name": {"ja": "ケミカル・ブラザーズ全史", "en": "The Chemical Brothers Archive"},
+  "site_name_signature": "THE CHEMICAL BROTHERS ARCHIVE",
+  "base_url": "https://djnaoyaman.github.io/chems/",
+  "base_url_note": "サイト名とURLが決まったらここに入れる（例 https://djnaoyaman.github.io/xxxx/）",
+  "author": "djnaoyaman",
+  "youtube_channel": "https://thechemicalbrothers.lnk.to/YouTubeWE",
+  "checked": "2026-09-30"
+}

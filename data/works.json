@@ -1,0 +1,4405 @@
+[
+ {
+  "id": "fcs",
+  "atomic": 1,
+  "symbol": "Fc",
+  "type": "ep",
+  "year": 1994,
+  "era": "dust",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date_note": {
+    "v": {
+     "ja": "1994年初め",
+     "en": "early 1994"
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Junior Boy's Own",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "12\"",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "収録曲「Chemical Beats」が、のちのバンド名の由来になった",
+    "en": "Its track \"Chemical Beats\" gave the band its later name",
+    "src": [
+     "wp-epd",
+     "nad-epd"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "fourteenth-century-sky",
+  "title": "Fourteenth Century Sky",
+  "album": null
+ },
+ {
+  "id": "mmm",
+  "atomic": 2,
+  "symbol": "Mm",
+  "type": "ep",
+  "year": 1994,
+  "era": "dust",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date_note": {
+    "v": {
+     "ja": "1994年終わり",
+     "en": "late 1994"
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Junior Boy's Own",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "12\"",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 89
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "my-mercury-mouth",
+  "title": "My Mercury Mouth E.P",
+  "album": null
+ },
+ {
+  "id": "lh",
+  "atomic": 3,
+  "symbol": "Lh",
+  "type": "single",
+  "year": 1995,
+  "era": "epd",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1995,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 17,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1995-06-05",
+    "src": [
+     "wp-epd"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "冒頭に、クラフトワーク「Ohm Sweet Ohm」の出だしが短くサンプルされている",
+    "en": "Opens with a short sample from the start of Kraftwerk's \"Ohm Sweet Ohm\"",
+    "src": [
+     "wp-epd"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "leave-home",
+  "title": "Leave Home",
+  "album": "epd"
+ },
+ {
+  "id": "epd",
+  "atomic": 4,
+  "symbol": "Ep",
+  "type": "album",
+  "year": 1995,
+  "era": "epd",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "30p2UWAegeQ",
+    "src": [
+     "cb-v-life-is-sweet-video"
+    ],
+    "verified": false,
+    "track": "Life Is Sweet",
+    "from_work": "lis"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "1995-06-26",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Junior Boy's Own",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, CS, LP",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 9,
+     "aus": null,
+     "aut": null,
+     "bel": 49,
+     "fra": null,
+     "irl": null,
+     "nld": 77,
+     "nz": 42,
+     "swi": null,
+     "us": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "1993年8月から1994年11月にかけて録音。題は、ダスト・ブラザーズからの改名にちなむ",
+    "en": "Recorded August 1993 to November 1994; the title refers to the change of name from the Dust Brothers",
+    "src": [
+     "wp-epd"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "beth-orton",
+    "role": "album-guest",
+    "src": [
+     "nad-epd"
+    ],
+    "track": "Alive Alone"
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "exit-planet-dust",
+  "title": "Exit Planet Dust",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "lis",
+  "atomic": 5,
+  "symbol": "Ls",
+  "type": "single",
+  "year": 1995,
+  "era": "epd",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "30p2UWAegeQ",
+    "src": [
+     "cb-v-life-is-sweet-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1995,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 25,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1995-08-28",
+    "src": [
+     "wp-epd"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "walter-a-stern",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "tim-burgess",
+    "role": "featured",
+    "src": [
+     "nad-epd"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "life-is-sweet",
+  "title": "Life Is Sweet",
+  "album": "epd"
+ },
+ {
+  "id": "lof",
+  "atomic": 6,
+  "symbol": "Lf",
+  "type": "ep",
+  "year": 1996,
+  "era": "epd",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "1996-01-15",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, 12\"",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 13,
+     "irl": 20,
+     "nz": 48,
+     "swe": 20
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "表題曲に「Chemical Beats」のリミックスと新曲2曲を組み合わせたEP",
+    "en": "Pairs the title track with a remix of \"Chemical Beats\" and two new tracks",
+    "src": [
+     "trouser"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "loops-of-fury",
+  "title": "Loops of Fury",
+  "album": null
+ },
+ {
+  "id": "ss",
+  "atomic": 7,
+  "symbol": "Ss",
+  "type": "single",
+  "year": 1996,
+  "era": "dyoh",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "9BgSv4GGNJo",
+    "src": [
+     "cb-v-setting-sun-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1996,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 1,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Silver",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1996-09-30",
+    "src": [
+     "wp-dyoh"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "ノエル・ギャラガーは「Life Is Sweet」を聴いて二人との共作を望んだ",
+    "en": "Noel Gallagher asked to work with the duo after hearing \"Life Is Sweet\"",
+    "src": [
+     "wp-ss"
+    ]
+   },
+   {
+    "ja": "MVの撮影にノエルは参加できず、トムとエドが自分たち役で短く出演した。この出演はのちのMVでも続く",
+    "en": "Noel could not appear in the video; Tom and Ed made a cameo as themselves, a habit that continued in later videos",
+    "src": [
+     "wp-domnic"
+    ]
+   },
+   {
+    "ja": "MTVは、番組の軸をエレクトロニカへ移す際にこのMVをきっかけの一つに挙げた",
+    "en": "MTV cited the video as an inspiration when it shifted its format towards electronica",
+    "src": [
+     "wp-domnic"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "noel-gallagher",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "setting-sun",
+  "title": "Setting Sun",
+  "album": "dyoh"
+ },
+ {
+  "id": "brb",
+  "atomic": 8,
+  "symbol": "Bb",
+  "type": "single",
+  "year": 1997,
+  "era": "dyoh",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "iTxOKsyZ0Lw",
+    "src": [
+     "cb-v-block-rockin-beats-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1997,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 1,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Gold; ARIA: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1997-03-24",
+    "src": [
+     "wp-dyoh"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "作者はトム・ローランズ、エド・シモンズ、ジェシー・ウィーヴァー（スクーリー・D）。録音はオリノコ・スタジオ",
+    "en": "Written by Tom Rowlands, Ed Simons and Jesse Weaver (Schoolly D); recorded at Orinoco",
+    "src": [
+     "wp-brb"
+    ]
+   },
+   {
+    "ja": "1998年のグラミー賞で最優秀ロック・インストゥルメンタル・パフォーマンスを受賞",
+    "en": "Won Best Rock Instrumental Performance at the 1998 Grammy Awards",
+    "src": [
+     "tower-dyoh",
+     "clash-10"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "block-rockin-beats",
+  "title": "Block Rockin' Beats",
+  "album": "dyoh"
+ },
+ {
+  "id": "dyoh",
+  "atomic": 9,
+  "symbol": "Dh",
+  "type": "album",
+  "year": 1997,
+  "era": "dyoh",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "iTxOKsyZ0Lw",
+    "src": [
+     "cb-v-block-rockin-beats-video"
+    ],
+    "verified": false,
+    "track": "Block Rockin' Beats",
+    "from_work": "brb"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "1997-04-07",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, CS, LP",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 3,
+     "aut": 26,
+     "bel": 7,
+     "fra": 24,
+     "irl": null,
+     "nld": 23,
+     "nz": 2,
+     "swi": 30,
+     "us": 14
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Platinum; RIAA: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "つなぎ目なくミックスされたDJセットのように曲順が組まれている",
+    "en": "Sequenced like a continuously mixed DJ set",
+    "src": [
+     "grammy-dyoh"
+    ]
+   },
+   {
+    "ja": "ゲストはノエル・ギャラガー、ベス・オートン。ジョナサン・ドナヒューがクラリネットで参加",
+    "en": "Guests Noel Gallagher and Beth Orton; Jonathan Donahue on clarinet",
+    "src": [
+     "tower-dyoh"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "beth-orton",
+    "role": "album-guest",
+    "src": [
+     "tower-dyoh"
+    ],
+    "track": "Where Do I Begin"
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "dig-your-own-hole",
+  "title": "Dig Your Own Hole",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "el",
+  "atomic": 10,
+  "symbol": "El",
+  "type": "single",
+  "year": 1997,
+  "era": "dyoh",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1997,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 17,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1997-09-08",
+    "src": [
+     "wp-dyoh"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "MVはスパイク・ジョーンズ。ソフィア・コッポラが体操選手を演じた",
+    "en": "Video by Spike Jonze, with Sofia Coppola as a gymnast",
+    "src": [
+     "wp-el"
+    ]
+   },
+   {
+    "ja": "『Singles 93–03』にも『Brotherhood』にも収録されていない",
+    "en": "Included on neither Singles 93–03 nor Brotherhood",
+    "src": [
+     "wp-el"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "spike-jonze",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "elektrobank",
+  "title": "Elektrobank",
+  "album": "dyoh"
+ },
+ {
+  "id": "ppr",
+  "atomic": 11,
+  "symbol": "Pr",
+  "type": "single",
+  "year": 1997,
+  "era": "dyoh",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1997,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1997-12-01",
+    "src": [
+     "wp-dyoh"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "番号入りの盤だったため、UKシングル・チャートの集計対象外",
+    "en": "A numbered release, so ineligible for the UK Singles Chart",
+    "src": [
+     "wp-dyoh"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "jonathan-donahue",
+    "role": "featured",
+    "src": [
+     "tower-dyoh"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "the-private-psychedelic-reel",
+  "title": "The Private Psychedelic Reel",
+  "album": "dyoh"
+ },
+ {
+  "id": "hbhg",
+  "atomic": 12,
+  "symbol": "Hb",
+  "type": "single",
+  "year": 1999,
+  "era": "sur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "tpKCqp9CALQ",
+    "src": [
+     "cb-v-hey-boy-hey-girl-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1999,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 3,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Platinum; RMNZ: Platinum",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1999-05-26",
+    "src": [
+     "wp-surrender"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "kate-gibb",
+    "role": "artwork",
+    "src": [
+     "nyab-2017"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "hey-boy-hey-girl",
+  "title": "Hey Boy Hey Girl",
+  "album": "sur"
+ },
+ {
+  "id": "sur",
+  "atomic": 13,
+  "symbol": "Su",
+  "type": "album",
+  "year": 1999,
+  "era": "sur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "tpKCqp9CALQ",
+    "src": [
+     "cb-v-hey-boy-hey-girl-video"
+    ],
+    "verified": false,
+    "track": "Hey Boy Hey Girl",
+    "from_work": "hbhg"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "1999-06-21",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, CS, LP",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 5,
+     "aut": 16,
+     "bel": 6,
+     "fra": 8,
+     "irl": 43,
+     "nld": 14,
+     "nz": 7,
+     "swi": 17,
+     "us": 32
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: 2× Platinum; ARIA: 2× Platinum; RMNZ: 2× Platinum",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "日本では1999年6月7日、UKより2週間早く発売された",
+    "en": "Released in Japan on 7 June 1999, two weeks ahead of the UK",
+    "src": [
+     "wp-surrender"
+    ]
+   },
+   {
+    "ja": "2019年、カタログで初めてのデラックス盤として20周年盤が出た",
+    "en": "In 2019 its 20th-anniversary edition became the first deluxe edition in their catalogue",
+    "src": [
+     "sde-surrender"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "kate-gibb",
+    "role": "artwork",
+    "src": [
+     "wp-surrender"
+    ]
+   },
+   {
+    "person": "hope-sandoval",
+    "role": "album-guest",
+    "src": [
+     "es-surrender"
+    ],
+    "track": "Asleep from Day"
+   },
+   {
+    "person": "jonathan-donahue",
+    "role": "album-guest",
+    "src": [
+     "es-surrender"
+    ],
+    "track": "Dream On"
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "surrender",
+  "title": "Surrender",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "lfb",
+  "atomic": 14,
+  "symbol": "Lb",
+  "type": "single",
+  "year": 1999,
+  "era": "sur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "s5FyfQDO5g0",
+    "src": [
+     "cb-v-let-forever-be-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1999,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 9,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Silver",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1999-07-23",
+    "src": [
+     "wp-surrender"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "ビートルズへのオマージュとされる",
+    "en": "Described as a homage to the Beatles",
+    "src": [
+     "wp-surrender"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "noel-gallagher",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "michel-gondry",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "kate-gibb",
+    "role": "artwork",
+    "src": [
+     "nyab-2017"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "let-forever-be",
+  "title": "Let Forever Be",
+  "album": "sur"
+ },
+ {
+  "id": "ooc",
+  "atomic": 15,
+  "symbol": "Oc",
+  "type": "single",
+  "year": 1999,
+  "era": "sur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "6sOpbRL8R4g",
+    "src": [
+     "cb-v-out-of-control-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 1999,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 21,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "1999-10-08",
+    "src": [
+     "wp-surrender"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "wiz",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "kate-gibb",
+    "role": "artwork",
+    "src": [
+     "nyab-2017"
+    ]
+   },
+   {
+    "person": "bernard-sumner",
+    "role": "featured",
+    "src": [
+     "es-surrender"
+    ]
+   },
+   {
+    "person": "bobby-gillespie",
+    "role": "featured",
+    "src": [
+     "es-surrender"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [
+   {
+    "when": "2019",
+    "ja": "The Avalanchesによるリミックスに、Kate Gibb、Jimmy Turrell、Computer Teamが新しいMVを付ける",
+    "en": "A new video by Kate Gibb, Jimmy Turrell and Computer Team for The Avalanches remix",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "slug": "out-of-control",
+  "title": "Out of Control",
+  "album": "sur"
+ },
+ {
+  "id": "mr",
+  "atomic": 16,
+  "symbol": "Mr",
+  "type": "ep",
+  "year": 2000,
+  "era": "sur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2000-03-06",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, 12\"",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "シングル表とEP表の両方に掲載されている",
+    "en": "Listed as both a single and an EP",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "kate-gibb",
+    "role": "artwork",
+    "src": [
+     "nyab-2017"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "music-response",
+  "title": "Music:Response",
+  "album": null
+ },
+ {
+  "id": "ibia",
+  "atomic": 17,
+  "symbol": "Ia",
+  "type": "single",
+  "year": 2001,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2001,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 8,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "2000年末のU2の前座で初演。2001年夏にホワイト・レーベルでDJに配ってから、9月に正式発売",
+    "en": "Premiered while supporting U2 in late 2000, sent to DJs on white label in summer 2001, released in September",
+    "src": [
+     "diffuser-cwu"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [
+   {
+    "who": {
+     "ja": "トム・ローランズ",
+     "en": "Tom Rowlands"
+    },
+    "orig_lang": "en",
+    "orig": "The idea was for future primitive",
+    "ja": "狙いは『フューチャー・プリミティブ』だった",
+    "ctx": {
+     "ja": "2002年のインタビューで、この曲の狙いについて",
+     "en": "On the idea behind the track, in a 2002 interview"
+    },
+    "src": [
+     "diffuser-cwu"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "it-began-in-afrika",
+  "title": "It Began in Afrika",
+  "album": "cwu"
+ },
+ {
+  "id": "sg",
+  "atomic": 18,
+  "symbol": "Sg",
+  "type": "single",
+  "year": 2002,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "0S43IwBF0uM",
+    "src": [
+     "cb-v-star-guitar-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2002,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 8,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2002-01-14",
+    "src": [
+     "wp-sg"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "MVはゴンドリー兄弟。同期を方眼紙で設計し、身近な物で景色の模型を組んで撮影したとされる",
+    "en": "Video by the Gondry brothers, synchronised on graph paper, with the scenery modelled from everyday objects",
+    "src": [
+     "wp-sg"
+    ]
+   },
+   {
+    "ja": "パーカーのMIDIフライ・ギターを使い、トムのギターをエフェクト経由でコンピューターに取り込んだ音が使われている",
+    "en": "Uses Tom's guitar, a Parker MIDI Fly, processed into the computer",
+    "src": [
+     "diffuser-cwu"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "michel-gondry",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "olivier-gondry",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "エド・シモンズ",
+     "en": "Ed Simons"
+    },
+    "orig_lang": "en",
+    "orig": "Star Guitar and Pioneer Skies happened when we got bored with the machines",
+    "ja": "『Star Guitar』と『Pioneer Skies』は、機械に飽きたときに生まれた",
+    "ctx": {
+     "ja": "『Come with Us』の制作について",
+     "en": "On making Come with Us"
+    },
+    "src": [
+     "diffuser-cwu"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "star-guitar",
+  "title": "Star Guitar",
+  "album": "cwu"
+ },
+ {
+  "id": "cwu",
+  "atomic": 19,
+  "symbol": "Cw",
+  "type": "album",
+  "year": 2002,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "0S43IwBF0uM",
+    "src": [
+     "cb-v-star-guitar-video"
+    ],
+    "verified": false,
+    "track": "Star Guitar",
+    "from_work": "sg"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2002-01-28",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, CS, LP",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 1,
+     "aut": 16,
+     "bel": 5,
+     "fra": 4,
+     "irl": 1,
+     "nld": 30,
+     "nz": 1,
+     "swi": 12,
+     "us": 32
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Gold; ARIA: Gold; RMNZ: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "サンプル元として、ジム・イングラム、エレクトロニック・システム、ジ・アソシエーション、C・ニエメンらがクレジットされている",
+    "en": "Sample credits include Jim Ingram, Electronic System, The Association and C. Niemen",
+    "src": [
+     "russ-cwu"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "beth-orton",
+    "role": "album-guest",
+    "src": [
+     "ud-cwu"
+    ],
+    "track": "The State We're In"
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "come-with-us",
+  "title": "Come with Us",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "cwtt",
+  "atomic": 20,
+  "symbol": "Tt",
+  "type": "single",
+  "year": 2002,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "yhS9LnDoo_w",
+    "src": [
+     "cb-v-the-test-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2002,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 14,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "「Come with Us」はファットボーイ・スリムが手を入れた版でシングルになった",
+    "en": "\"Come with Us\" was reworked by Fatboy Slim for the single",
+    "src": [
+     "ud-cwu"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "richard-ashcroft",
+    "role": "featured",
+    "src": [
+     "russ-cwu"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "come-with-us-the-test",
+  "title": "Come with Us / The Test",
+  "album": "cwu"
+ },
+ {
+  "id": "jpep",
+  "atomic": 21,
+  "symbol": "Jp",
+  "type": "ep",
+  "year": 2002,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2002-07-17",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "日本のみで発売されたEP",
+    "en": "An EP released only in Japan",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "come-with-us-japan-only-ep",
+  "title": "Come with Us/Japan Only EP",
+  "album": null
+ },
+ {
+  "id": "amep",
+  "atomic": 22,
+  "symbol": "Am",
+  "type": "ep",
+  "year": 2002,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2002-11-12",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "usdance": 25
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "米ダンス・アルバムチャート25位",
+    "en": "US Dance No. 25",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "americanep",
+  "title": "AmericanEP",
+  "album": null
+ },
+ {
+  "id": "tgp",
+  "atomic": 23,
+  "symbol": "Gp",
+  "type": "single",
+  "year": 2003,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "jTqwe57ObFo",
+    "src": [
+     "cb-v-the-golden-path-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2003,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "album_note": {
+    "v": "Singles 93–03",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 17,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2003-09-15",
+    "src": [
+     "de-wiki"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "the-flaming-lips",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "chris-milk",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "the-golden-path",
+  "title": "The Golden Path",
+  "album": null
+ },
+ {
+  "id": "gyh",
+  "atomic": 24,
+  "symbol": "Gh",
+  "type": "single",
+  "year": 2003,
+  "era": "cwu",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2003,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "album_note": {
+    "v": "Singles 93–03",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2003-11-24",
+    "src": [
+     "es-s9303"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "k-os",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "joseph-kahn",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "get-yourself-high",
+  "title": "Get Yourself High",
+  "album": null
+ },
+ {
+  "id": "gal",
+  "atomic": 25,
+  "symbol": "Ga",
+  "type": "single",
+  "year": 2005,
+  "era": "ptb",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "Xu3FTEmN-eg",
+    "src": [
+     "cb-v-galvanize-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2005,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 3,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Platinum; RIAA: Gold; RMNZ: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2005-01-17",
+    "src": [
+     "wp-ptb"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "アメリカでは2004年11月22日に先行発売。曲の土台にモロッコのシャアビの音楽が使われている",
+    "en": "Released in the US on 22 November 2004; built on a Moroccan chaabi sample",
+    "src": [
+     "wp-ptb",
+     "ud-ptb"
+    ]
+   },
+   {
+    "ja": "グラミー賞で最優秀ダンス・レコーディングを受賞",
+    "en": "Won the Grammy for Best Dance Recording",
+    "src": [
+     "docomo-ptb"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "q-tip",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "galvanize",
+  "title": "Galvanize",
+  "album": "ptb"
+ },
+ {
+  "id": "ptb",
+  "atomic": 26,
+  "symbol": "Pb",
+  "type": "album",
+  "year": 2005,
+  "era": "ptb",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "Xu3FTEmN-eg",
+    "src": [
+     "cb-v-galvanize-video"
+    ],
+    "verified": false,
+    "track": "Galvanize",
+    "from_work": "gal"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2005-01-24",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 5,
+     "aut": 18,
+     "bel": 1,
+     "fra": 17,
+     "irl": 3,
+     "nld": 7,
+     "nz": 8,
+     "swi": 8,
+     "us": 59
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Gold; IRMA: Platinum",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "2006年1月、グラミー賞の最優秀エレクトロニック/ダンス・アルバムを受賞。録音はミロコとニューヨークのヒット・ファクトリー",
+    "en": "Won the Grammy for Best Electronic/Dance Album in January 2006; recorded at Miloco and The Hit Factory, New York",
+    "src": [
+     "wp-ptb"
+    ]
+   },
+   {
+    "ja": "一部の地域では、コピー・プロテクション付きのCDで発売された",
+    "en": "Issued on copy-protected CD in some regions",
+    "src": [
+     "es-ptb"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "push-the-button",
+  "title": "Push the Button",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "bel",
+  "atomic": 27,
+  "symbol": "Bl",
+  "type": "single",
+  "year": 2005,
+  "era": "ptb",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "AMs5UpkamaE",
+    "src": [
+     "cb-v-believe-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2005,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 18,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2005-05-02",
+    "src": [
+     "wp-ptb"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "kele-okereke",
+    "role": "featured",
+    "src": [
+     "es-ptb"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "believe",
+  "title": "Believe",
+  "album": "ptb"
+ },
+ {
+  "id": "box",
+  "atomic": 28,
+  "symbol": "Bx",
+  "type": "single",
+  "year": 2005,
+  "era": "ptb",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "nSkKWVkF5yE",
+    "src": [
+     "cb-v-the-boxer-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2005,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 41,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2005-07-11",
+    "src": [
+     "wp-ptb"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "ne-o",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "tim-burgess",
+    "role": "featured",
+    "src": [
+     "ud-ptb"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "the-boxer",
+  "title": "The Boxer",
+  "album": "ptb"
+ },
+ {
+  "id": "l05",
+  "atomic": 29,
+  "symbol": "Lv",
+  "type": "ep",
+  "year": 2005,
+  "era": "ptb",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2005-11-29",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "download",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "live-05",
+  "title": "Live 05",
+  "album": null
+ },
+ {
+  "id": "dia",
+  "atomic": 30,
+  "symbol": "Da",
+  "type": "single",
+  "year": 2007,
+  "era": "watn",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "UVrwzjtBHq0",
+    "src": [
+     "cb-v-do-it-again-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2007,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 12,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "michael-haussman",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "ali-love",
+    "role": "featured",
+    "src": [
+     "it-watn",
+     "spin-2007"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "do-it-again",
+  "title": "Do It Again",
+  "album": "watn"
+ },
+ {
+  "id": "watn",
+  "atomic": 31,
+  "symbol": "Wn",
+  "type": "album",
+  "year": 2007,
+  "era": "watn",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "UVrwzjtBHq0",
+    "src": [
+     "cb-v-do-it-again-video"
+    ],
+    "verified": false,
+    "track": "Do It Again",
+    "from_work": "dia"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2007-07-02",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 18,
+     "aut": 18,
+     "bel": 3,
+     "fra": 28,
+     "irl": 4,
+     "nld": 17,
+     "nz": 19,
+     "swi": 6,
+     "us": 65
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Gold; IRMA: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "2006年、南ロンドンの防空壕で録音。5作続けての全英1位",
+    "en": "Recorded in 2006 in a bomb shelter in South London; their fifth consecutive UK No. 1",
+    "src": [
+     "spin-2007",
+     "wp-watn"
+    ]
+   },
+   {
+    "ja": "第50回グラミー賞で最優秀エレクトロニック/ダンス・アルバムを受賞",
+    "en": "Won Best Electronic/Dance Album at the 50th Grammy Awards",
+    "src": [
+     "wp-watn"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "we-are-the-night",
+  "title": "We Are the Night",
+  "album": null,
+  "album_mv": []
+ },
+ {
+  "id": "tsd",
+  "atomic": 32,
+  "symbol": "Sd",
+  "type": "single",
+  "year": 2007,
+  "era": "watn",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "dDj7DuHVV9E",
+    "src": [
+     "cb-v-the-salmon-dance-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2007,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 27,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "ARIA: Gold; RMNZ: Gold",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2007-09-10",
+    "src": [
+     "wp-watn"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "fatlip",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "the-salmon-dance",
+  "title": "The Salmon Dance",
+  "album": "watn"
+ },
+ {
+  "id": "mm",
+  "atomic": 33,
+  "symbol": "Md",
+  "type": "single",
+  "year": 2008,
+  "era": "watn",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "UoaeEAdDv-c",
+    "src": [
+     "cb-v-midnight-madness-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2008,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "album_note": {
+    "v": "Brotherhood",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 80,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2008-08-03",
+    "src": [
+     "de-wiki"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "ベスト盤『Brotherhood』に新曲として収録",
+    "en": "A new track on the compilation Brotherhood",
+    "src": [
+     "wp-brotherhood"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "midnight-madness",
+  "title": "Midnight Madness",
+  "album": null
+ },
+ {
+  "id": "ev",
+  "atomic": 34,
+  "symbol": "Ev",
+  "type": "single",
+  "year": 2010,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2010,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2010-04-19",
+    "src": [
+     "wp-further"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "escape-velocity",
+  "title": "Escape Velocity",
+  "album": "fur"
+ },
+ {
+  "id": "sw",
+  "atomic": 35,
+  "symbol": "Sw",
+  "type": "single",
+  "year": 2010,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "uCKeVj0JDjU",
+    "src": [
+     "cb-v-swoon-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2010,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 85,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2010-05-09",
+    "src": [
+     "wp-further"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "swoon",
+  "title": "Swoon",
+  "album": "fur"
+ },
+ {
+  "id": "fur",
+  "atomic": 36,
+  "symbol": "Fu",
+  "type": "album",
+  "year": 2010,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "uCKeVj0JDjU",
+    "src": [
+     "cb-v-swoon-video"
+    ],
+    "verified": false,
+    "track": "Swoon",
+    "from_work": "sw"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2010-06-14",
+    "src": [
+     "wp-further"
+    ]
+   },
+   "label": {
+    "v": "Virgin, Freestyle Dust",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": null,
+     "aus": 9,
+     "aut": 48,
+     "bel": 10,
+     "fra": 34,
+     "irl": 19,
+     "nld": 42,
+     "nz": 19,
+     "swi": 5,
+     "us": 63
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "iPadが当たる企画を付けたため、UKアルバムチャートの集計対象外になった",
+    "en": "Ruled ineligible for the UK Albums Chart because every copy offered buyers the chance to win an iPad",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "ja": "全8曲にアダム・スミスとマーカス・ライアルによる専用の映像がある",
+    "en": "All eight tracks come with films made for them by Adam Smith and Marcus Lyall",
+    "src": [
+     "wp-further"
+    ]
+   },
+   {
+    "ja": "グラミー賞の最優秀エレクトロニック/ダンス・アルバムにノミネート",
+    "en": "Nominated for the Grammy for Best Electronic/Dance Album",
+    "src": [
+     "hmv-further"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "further",
+  "title": "Further",
+  "album": null,
+  "album_mv": [
+   {
+    "title": "Dissolve",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "title": "Horse Power",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "title": "K+D+B",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "title": "Snow",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "title": "Wonders of the Deep",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "aw",
+  "atomic": 37,
+  "symbol": "Aw",
+  "type": "single",
+  "year": 2010,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "fhzkeFiXfPI",
+    "src": [
+     "cb-v-another-world-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2010,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2010-08-16",
+    "src": [
+     "wp-further"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "another-world",
+  "title": "Another World",
+  "album": "fur"
+ },
+ {
+  "id": "cp",
+  "atomic": 38,
+  "symbol": "Cp",
+  "type": "single",
+  "year": 2011,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2011,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "album_note": {
+    "v": "Hanna",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "サウンドトラック『Hanna』からのシングル",
+    "en": "A single from the Hanna soundtrack",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "container-park",
+  "title": "Container Park",
+  "album": null
+ },
+ {
+  "id": "tfv",
+  "atomic": 39,
+  "symbol": "Tv",
+  "type": "single",
+  "year": 2012,
+  "era": "fur",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2012,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "album_note": {
+    "v": "",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 9,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2012-07-30",
+    "src": [
+     "stereoboard-2012"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "アルバム未収録のシングル",
+    "en": "A non-album single",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "ja": "2012年ロンドン・オリンピックのトラック・サイクリング会場のテーマとして作られた",
+    "en": "Written as the theme for track cycling at the London 2012 Olympics",
+    "src": [
+     "fact-2012"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [
+   {
+    "who": {
+     "ja": "トム・ローランズ",
+     "en": "Tom Rowlands"
+    },
+    "orig_lang": "en",
+    "orig": "I have loved cycling since I was a boy",
+    "ja": "子どものころから自転車が好きだった",
+    "ctx": {
+     "ja": "オリンピックのテーマを書いたことについて",
+     "en": "On writing the Olympic theme"
+    },
+    "src": [
+     "fact-2012"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "theme-for-velodrome",
+  "title": "Theme for Velodrome",
+  "album": null
+ },
+ {
+  "id": "go",
+  "atomic": 40,
+  "symbol": "Go",
+  "type": "single",
+  "year": 2015,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "LO2RPDZkY88",
+    "src": [
+     "cb-home"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2015,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": 4,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Platinum; ARIA: Platinum; RMNZ: Platinum",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2015-05-04",
+    "src": [
+     "oc-go"
+    ]
+   },
+   "uk_history": {
+    "v": [
+     {
+      "peak": 46,
+      "when": "2015-08",
+      "src": "oc-go"
+     },
+     {
+      "peak": 4,
+      "when": "2026",
+      "src": "wp-go"
+     }
+    ],
+    "src": [
+     "oc-go",
+     "wp-go"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "第58回グラミー賞で最優秀ダンス・レコーディングにノミネート",
+    "en": "Nominated for Best Dance Recording at the 58th Grammy Awards",
+    "src": [
+     "wp-go"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "q-tip",
+    "role": "featured",
+    "src": [
+     "wp-go"
+    ]
+   },
+   {
+    "person": "michel-gondry",
+    "role": "mv",
+    "src": [
+     "cb-news"
+    ]
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "タロン・エジャトン",
+     "en": "Taron Egerton"
+    },
+    "orig_lang": "en",
+    "orig": "I have loved your music since my early teens",
+    "ja": "10代の前半から、ずっとあなたたちの音楽が好きでした",
+    "ctx": {
+     "ja": "映画『Apex』での使用を願い出た、バンドとQ-Tip宛ての手紙から",
+     "en": "From his letter to the band and Q-Tip asking to use the song in Apex"
+    },
+    "src": [
+     "cb-news"
+    ]
+   }
+  ],
+  "after": [
+   {
+    "when": "2017",
+    "ja": "ライブの1曲目になる",
+    "en": "Becomes the opener of the live show",
+    "src": [
+     "cb-news"
+    ]
+   },
+   {
+    "when": "2019",
+    "ja": "フジロックのヘッドライナー公演で1曲目。フジでの演奏はこれが初めて",
+    "en": "Opens their Fuji Rock headline set, the first time it was played at Fuji",
+    "src": [
+     "rsj-2019"
+    ]
+   },
+   {
+    "when": "2026-03",
+    "ja": "Saturday Night Live UKが番組宣伝に使用",
+    "en": "Used by Saturday Night Live UK for its promos",
+    "src": [
+     "wp-go"
+    ]
+   },
+   {
+    "when": "2026-05",
+    "ja": "Netflix映画『Apex』で使われ、Shazamで世界1位。UKシングルチャートは4位まで上昇",
+    "en": "Used in the Netflix film Apex; No. 1 on Shazam worldwide and up to No. 4 on the UK Singles Chart",
+    "src": [
+     "cb-news",
+     "wp-go"
+    ]
+   }
+  ],
+  "slug": "go",
+  "title": "Go",
+  "album": "bite",
+  "context": [
+   {
+    "ja": "同じ年の『Born in the Echoes』は全英1位。6作目の1位で、ダンス・アクトとしての最多記録に並んだ",
+    "en": "The same year, Born in the Echoes went to No. 1 in the UK, their sixth, equalling the record for a dance act",
+    "src": [
+     "gn-2015",
+     "nme-wideopen"
+    ]
+   },
+   {
+    "ja": "Q-Tipとの共作は「Galvanize」に続いて2度目",
+    "en": "Their second collaboration with Q-Tip, after \"Galvanize\"",
+    "src": [
+     "cb-news"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "unl",
+  "atomic": 41,
+  "symbol": "Un",
+  "type": "single",
+  "year": 2015,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "J8NUoavtgXY",
+    "src": [
+     "cb-v-under-neon-lights-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2015,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "st-vincent",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "under-neon-lights",
+  "title": "Under Neon Lights",
+  "album": "bite"
+ },
+ {
+  "id": "bite",
+  "atomic": 42,
+  "symbol": "Be",
+  "type": "album",
+  "year": 2015,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "saZVNLMMmmo",
+    "src": [
+     "cb-v-sometimes-i-feel-so-deserted-video"
+    ],
+    "verified": false,
+    "track": "Sometimes I Feel So Deserted"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2015-07-17",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin EMI",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 1,
+     "aus": 5,
+     "aut": 10,
+     "bel": 2,
+     "fra": 29,
+     "irl": 4,
+     "nld": 4,
+     "nz": 10,
+     "swi": 2,
+     "us": 73
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "certs": {
+    "v": "BPI: Silver",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "全英1位。6作目の1位で、ダンス・アクトとしての最多記録に並んだ（2015年時点）",
+    "en": "UK No. 1, their sixth, equalling the record for the most No. 1 albums by a dance act (as of 2015)",
+    "src": [
+     "gn-2015",
+     "nme-wideopen"
+    ]
+   },
+   {
+    "ja": "グラミー賞で、アルバムと「Go」の2部門にノミネート",
+    "en": "Two Grammy nominations: the album and \"Go\"",
+    "src": [
+     "rs-bite"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "beck",
+    "role": "album-guest",
+    "src": [
+     "wp-disc"
+    ],
+    "track": "Wide Open"
+   },
+   {
+    "person": "ali-love",
+    "role": "album-guest",
+    "src": [
+     "umc-bite"
+    ],
+    "track": "EML Ritual"
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "ケミカル・ブラザーズ",
+     "en": "The Chemical Brothers"
+    },
+    "orig_lang": "en",
+    "orig": "there was another good Chemical Brothers album in us",
+    "ja": "まだ、いいケミカル・ブラザーズのアルバムが一枚、自分たちの中にあった",
+    "ctx": {
+     "ja": "Rolling Stoneに、5年ぶりのアルバムについて",
+     "en": "To Rolling Stone, on their first album in five years"
+    },
+    "src": [
+     "rs-bite"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "born-in-the-echoes",
+  "title": "Born in the Echoes",
+  "album": null,
+  "album_mv": [
+   {
+    "title": "Sometimes I Feel So Deserted",
+    "directors": [
+     "ninian-doff"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "title": "Wide Open (featuring Beck)",
+    "directors": [
+     "dom-and-nic"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "chem",
+  "atomic": 43,
+  "symbol": "Ch",
+  "type": "single",
+  "year": 2016,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2016,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "『Born in the Echoes』日本のツアー記念盤のボーナス・ディスクに収録された曲",
+    "en": "First included on the bonus disc of the Japanese tour edition of Born in the Echoes",
+    "src": [
+     "wp-disc-m"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "c-h-e-m-i-c-a-l",
+  "title": "C-H-E-M-I-C-A-L",
+  "album": "bite"
+ },
+ {
+  "id": "fy",
+  "atomic": 44,
+  "symbol": "Fy",
+  "type": "single",
+  "year": 2018,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "7wzR_BVFsUU",
+    "src": [
+     "cb-v-free-yourself-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2018,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "free-yourself",
+  "title": "Free Yourself",
+  "album": "ng"
+ },
+ {
+  "id": "mah",
+  "atomic": 45,
+  "symbol": "Ma",
+  "type": "single",
+  "year": 2019,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "XTBNONSR9F8",
+    "src": [
+     "cb-v-mah-2"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2019,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "mah",
+  "title": "MAH",
+  "album": "ng"
+ },
+ {
+  "id": "gtko",
+  "atomic": 46,
+  "symbol": "Gk",
+  "type": "single",
+  "year": 2019,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "rSYwtllbweY",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2019,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk_sub": {
+    "v": {
+     "ja": "UKシングル・セールス43位、フィジカル2位、アナログ2位",
+     "en": "UK Singles Sales No. 43, Physical No. 2, Vinyl No. 2"
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "第62回グラミー賞で最優秀ダンス・レコーディングを受賞",
+    "en": "Won Best Dance Recording at the 62nd Grammy Awards",
+    "src": [
+     "grammy-2020"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "michel-gondry",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "olivier-gondry",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "got-to-keep-on",
+  "title": "Got to Keep On",
+  "album": "ng"
+ },
+ {
+  "id": "wgtt",
+  "atomic": 47,
+  "symbol": "Wt",
+  "type": "single",
+  "year": 2019,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "mRfSM-lv55I",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2019,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "ninian-doff",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "weve-got-to-try",
+  "title": "We've Got to Try",
+  "album": "ng"
+ },
+ {
+  "id": "ng",
+  "atomic": 48,
+  "symbol": "Ng",
+  "type": "album",
+  "year": 2019,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "sYsXKhBknyM",
+    "src": [
+     "cb-v-eve-of-destruction"
+    ],
+    "verified": false,
+    "track": "Eve of Destruction"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2019-04-12",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "Virgin EMI",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 4,
+     "aus": 17,
+     "aut": 26,
+     "bel": 9,
+     "fra": 48,
+     "irl": 21,
+     "nld": 26,
+     "nz": null,
+     "swi": 10,
+     "us": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "第62回グラミー賞で最優秀ダンス/エレクトロニック・アルバムを受賞",
+    "en": "Won Best Dance/Electronic Album at the 62nd Grammy Awards",
+    "src": [
+     "bb-2020"
+    ]
+   },
+   {
+    "ja": "最初の2作で使ったサンプラーを並べた「1997年コーナー」で制作。録音はエンジニアのスティーヴ・ダブ・ジョーンズと2016年から2019年にかけて",
+    "en": "Made using a \"1997 corner\" of the samplers from their first two albums; recorded 2016–2019 with engineer Steve Dub Jones",
+    "src": [
+     "apple-ng",
+     "bb-ng"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "aurora",
+    "role": "album-guest",
+    "src": [
+     "spin-2025"
+    ],
+    "track": "Eve of Destruction"
+   },
+   {
+    "person": "nene",
+    "role": "album-guest",
+    "src": [
+     "quietus-ng",
+     "bb-ng"
+    ],
+    "track": "Eve of Destruction"
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "トム・ローランズ",
+     "en": "Tom Rowlands"
+    },
+    "orig_lang": "en",
+    "orig": "I set up a corner of my studio that was 'The 1997 Corner'",
+    "ja": "スタジオの一角に『1997年コーナー』を作った",
+    "ctx": {
+     "ja": "Apple Musicに、制作の始まりについて",
+     "en": "To Apple Music, on how the record began"
+    },
+    "src": [
+     "apple-ng"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "no-geography",
+  "title": "No Geography",
+  "album": null,
+  "album_mv": [
+   {
+    "title": "Eve of Destruction (featuring Aurora)",
+    "directors": [
+     "adam-smith",
+     "marcus-lyall"
+    ],
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dtyf",
+  "atomic": 49,
+  "symbol": "Df",
+  "type": "single",
+  "year": 2021,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "b-mGA4V2LK0",
+    "src": [
+     "cb-v-the-darkness-that-you-fear-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2021,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk_sub": {
+    "v": {
+     "ja": "UKダウンロード38位、フィジカル10位、アナログ10位",
+     "en": "UK Downloads No. 38, Physical No. 10, Vinyl No. 10"
+    },
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2021-04-23",
+    "src": [
+     "umc-dtyf"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "『No Geography』以来の新曲。Appleの春の発表イベントで初めて流れた。ジャケットは故テリー・フロストの作品",
+    "en": "Their first new music since No Geography, premiered at Apple's spring event; sleeve art by the late Sir Terry Frost",
+    "src": [
+     "umc-dtyf",
+     "bv-dtyf"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "ruffmercy",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "トム・ローランズ",
+     "en": "Tom Rowlands"
+    },
+    "orig_lang": "en",
+    "orig": "'The Darkness That You Fear' is a hopeful piece of music",
+    "ja": "『The Darkness That You Fear』は希望のある音楽だ",
+    "ctx": {
+     "ja": "発売時のコメント",
+     "en": "On release"
+    },
+    "src": [
+     "umc-dtyf"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "the-darkness-that-you-fear",
+  "title": "The Darkness That You Fear",
+  "album": "ftbf"
+ },
+ {
+  "id": "nr",
+  "atomic": 50,
+  "symbol": "Nr",
+  "type": "single",
+  "year": 2023,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": null,
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2023,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk_sub": {
+    "v": {
+     "ja": "UKダウンロード37位、フィジカル2位、アナログ1位",
+     "en": "UK Downloads No. 37, Physical No. 2, Vinyl No. 1"
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "no-reason",
+  "title": "No Reason",
+  "album": "ftbf"
+ },
+ {
+  "id": "la",
+  "atomic": 51,
+  "symbol": "La",
+  "type": "single",
+  "year": 2023,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "pqU4g5iJk2Y",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2023,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "MVはドム＆ニックにとって10回目の共作。Arri XRのバーチャル・プロダクションのステージで撮影",
+    "en": "Dom and Nic's tenth video with the band, shot on an Arri XR virtual production stage",
+    "src": [
+     "nialler-ftbf"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "halo-maud",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "live-again",
+  "title": "Live Again",
+  "album": "ftbf"
+ },
+ {
+  "id": "gb",
+  "atomic": 52,
+  "symbol": "Gb",
+  "type": "single",
+  "year": 2023,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "gr12Lfo4dO4",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2023,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "goodbye",
+  "title": "Goodbye",
+  "album": "ftbf"
+ },
+ {
+  "id": "sls",
+  "atomic": 53,
+  "symbol": "Sl",
+  "type": "single",
+  "year": 2023,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "nRtxogXp8sY",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2023,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "uk": {
+    "v": null,
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "date": {
+    "v": "2023-08-21",
+    "src": [
+     "umc-sls"
+    ]
+   }
+  },
+  "notes": [],
+  "credits": [
+   {
+    "person": "beck",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "pensacola",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [
+   {
+    "who": {
+     "ja": "ベック",
+     "en": "Beck"
+    },
+    "orig_lang": "en",
+    "orig": "It's like they have one foot in multiple decades at the same time",
+    "ja": "彼らは、いくつもの時代に同時に片足ずつ置いているようだ",
+    "ctx": {
+     "ja": "レーベルの発表資料に寄せたコメント",
+     "en": "Quoted in the label's announcement"
+    },
+    "src": [
+     "umc-sls"
+    ]
+   }
+  ],
+  "after": [],
+  "slug": "skipping-like-a-stone",
+  "title": "Skipping Like a Stone",
+  "album": "ftbf"
+ },
+ {
+  "id": "ftbf",
+  "atomic": 54,
+  "symbol": "Fb",
+  "type": "album",
+  "year": 2023,
+  "era": "ftbf",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": null,
+  "key": null,
+  "embed": {
+   "mv": {
+    "id": "pqU4g5iJk2Y",
+    "src": [
+     "wp-disc"
+    ],
+    "verified": false,
+    "track": "Live Again",
+    "from_work": "la"
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "date": {
+    "v": "2023-09-08",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "label": {
+    "v": "EMI",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "formats": {
+    "v": "CD, CS, LP, download",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   "charts": {
+    "v": {
+     "uk": 6,
+     "aus": 70,
+     "aut": null,
+     "bel": 65,
+     "fra": 64,
+     "irl": 85,
+     "nld": null,
+     "nz": null,
+     "swi": null,
+     "us": null
+    },
+    "src": [
+     "wp-disc"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "10作目のスタジオアルバム",
+    "en": "Their tenth studio album",
+    "src": [
+     "ud-ftbf"
+    ]
+   },
+   {
+    "ja": "第66回グラミー賞（2024年）の最優秀ダンス/エレクトロニック・ミュージック・アルバムにノミネート",
+    "en": "Nominated for Best Dance/Electronic Music Album at the 2024 Grammys",
+    "src": [
+     "cb-ftbf-grammy"
+    ]
+   },
+   {
+    "ja": "同じ秋、30年を振り返る本『Paused in Cosmic Reflection』がホワイト・ラビットから出た（2023年10月26日）",
+    "en": "The same autumn, the retrospective book Paused in Cosmic Reflection was published by White Rabbit (26 October 2023)",
+    "src": [
+     "umc-ftbf"
+    ]
+   }
+  ],
+  "credits": [],
+  "testimony": [],
+  "after": [],
+  "slug": "for-that-beautiful-feeling",
+  "title": "For That Beautiful Feeling",
+  "album": null,
+  "album_mv": []
+ }
+]
