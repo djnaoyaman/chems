@@ -24,38 +24,38 @@ UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
 
 # ---------------------------------------------------------------- 文言
 UI = {
- 'ja': {'works': '周期表', 'timeline': '年表', 'equations': '反応式', 'chain': '連鎖反応', 'now': '現在地', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫',
+ 'ja': {'works': '周期表', 'timeline': '年表', 'equations': '反応式', 'chain': '連鎖反応', 'now': '現在地', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': 'プロフィール',
         'lang_other': 'EN', 'album': 'スタジオアルバム', 'single': 'シングル', 'ep': 'EP',
         'listen': '聴く', 'record': '記録', 'music': '音楽性', 'tech': 'テクノロジー', 'context': '周辺環境', 'testimony': '証言', 'view': '私見', 'after': 'その後', 'own': '持つ', 'src': '出典',
         'date': '発売日', 'year': '発売', 'on': '収録', 'label': 'レーベル', 'formats': '形態', 'uk': 'UK最高位', 'charts': '各国の最高位', 'certs': '認定', 'featured': '参加', 'mv': 'MV監督', 'artwork': 'アートワーク', 'notes': '注記', 'guest': 'アルバムへの参加', 'singles_from': 'このアルバムのシングル', 'album_mv': 'アルバム収録曲のMV',
-        'nochart': 'チャート入りなし', 'inelig': '集計対象外', 'bpm': 'BPM', 'key': 'キー', 'wait_measure': 'djnaoyaman実測待ち',
+        'nochart': 'チャート入りなし', 'inelig': '集計対象外', 'bpm': 'BPM', 'key': 'キー', 'wait_measure': '計測待ち', 'm_rb': 'DJ Naoyamanのrekordboxによる解析値', 'm_an': '音源からの自動解析', 'm_album': 'アルバム単位では計測しません。各曲のページで表示します。',
         'todo_music': '構成、ビート、サンプル、音色、前作からの変化を書く枠。サンプル元と構成の秒数は出典付きで書き、聴感の描写は私見に回します。',
         'todo_tech': '制作機材、スタジオ、録音・編集の手法。本人とエンジニアの発言が見つかりしだい記載します。',
         'todo_context': '同時期のクラブ、レーベル、チャート、同時代の作品、社会の動きを書く枠。',
         'todo_testimony': '出典のある発言が見つかりしだい、原語と訳で載せます。',
-        'todo_view': 'djnaoyamanの執筆待ち。',
+        'todo_view': 'DJ Naoyamanの執筆待ち。',
         'todo_after': 'その後の使われ方や評価の変化を、出典がそろいしだい記載します。',
         'todo_own': 'Amazon・楽天のリンク枠。アソシエイト登録後に、広告表記とあわせて設置します。',
         'todo_listen': '公式動画の確認待ち', 'yt_channel': '公式YouTubeチャンネルを開く',
         'facade': '公式MV', 'from_album_mv': 'アルバムからの公式MV', 'official_src': '公式サイトが埋め込んでいる動画', 'open_yt': 'YouTubeで開く', 'art_cap': 'アートワーク（批評・紹介のための引用）', 'art_alt': 'のアートワーク', 'art_wait': 'ジャケット画像は準備中', 'facade_dir': '監督', 'facade_tap': 'タップでYouTubeの公式MVを読み込みます',
         'plates_ok': '版色（アートワークから抽出）', 'plates_no': '未刷り（版色は抽出待ち）', 'plate_names': ['地', 'インク1', 'インク2', '差し色'],
         'contrast': '文字コントラスト', 'body': '本文', 'heading': '見出し', 'fixed': 'インク1が基準の3:1に届かないため、見出しを文字色に補正',
-        'pulse': '脈動 {bpm} BPM（仮。実測前）', 'pulse_ok': '脈動 {bpm} BPM（実測）',
+        'pulse': '脈動 {bpm} BPM（仮。計測前）', 'pulse_ok': '脈動 {bpm} BPM（実測）',
         'from_album': '所属アルバム', 'included': '収録', 'nonalbum': 'アルバム未収録',
         'prev': '前の作品', 'next': '次の作品', 'atomic': '原子番号',
         'unofficial': 'このサイトはThe Chemical Brothersの公式サイトではありません。ファンによる非公式のアーカイブです。',
         'noads': '現在、広告リンクは設置していません。', 'checked': '確認日',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
- 'en': {'works': 'Periodic table', 'timeline': 'Timeline', 'equations': 'Equations', 'chain': 'Chain reaction', 'now': 'Now', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources',
+ 'en': {'works': 'Periodic table', 'timeline': 'Timeline', 'equations': 'Equations', 'chain': 'Chain reaction', 'now': 'Now', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Profile',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
         'listen': 'Listen', 'record': 'Record', 'music': 'Music', 'tech': 'Technology', 'context': 'Context', 'testimony': 'Testimony', 'view': 'View', 'after': 'Afterwards', 'own': 'Own', 'src': 'Sources',
         'date': 'Released', 'year': 'Released', 'on': 'On', 'label': 'Label', 'formats': 'Formats', 'uk': 'UK peak', 'charts': 'Peak positions', 'certs': 'Certifications', 'featured': 'Featuring', 'mv': 'Video', 'artwork': 'Artwork', 'notes': 'Notes', 'guest': 'Guest on the album', 'singles_from': 'Singles from the album', 'album_mv': 'Videos for album tracks',
-        'nochart': 'Did not chart', 'inelig': 'Ineligible', 'bpm': 'BPM', 'key': 'Key', 'wait_measure': 'Awaiting measurement by djnaoyaman',
+        'nochart': 'Did not chart', 'inelig': 'Ineligible', 'bpm': 'BPM', 'key': 'Key', 'wait_measure': 'Not yet measured', 'm_rb': "From DJ Naoyaman's rekordbox analysis", 'm_an': 'Automatic analysis of the audio', 'm_album': 'Not measured for whole albums; see each track page.',
         'todo_music': 'Space for structure, beats, samples, sounds and what changed from the last record. Samples and timings go in with sources; how it sounds goes in the View.',
         'todo_tech': 'Gear, studio, recording and editing methods, added once statements from the band or engineers are found.',
         'todo_context': 'Space for the clubs, labels, charts, records and events around it.',
         'todo_testimony': 'Quotes go here with sources, in the original language with a translation, once found.',
-        'todo_view': "Awaiting djnaoyaman's view.",
+        'todo_view': "Awaiting DJ Naoyaman's view.",
         'todo_after': 'Later uses and shifts in reputation, added once sourced.',
         'todo_own': 'Space for Amazon and Rakuten links, to be added with an advertising disclosure once registered.',
         'todo_listen': 'Official video not yet confirmed', 'yt_channel': 'Open the official YouTube channel',
@@ -122,7 +122,7 @@ def hsh(s): return int(hashlib.md5(s.encode()).hexdigest()[:8], 16)
 def path(lang, key, arg=None):
     pre = '' if lang == 'ja' else 'en/'
     m = {'top': 'index.html', 'works': 'works/index.html', 'shelf': 'shelf/index.html', 'timeline': 'timeline/index.html',
-         'equations': 'equations/index.html', 'chain': 'chain/index.html', 'now': 'now/index.html', 'sources': 'sources/index.html', 'about': 'about/index.html'}
+         'equations': 'equations/index.html', 'chain': 'chain/index.html', 'now': 'now/index.html', 'sources': 'sources/index.html', 'about': 'about/index.html', 'profile': 'profile/index.html'}
     if key == 'work': return pre + f"works/{W[arg]['slug']}/index.html"
     if key == 'cat': return pre + f'shelf/{arg}/index.html'
     if key == 'person': return pre + f'equations/{arg}/index.html'
@@ -185,6 +185,17 @@ def signature(is_top, lang):
 FONTS = {'ja': 'family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;700;900',
          'en': 'family=Anton&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600'}
 NAV = ['works', 'timeline', 'equations', 'chain', 'now', 'shelf']
+CRUMB_PARENT = {'work': 'works', 'cat': 'shelf', 'person': 'equations'}
+
+def breadcrumb_ld(lang, key, arg, title, pg, base):
+    if key == 'top': return None
+    u = UI[lang]
+    items = [{'@type': 'ListItem', 'position': 1, 'name': CFG['site_name'][lang], 'item': base + path(lang, 'top')}]
+    if key in CRUMB_PARENT:
+        pkey = CRUMB_PARENT[key]
+        items.append({'@type': 'ListItem', 'position': 2, 'name': u[pkey], 'item': base + path(lang, pkey)})
+    items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': title, 'item': base + pg})
+    return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': items}
 
 def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     u = UI[lang]; other = 'en' if lang == 'ja' else 'ja'
@@ -194,26 +205,43 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    ld = f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>' if jsonld else ''
+    lds = [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
+    ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     hre = ''.join(f'<link rel="alternate" hreflang="{l}" href="{(base + alt[l]) if base else rel(pg, alt[l])}">' for l in LANGS)
     hre += f'<link rel="alternate" hreflang="x-default" href="{(base + alt["ja"]) if base else rel(pg, alt["ja"])}">'
     canon = f'<link rel="canonical" href="{base + pg}">' if base else ''
+    ga = CFG.get('ga_measurement_id', '')
+    gtag = f'''<script async src="https://www.googletagmanager.com/gtag/js?id={ga}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','{ga}');</script>''' if ga else ''
+    og_locale_alt = 'en_GB' if lang == 'ja' else 'ja_JP'
     return f'''<!DOCTYPE html>
 {signature(key == 'top', lang)}
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{gtag}
 <title>{esc(full)}</title>
 <meta name="description" content="{esc(desc)}">
 {canon}{hre}
 <meta property="og:type" content="{'website' if key == 'top' else 'article'}">
+<meta property="og:site_name" content="{esc(site)}">
 <meta property="og:title" content="{esc(full)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{og_url}">
+<meta property="og:image:alt" content="{esc(full)}">
+<meta property="og:url" content="{(base + pg) if base else rel(pg, pg)}">
 <meta property="og:locale" content="{'ja_JP' if lang == 'ja' else 'en_GB'}">
+<meta property="og:locale:alternate" content="{og_locale_alt}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(full)}">
+<meta name="twitter:description" content="{esc(desc)}">
+<meta name="twitter:image" content="{og_url}">
+<meta name="twitter:image:alt" content="{esc(full)}">
 <meta name="theme-color" content="#000000">
+<meta name="author" content="{esc(CFG['author'])}">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚗️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?{FONTS[lang]}&display=swap" rel="stylesheet">
@@ -224,7 +252,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <main id="main">
 {body}
 </main>
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -294,7 +322,8 @@ def work_page(w, lang):
     bg, i1, i2, ac = palette(w); fg = text_on(bg); t_ok = cr(i1, bg) >= 3; tt = i1 if t_ok else fg
     blend = 'multiply' if lum(bg) > .3 else 'screen'
     h = hsh(w['id']); mx = f'{.02 + (h % 31) / 1000:.3f}em'; my = f'{((h >> 5) % 41 - 20) / 1000:.3f}em'
-    bpm = w['bpm'] or 120; eff = bpm / 2 if bpm > 180 else bpm
+    rep = W[w['embed']['mv']['from_work']] if w['embed']['mv'] and w['embed']['mv'].get('from_work') else w
+    bpm = w.get('bpm') or rep.get('bpm') or 120; eff = bpm / 2 if bpm > 180 else bpm
     n = len(w['title']); ts = 'clamp(7rem,40vw,14rem)' if n <= 3 else 'clamp(3.6rem,17vw,8.5rem)' if n <= 10 else 'clamp(3rem,13vw,7rem)' if n <= 17 else 'clamp(2.5rem,10.5vw,6rem)'
     tri = i1 if cr(i1, '#000000') >= 3 else PAPER
     style = f'--tri:{tri};--bg:{bg};--ink1:{i1};--ink2:{i2};--acc:{ac};--fg:{fg};--tt:{tt};--blend:{blend};--mx:{mx};--my:{my};--bpm-eff:{eff};--ts:{ts}'
@@ -313,7 +342,7 @@ def work_page(w, lang):
     plates = ''.join(f'<span class="sw"><i style="background:{c}"></i>{names[k]} {c}</span>' for k, c in enumerate(pal))
     ptag = u['plates_ok'] if w['plates']['status'] == 'extracted' else u['plates_no']
     readout = f'{u["contrast"]}　{u["body"]} {cr(fg, bg):.1f}:1　{u["heading"]} {cr(tt, bg):.1f}:1' + ('' if t_ok else f'　{u["fixed"]}')
-    tempo = (u['pulse_ok'] if w['bpm'] else u['pulse']).format(bpm=bpm)
+    tempo = (u['pulse_ok'] if (w.get('bpm') or rep.get('bpm')) else u['pulse']).format(bpm=f'{bpm:g}')
     # 聴く
     emb = w['embed']['mv']
     if emb:
@@ -385,8 +414,15 @@ def work_page(w, lang):
     rec = f'<section class="blk rec"><h2>{u["record"]}</h2><dl>{"".join(rows)}</dl></section>'
     tx, _ = text_blocks(w['id'], lang)
     wm_ = u['wait_measure']
-    music = (f'<section class="blk rec"><h2>{u["music"]}</h2><dl><div><dt>{u["bpm"]}</dt><dd>{w["bpm"] or f"<span class=todo>{wm_}</span>"}</dd></div>'
-             f'<div><dt>{u["key"]}</dt><dd>{w["key"] or f"<span class=todo>{wm_}</span>"}</dd></div></dl>'
+    if w['type'] == 'album':
+        mrows = f'<p class="muted small">{u["m_album"]}</p>'
+    else:
+        how = {'rekordbox': u['m_rb'], 'analysis': u['m_an']}.get((w.get('measure') or {}).get('method'), '')
+        bpm_v = (f'{w["bpm"]:g} BPM' if w.get('bpm') else f'<span class=todo>{wm_}</span>')
+        key_v = (f'{w["key"]}' + (f'（{w["camelot"]}）' if lang == 'ja' and w.get('camelot') else f' ({w["camelot"]})' if w.get('camelot') else '') if w.get('key') else f'<span class=todo>{wm_}</span>')
+        mrows = (f'<dl><div><dt>{u["bpm"]}</dt><dd>{bpm_v}</dd></div><div><dt>{u["key"]}</dt><dd>{key_v}</dd></div>'
+                 + (f'<div><dt>{u["notes"]}</dt><dd>{how}</dd></div>' if how else '') + '</dl>')
+    music = (f'<section class="blk rec"><h2>{u["music"]}</h2>{mrows}'
              + (md(tx['music'], refs, lang) if 'music' in tx else f'<p class="todo">{u["todo_music"]}</p>') + '</section>')
     tech = f'<section class="blk"><h2>{u["tech"]}</h2>' + (md(tx['tech'], refs, lang) if 'tech' in tx else f'<p class="todo">{u["todo_tech"]}</p>') + '</section>'
     if w.get('context'):
@@ -403,8 +439,8 @@ def work_page(w, lang):
     testimony = f'<section class="blk"><h2>{u["testimony"]}</h2>{tq}</section>'
     if 'view' in tx:
         tn = '<p class="tn">Translated from the Japanese original.</p>' if lang == 'en' else ''
-        view = f'<section class="blk view"><h2>{u["view"]}（djnaoyaman）</h2>{md(tx["view"], refs, lang)}{tn}</section>' if lang == 'ja' else \
-               f'<section class="blk view"><h2>{u["view"]} (djnaoyaman)</h2>{md(tx["view"], refs, lang)}{tn}</section>'
+        view = f'<section class="blk view"><h2><span>{u["view"]}（<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>）</span></h2>{md(tx["view"], refs, lang)}{tn}</section>' if lang == 'ja' else \
+               f'<section class="blk view"><h2><span>{u["view"]} (<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>)</span></h2>{md(tx["view"], refs, lang)}{tn}</section>'
     else: view = f'<section class="blk view"><h2>{u["view"]}</h2><p class="todo">{u["todo_view"]}</p></section>'
     if w['after']:
         af = '<ul class="after">' + ''.join(f'<li><span class="d">{fdate(a["when"], lang)}</span><span>{esc(a[lang])}{refs(a["src"])}</span></li>' for a in w['after']) + '</ul>'
@@ -429,8 +465,14 @@ def work_page(w, lang):
 {refs.html(lang)}
 {pn}
 </div></article>'''
+    base_ = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
+    art_f = art_file(w)
     ld = {'@context': 'https://schema.org', '@type': 'MusicAlbum' if w['type'] != 'single' else 'MusicRecording', 'name': w['title'],
-          'byArtist': {'@type': 'MusicGroup', 'name': 'The Chemical Brothers'}, 'datePublished': str(R['date']['v'] if 'date' in R else w['year'])}
+          'url': base_ + pg, 'genre': ['Electronic', 'Big Beat'],
+          'byArtist': {'@type': 'MusicGroup', 'name': 'The Chemical Brothers', 'sameAs': ['https://www.thechemicalbrothers.com/', 'https://en.wikipedia.org/wiki/The_Chemical_Brothers']},
+          'datePublished': str(R['date']['v'] if 'date' in R else w['year'])}
+    if art_f: ld['image'] = base_ + 'art/' + os.path.basename(art_f)
+    if R.get('label', {}).get('v'): ld['recordLabel'] = str(R['label']['v'])
     desc = (f'{w["title"]}（{w["year"]}年、{u[w["type"]]}）の記録、音楽性、周辺環境、証言、私見、その後。' if lang == 'ja' else
             f'{w["title"]} ({w["year"]}, {u[w["type"]].lower()}): record, music, context, testimony, view and afterwards.')
     emit(lang, 'work', w['id'], w['title'], desc, body, {'type': 'work', 'w': w['id']}, ld, cur='works', refs=refs)
@@ -500,7 +542,10 @@ def top_page(lang):
 <section class="s"><h2 class="sh">{u['about']}</h2><p>{about}</p><p><a class="more" href="{rel(pg, path(lang, 'about'))}">{'方針と用語集' if lang == 'ja' else 'Policy and glossary'}</a></p></section>
 </div>'''
     desc = 'ケミカル・ブラザーズの全アルバム、全シングル、全EPを、出典付きの記録と私見で読むアーカイブ。' if lang == 'ja' else 'Every album, single and EP by The Chemical Brothers, read through sourced records and views.'
-    ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': CFG['site_name'][lang], 'inLanguage': lang}
+    base_ = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
+    ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': CFG['site_name'][lang], 'url': base_ + pg, 'inLanguage': lang, 'description': desc,
+          'about': {'@type': 'MusicGroup', 'name': 'The Chemical Brothers', 'sameAs': ['https://www.thechemicalbrothers.com/', 'https://en.wikipedia.org/wiki/The_Chemical_Brothers']},
+          'author': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://note.com/djnaoyaman'}}
     emit(lang, 'top', None, CFG['site_name'][lang], desc, body, {'type': 'top'}, ld, refs=refs)
 
 def works_page(lang):
@@ -653,28 +698,101 @@ def about_page(lang):
     u = UI[lang]
     if lang == 'ja':
         secs = [('方針', 'ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。全アルバム、全シングル、全EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
-                ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はdjnaoyaman名義で書き、色を反転させたブロックに分けています。英語版の私見は日本語の原文からの翻訳です。'),
+                ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。英語版の私見は日本語の原文からの翻訳です。'),
                 ('出典の扱い', '出典庫に全出典の媒体、日付、言語、確認日を記録し、使っているページへ逆リンクを張っています。'),
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
                 ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
                 ('埋め込み', '埋め込みはYouTubeの公式動画だけです。優先順は公式MV、公式ライブ映像、公式音源（Topic）です。'),
                 ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。設置する際は、リンクの近くと共通フッターに広告である旨を表示し、Amazonアソシエイトの定型文を掲載します。現在、広告リンクは設置していません。'),
-                ('制作', 'djnaoyaman（NAOYA MIYAZAKI LAB. JAPAN）')]
+                ('制作', 'DJ Naoyaman（宮崎直哉）。プロフィールは別ページにまとめています。')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
     else:
         secs = [('Policy', 'This archive reads The Chemical Brothers as a catalyst: something that starts a reaction and comes out of it unchanged. Every album, single and EP sits on the main shelf, everything else in the annex, laid out as a record of the reactions.'),
-                ('Facts and views', 'Every fact carries a source. Facts without one are left out, and their place stays marked as an empty slot. Views are written by djnaoyaman and set apart in inverted blocks. English views are translated from the Japanese original.'),
+                ('Facts and views', 'Every fact carries a source. Facts without one are left out, and their place stays marked as an empty slot. Views are written by DJ Naoyaman and set apart in inverted blocks. English views are translated from the Japanese original.'),
                 ('Sources', 'The Sources page records each source\'s publisher, date, language and the date it was checked, with links back to the pages that use it.'),
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
                 ('Images and colour', 'Sleeve images appear on each work page as quotations for review and commentary, with their source shown. No official logos are used. Plate colours are taken from the artwork; works without an image yet are shown unprinted.'),
                 ('Embeds', 'Only official YouTube videos are embedded, in this order of preference: official video, official live footage, official audio (Topic).'),
                 ('Advertising', 'Affiliate links will appear only in the Own section of each work page, never inside the text. When they are added, a disclosure will sit next to them and in the site footer, together with the standard Amazon Associates statement. There are no advertising links at present.'),
-                ('Made by', 'djnaoyaman (NAOYA MIYAZAKI LAB. JAPAN)')]
+                ('Made by', 'DJ Naoyaman (Naoya Miyazaki). See the profile page for more.')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["en"])}</dt><dd lang="ja">{esc(g["ja"])}</dd>' for g in GLOSS) + '</dl>'
         gh = 'Glossary (English and Japanese)'
     body = '<div class="wrap"><header class="page-h"><h1>' + u['about'] + '</h1></header>' + ''.join(f'<section class="s"><h2 class="sh">{t}</h2><p>{esc(x)}</p></section>' for t, x in secs) + f'<section class="s"><h2 class="sh">{gh}</h2>{gl}</section></div>'
     emit(lang, 'about', None, u['about'], secs[0][1][:120], body, {'type': 'plain', 'title': u['about']}, cur='about')
+
+
+PROFILE_SRC = [('一見坊の【日本妖怪学体系】 編者プロフィール', 'https://djnaoyaman.github.io/youkai/profile.html'),
+               ('掌蹠膿疱症.com このサイトについて', 'https://djnaoyaman.github.io/ppp/about.html'),
+               ('鎌・くらんぽ 編者プロフィール', 'https://djnaoyaman.github.io/kuranpo/profile.html'),
+               ('花鳥風月、そして魚と虫 作者', 'https://djnaoyaman.github.io/sakanamushi/')]
+def profile_page(lang):
+    u = UI[lang]; pg = path(lang, 'profile')
+    L = lambda items: '<ul class="plain">' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>'
+    A = lambda t, h: f'<a href="{esc(h)}" target="_blank" rel="noopener">{esc(t)}</a>'
+    if lang == 'ja':
+        lead = ('このサイトの私見を書いているDJ Naoyamanは、宮崎直哉（みやざき なおや）のDJとしての名義です。'
+                'note.comを主な発表媒体にしているエッセイスト・コンテンツクリエイターで、マーケター、ブランディングプロデューサーでもあります。')
+        secs = [
+         ('DJ', '<p>DJ歴は32年。かつてはプロダクションに所属し、日本中の媒体に音楽評を書いていた時期もありました。今もターンテーブルの前に立ち続けています。</p>'
+                f'<p>noteでは{A("「Artists inside the DJ bag」", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}というマガジンで、DJ Shadow、DJ Kentaro、J Dilla、RADIOHEADなど、一人のアーティストを前編・中編・後編や連話の形で深く掘っていくシリーズを続けています。</p>'),
+         ('名義', L(['DJ Naoyaman：DJ、音楽（このサイト）', '一見坊：妖怪', 'クランポック：鎌倉の歴史と地理', '湯気文吾：サウナ'])),
+         ('経歴', L(['みずほ情報総研株式会社（ロンドン・ニューヨーク向け大規模決済処理システム構築、ビジネスコンサルタント）',
+                     '株式会社サイバーエージェント（インターネット広告代理事業部 マネジメント）',
+                     '株式会社リッツ・インターナショナル 取締役（美容サービス事業およびクリニック経営を担当）',
+                     '株式会社フライング・ブレイン 代表取締役（上流マーケティング企画会社として、アパレル・ウェルネスを中心に50以上のブランドの上流マーケティング・ブランディングを担当）',
+                     '紫波金魚 代表', 'あづまねエリアブランディングプロデューサー（岩手県紫波郡紫波町、2024年〜）',
+                     '現在は、複数のウェルネス・ヘルスケア領域の企業でマーケティングディレクターを務めています'])),
+         ('学歴', L(['足立区立梅島小学校 卒業', '足立区立第四中学校 卒業', '明治学院高校 卒業', '青山学院大学 文学部 教育学科 中退', '明治大学 商学部 商学科 卒業'])),
+         ('過去に関わったブランド', L(['バロックジャパンリミテッド', 'ウォルト・ディズニー', 'ZOZOTOWN', 'Coca-Cola', 'MARK STYLER', '英・インターナショナル', '恵山株式会社'])),
+         ('関わっているブランド', L(['MINERALion、Lypo-C（株式会社スピック）', 'KINS（株式会社KINS）', 'madama・hada（株式会社WSP）', 'Goto no Tsubaki（五島の椿株式会社）', 'ReFa、SIXPAD（株式会社MTG）'])),
+         ('活動領域', '<p>小説家、エッセイスト、マーケティング、会計、ブランディング、DJ、演劇、スパイス料理、ほか。</p>'),
+         ('講演実績', '<p>東京工科大学、関東学院大学、神奈川大学、和光大学、専修大学、紫波町、五島市、砥部市、ほか。</p>'),
+         ('つくっているもの', L([A('一見坊の【日本妖怪学体系】', 'https://djnaoyaman.github.io/youkai/') + '：47都道府県と全国区の日本の妖怪を、伝承・出典・信頼度つきでまとめた個人編集のデータベース',
+                                  A('鎌・くらんぽ', 'https://djnaoyaman.github.io/kuranpo/') + '：鎌倉市内の神社仏閣を散歩コースで整理した個人編集のガイド',
+                                  A('花鳥風月、そして魚と虫', 'https://djnaoyaman.github.io/sakanamushi/') + '：魚偏・虫偏をはじめとする難読漢字を一字ずつ読む漢字クイズ図鑑',
+                                  A('掌蹠膿疱症.com', 'https://djnaoyaman.github.io/ppp/') + '：個人の記録と公開資料をもとに整理した情報サイト',
+                                  A('note', 'https://note.com/djnaoyaman') + '：エッセイ、DJ関連の連載',
+                                  A('サウナイキタイ', 'https://sauna-ikitai.com/saunners/12991') + '：「湯気文吾」の名義で全国のサウナを巡る記録'])),
+         ('書くときの姿勢', '<p>どのサイトでも、確認できる事実と、自分の解釈や感想をできるだけ分けて書いています。このサイトでも、事実には出典を付け、私見は私見として分けています。</p>'),
+        ]
+        src_h = 'このプロフィールの出典'; src_p = '制作者が自分のサイトに掲載しているプロフィールをもとにまとめています（2026年9月30日確認）。'
+        h1, sub = 'DJ Naoyaman', '宮崎直哉'
+    else:
+        lead = ('DJ Naoyaman, who writes the views on this site, is the DJ name of Naoya Miyazaki. '
+                'He is an essayist and content creator who publishes mainly on note.com, as well as a marketer and branding producer.')
+        secs = [
+         ('DJ', '<p>He has been a DJ for 32 years. For a time he was signed to a production company and wrote music reviews for media across Japan, and he still stands behind the turntables today.</p>'
+                f'<p>On note he runs the magazine {A("Artists inside the DJ bag", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}, a series that digs deep into one artist at a time, such as DJ Shadow, DJ Kentaro, J Dilla and Radiohead, over several instalments.</p>'),
+         ('Names', L(['DJ Naoyaman: DJ and music (this site)', 'Ikkenbo: yokai', 'Kuranpok: Kamakura history and geography', 'Yuge Bungo: saunas'])),
+         ('Career', L(['Mizuho Information & Research Institute (large-scale payment systems for London and New York; business consultant)',
+                       'CyberAgent (management, internet advertising agency division)',
+                       'Ritz International, director (beauty services and clinic management)',
+                       'Flying Brain, CEO (upstream marketing and branding for more than 50 brands, mainly apparel and wellness)',
+                       'Shiwa Kingyo, representative', 'Area branding producer for Azumane, Shiwa, Iwate (2024–)',
+                       'Currently marketing director at several wellness and healthcare companies'])),
+         ('Education', L(['Umejima Elementary School, Adachi', 'Adachi No. 4 Junior High School', 'Meiji Gakuin High School', 'Aoyama Gakuin University, College of Literature, Department of Education (left before graduating)', 'Meiji University, School of Commerce (graduated)'])),
+         ('Past brands', L(['Baroque Japan Limited', 'The Walt Disney Company', 'ZOZOTOWN', 'Coca-Cola', 'MARK STYLER', '英・インターナショナル (apparel group)', '恵山株式会社'])),
+         ('Current brands', L(['MINERALion, Lypo-C (SPIC)', 'KINS (KINS Inc.)', 'madama・hada (WSP)', 'Goto no Tsubaki', 'ReFa, SIXPAD (MTG)'])),
+         ('Fields', '<p>Fiction, essays, marketing, accounting, branding, DJing, theatre, spice cooking and more.</p>'),
+         ('Talks', '<p>Tokyo University of Technology, Kanto Gakuin University, Kanagawa University, Wako University, Senshu University, the towns and cities of Shiwa, Goto and Tobe, and others.</p>'),
+         ('Other projects', L([A('Ikkenbo no Nihon Yokaigaku Taikei', 'https://djnaoyaman.github.io/youkai/') + ': a personally edited database of Japanese yokai, with sources and reliability ratings',
+                               A('Kama Kuranpo', 'https://djnaoyaman.github.io/kuranpo/') + ': a personally edited guide to the temples and shrines of Kamakura, organised as walks',
+                               A('Kachofugetsu, soshite sakana to mushi', 'https://djnaoyaman.github.io/sakanamushi/') + ': a quiz book of hard-to-read kanji for fish, insects, birds and plants',
+                               A('note', 'https://note.com/djnaoyaman') + ': essays and DJ-related series',
+                               A('Sauna Ikitai', 'https://sauna-ikitai.com/saunners/12991') + ': a record of saunas across Japan, as Yuge Bungo'])),
+         ('How he writes', '<p>On every site he keeps verifiable facts and his own interpretation apart as far as possible. Here too, facts carry sources and views are marked as views.</p>'),
+        ]
+        src_h = 'Sources for this profile'; src_p = 'Compiled from the profiles on his own sites (checked 30 September 2026). All in Japanese.'
+        h1, sub = 'DJ Naoyaman', 'Naoya Miyazaki'
+    srcs = '<ol class="srcs">' + ''.join(f'<li>{A(t, h)}</li>' for t, h in PROFILE_SRC) + '</ol>'
+    body = (f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>{h1}</h1><p class="lead">{sub}</p></header>'
+            f'<section class="s"><p>{esc(lead)}</p></section>'
+            + ''.join(f'<section class="s"><h2 class="sh">{t}</h2>{x}</section>' for t, x in secs)
+            + f'<section class="s"><h2 class="sh">{src_h}</h2><p class="muted small">{src_p}</p>{srcs}</section></div>')
+    desc = 'my Chemsの私見を書いているDJ Naoyaman（宮崎直哉）のプロフィール。' if lang == 'ja' else 'Profile of DJ Naoyaman (Naoya Miyazaki), who writes the views on my Chems.'
+    ld = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'mainEntity': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://note.com/djnaoyaman'}}
+    emit(lang, 'profile', None, u['profile'], desc, body, {'type': 'plain', 'title': 'DJ Naoyaman', 'sub': u['profile']}, ld, cur='about')
 
 # ---------------------------------------------------------------- OGP
 def make_ogp(pg, spec, lang):
@@ -824,13 +942,16 @@ def verify():
     # 12 アートワーク
     bad_img = []
     for r_, _, fs in os.walk(ROOT):
-        if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST): continue
+        if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST) or 'art_review' in r_: continue
         for f in fs:
             if f.lower().endswith(('.jpg', '.jpeg', '.webp', '.gif', '.png')):
                 if os.path.abspath(r_) != ART or f.rsplit('.', 1)[0] not in W: bad_img.append(os.path.join(os.path.relpath(r_, ROOT), f))
+    for r_, _, fs in os.walk(ROOT):
+        if '.git' in r_: continue
+        bad_img += [os.path.join(os.path.relpath(r_, ROOT), f) for f in fs if f.lower().endswith(('.mp3', '.wav', '.aif', '.aiff', '.flac', '.m4a', '.aac', '.ogg'))]
     no_src = [w['id'] for w in WORKS if art_file(w) and not w.get('art_src')]
     n_art = sum(1 for w in WORKS if art_file(w))
-    ok(12, 'アートワークはart/の作品IDの画像だけで、出典が付いている', True if not bad_img and not no_src else False, (', '.join(bad_img[:5] + no_src[:5])) or f'掲載 {n_art}/{len(WORKS)}件')
+    ok(12, '画像はart/の作品IDのものだけで出典付き。音源はリポジトリにない', True if not bad_img and not no_src else False, (', '.join(bad_img[:5] + no_src[:5])) or f'掲載 {n_art}/{len(WORKS)}件')
     # 13 脈動
     fast = [w['id'] for w in WORKS if ((w['bpm'] or 120) / 2 if (w['bpm'] or 120) > 180 else (w['bpm'] or 120)) / 60 > 3]
     ok(13, '脈動の変化が1秒に3回以下', not fast, ', '.join(fast))
@@ -846,6 +967,51 @@ def verify():
     ok(14, '造語の訳語が用語集と一致している', not gb, ', '.join(gb[:6]))
     return res
 
+# ---------------------------------------------------------------- SEO/LLMO
+def write_seo_files():
+    base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
+    if not base: return
+    # sitemap.xml（hreflangの相互リンク付き）
+    urls = []
+    for pg, v in sorted(PAGES.items()):
+        alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
+        alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
+        prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
+        urls.append(f'<url><loc>{base}{pg}</loc>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
+    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+               + ''.join(urls) + '\n</urlset>\n')
+    open(os.path.join(DIST, 'sitemap.xml'), 'w', encoding='utf-8').write(sitemap)
+    # robots.txt
+    robots = f'User-agent: *\nAllow: /\n\nSitemap: {base}sitemap.xml\n'
+    open(os.path.join(DIST, 'robots.txt'), 'w', encoding='utf-8').write(robots)
+    # llms.txt（llmstxt.org準拠。LLM/検索エンジンの要約用に英語で用意）
+    u = UI['en']
+    disc = []
+    for w in WORKS:
+        r = w['records']; yr = r.get('date', {}).get('v', str(w['year']))
+        disc.append(f'- [{w["title"]}]({base}{path("en", "work", w["id"])}) — {u[w["type"]]}, {str(yr)[:4]}')
+    pages_md = '\n'.join(f'- [{u[k]}]({base}{path("en", k)})' for k in NAV) + f'\n- [{u["sources"]}]({base}{path("en", "sources")})\n- [{u["about"]}]({base}{path("en", "about")})\n- [{u["profile"]}]({base}{path("en", "profile")})'
+    llms = f'''# {CFG['site_name']['en']}
+
+> An unofficial, fact-checked fan archive of the complete discography of The Chemical Brothers: every studio album, single and EP, with sourced release records, music and technology notes, context, testimony and a personal view by DJ Naoyaman (Naoya Miyazaki). Every factual claim on this site is tied to a cited source (see /sources/); opinion is always labelled as such and kept separate from fact. Available in Japanese (default) and English.
+
+## Key pages
+
+{pages_md}
+
+## Discography ({len(WORKS)} works, in release order)
+
+{chr(10).join(disc)}
+
+## Notes for automated readers
+
+- This is a fan-made archive, not affiliated with or endorsed by The Chemical Brothers or their label.
+- Each work page cites its sources inline; the sources index is at /sources/.
+- Japanese pages are canonical; English pages are at the same path under /en/.
+'''
+    open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8').write(llms)
+
 # ---------------------------------------------------------------- 実行
 def main():
     if os.path.exists(DIST): shutil.rmtree(DIST)
@@ -857,7 +1023,7 @@ def main():
             f = art_file(w)
             if f: shutil.copy(f, os.path.join(DIST, 'art', os.path.basename(f)))
     for lang in LANGS:
-        top_page(lang); works_page(lang); shelf_pages(lang); timeline_page(lang); equations_pages(lang); chain_page(lang); now_page(lang); about_page(lang)
+        top_page(lang); works_page(lang); shelf_pages(lang); timeline_page(lang); equations_pages(lang); chain_page(lang); now_page(lang); about_page(lang); profile_page(lang)
         for w in WORKS: work_page(w, lang)
     for lang in LANGS: sources_page(lang)   # 逆リンクのため最後
     for pg, v in PAGES.items():
@@ -865,6 +1031,7 @@ def main():
         open(out, 'w', encoding='utf-8').write(v['html'])
         make_ogp(pg, v['ogp_spec'], v['lang'])
     open(os.path.join(DIST, '.nojekyll'), 'w').close()
+    write_seo_files()
     res = verify()
     print(f'ページ {len(PAGES)}（日 {sum(1 for v in PAGES.values() if v["lang"] == "ja")} ／ 英 {sum(1 for v in PAGES.values() if v["lang"] == "en")}）')
     for n, t, s, dt in res: print(f'{n:>2} {s:<4} {t}' + (f'　{dt}' if dt else ''))

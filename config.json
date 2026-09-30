@@ -1,9 +1,13 @@
 {
-  "site_name": {"ja": "ケミカル・ブラザーズ全史", "en": "The Chemical Brothers Archive"},
-  "site_name_signature": "THE CHEMICAL BROTHERS ARCHIVE",
+  "site_name": {
+    "ja": "my Chems",
+    "en": "my Chems"
+  },
+  "site_name_signature": "MY CHEMS",
   "base_url": "https://djnaoyaman.github.io/chems/",
   "base_url_note": "サイト名とURLが決まったらここに入れる（例 https://djnaoyaman.github.io/xxxx/）",
-  "author": "djnaoyaman",
+  "author": "DJ Naoyaman",
   "youtube_channel": "https://thechemicalbrothers.lnk.to/YouTubeWE",
+  "ga_measurement_id": "G-GKZHN40P02",
   "checked": "2026-09-30"
 }

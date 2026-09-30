@@ -1,4 +1,4 @@
-# ケミカル・ブラザーズ全史 / The Chemical Brothers Archive
+# my Chems
 
 日英1対1の静的サイト。`build.py` が `data/` と `texts/` から `dist/` に全ページとOGPを生成し、最後に検証スイート（14項目）を回す。NGが1つでもあれば終了コード1で止まり、GitHub Actionsでは公開されない。
 
@@ -44,3 +44,29 @@ YouTubeの埋め込み可否と日本での再生制限も確かめる場合は�
 ## YouTube
 
 動画IDは公式サイトの各ビデオページに埋め込まれているものを使っている（出典はそのページ）。動画がない作品は、`YT_API_KEY=... python3 tools/yt_resolve.py` で公式チャンネルとTopicから候補を探せる。`--apply` を付けると候補を works.json に入れる。
+
+## 手元での確認
+
+`dist/`のHTMLをファイルのままブラウザで開くと、YouTubeが「動画プレーヤーの設定エラー（エラー153）」で再生を拒否する（参照元が送られないため）。その場合プレーヤーはYouTubeを別タブで開く。埋め込みのまま確かめるときは、ローカルサーバーを立てて開く。
+
+    cd dist && python3 -m http.server 8000
+    # http://localhost:8000/ を開く
+
+## BPMとキー（tools/measure.py）
+
+音源そのものはリポジトリに入れない。手元の音源かrekordboxのライブラリを読んで、works.jsonに書き込む。
+
+    # rekordbox（推奨）：ファイル → ライブラリをxml形式でエクスポート → 読み込む
+    python3 tools/measure.py --rekordbox ~/Desktop/rekordbox.xml
+    # 音源フォルダを直接解析（ffmpeg、numpy、scipyが必要）
+    python3 tools/measure.py --audio ~/Music/TheChemicalBrothers
+    # 書き込まずに結果だけ見る
+    python3 tools/measure.py --rekordbox ~/Desktop/rekordbox.xml --dry-run
+
+rekordboxの値を優先し、解析値では上書きしない（`--overwrite`で上書き）。リミックスやエディットより原曲を選ぶ。作品ページには値と、その取得方法（rekordboxか自動解析か）が出る。
+
+## プレビュー（tools/preview_bundle.py）
+
+    python3 tools/preview_bundle.py preview.html
+
+全ページを1枚のHTMLにまとめる。スマホなどでページ間リンクを確かめる用。

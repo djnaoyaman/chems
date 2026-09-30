@@ -1,0 +1,11 @@
+audio/
+*.mp3
+*.wav
+*.aif
+*.aiff
+*.flac
+*.m4a
+rekordbox*.xml
+dist/
+__pycache__/
+notes/art_review/

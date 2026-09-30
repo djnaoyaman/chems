@@ -22,19 +22,22 @@ bind();
 function fit(){var t=document.querySelector('.wtitle');if(!t)return;var pl=t.querySelector('.plate');if(pl)pl.style.display='none';t.style.fontSize='';
   var fs=parseFloat(getComputedStyle(t).fontSize),n=0;while(t.scrollWidth>t.clientWidth+1&&fs>24&&n<40){fs*=.95;t.style.fontSize=fs+'px';n++}if(pl)pl.style.display=''}
 fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
-var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fit,120)});
+if(!window.__chemsRz){window.__chemsRz=1;var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fit,120)})}
 
 /* YouTube：タップで読み込み、秒数リンクで再生点へ */
 function load(sec){var f=document.querySelector('.facade[data-yt]');var box=document.querySelector('.player');if(!box)return false;
   var id=(f&&f.dataset.yt)||box.dataset.yt;if(!id)return false;
+  /* ファイルを直接開いた場合は参照元が送れず、YouTubeが再生を拒否する（エラー153）。その時はYouTubeで開く */
+  if(!/^https?:$/.test(location.protocol)){window.open('https://www.youtube.com/watch?v='+id+(sec?'&t='+sec+'s':''),'_blank','noopener');return true}
   var ifr=document.createElement('iframe');
-  ifr.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0'+(sec?'&start='+sec:'');
-  ifr.allow='autoplay; encrypted-media; picture-in-picture';ifr.allowFullscreen=true;ifr.title=box.dataset.title||'YouTube';
+  ifr.referrerPolicy='strict-origin-when-cross-origin';ifr.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+  ifr.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1&origin='+encodeURIComponent(location.origin)+(sec?'&start='+sec:'');
+  ifr.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';ifr.allowFullscreen=true;ifr.title=box.dataset.title||'YouTube';
   box.dataset.yt=id;var old=box.querySelector('.facade,iframe');if(old)old.replaceWith(ifr);else box.prepend(ifr);return true}
-document.addEventListener('click',function(e){
+if(!window.__chemsDoc){window.__chemsDoc=1;document.addEventListener('click',function(e){
   var f=e.target.closest('.facade[data-yt]');if(f){e.preventDefault();load(0);return}
   var t=e.target.closest('a.ts[data-t]');if(t){if(load(parseInt(t.dataset.t,10))){e.preventDefault();document.querySelector('.player').scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'center'})}}
-});
+});}
 
 /* 絞り込み（年表・周期表） */
 document.querySelectorAll('.filters').forEach(function(fl){

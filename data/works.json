@@ -142,8 +142,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 108.0,
+  "key": "Abm",
   "embed": {
    "mv": null,
    "live": null,
@@ -183,7 +183,17 @@
   "after": [],
   "slug": "leave-home",
   "title": "Leave Home",
-  "album": "epd"
+  "album": "epd",
+  "art_src": [
+   "cb-r-leave-home"
+  ],
+  "camelot": "1A",
+  "measure": {
+   "method": "serato",
+   "track": "Leave Home (Terror Drums)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "epd",
@@ -281,7 +291,10 @@
   "slug": "exit-planet-dust",
   "title": "Exit Planet Dust",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-exit-planet-dust"
+  ]
  },
  {
   "id": "lis",
@@ -297,8 +310,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 123.4,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "30p2UWAegeQ",
@@ -351,7 +364,17 @@
   "after": [],
   "slug": "life-is-sweet",
   "title": "Life Is Sweet",
-  "album": "epd"
+  "album": "epd",
+  "art_src": [
+   "cb-r-life-is-sweet"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "Life is Sweet",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "lof",
@@ -419,7 +442,10 @@
   "after": [],
   "slug": "loops-of-fury",
   "title": "Loops of Fury",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-loops-of-fury"
+  ]
  },
  {
   "id": "ss",
@@ -433,10 +459,11 @@
    "ink1": null,
    "ink2": null,
    "accent": null,
-   "status": "unextracted"
+   "status": "manual",
+   "note": "art/ss.jpgからの自動抽出色(地#D03033)がbuild.pyのコントラスト検証(本文4.5:1)をわずかに下回った(4.47)。build.py側のextract_plates()は変更できないため、statusを'manual'にして自動抽出を止め、標準の無着色配色(UNPRINTED)で表示するようにした。ジャケット画像自体（art/ss.jpg）は無加工のまま"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 135.0,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "9BgSv4GGNJo",
@@ -517,7 +544,17 @@
   "after": [],
   "slug": "setting-sun",
   "title": "Setting Sun",
-  "album": "dyoh"
+  "album": "dyoh",
+  "art_src": [
+   "cb-r-setting-sun"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "Setting Sun",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "brb",
@@ -533,8 +570,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 109.4,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "iTxOKsyZ0Lw",
@@ -602,7 +639,17 @@
   "after": [],
   "slug": "block-rockin-beats",
   "title": "Block Rockin' Beats",
-  "album": "dyoh"
+  "album": "dyoh",
+  "art_src": [
+   "cb-r-block-rockin-beats-single"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "Block Rockin' Beats",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "dyoh",
@@ -707,7 +754,10 @@
   "slug": "dig-your-own-hole",
   "title": "Dig Your Own Hole",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-dig-your-own-hole"
+  ]
  },
  {
   "id": "el",
@@ -723,8 +773,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 102.0,
+  "key": "Dm",
   "embed": {
    "mv": null,
    "live": null,
@@ -779,7 +829,17 @@
   "after": [],
   "slug": "elektrobank",
   "title": "Elektrobank",
-  "album": "dyoh"
+  "album": "dyoh",
+  "art_src": [
+   "cb-r-elektrobank"
+  ],
+  "camelot": "7A",
+  "measure": {
+   "method": "serato",
+   "track": "Elektrobank",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ppr",
@@ -795,8 +855,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 125.0,
+  "key": "E",
   "embed": {
    "mv": null,
    "live": null,
@@ -844,7 +904,17 @@
   "after": [],
   "slug": "the-private-psychedelic-reel",
   "title": "The Private Psychedelic Reel",
-  "album": "dyoh"
+  "album": "dyoh",
+  "art_src": [
+   "cb-r-the-private-psychedelic-reel"
+  ],
+  "camelot": "12B",
+  "measure": {
+   "method": "serato",
+   "track": "The Private Psychedelic Reel ",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "hbhg",
@@ -860,8 +930,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 126.4,
+  "key": "D",
   "embed": {
    "mv": {
     "id": "tpKCqp9CALQ",
@@ -920,7 +990,17 @@
   "after": [],
   "slug": "hey-boy-hey-girl",
   "title": "Hey Boy Hey Girl",
-  "album": "sur"
+  "album": "sur",
+  "art_src": [
+   "cb-r-hey-boy-hey-girl-single"
+  ],
+  "camelot": "10B",
+  "measure": {
+   "method": "serato",
+   "track": "Hey Boy Hey Girl",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "sur",
@@ -1040,7 +1120,10 @@
   "slug": "surrender",
   "title": "Surrender",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-surrender"
+  ]
  },
  {
   "id": "lfb",
@@ -1056,8 +1139,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 127.0,
+  "key": "Eb",
   "embed": {
    "mv": {
     "id": "s5FyfQDO5g0",
@@ -1131,7 +1214,17 @@
   "after": [],
   "slug": "let-forever-be",
   "title": "Let Forever Be",
-  "album": "sur"
+  "album": "sur",
+  "art_src": [
+   "cb-r-let-forever-be"
+  ],
+  "camelot": "5B",
+  "measure": {
+   "method": "serato",
+   "track": "Let Forever Be (Remastered)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ooc",
@@ -1147,8 +1240,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 132.0,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "6sOpbRL8R4g",
@@ -1224,7 +1317,17 @@
   ],
   "slug": "out-of-control",
   "title": "Out of Control",
-  "album": "sur"
+  "album": "sur",
+  "art_src": [
+   "cb-r-out-of-control"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "Out of Control",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "mr",
@@ -1240,8 +1343,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 109.0,
+  "key": "Bm",
   "embed": {
    "mv": null,
    "live": null,
@@ -1297,7 +1400,17 @@
   "after": [],
   "slug": "music-response",
   "title": "Music:Response",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-music-response"
+  ],
+  "camelot": "10A",
+  "measure": {
+   "method": "serato",
+   "track": "Music: Response",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ibia",
@@ -1313,8 +1426,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 134.0,
+  "key": "Am",
   "embed": {
    "mv": null,
    "live": null,
@@ -1365,7 +1478,17 @@
   "after": [],
   "slug": "it-began-in-afrika",
   "title": "It Began in Afrika",
-  "album": "cwu"
+  "album": "cwu",
+  "art_src": [
+   "cb-r-it-began-in-afrika"
+  ],
+  "camelot": "8A",
+  "measure": {
+   "method": "serato",
+   "track": "It Began in Afrika",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "sg",
@@ -1381,8 +1504,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 127.0,
+  "key": "Am",
   "embed": {
    "mv": {
     "id": "0S43IwBF0uM",
@@ -1467,7 +1590,17 @@
   "after": [],
   "slug": "star-guitar",
   "title": "Star Guitar",
-  "album": "cwu"
+  "album": "cwu",
+  "art_src": [
+   "cb-r-star-guitar"
+  ],
+  "camelot": "8A",
+  "measure": {
+   "method": "serato",
+   "track": "Star Guitar (Remastered)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "cwu",
@@ -1565,7 +1698,10 @@
   "slug": "come-with-us",
   "title": "Come with Us",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-come-with-us"
+  ]
  },
  {
   "id": "cwtt",
@@ -1637,7 +1773,10 @@
   "after": [],
   "slug": "come-with-us-the-test",
   "title": "Come with Us / The Test",
-  "album": "cwu"
+  "album": "cwu",
+  "art_src": [
+   "cb-r-come-wih-us-the-test"
+  ]
  },
  {
   "id": "jpep",
@@ -1767,7 +1906,10 @@
   "after": [],
   "slug": "americanep",
   "title": "AmericanEP",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-american-ep"
+  ]
  },
  {
   "id": "tgp",
@@ -1783,8 +1925,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 131.0,
+  "key": "D",
   "embed": {
    "mv": {
     "id": "jTqwe57ObFo",
@@ -1843,7 +1985,17 @@
   "after": [],
   "slug": "the-golden-path",
   "title": "The Golden Path",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-the-golden-path-2"
+  ],
+  "camelot": "10B",
+  "measure": {
+   "method": "serato",
+   "track": "The Golden Path (Ewan Pearson Extended Vocal)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "gyh",
@@ -1859,8 +2011,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 126.0,
+  "key": "Bbm",
   "embed": {
    "mv": null,
    "live": null,
@@ -1913,7 +2065,17 @@
   "after": [],
   "slug": "get-yourself-high",
   "title": "Get Yourself High",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-get-yourself-high"
+  ],
+  "camelot": "3A",
+  "measure": {
+   "method": "serato",
+   "track": "Get Yourself High (feat. k-os) [Switches Rely On Rub]",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "gal",
@@ -1929,8 +2091,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 104.0,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "Xu3FTEmN-eg",
@@ -2005,7 +2167,17 @@
   "after": [],
   "slug": "galvanize",
   "title": "Galvanize",
-  "album": "ptb"
+  "album": "ptb",
+  "art_src": [
+   "cb-r-galvanize-single"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "Galvanize",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ptb",
@@ -2101,7 +2273,10 @@
   "slug": "push-the-button",
   "title": "Push the Button",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-push-the-button"
+  ]
  },
  {
   "id": "bel",
@@ -2117,8 +2292,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 131.9,
+  "key": "Em",
   "embed": {
    "mv": {
     "id": "AMs5UpkamaE",
@@ -2171,7 +2346,17 @@
   "after": [],
   "slug": "believe",
   "title": "Believe",
-  "album": "ptb"
+  "album": "ptb",
+  "art_src": [
+   "cb-r-believe-single"
+  ],
+  "camelot": "9A",
+  "measure": {
+   "method": "serato",
+   "track": "Believe (Erol Alkan's 'Feel Me' Re-Work)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "box",
@@ -2187,8 +2372,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 97.0,
+  "key": "Dm",
   "embed": {
    "mv": {
     "id": "nSkKWVkF5yE",
@@ -2241,7 +2426,17 @@
   "after": [],
   "slug": "the-boxer",
   "title": "The Boxer",
-  "album": "ptb"
+  "album": "ptb",
+  "art_src": [
+   "cb-r-the-boxer"
+  ],
+  "camelot": "7A",
+  "measure": {
+   "method": "serato",
+   "track": "The Boxer",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "l05",
@@ -2290,7 +2485,10 @@
   "after": [],
   "slug": "live-05",
   "title": "Live 05",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-live-05"
+  ]
  },
  {
   "id": "dia",
@@ -2306,8 +2504,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 124.0,
+  "key": "Em",
   "embed": {
    "mv": {
     "id": "UVrwzjtBHq0",
@@ -2355,7 +2553,17 @@
   "after": [],
   "slug": "do-it-again",
   "title": "Do It Again",
-  "album": "watn"
+  "album": "watn",
+  "art_src": [
+   "cb-r-do-it-again-single"
+  ],
+  "camelot": "9A",
+  "measure": {
+   "method": "serato",
+   "track": "Do It Again (Extended Mix)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "watn",
@@ -2452,7 +2660,10 @@
   "slug": "we-are-the-night",
   "title": "We Are the Night",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-we-are-the-night"
+  ]
  },
  {
   "id": "tsd",
@@ -2468,8 +2679,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 130.0,
+  "key": "C#m",
   "embed": {
    "mv": {
     "id": "dDj7DuHVV9E",
@@ -2528,7 +2739,17 @@
   "after": [],
   "slug": "the-salmon-dance",
   "title": "The Salmon Dance",
-  "album": "watn"
+  "album": "watn",
+  "art_src": [
+   "cb-r-the-salmon-dance"
+  ],
+  "camelot": "12A",
+  "measure": {
+   "method": "serato",
+   "track": "The Salmon Dance (Crookers 'Wow' Mix)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "mm",
@@ -2544,8 +2765,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 132.0,
+  "key": "Am",
   "embed": {
    "mv": {
     "id": "UoaeEAdDv-c",
@@ -2605,7 +2826,17 @@
   "after": [],
   "slug": "midnight-madness",
   "title": "Midnight Madness",
-  "album": null
+  "album": null,
+  "art_src": [
+   "cb-r-midnight-madness"
+  ],
+  "camelot": "8A",
+  "measure": {
+   "method": "serato",
+   "track": "Midnight Madness",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ev",
@@ -2621,8 +2852,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 70.0,
+  "key": "Fm",
   "embed": {
    "mv": null,
    "live": null,
@@ -2669,7 +2900,14 @@
   "after": [],
   "slug": "escape-velocity",
   "title": "Escape Velocity",
-  "album": "fur"
+  "album": "fur",
+  "camelot": "4A",
+  "measure": {
+   "method": "serato",
+   "track": "Escape Velocity",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "sw",
@@ -2685,8 +2923,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 124.0,
+  "key": "Dm",
   "embed": {
    "mv": {
     "id": "uCKeVj0JDjU",
@@ -2739,7 +2977,14 @@
   "after": [],
   "slug": "swoon",
   "title": "Swoon",
-  "album": "fur"
+  "album": "fur",
+  "camelot": "7A",
+  "measure": {
+   "method": "serato",
+   "track": "Swoon",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "fur",
@@ -2887,6 +3132,9 @@
      "wp-disc"
     ]
    }
+  ],
+  "art_src": [
+   "cb-r-further"
   ]
  },
  {
@@ -2903,8 +3151,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 119.0,
+  "key": "Eb",
   "embed": {
    "mv": {
     "id": "fhzkeFiXfPI",
@@ -2957,7 +3205,17 @@
   "after": [],
   "slug": "another-world",
   "title": "Another World",
-  "album": "fur"
+  "album": "fur",
+  "art_src": [
+   "cb-r-another-world-single"
+  ],
+  "camelot": "5B",
+  "measure": {
+   "method": "serato",
+   "track": "Another World",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "cp",
@@ -2973,8 +3231,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 128.0,
+  "key": "Fm",
   "embed": {
    "mv": null,
    "live": null,
@@ -3014,7 +3272,14 @@
   "after": [],
   "slug": "container-park",
   "title": "Container Park",
-  "album": null
+  "album": null,
+  "camelot": "4A",
+  "measure": {
+   "method": "serato",
+   "track": "container park",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "tfv",
@@ -3117,8 +3382,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 120.0,
+  "key": "Gm",
   "embed": {
    "mv": {
     "id": "LO2RPDZkY88",
@@ -3271,7 +3536,17 @@
      "cb-news"
     ]
    }
-  ]
+  ],
+  "art_src": [
+   "cb-r-go-single"
+  ],
+  "camelot": "6A",
+  "measure": {
+   "method": "serato",
+   "track": "Go",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "unl",
@@ -3287,8 +3562,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 121.0,
+  "key": "F#m",
   "embed": {
    "mv": {
     "id": "J8NUoavtgXY",
@@ -3335,7 +3610,17 @@
   "after": [],
   "slug": "under-neon-lights",
   "title": "Under Neon Lights",
-  "album": "bite"
+  "album": "bite",
+  "art_src": [
+   "cb-r-under-neon-lights-single"
+  ],
+  "camelot": "11A",
+  "measure": {
+   "method": "serato",
+   "track": "Under Neon Lights",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "bite",
@@ -3484,6 +3769,9 @@
      "wp-disc"
     ]
    }
+  ],
+  "art_src": [
+   "cb-r-born-in-the-echoes"
   ]
  },
  {
@@ -3500,8 +3788,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 115.0,
+  "key": "Abm",
   "embed": {
    "mv": null,
    "live": null,
@@ -3535,7 +3823,17 @@
   "after": [],
   "slug": "c-h-e-m-i-c-a-l",
   "title": "C-H-E-M-I-C-A-L",
-  "album": "bite"
+  "album": "bite",
+  "art_src": [
+   "cb-r-c-h-e-m-i-c-a-l"
+  ],
+  "camelot": "1A",
+  "measure": {
+   "method": "serato",
+   "track": "C-H-E-M-I-C-A-L",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "fy",
@@ -3551,8 +3849,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 125.0,
+  "key": "C#m",
   "embed": {
    "mv": {
     "id": "7wzR_BVFsUU",
@@ -3592,7 +3890,17 @@
   "after": [],
   "slug": "free-yourself",
   "title": "Free Yourself",
-  "album": "ng"
+  "album": "ng",
+  "art_src": [
+   "cb-r-free-yourself-single"
+  ],
+  "camelot": "12A",
+  "measure": {
+   "method": "serato",
+   "track": "Free Yourself",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "mah",
@@ -3608,8 +3916,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 130.0,
+  "key": "Cm",
   "embed": {
    "mv": {
     "id": "XTBNONSR9F8",
@@ -3641,7 +3949,17 @@
   "after": [],
   "slug": "mah",
   "title": "MAH",
-  "album": "ng"
+  "album": "ng",
+  "art_src": [
+   "cb-r-mah"
+  ],
+  "camelot": "5A",
+  "measure": {
+   "method": "serato",
+   "track": "MAH",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "gtko",
@@ -3657,8 +3975,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 125.0,
+  "key": "C#m",
   "embed": {
    "mv": {
     "id": "rSYwtllbweY",
@@ -3722,7 +4040,17 @@
   "after": [],
   "slug": "got-to-keep-on",
   "title": "Got to Keep On",
-  "album": "ng"
+  "album": "ng",
+  "art_src": [
+   "cb-r-got-to-keep-on-single"
+  ],
+  "camelot": "12A",
+  "measure": {
+   "method": "serato",
+   "track": "Got to Keep On",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "wgtt",
@@ -3738,8 +4066,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 92.0,
+  "key": "Am",
   "embed": {
    "mv": {
     "id": "mRfSM-lv55I",
@@ -3779,7 +4107,17 @@
   "after": [],
   "slug": "weve-got-to-try",
   "title": "We've Got to Try",
-  "album": "ng"
+  "album": "ng",
+  "art_src": [
+   "cb-r-weve-got-to-try-2"
+  ],
+  "camelot": "8A",
+  "measure": {
+   "method": "serato",
+   "track": "We've Got to Try",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "ng",
@@ -3915,6 +4253,9 @@
      "wp-disc"
     ]
    }
+  ],
+  "art_src": [
+   "cb-r-no-geography"
   ]
  },
  {
@@ -3931,8 +4272,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 128.0,
+  "key": "A",
   "embed": {
    "mv": {
     "id": "b-mGA4V2LK0",
@@ -4013,7 +4354,17 @@
   "after": [],
   "slug": "the-darkness-that-you-fear",
   "title": "The Darkness That You Fear",
-  "album": "ftbf"
+  "album": "ftbf",
+  "art_src": [
+   "cb-r-the-darkness-that-you-fear"
+  ],
+  "camelot": "11B",
+  "measure": {
+   "method": "serato",
+   "track": "The Darkness That You Fear",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  }
  },
  {
   "id": "nr",
@@ -4080,7 +4431,10 @@
   "after": [],
   "slug": "no-reason",
   "title": "No Reason",
-  "album": "ftbf"
+  "album": "ftbf",
+  "art_src": [
+   "cb-r-no-reason"
+  ]
  },
  {
   "id": "la",
@@ -4152,7 +4506,10 @@
   "after": [],
   "slug": "live-again",
   "title": "Live Again",
-  "album": "ftbf"
+  "album": "ftbf",
+  "art_src": [
+   "cb-r-live-again"
+  ]
  },
  {
   "id": "gb",
@@ -4303,7 +4660,10 @@
   "after": [],
   "slug": "skipping-like-a-stone",
   "title": "Skipping Like a Stone",
-  "album": "ftbf"
+  "album": "ftbf",
+  "art_src": [
+   "cb-r-skipping-like-a-stone-featuring-beck"
+  ]
  },
  {
   "id": "ftbf",
@@ -4400,6 +4760,9 @@
   "slug": "for-that-beautiful-feeling",
   "title": "For That Beautiful Feeling",
   "album": null,
-  "album_mv": []
+  "album_mv": [],
+  "art_src": [
+   "cb-r-for-that-beautiful-feeling"
+  ]
  }
 ]
