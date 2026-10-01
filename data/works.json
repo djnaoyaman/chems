@@ -66,7 +66,40 @@
   "after": [],
   "slug": "fourteenth-century-sky",
   "title": "Fourteenth Century Sky",
-  "album": null
+  "album": null,
+  "art_src": [
+   "client-fcs"
+  ],
+  "tracklist": [
+   {
+    "no": "A1",
+    "title": "Chemical Beats",
+    "src": [
+     "wp-fcs"
+    ]
+   },
+   {
+    "no": "A2",
+    "title": "One Too Many Mornings",
+    "src": [
+     "wp-fcs"
+    ]
+   },
+   {
+    "no": "B1",
+    "title": "Dope Coil",
+    "src": [
+     "wp-fcs"
+    ]
+   },
+   {
+    "no": "B2",
+    "title": "Her Jazz",
+    "src": [
+     "wp-fcs"
+    ]
+   }
+  ]
  },
  {
   "id": "mmm",
@@ -126,7 +159,33 @@
   "after": [],
   "slug": "my-mercury-mouth",
   "title": "My Mercury Mouth E.P",
-  "album": null
+  "album": null,
+  "art_src": [
+   "client-mmm"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "My Mercury Mouth",
+    "src": [
+     "wp-mmm"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "If You Kling To Me I'll Klong To You",
+    "src": [
+     "wp-mmm"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Dust-Up-Beats",
+    "src": [
+     "wp-mmm"
+    ]
+   }
+  ]
  },
  {
   "id": "lh",
@@ -193,7 +252,59 @@
    "track": "Leave Home (Terror Drums)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Leave Home",
+    "src": [
+     "cb-r-leave-home"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Leave Home – Underworld Mix I",
+    "src": [
+     "cb-r-leave-home"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Leave Home – Underworld Mix II",
+    "src": [
+     "cb-r-leave-home"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Leave Home – The Sabres Of Paradise Mix",
+    "src": [
+     "cb-r-leave-home"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "shuddering Shaft basslines, bruisingly distorted breakbeats and choppy wah-wah trimmings",
+    "ja": "シャフトを思わせる重いベースラインと歪んだブレイクビーツ、ワウワウの効いたギターが特徴だと評している。",
+    "src": [
+     "nme-lh-1995"
+    ],
+    "critic": "Stephen Dalton"
+   },
+   {
+    "publication": "Melody Maker",
+    "orig_lang": "en",
+    "orig": "comes on like a fully loaded M-60 firing on a less than selective target",
+    "ja": "手当たり次第に撃ちまくる重機関銃のような猛烈な勢いの曲だと表現している。",
+    "src": [
+     "mmaker-lh-1995"
+    ],
+    "critic": "Martin James"
+   }
+  ]
  },
  {
   "id": "epd",
@@ -294,6 +405,108 @@
   "album_mv": [],
   "art_src": [
    "cb-r-exit-planet-dust"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Leave Home",
+    "work": "lh",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "In Dust We Trust",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Song To The Siren (Live From Sabresonic Nightclub, United Kingdom/1994)",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Three Little Birdies Down Beats",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Fuck Up Beats",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Chemical Beats",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "Chico's Groove",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "One Too Many Mornings",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Life Is Sweet",
+    "work": "lis",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Playground For A Wedgeless Firm",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "Alive Alone",
+    "src": [
+     "cb-r-exit-planet-dust"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "big on bombast, replete with screeching guitar samples and lots of sirens and screaming divas",
+    "ja": "けたたましいギターサンプルやサイレン、絶叫するボーカルを多用した派手で大げさなサウンドだと評している。",
+    "src": [
+     "allmusic-epd"
+    ],
+    "critic": "Sean Cooper"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "brash, raw, rule-bending gear made by open-minded music fans, for open-minded music fans",
+    "ja": "ルールにとらわれない荒削りでエネルギッシュな、開かれた音楽ファンのための作品だったと振り返っている。",
+    "src": [
+     "nme-epd-2015"
+    ]
+   }
   ]
  },
  {
@@ -374,7 +587,60 @@
    "track": "Life is Sweet",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Life Is Sweet",
+    "src": [
+     "cb-r-life-is-sweet"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Life Is Sweet – Remix 2",
+    "src": [
+     "cb-r-life-is-sweet"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Life Is Sweet – Daft Punk Remix",
+    "src": [
+     "cb-r-life-is-sweet"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Leave Home",
+    "work": "lh",
+    "src": [
+     "cb-r-life-is-sweet"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "Life Is Sweet is so good it has just made a car crash in my street",
+    "ja": "あまりの良さに自宅前で交通事故が起きたほどだと冗談めかして絶賛している。",
+    "src": [
+     "nme-lis-1995"
+    ],
+    "critic": "Simon Williams"
+   },
+   {
+    "publication": "Melody Maker",
+    "orig_lang": "en",
+    "orig": "Imagine Daydream Believer by The Monkees via The Prodigy's nucleartechno control panel",
+    "ja": "モンキーズの「デイドリーム・ビリーバー」をプロディジー風の核のようなテクノ装置に通したような曲だと表現している。",
+    "src": [
+     "mmaker-lis-1995"
+    ],
+    "critic": "Paul Lester"
+   }
+  ]
  },
  {
   "id": "lof",
@@ -445,6 +711,48 @@
   "album": null,
   "art_src": [
    "cb-r-loops-of-fury"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Loops Of Fury",
+    "src": [
+     "cb-r-loops-of-fury"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "(The Best Part Of) Breakin' Up",
+    "src": [
+     "cb-r-loops-of-fury"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Get Up On It Like This",
+    "src": [
+     "cb-r-loops-of-fury"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Chemical Beats – Dave Clarke Remix",
+    "src": [
+     "cb-r-loops-of-fury"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "an EP of leftovers released mostly to capitalize on the success of the Brothers' debut",
+    "ja": "デビュー作の成功に便乗して出された「残り物」的なEPだったと評している。",
+    "src": [
+     "allmusic-lof"
+    ],
+    "critic": "Sean Cooper"
+   }
   ]
  },
  {
@@ -554,7 +862,59 @@
    "track": "Setting Sun",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Setting Sun – Full Length Version",
+    "src": [
+     "cb-r-setting-sun"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Setting Sun – Radio Edit",
+    "src": [
+     "cb-r-setting-sun"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Buzz Tracks",
+    "src": [
+     "cb-r-setting-sun"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Setting Sun – Instrumental",
+    "src": [
+     "cb-r-setting-sun"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "Melody Maker",
+    "orig_lang": "en",
+    "orig": "as soon as it finished, I played it again",
+    "ja": "戸惑いながらも聴き終えた直後にもう一度再生してしまったと述べている。",
+    "src": [
+     "mmaker-ss-1996"
+    ],
+    "critic": "Taylor Parkes"
+   },
+   {
+    "publication": "Pitchfork",
+    "orig_lang": "en",
+    "orig": "rave sirens, screeching guitars, and a buzzing midsection where the bottom drops out",
+    "ja": "レイブのサイレン音やギターの絶叫、底が抜けるようなブレイク部分が特徴だと振り返っている。",
+    "src": [
+     "pitchfork-ss-2010"
+    ],
+    "critic": "Marc Hogan"
+   }
+  ]
  },
  {
   "id": "brb",
@@ -649,7 +1009,73 @@
    "track": "Block Rockin' Beats",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Block Rockin' Beats – Radio Edit",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Block Rockin' Beats",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Prescription Beats",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Morning Lemon",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Block Rockin' Beats – The Micronauts Remix",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Block Rockin' Beats – The Micronauts Bonus Beats",
+    "src": [
+     "cb-r-block-rockin-beats-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "a commercial, critical, and artistic home run of a single",
+    "ja": "商業的にも批評的にも芸術的にも大成功を収めたシングルだったと高く評価している。",
+    "src": [
+     "allmusic-brb"
+    ],
+    "critic": "John Bush"
+   },
+   {
+    "publication": "Billboard",
+    "orig_lang": "en",
+    "orig": "after one spin, you'll be chanting the hook for hours",
+    "ja": "一度聴いただけでフックが頭から離れなくなると評している。",
+    "src": [
+     "billboard-brb-1997"
+    ],
+    "critic": "Larry Flick"
+   }
+  ]
  },
  {
   "id": "dyoh",
@@ -757,6 +1183,111 @@
   "album_mv": [],
   "art_src": [
    "cb-r-dig-your-own-hole"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Block Rockin' Beats",
+    "work": "brb",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Dig Your Own Hole",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Elektrobank",
+    "work": "el",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Piku",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Setting Sun",
+    "work": "ss",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "It Doesn't Matter",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "Don't Stop The Rock",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Get Up On It Like This",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Lost In The K Hole",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Where Do I Begin",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "The Private Psychedelic Reel",
+    "work": "ppr",
+    "src": [
+     "cb-r-dig-your-own-hole"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "a blindingly innovative and relentlessly propulsive album that's an exhilarating listen",
+    "ja": "目もくらむほど革新的で推進力に満ちた、聴いていて爽快なアルバムだと絶賛している。",
+    "src": [
+     "allmusic-dyoh"
+    ],
+    "critic": "Stephen Thomas Erlewine"
+   },
+   {
+    "publication": "Rolling Stone",
+    "orig_lang": "en",
+    "orig": "burns the whole rock vs. techno argument into a fine, white ash",
+    "ja": "ロックとテクノの対立構造そのものを焼き尽くしてしまうような作品だと評している。",
+    "src": [
+     "rs-dyoh-1997"
+    ],
+    "critic": "David Fricke"
+   }
   ]
  },
  {
@@ -839,7 +1370,58 @@
    "track": "Elektrobank",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Elektrobank – Radio Edit",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Elektrobank",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Not Another Drugstore",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Don't Stop The Rock – Electronic Battle Weapon Version",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Not Another Drugstore – Planet Nine Mix",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Elektrobank – Dust Brothers Remix",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "These Beats Are Made For Breakin'",
+    "src": [
+     "cb-r-elektrobank"
+    ]
+   }
+  ]
  },
  {
   "id": "ppr",
@@ -914,7 +1496,23 @@
    "track": "The Private Psychedelic Reel ",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "The Private Psychedelic Reel",
+    "src": [
+     "cb-r-the-private-psychedelic-reel"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Setting Sun – Live From the Lowlands Festival, U.K./1997",
+    "src": [
+     "cb-r-the-private-psychedelic-reel"
+    ]
+   }
+  ]
  },
  {
   "id": "hbhg",
@@ -1000,7 +1598,30 @@
    "track": "Hey Boy Hey Girl",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Hey Boy Hey Girl",
+    "src": [
+     "cb-r-hey-boy-hey-girl-single"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Flashback",
+    "src": [
+     "cb-r-hey-boy-hey-girl-single"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Scale",
+    "src": [
+     "cb-r-hey-boy-hey-girl-single"
+    ]
+   }
+  ]
  },
  {
   "id": "sur",
@@ -1123,6 +1744,101 @@
   "album_mv": [],
   "art_src": [
    "cb-r-surrender"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Music Response",
+    "work": "mr",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Under The Influence",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Out Of Control",
+    "work": "ooc",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Orange Wedge",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Let Forever Be",
+    "work": "lfb",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "The Sunshine Underground",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "Asleep From Day",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Got Glint?",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Hey Boy Hey Girl",
+    "work": "hbhg",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Surrender",
+    "src": [
+     "cb-r-surrender"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "Dream On",
+    "src": [
+     "cb-r-surrender"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "it's simply the same great album they'd made two years earlier",
+    "ja": "サラウンダーは新たな方向転換というより、2年前の前作と同路線の傑作をもう一度作り上げたものだと評している。",
+    "src": [
+     "allmusic-sur"
+    ],
+    "critic": "John Bush"
+   }
   ]
  },
  {
@@ -1224,7 +1940,30 @@
    "track": "Let Forever Be (Remastered)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Let Forever Be",
+    "src": [
+     "cb-r-let-forever-be"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "The Diamond Sky",
+    "src": [
+     "cb-r-let-forever-be"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Studio K",
+    "src": [
+     "cb-r-let-forever-be"
+    ]
+   }
+  ]
  },
  {
   "id": "ooc",
@@ -1327,7 +2066,23 @@
    "track": "Out of Control",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Out Of Control",
+    "src": [
+     "cb-r-out-of-control"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Out Of Control - Sasha Club Mix",
+    "src": [
+     "cb-r-out-of-control"
+    ]
+   }
+  ]
  },
  {
   "id": "mr",
@@ -1346,7 +2101,13 @@
   "bpm": 109.0,
   "key": "Bm",
   "embed": {
-   "mv": null,
+   "mv": {
+    "id": "oNiV2Pm2x-k",
+    "src": [
+     "yt-mr"
+    ],
+    "verified": true
+   },
    "live": null,
    "topic": null
   },
@@ -1410,7 +2171,44 @@
    "track": "Music: Response",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Music:Response",
+    "src": [
+     "cb-r-music-response"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Freak of the Week",
+    "src": [
+     "cb-r-music-response"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Enjoyed",
+    "src": [
+     "cb-r-music-response"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Music:Response (Gentleman Thief Mix)",
+    "src": [
+     "cb-r-music-response"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Music:Response (Futureshock Main Response)",
+    "src": [
+     "cb-r-music-response"
+    ]
+   }
+  ]
  },
  {
   "id": "ibia",
@@ -1429,7 +2227,13 @@
   "bpm": 134.0,
   "key": "Am",
   "embed": {
-   "mv": null,
+   "mv": {
+    "id": "hfX6HNhY0Pg",
+    "src": [
+     "yt-ibia"
+    ],
+    "verified": true
+   },
    "live": null,
    "topic": null
   },
@@ -1488,7 +2292,52 @@
    "track": "It Began in Afrika",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "It Began In Afrika (Radio Edit)",
+    "src": [
+     "cb-r-it-began-in-afrika"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "It Began In Afrika",
+    "src": [
+     "cb-r-it-began-in-afrika"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Hot Acid Rhythm 1",
+    "src": [
+     "cb-r-it-began-in-afrika"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "The Guardian",
+    "orig_lang": "en",
+    "orig": "the most wilfully extreme and experimental piece of music ever to make the Top 10",
+    "ja": "「トップ10入りを果たした楽曲の中で最も意図的に過激で実験的な一曲」と評している。",
+    "src": [
+     "guardian-ibia-2002"
+    ],
+    "critic": "Alexis Petridis"
+   },
+   {
+    "publication": "Pitchfork",
+    "orig_lang": "en",
+    "orig": "a rapid, heart-pounding conga workout that distills the quick reflexes and primal urges of a cheetah hunt",
+    "ja": "チーターの狩りのような俊敏さと本能的な衝動を凝縮した、鼓動が速まるようなコンガのワークアウトだと評している。",
+    "src": [
+     "pitchfork-cwu"
+    ],
+    "critic": "Nathan Rooney"
+   }
+  ]
  },
  {
   "id": "sg",
@@ -1600,7 +2449,56 @@
    "track": "Star Guitar (Remastered)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Star Guitar - Edit",
+    "src": [
+     "cb-r-star-guitar"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Star Guitar",
+    "src": [
+     "cb-r-star-guitar"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Star Guitar - Pete Heller's Expanded Mix",
+    "src": [
+     "cb-r-star-guitar"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Star Guitar - Pete Heller's 303 Dub",
+    "src": [
+     "cb-r-star-guitar"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Base 6",
+    "src": [
+     "cb-r-star-guitar"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "it's really, really nice",
+    "ja": "「本当に、本当に良い」バレアリック的な高揚感のあるトラックだと評している。",
+    "src": [
+     "nme-sg"
+    ],
+    "critic": "Jim Wirth"
+   }
+  ]
  },
  {
   "id": "cwu",
@@ -1701,6 +2599,102 @@
   "album_mv": [],
   "art_src": [
    "cb-r-come-with-us"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Come With Us",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "It Began In Afrika",
+    "work": "ibia",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Galaxy Bounce",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Star Guitar",
+    "work": "sg",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Hoops",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "My Elastic Eye",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "The State We're In",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Denmark",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Pioneer Skies",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "The Test",
+    "src": [
+     "cb-r-come-with-us"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "it detonates like a bomb blast",
+    "ja": "アルバムの幕開けが爆弾が炸裂するかのような強烈な始まり方をしていると評している。",
+    "src": [
+     "allmusic-cwu"
+    ],
+    "critic": "John Bush"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "there's not much engagement with the now – a cardinal sin in pop",
+    "ja": "本作には「今」との関わりが乏しく、それはポップ・ミュージックにおいて致命的な欠点だと指摘している。",
+    "src": [
+     "nme-cwu"
+    ],
+    "critic": "Alex Needham"
+   }
   ]
  },
  {
@@ -1776,6 +2770,29 @@
   "album": "cwu",
   "art_src": [
    "cb-r-come-wih-us-the-test"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Come With Us - Edit",
+    "src": [
+     "cb-r-come-wih-us-the-test"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "The Test - Edit",
+    "src": [
+     "cb-r-come-wih-us-the-test"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Come With Us - Fatboy Slim Remix",
+    "src": [
+     "cb-r-come-wih-us-the-test"
+    ]
+   }
   ]
  },
  {
@@ -1841,7 +2858,44 @@
   "after": [],
   "slug": "come-with-us-japan-only-ep",
   "title": "Come with Us/Japan Only EP",
-  "album": null
+  "album": null,
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Come With Us (Radio Edit)",
+    "src": [
+     "discogs-jpep"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Star Guitar (Trisco LA Funk Dub)",
+    "src": [
+     "discogs-jpep"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "H.I.A.",
+    "src": [
+     "discogs-jpep"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Come With Us (H Foundation Remix)",
+    "src": [
+     "discogs-jpep"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Temptation / Star Guitar (Live From Brixton Academy)",
+    "src": [
+     "discogs-jpep"
+    ]
+   }
+  ]
  },
  {
   "id": "amep",
@@ -1909,6 +2963,43 @@
   "album": null,
   "art_src": [
    "cb-r-american-ep"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Star Guitar (Trisco La Funk Dub)",
+    "src": [
+     "cb-r-american-ep"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "H.I.A.",
+    "src": [
+     "cb-r-american-ep"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Come with Us (H Foundation Remix)",
+    "src": [
+     "cb-r-american-ep"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Electronic Battle Weapon 6",
+    "src": [
+     "cb-r-american-ep"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Temptation/Star Guitar (Live from Brixton Academy)",
+    "src": [
+     "cb-r-american-ep"
+    ]
+   }
   ]
  },
  {
@@ -1995,7 +3086,30 @@
    "track": "The Golden Path (Ewan Pearson Extended Vocal)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "The Golden Path",
+    "src": [
+     "discogs-tgp"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Nude Night",
+    "src": [
+     "discogs-tgp"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "The Golden Path (Ewan Pearson Extended Vocal, feat. The Flaming Lips)",
+    "src": [
+     "discogs-tgp"
+    ]
+   }
+  ]
  },
  {
   "id": "gyh",
@@ -2075,7 +3189,23 @@
    "track": "Get Yourself High (feat. k-os) [Switches Rely On Rub]",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Get Yourself High (Radio Edit)",
+    "src": [
+     "discogs-gyh"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Get Yourself High (Album Version)",
+    "src": [
+     "discogs-gyh"
+    ]
+   }
+  ]
  },
  {
   "id": "gal",
@@ -2177,7 +3307,63 @@
    "track": "Galvanize",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Galvanize – Edit",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Rise Up",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Galvanize – Extended Version",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Galvanize – Abe Duque Remix",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Galvanize – Switch Remix",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Galvanize – Abe Duque Dub",
+    "src": [
+     "cb-r-galvanize-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "as fresh and funky as Ed and Tom have sounded in an age",
+    "ja": "久々にケミカル・ブラザーズらしい新鮮でファンキーな仕上がりだと高く評価している。",
+    "src": [
+     "nme-gal"
+    ],
+    "critic": "Tim Jonze"
+   }
+  ]
  },
  {
   "id": "ptb",
@@ -2276,6 +3462,110 @@
   "album_mv": [],
   "art_src": [
    "cb-r-push-the-button"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Galvanize",
+    "work": "gal",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "The Boxer",
+    "work": "box",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Believe",
+    "work": "bel",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Hold Tight London",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Come Inside",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "The Big Jump",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "Left Right",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Close Your Eyes",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Shake Break Bounce",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Marvo Ging",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "Surface To Air",
+    "src": [
+     "cb-r-push-the-button"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "pulverizing stylistic boundaries while they seek out clever hooks",
+    "ja": "様式の垣根を破壊しつつ、キャッチーなフックを追求する姿勢が健在だと評価。",
+    "src": [
+     "allmusic-ptb"
+    ],
+    "critic": "John Bush"
+   },
+   {
+    "publication": "musicOMH",
+    "orig_lang": "en",
+    "orig": "the duo have conclusively reclaimed their crown as kings of the UK dance scene",
+    "ja": "本作で英国ダンスシーンの王者の座を完全に取り戻したと結論づけている。",
+    "src": [
+     "momh-ptb"
+    ],
+    "critic": "John Murphy"
+   }
   ]
  },
  {
@@ -2356,7 +3646,16 @@
    "track": "Believe (Erol Alkan's 'Feel Me' Re-Work)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Believe – Extended Version",
+    "src": [
+     "cb-r-believe-single"
+    ]
+   }
+  ]
  },
  {
   "id": "box",
@@ -2436,7 +3735,16 @@
    "track": "The Boxer",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "The Boxer – Edit",
+    "src": [
+     "cb-r-the-boxer"
+    ]
+   }
+  ]
  },
  {
   "id": "l05",
@@ -2488,6 +3796,29 @@
   "album": null,
   "art_src": [
    "cb-r-live-05"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Close Your Eyes – Live From The United Kingdom/2005",
+    "src": [
+     "cb-r-live-05"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Surface To Air – Live From The United Kingdom/2005",
+    "src": [
+     "cb-r-live-05"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "The Big Jump – Live From The United Kingdom/2005",
+    "src": [
+     "cb-r-live-05"
+    ]
+   }
   ]
  },
  {
@@ -2563,7 +3894,16 @@
    "track": "Do It Again (Extended Mix)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Do It Again – Audion's House Arrest Mix / Edit",
+    "src": [
+     "cb-r-do-it-again-single"
+    ]
+   }
+  ]
  },
  {
   "id": "watn",
@@ -2663,6 +4003,116 @@
   "album_mv": [],
   "art_src": [
    "cb-r-we-are-the-night"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "No Path To Follow",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "We Are The Night",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "All Rights Reversed",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Saturate",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Do It Again",
+    "work": "dia",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Das Spiegel",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "The Salmon Dance",
+    "work": "tsd",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Burst Generator",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "A Modern Midnight Conversation",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Battle Scars",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "Harpoons",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   },
+   {
+    "no": 12,
+    "title": "The Pills Won't Help You Now",
+    "src": [
+     "cb-r-we-are-the-night"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "We Are the Night is no departure",
+    "ja": "本作は前作からの路線変更ではなく、従来路線の延長線上にあると評している。",
+    "src": [
+     "allmusic-watn"
+    ],
+    "critic": "John Bush"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "found just enough cool mates to save them from a general feeling of naffness",
+    "ja": "著名ゲストのおかげで「ダサさ」から辛うじて救われていると評した。",
+    "src": [
+     "nme-watn"
+    ],
+    "critic": "Alex Miller"
+   }
   ]
  },
  {
@@ -2749,7 +4199,30 @@
    "track": "The Salmon Dance (Crookers 'Wow' Mix)",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "The Salmon Dance",
+    "src": [
+     "cb-r-the-salmon-dance"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "The Salmon Dance – Hervé Remix",
+    "src": [
+     "cb-r-the-salmon-dance"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "The Salmon Dance – Crookers 'Wow' Mix",
+    "src": [
+     "cb-r-the-salmon-dance"
+    ]
+   }
+  ]
  },
  {
   "id": "mm",
@@ -2836,7 +4309,16 @@
    "track": "Midnight Madness",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Midnight Madness",
+    "src": [
+     "cb-r-midnight-madness"
+    ]
+   }
+  ]
  },
  {
   "id": "ev",
@@ -2907,7 +4389,16 @@
    "track": "Escape Velocity",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Escape Velocity (single-sided etched 12″)",
+    "src": [
+     "discogs-ev"
+    ]
+   }
+  ]
  },
  {
   "id": "sw",
@@ -2984,7 +4475,28 @@
    "track": "Swoon",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Swoon – Radio Edit",
+    "src": [
+     "cb-r-swoon"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "Resident Advisor",
+    "orig_lang": "en",
+    "orig": "the Chemical Brothers' best album in eons",
+    "ja": "収録アルバム『Further』を「久々の最高傑作」と評する文脈の中で紹介されている。",
+    "src": [
+     "ra-fur"
+    ],
+    "critic": "M Matos"
+   }
+  ]
  },
  {
   "id": "fur",
@@ -3135,6 +4647,89 @@
   ],
   "art_src": [
    "cb-r-further"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Snow",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Escape Velocity",
+    "work": "ev",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Another World",
+    "work": "aw",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Dissolve",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Horse Power",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Swoon",
+    "work": "sw",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "K+D+B",
+    "src": [
+     "cb-r-further"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Wonders Of The Deep",
+    "src": [
+     "cb-r-further"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "they'd do better going beatless or hiring a drummer",
+    "ja": "新しいアイデア不足を指摘し、ビートレスにするかドラマーを雇うべきだと皮肉交じりに批評。",
+    "src": [
+     "allmusic-fur"
+    ],
+    "critic": "John Bush"
+   },
+   {
+    "publication": "musicOMH",
+    "orig_lang": "en",
+    "orig": "Tom and Ed's ability to make machines both scream and sing continues unabated",
+    "ja": "マシンを唸らせ歌わせる両者の能力は健在だと高く評価している。",
+    "src": [
+     "momh-fur"
+    ],
+    "critic": "Ian Roullier"
+   }
   ]
  },
  {
@@ -3215,7 +4810,37 @@
    "track": "Another World",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Another World – Radio Edit",
+    "src": [
+     "cb-r-another-world-single"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Swoon – Boys Noize Summer Remix",
+    "src": [
+     "cb-r-another-world-single"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Swoon – Lindstrøm & Prins Thomas Remix",
+    "src": [
+     "cb-r-another-world-single"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Horse Power – Popof Remix",
+    "src": [
+     "cb-r-another-world-single"
+    ]
+   }
+  ]
  },
  {
   "id": "cp",
@@ -3279,7 +4904,16 @@
    "track": "container park",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 19,
+    "title": "Container Park",
+    "src": [
+     "cb-r-hanna"
+    ]
+   }
+  ]
  },
  {
   "id": "tfv",
@@ -3366,11 +5000,127 @@
   "after": [],
   "slug": "theme-for-velodrome",
   "title": "Theme for Velodrome",
-  "album": null
+  "album": null,
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Theme For Velodrome (Original Version)",
+    "src": [
+     "discogs-tfv"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Theme For Velodrome (Radio Edit)",
+    "src": [
+     "discogs-tfv"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sifsd",
+  "atomic": 40,
+  "symbol": "Si",
+  "type": "single",
+  "year": 2015,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": 120.0,
+  "key": "Fm",
+  "embed": {
+   "mv": {
+    "id": "saZVNLMMmmo",
+    "src": [
+     "cb-v-sometimes-i-feel-so-deserted-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2015,
+    "src": [
+     "cb-r-sometimes-i-feel-so-deserted-single"
+    ]
+   },
+   "date": {
+    "v": "2015-04-21",
+    "src": [
+     "cb-r-sometimes-i-feel-so-deserted-single"
+    ]
+   },
+   "label": {
+    "v": "Virgin",
+    "src": [
+     "discogs-sifsd"
+    ]
+   },
+   "formats": {
+    "v": "Digital download",
+    "src": [
+     "discogs-sifsd"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "『Born in the Echoes』からの先行シングル。デジタル配信のみでのリリース",
+    "en": "Lead single from Born in the Echoes, released as a digital-only single",
+    "src": [
+     "discogs-sifsd"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "daniel-pearce",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "ninian-doff",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "sometimes-i-feel-so-deserted-single",
+  "title": "Sometimes I Feel So Deserted",
+  "album": "bite",
+  "camelot": "4A",
+  "measure": {
+   "method": "serato",
+   "track": "Sometimes I Feel So Deserted",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Sometimes I Feel So Deserted",
+    "src": [
+     "cb-r-sometimes-i-feel-so-deserted-single"
+    ]
+   }
+  ]
  },
  {
   "id": "go",
-  "atomic": 40,
+  "atomic": 41,
   "symbol": "Go",
   "type": "single",
   "year": 2015,
@@ -3546,11 +5296,42 @@
    "track": "Go",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Go",
+    "src": [
+     "cb-r-go-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "The Singles Jukebox",
+    "orig_lang": "en",
+    "orig": "An idea whose time had come in 1998.",
+    "ja": "1998年なら新鮮だったはずのアイデアだと皮肉を込めて評し、二番煎じ感を指摘している。",
+    "src": [
+     "sj-go"
+    ],
+    "critic": "Alfred Soto"
+   },
+   {
+    "publication": "Renowned for Sound",
+    "orig_lang": "en",
+    "orig": "Go is a captivating piece of electronic/dance music",
+    "ja": "『Go』は魅力的なエレクトロニック/ダンスの楽曲だと高く評価している。",
+    "src": [
+     "rfs-go"
+    ],
+    "critic": "Marcus Floyd"
+   }
+  ]
  },
  {
   "id": "unl",
-  "atomic": 41,
+  "atomic": 42,
   "symbol": "Un",
   "type": "single",
   "year": 2015,
@@ -3620,11 +5401,42 @@
    "track": "Under Neon Lights",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Under Neon Lights",
+    "src": [
+     "cb-r-under-neon-lights-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "either Studio 54 on shrooms or The Matrix on acid",
+    "ja": "スタジオ54をきのこで観ているような、あるいはマトリックスをLSDで観ているような幻惑的な曲だと形容している。",
+    "src": [
+     "allmusic-bite"
+    ],
+    "critic": "David Jeffries"
+   },
+   {
+    "publication": "Renowned for Sound",
+    "orig_lang": "en",
+    "orig": "a real achievement, considering the differences in their music",
+    "ja": "全く異なる音楽性を持つ両者の組み合わせとしては見事な成果だと評価している。",
+    "src": [
+     "rfs-unl"
+    ],
+    "critic": "Michael Smith"
+   }
+  ]
  },
  {
   "id": "bite",
-  "atomic": 42,
+  "atomic": 43,
   "symbol": "Be",
   "type": "album",
   "year": 2015,
@@ -3772,11 +5584,238 @@
   ],
   "art_src": [
    "cb-r-born-in-the-echoes"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Sometimes I Feel So Deserted",
+    "work": "sifsd",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Go",
+    "work": "go",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Under Neon Lights",
+    "work": "unl",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "EML Ritual",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "I'll See You There",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Just Bang",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "Reflexion",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Taste of Honey",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "Born in the Echoes",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Radiate",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "Wide Open",
+    "work": "wo",
+    "src": [
+     "cb-r-born-in-the-echoes"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "an excellent mash of familiar and vanguard",
+    "ja": "おなじみの要素と先進的な要素が見事に融合した傑作だと高く評価している。",
+    "src": [
+     "allmusic-bite"
+    ],
+    "critic": "David Jeffries"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "breaking into darker and more twisted territory than ever before",
+    "ja": "これまでになくダークでねじれた領域へ踏み込んだ大胆な再発明だと評している。",
+    "src": [
+     "nme-bite"
+    ],
+    "critic": "Ben Cardew"
+   }
+  ]
+ },
+ {
+  "id": "wo",
+  "atomic": 44,
+  "symbol": "Wo",
+  "type": "single",
+  "year": 2016,
+  "era": "bite",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": 124.0,
+  "key": "Em",
+  "embed": {
+   "mv": {
+    "id": "BC2dRkm8ATU",
+    "src": [
+     "cb-v-wide-open-video"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2016,
+    "src": [
+     "cb-r-wide-open-2"
+    ]
+   },
+   "date": {
+    "v": "2016-02-12",
+    "src": [
+     "cb-r-wide-open-2"
+    ]
+   },
+   "label": {
+    "v": "Virgin EMI",
+    "src": [
+     "discogs-wo"
+    ]
+   },
+   "formats": {
+    "v": "Digital download",
+    "src": [
+     "discogs-wo"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "『Born in the Echoes』収録曲。MVはウェイン・マクレガー振付、ソノヤ・ミズノが出演",
+    "en": "A track from Born in the Echoes; the video was choreographed by Wayne McGregor and features dancer Sonoya Mizuno",
+    "src": [
+     "discogs-wo"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "beck",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "dom-and-nic",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "wide-open-2",
+  "title": "Wide Open",
+  "album": "bite",
+  "camelot": "9A",
+  "measure": {
+   "method": "serato",
+   "track": "Wide Open (Edit)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Wide Open (Edit)",
+    "src": [
+     "cb-r-wide-open-2"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "the fantastic Beck feature 'Wide Open'",
+    "ja": "ベックを迎えた『Wide Open』を素晴らしい一曲として称賛している。",
+    "src": [
+     "allmusic-bite"
+    ],
+    "critic": "David Jeffries"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "it gives way to the underwhelming 'Wide Open'",
+    "ja": "物足りない仕上がりだとして否定的に評しており、評価が割れている。",
+    "src": [
+     "nme-bite"
+    ],
+    "critic": "Ben Cardew"
+   }
   ]
  },
  {
   "id": "chem",
-  "atomic": 43,
+  "atomic": 45,
   "symbol": "Ch",
   "type": "single",
   "year": 2016,
@@ -3833,11 +5872,20 @@
    "track": "C-H-E-M-I-C-A-L",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "C-h-e-m-i-c-a-l",
+    "src": [
+     "cb-r-c-h-e-m-i-c-a-l"
+    ]
+   }
+  ]
  },
  {
   "id": "fy",
-  "atomic": 44,
+  "atomic": 46,
   "symbol": "Fy",
   "type": "single",
   "year": 2018,
@@ -3900,11 +5948,32 @@
    "track": "Free Yourself",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Free Yourself",
+    "src": [
+     "cb-r-free-yourself-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "'Free Yourself' is all digital dread",
+    "ja": "『Free Yourself』はデジタルな不穏さに満ちた一曲だと評している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   }
+  ]
  },
  {
   "id": "mah",
-  "atomic": 45,
+  "atomic": 47,
   "symbol": "Ma",
   "type": "single",
   "year": 2019,
@@ -3959,11 +6028,42 @@
    "track": "MAH",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "MAH",
+    "src": [
+     "cb-r-mah"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "the riotous highlight of No Geography",
+    "ja": "アルバム『No Geography』の中で最も騒がしく際立ったハイライト曲だと評している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   },
+   {
+    "publication": "musicOMH",
+    "orig_lang": "en",
+    "orig": "is the album's killer heart",
+    "ja": "アルバムの核心を突く殺し文句的な一曲だと評している。",
+    "src": [
+     "momh-ng"
+    ],
+    "critic": "Ben Hogwood"
+   }
+  ]
  },
  {
   "id": "gtko",
-  "atomic": 46,
+  "atomic": 48,
   "symbol": "Gk",
   "type": "single",
   "year": 2019,
@@ -4050,11 +6150,42 @@
    "track": "Got to Keep On",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Got To Keep On",
+    "src": [
+     "cb-r-got-to-keep-on-single"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "rides a glittery disco-funk sample",
+    "ja": "きらびやかなディスコ・ファンクのサンプルを乗りこなした楽曲だと評している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   },
+   {
+    "publication": "musicOMH",
+    "orig_lang": "en",
+    "orig": "an invitation to dance the night away in spite of cares and troubles",
+    "ja": "悩みを忘れて夜通し踊りたくなるような誘いの曲だと評している。",
+    "src": [
+     "momh-ng"
+    ],
+    "critic": "Ben Hogwood"
+   }
+  ]
  },
  {
   "id": "wgtt",
-  "atomic": 47,
+  "atomic": 49,
   "symbol": "Wt",
   "type": "single",
   "year": 2019,
@@ -4117,11 +6248,32 @@
    "track": "We've Got to Try",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "We've Got To Try",
+    "src": [
+     "cb-r-weve-got-to-try-2"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "grinding them into a buzzy, robust anthem",
+    "ja": "サンプルを唸るような力強いアンセムへと作り変えた楽曲だと評している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   }
+  ]
  },
  {
   "id": "ng",
-  "atomic": 48,
+  "atomic": 50,
   "symbol": "Ng",
   "type": "album",
   "year": 2019,
@@ -4256,11 +6408,246 @@
   ],
   "art_src": [
    "cb-r-no-geography"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Eve of Destruction",
+    "work": "eod",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Bango",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "No Geography",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Got to Keep On",
+    "work": "gtko",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Gravity Drops",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "The Universe Sent Me",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "We've Got to Try",
+    "work": "wgtt",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Free Yourself",
+    "work": "fy",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "MAH",
+    "work": "mah",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Catch Me I'm Falling",
+    "src": [
+     "cb-r-no-geography"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "No Geography is also not their strongest or most memorable work to date",
+    "ja": "『No Geography』は彼らの最高傑作でも最も記憶に残る作品でもない、とやや辛口に評している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "another leap forward for the pair",
+    "ja": "デュオにとってさらなる前進を示す作品だと高く評価している。",
+    "src": [
+     "nme-ng"
+    ],
+    "critic": "Thomas Smith"
+   }
+  ]
+ },
+ {
+  "id": "eod",
+  "atomic": 51,
+  "symbol": "Ed",
+  "type": "single",
+  "year": 2019,
+  "era": "ng",
+  "plates": {
+   "bg": null,
+   "ink1": null,
+   "ink2": null,
+   "accent": null,
+   "status": "unextracted"
+  },
+  "bpm": 126.0,
+  "key": "Bm",
+  "embed": {
+   "mv": {
+    "id": "sYsXKhBknyM",
+    "src": [
+     "yt-eod"
+    ],
+    "verified": false
+   },
+   "live": null,
+   "topic": null
+  },
+  "records": {
+   "year": {
+    "v": 2019,
+    "src": [
+     "cb-r-eve-of-destruction-2"
+    ]
+   },
+   "date": {
+    "v": "2019-06-11",
+    "src": [
+     "cb-r-eve-of-destruction-2"
+    ]
+   },
+   "label": {
+    "v": "Virgin EMI",
+    "src": [
+     "discogs-eod"
+    ]
+   },
+   "formats": {
+    "v": "Digital download",
+    "src": [
+     "discogs-eod"
+    ]
+   }
+  },
+  "notes": [
+   {
+    "ja": "『No Geography』のオープニング曲。アルバム本編の先行曲としてシングル配信された",
+    "en": "The opening track of No Geography, issued as a single ahead of the album's momentum",
+    "src": [
+     "discogs-eod"
+    ]
+   }
+  ],
+  "credits": [
+   {
+    "person": "aurora",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "nene",
+    "role": "featured",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "adam-smith",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   },
+   {
+    "person": "marcus-lyall",
+    "role": "mv",
+    "src": [
+     "wp-disc"
+    ]
+   }
+  ],
+  "testimony": [],
+  "after": [],
+  "slug": "eve-of-destruction-2",
+  "title": "Eve of Destruction",
+  "album": "ng",
+  "camelot": "10A",
+  "measure": {
+   "method": "serato",
+   "track": "Eve of Destruction",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Eve of Destruction",
+    "src": [
+     "cb-r-eve-of-destruction-2"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "a scene-stealing and all-too-brief verse on 'Eve of Destruction'",
+    "ja": "NENEによる『Eve of Destruction』での短いながらも場をさらうヴァースを高く評価している。",
+    "src": [
+     "allmusic-ng"
+    ],
+    "critic": "Neil Z. Yeung"
+   },
+   {
+    "publication": "musicOMH",
+    "orig_lang": "en",
+    "orig": "it fires an irrepressible burst of automated energy",
+    "ja": "抑えきれないほどの機械的なエネルギーを放つ曲だと評している。",
+    "src": [
+     "momh-ng"
+    ],
+    "critic": "Ben Hogwood"
+   }
   ]
  },
  {
   "id": "dtyf",
-  "atomic": 49,
+  "atomic": 52,
   "symbol": "Df",
   "type": "single",
   "year": 2021,
@@ -4364,11 +6751,20 @@
    "track": "The Darkness That You Fear",
    "artist": "The Chemical Brothers",
    "date": "2026-10-01"
-  }
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "The Darkness That You Fear",
+    "src": [
+     "cb-r-the-darkness-that-you-fear"
+    ]
+   }
+  ]
  },
  {
   "id": "nr",
-  "atomic": 50,
+  "atomic": 53,
   "symbol": "Nr",
   "type": "single",
   "year": 2023,
@@ -4380,8 +6776,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 128.0,
+  "key": "Dm",
   "embed": {
    "mv": null,
    "live": null,
@@ -4434,11 +6830,27 @@
   "album": "ftbf",
   "art_src": [
    "cb-r-no-reason"
+  ],
+  "camelot": "7A",
+  "measure": {
+   "method": "serato",
+   "track": "No Reason",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "No Reason",
+    "src": [
+     "cb-r-no-reason"
+    ]
+   }
   ]
  },
  {
   "id": "la",
-  "atomic": 51,
+  "atomic": 54,
   "symbol": "La",
   "type": "single",
   "year": 2023,
@@ -4450,8 +6862,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 127.0,
+  "key": "Bm",
   "embed": {
    "mv": {
     "id": "pqU4g5iJk2Y",
@@ -4509,11 +6921,27 @@
   "album": "ftbf",
   "art_src": [
    "cb-r-live-again"
+  ],
+  "camelot": "10A",
+  "measure": {
+   "method": "serato",
+   "track": "Live Again (feat. Halo Maud) [Maya Jane Coles Remix]",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Live Again",
+    "src": [
+     "cb-r-live-again"
+    ]
+   }
   ]
  },
  {
   "id": "gb",
-  "atomic": 52,
+  "atomic": 55,
   "symbol": "Gb",
   "type": "single",
   "year": 2023,
@@ -4525,8 +6953,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 130.0,
+  "key": "Ab",
   "embed": {
    "mv": {
     "id": "gr12Lfo4dO4",
@@ -4573,11 +7001,41 @@
   "after": [],
   "slug": "goodbye",
   "title": "Goodbye",
-  "album": "ftbf"
+  "album": "ftbf",
+  "camelot": "4B",
+  "measure": {
+   "method": "serato",
+   "track": "Goodbye (Erol Alkan Rework)",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Goodbye (Erol Alkan Rework / Edit)",
+    "src": [
+     "discogs-gb"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Goodbye (Erol Alkan Rework)",
+    "src": [
+     "discogs-gb"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "Goodbye (DJ Seinfeld Remix)",
+    "src": [
+     "discogs-gb"
+    ]
+   }
+  ]
  },
  {
   "id": "sls",
-  "atomic": 53,
+  "atomic": 56,
   "symbol": "Sl",
   "type": "single",
   "year": 2023,
@@ -4589,8 +7047,8 @@
    "accent": null,
    "status": "unextracted"
   },
-  "bpm": null,
-  "key": null,
+  "bpm": 128.0,
+  "key": "Gm",
   "embed": {
    "mv": {
     "id": "nRtxogXp8sY",
@@ -4663,11 +7121,27 @@
   "album": "ftbf",
   "art_src": [
    "cb-r-skipping-like-a-stone-featuring-beck"
+  ],
+  "camelot": "6A",
+  "measure": {
+   "method": "serato",
+   "track": "Skipping Like A Stone (feat. Beck) [Extended Mix]",
+   "artist": "The Chemical Brothers",
+   "date": "2026-10-01"
+  },
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Skipping Like A Stone (featuring Beck)",
+    "src": [
+     "cb-r-skipping-like-a-stone-featuring-beck"
+    ]
+   }
   ]
  },
  {
   "id": "ftbf",
-  "atomic": 54,
+  "atomic": 57,
   "symbol": "Fb",
   "type": "album",
   "year": 2023,
@@ -4763,6 +7237,112 @@
   "album_mv": [],
   "art_src": [
    "cb-r-for-that-beautiful-feeling"
+  ],
+  "tracklist": [
+   {
+    "no": 1,
+    "title": "Intro",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 2,
+    "title": "Live Again (featuring Halo Maud)",
+    "work": "la",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 3,
+    "title": "No Reason",
+    "work": "nr",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 4,
+    "title": "Goodbye",
+    "work": "gb",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 5,
+    "title": "Fountains",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 6,
+    "title": "Magic Wand",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 7,
+    "title": "The Weight",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 8,
+    "title": "Skipping Like a Stone (featuring Beck)",
+    "work": "sls",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 9,
+    "title": "The Darkness That You Fear (Harvest Mix)",
+    "work": "dtyf",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 10,
+    "title": "Feels Like I'm Dreaming",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   },
+   {
+    "no": 11,
+    "title": "For That Beautiful Feeling (featuring Halo Maud)",
+    "src": [
+     "cb-r-for-that-beautiful-feeling"
+    ]
+   }
+  ],
+  "reviews": [
+   {
+    "publication": "AllMusic",
+    "orig_lang": "en",
+    "orig": "has a few minor surprises, but for the most part it meets expectations",
+    "ja": "アルバムには小さな驚きはあるものの、概ね期待通りの出来栄えで堅実な一枚に仕上がっていると評している。",
+    "src": [
+     "allmusic-ftbf"
+    ],
+    "critic": "Paul Simpson"
+   },
+   {
+    "publication": "NME",
+    "orig_lang": "en",
+    "orig": "On their 10th album, The Chemical Brothers remain the best in the business.",
+    "ja": "10作目となる本作でも、ケミカル・ブラザーズは依然としてこのジャンルの最高峰であり続けていると結論づけている。",
+    "src": [
+     "nme-ftbf"
+    ],
+    "critic": "Ben Jolley"
+   }
   ]
  }
 ]

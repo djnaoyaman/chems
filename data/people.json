@@ -10,7 +10,7 @@
  {
   "id": "q-tip",
   "name": {
-   "ja": "Q-Tip",
+   "ja": "Qティップ",
    "en": "Q-Tip"
   },
   "notes": [
@@ -34,7 +34,7 @@
  {
   "id": "k-os",
   "name": {
-   "ja": "k-os",
+   "ja": "ケイオス",
    "en": "k-os"
   },
   "notes": []
@@ -325,7 +325,7 @@
  {
   "id": "nene",
   "name": {
-   "ja": "Nene",
+   "ja": "NENE",
    "en": "Nene"
   },
   "notes": [
@@ -335,6 +335,22 @@
     "src": [
      "quietus-ng",
      "numero-2019"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "daniel-pearce",
+  "name": {
+   "ja": "Daniel Pearce",
+   "en": "Daniel Pearce"
+  },
+  "notes": [
+   {
+    "ja": "英国の歌手。「Sometimes I Feel So Deserted」にボーカルで参加",
+    "en": "English singer who provided vocals on \"Sometimes I Feel So Deserted\"",
+    "src": [
+     "wp-disc"
     ]
    }
   ]

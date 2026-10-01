@@ -4,6 +4,7 @@
   YT_API_KEY=... python3 build.py … YouTube埋め込み可否と日本での再生制限も確認
 """
 import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
+from urllib.parse import quote
 from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -26,13 +27,15 @@ UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
 UI = {
  'ja': {'works': '周期表', 'timeline': '年表', 'equations': '反応式', 'chain': '連鎖反応', 'now': '現在地', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': 'プロフィール',
         'lang_other': 'EN', 'album': 'スタジオアルバム', 'single': 'シングル', 'ep': 'EP',
-        'listen': '聴く', 'record': '記録', 'music': '音楽性', 'tech': 'テクノロジー', 'context': '周辺環境', 'testimony': '証言', 'view': '私見', 'after': 'その後', 'own': '持つ', 'src': '出典',
+        'listen': '聴く', 'record': '記録', 'tracklist': '収録曲', 'music': '音楽性', 'tech': 'テクノロジー', 'context': '周辺環境', 'testimony': '証言', 'reviews': 'レビュー', 'view': '私見', 'after': 'その後', 'own': '持つ', 'src': '出典',
         'date': '発売日', 'year': '発売', 'on': '収録', 'label': 'レーベル', 'formats': '形態', 'uk': 'UK最高位', 'charts': '各国の最高位', 'certs': '認定', 'featured': '参加', 'mv': 'MV監督', 'artwork': 'アートワーク', 'notes': '注記', 'guest': 'アルバムへの参加', 'singles_from': 'このアルバムのシングル', 'album_mv': 'アルバム収録曲のMV',
         'nochart': 'チャート入りなし', 'inelig': '集計対象外', 'bpm': 'BPM', 'key': 'キー', 'wait_measure': '計測待ち', 'm_rb': 'DJ Naoyamanのrekordboxによる解析値', 'm_an': '音源からの自動解析', 'm_album': 'アルバム単位では計測しません。各曲のページで表示します。',
         'todo_music': '構成、ビート、サンプル、音色、前作からの変化を書く枠。サンプル元と構成の秒数は出典付きで書き、聴感の描写は私見に回します。',
         'todo_tech': '制作機材、スタジオ、録音・編集の手法。本人とエンジニアの発言が見つかりしだい記載します。',
         'todo_context': '同時期のクラブ、レーベル、チャート、同時代の作品、社会の動きを書く枠。',
         'todo_testimony': '出典のある発言が見つかりしだい、原語と訳で載せます。',
+        'todo_tracklist': '公式サイト等で確認でき次第、収録曲を記載します。',
+        'todo_reviews': '出典のある批評家・メディアのレビューが見つかりしだい、原語と訳で載せます。',
         'todo_view': 'DJ Naoyamanの執筆待ち。',
         'todo_after': 'その後の使われ方や評価の変化を、出典がそろいしだい記載します。',
         'todo_own': 'Amazon・楽天のリンク枠。アソシエイト登録後に、広告表記とあわせて設置します。',
@@ -44,17 +47,20 @@ UI = {
         'from_album': '所属アルバム', 'included': '収録', 'nonalbum': 'アルバム未収録',
         'prev': '前の作品', 'next': '次の作品', 'atomic': '原子番号',
         'unofficial': 'このサイトはThe Chemical Brothersの公式サイトではありません。ファンによる非公式のアーカイブです。',
-        'noads': '現在、広告リンクは設置していません。', 'checked': '確認日',
+        'noads': 'DJ Naoyamanは、Amazonアソシエイト・プログラムの参加者です。このプログラムは、サイトがAmazon.co.jpへのリンクを通じて紹介料を得られる手段を提供することを目的としています。', 'checked': '確認日',
+        'own_link': 'Amazon.co.jpで探す', 'own_note': '上記はAmazonアソシエイトのリンクです。',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
  'en': {'works': 'Periodic table', 'timeline': 'Timeline', 'equations': 'Equations', 'chain': 'Chain reaction', 'now': 'Now', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Profile',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
-        'listen': 'Listen', 'record': 'Record', 'music': 'Music', 'tech': 'Technology', 'context': 'Context', 'testimony': 'Testimony', 'view': 'View', 'after': 'Afterwards', 'own': 'Own', 'src': 'Sources',
+        'listen': 'Listen', 'record': 'Record', 'tracklist': 'Tracklist', 'music': 'Music', 'tech': 'Technology', 'context': 'Context', 'testimony': 'Testimony', 'reviews': 'Reviews', 'view': 'View', 'after': 'Afterwards', 'own': 'Own', 'src': 'Sources',
         'date': 'Released', 'year': 'Released', 'on': 'On', 'label': 'Label', 'formats': 'Formats', 'uk': 'UK peak', 'charts': 'Peak positions', 'certs': 'Certifications', 'featured': 'Featuring', 'mv': 'Video', 'artwork': 'Artwork', 'notes': 'Notes', 'guest': 'Guest on the album', 'singles_from': 'Singles from the album', 'album_mv': 'Videos for album tracks',
         'nochart': 'Did not chart', 'inelig': 'Ineligible', 'bpm': 'BPM', 'key': 'Key', 'wait_measure': 'Not yet measured', 'm_rb': "From DJ Naoyaman's rekordbox analysis", 'm_an': 'Automatic analysis of the audio', 'm_album': 'Not measured for whole albums; see each track page.',
         'todo_music': 'Space for structure, beats, samples, sounds and what changed from the last record. Samples and timings go in with sources; how it sounds goes in the View.',
         'todo_tech': 'Gear, studio, recording and editing methods, added once statements from the band or engineers are found.',
         'todo_context': 'Space for the clubs, labels, charts, records and events around it.',
         'todo_testimony': 'Quotes go here with sources, in the original language with a translation, once found.',
+        'todo_tracklist': 'The tracklist goes here once confirmed from the official site or another source.',
+        'todo_reviews': 'Sourced critic and press reviews go here, in the original language with a translation, once found.',
         'todo_view': "Awaiting DJ Naoyaman's view.",
         'todo_after': 'Later uses and shifts in reputation, added once sourced.',
         'todo_own': 'Space for Amazon and Rakuten links, to be added with an advertising disclosure once registered.',
@@ -66,7 +72,8 @@ UI = {
         'from_album': 'From the album', 'included': 'Included on', 'nonalbum': 'Non-album single',
         'prev': 'Previous', 'next': 'Next', 'atomic': 'Atomic number',
         'unofficial': 'This is not the official site of The Chemical Brothers. It is an unofficial fan archive.',
-        'noads': 'There are no advertising links on this site at present.', 'checked': 'Checked',
+        'noads': 'DJ Naoyaman is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for sites to earn fees by linking to Amazon.co.jp.', 'checked': 'Checked',
+        'own_link': 'Find it on Amazon.co.jp', 'own_note': 'The link above is an Amazon Associates affiliate link.',
         'kinds': {'all': 'All', 'work': 'Work', 'live': 'Live', 'japan': 'Japan', 'society': 'Society', 'scene': 'Scene', 'tech': 'Technology'}},
 }
 KC = {'work': '#F2F1EC', 'live': '#FFDE22', 'japan': '#FF3355', 'society': '#A9A9A2', 'scene': '#3DE0E0', 'tech': '#9EF01A'}
@@ -359,7 +366,7 @@ def work_page(w, lang):
                   f'<span class="play" aria-hidden="true"></span><span class="cap">{esc(lab)}<small>{u["facade_tap"]}</small></span></button>'
                   f'<p class="alt">{u["official_src"]}{refs(emb["src"])}　<a href="https://www.youtube.com/watch?v={esc(emb["id"])}" target="_blank" rel="noopener">{u["open_yt"]}</a></p></div>')
     else:
-        listen = f'<div class="player" id="listen"><p class="todo">{u["todo_listen"]}　<a href="{esc(CFG["youtube_channel"])}" target="_blank" rel="noopener">{u["yt_channel"]}</a></p></div>'
+        listen = f'<div class="player" id="listen"><p><a href="{esc(CFG["youtube_channel"])}" target="_blank" rel="noopener">{u["yt_channel"]}</a></p></div>'
     # アートワーク
     art = art_file(w)
     if art:
@@ -412,6 +419,19 @@ def work_page(w, lang):
         if w.get('album_mv'):
             row(u['album_mv'], '<br>'.join(f'{esc(m["title"])}：{people_links(m["directors"], lang, pg)}' if lang == 'ja' else f'{esc(m["title"])}: {people_links(m["directors"], lang, pg)}' for m in w['album_mv']) + refs('wp-disc'))
     rec = f'<section class="blk rec"><h2>{u["record"]}</h2><dl>{"".join(rows)}</dl></section>'
+    if w.get('tracklist'):
+        trows = ''
+        for t in w['tracklist']:
+            no = f'<span class="n">{esc(str(t.get("no", "")))}</span>' if t.get('no') is not None else ''
+            if t.get('work') and t['work'] in W:
+                tw = W[t['work']]
+                main = f'<a href="{rel(pg, path(lang, "work", tw["id"]))}">{esc(t["title"])}</a>'
+            else:
+                main = f'<span>{esc(t["title"])}</span>'
+            trows += f'<li>{no}{main}{refs(t.get("src", []))}</li>'
+        tracklist = f'<section class="blk"><h2>{u["tracklist"]}</h2><ol class="tracklist">{trows}</ol></section>'
+    else:
+        tracklist = ''
     tx, _ = text_blocks(w['id'], lang)
     wm_ = u['wait_measure']
     if w['type'] == 'album':
@@ -422,31 +442,51 @@ def work_page(w, lang):
         key_v = (f'{w["key"]}' + (f'（{w["camelot"]}）' if lang == 'ja' and w.get('camelot') else f' ({w["camelot"]})' if w.get('camelot') else '') if w.get('key') else f'<span class=todo>{wm_}</span>')
         mrows = (f'<dl><div><dt>{u["bpm"]}</dt><dd>{bpm_v}</dd></div><div><dt>{u["key"]}</dt><dd>{key_v}</dd></div>'
                  + (f'<div><dt>{u["notes"]}</dt><dd>{how}</dd></div>' if how else '') + '</dl>')
-    music = (f'<section class="blk rec"><h2>{u["music"]}</h2>{mrows}'
-             + (md(tx['music'], refs, lang) if 'music' in tx else f'<p class="todo">{u["todo_music"]}</p>') + '</section>')
-    tech = f'<section class="blk"><h2>{u["tech"]}</h2>' + (md(tx['tech'], refs, lang) if 'tech' in tx else f'<p class="todo">{u["todo_tech"]}</p>') + '</section>'
+    music = f'<section class="blk rec"><h2>{u["music"]}</h2>{mrows}' + (md(tx['music'], refs, lang) if 'music' in tx else '') + '</section>'
+    tech = f'<section class="blk"><h2>{u["tech"]}</h2>' + (md(tx['tech'], refs, lang) if 'tech' in tx else '') + '</section>'
     if w.get('context'):
         ctx = '<ul>' + ''.join(f'<li>{esc(c[lang])}{refs(c["src"])}</li>' for c in w['context']) + '</ul>'
-    elif 'context' in tx: ctx = md(tx['context'], refs, lang)
-    else: ctx = f'<p class="todo">{u["todo_context"]}</p>'
+    elif 'context' in tx:
+        ctx = md(tx['context'], refs, lang)
+    else:
+        ctx = ''
     context = f'<section class="blk"><h2>{u["context"]}</h2>{ctx}</section>'
     if w['testimony']:
         tq = ''
         for t in w['testimony']:
             tr = f'<p class="tr">「{esc(t["ja"])}」</p>' if lang == 'ja' and t['orig_lang'] != 'ja' else ''
             tq += f'<blockquote><p class="o" lang="{t["orig_lang"]}">“{esc(t["orig"])}”</p>{tr}<footer>{esc(t["who"][lang])}{"。" if lang == "ja" else ". "}{esc(t["ctx"][lang])}{refs(t["src"])}</footer></blockquote>'
-    else: tq = f'<p class="todo">{u["todo_testimony"]}</p>'
+    else:
+        tq = ''
     testimony = f'<section class="blk"><h2>{u["testimony"]}</h2>{tq}</section>'
-    if 'view' in tx:
-        tn = '<p class="tn">Translated from the Japanese original.</p>' if lang == 'en' else ''
-        view = f'<section class="blk view"><h2><span>{u["view"]}（<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>）</span></h2>{md(tx["view"], refs, lang)}{tn}</section>' if lang == 'ja' else \
-               f'<section class="blk view"><h2><span>{u["view"]} (<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>)</span></h2>{md(tx["view"], refs, lang)}{tn}</section>'
-    else: view = f'<section class="blk view"><h2>{u["view"]}</h2><p class="todo">{u["todo_view"]}</p></section>'
+    if w.get('reviews'):
+        rq = ''
+        for rv in w['reviews']:
+            tr = f'<p class="tr">「{esc(rv["ja"])}」</p>' if lang == 'ja' and rv.get('orig_lang') != 'ja' else ''
+            rating = f'<span class="rating">{esc(rv["rating"])}</span>' if rv.get('rating') else ''
+            who = esc(rv['publication']) + (f'　{esc(rv["critic"])}' if lang == 'ja' and rv.get('critic') else f', {esc(rv["critic"])}' if rv.get('critic') else '')
+            rq += f'<blockquote><p class="o" lang="{rv.get("orig_lang", "en")}">“{esc(rv["orig"])}”</p>{tr}<footer>{who}{rating}{refs(rv.get("src", []))}</footer></blockquote>'
+        reviews = f'<section class="blk"><h2>{u["reviews"]}</h2>{rq}</section>'
+    else:
+        reviews = ''
+    tn = '<p class="tn">Translated from the Japanese original.</p>' if lang == 'en' and 'view' in tx else ''
+    view_body = md(tx['view'], refs, lang) if 'view' in tx else ''
+    view = (f'<section class="blk view"><h2><span>{u["view"]}（<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>）</span></h2>{view_body}{tn}</section>' if lang == 'ja' else
+            f'<section class="blk view"><h2><span>{u["view"]} (<a href="{rel(pg, path(lang, "profile"))}">DJ Naoyaman</a>)</span></h2>{view_body}{tn}</section>')
     if w['after']:
         af = '<ul class="after">' + ''.join(f'<li><span class="d">{fdate(a["when"], lang)}</span><span>{esc(a[lang])}{refs(a["src"])}</span></li>' for a in w['after']) + '</ul>'
-    else: af = f'<p class="todo">{u["todo_after"]}</p>'
+    else:
+        af = ''
     after = f'<section class="blk"><h2>{u["after"]}</h2>{af}</section>'
-    own = f'<section class="blk"><h2>{u["own"]}</h2><p class="todo">{u["todo_own"]}</p></section>'
+    tag = CFG.get('amazon_associate_tag')
+    if tag:
+        q = quote(f'{w["title"]} The Chemical Brothers')
+        az_url = f'https://www.amazon.co.jp/s?k={q}&tag={quote(tag)}'
+        own_body = (f'<p><a class="own-link" href="{az_url}" target="_blank" rel="nofollow sponsored noopener">{u["own_link"]}</a></p>'
+                    f'<p class="muted small">{u["own_note"]}</p>')
+    else:
+        own_body = ''
+    own = f'<section class="blk"><h2>{u["own"]}</h2>{own_body}</section>'
     # 前後
     k = WORKS.index(w)
     prv = WORKS[k - 1] if k > 0 else None; nxt = WORKS[k + 1] if k < len(WORKS) - 1 else None
@@ -461,7 +501,7 @@ def work_page(w, lang):
 <p class="plates-row">{plates}<span class="tag">{ptag}</span></p>
 <p class="readout">{readout}</p>
 <p class="tempo"><span>{tempo}</span><button class="motion" type="button"></button></p>
-<div class="blocks"><section class="blk"><h2>{u['listen']}</h2>{listen}</section>{rec}{music}{tech}{context}{testimony}{view}{after}{own}</div>
+<div class="blocks"><section class="blk"><h2>{u['listen']}</h2>{listen}</section>{rec}{tracklist}{music}{tech}{context}{testimony}{reviews}{view}{after}{own}</div>
 {refs.html(lang)}
 {pn}
 </div></article>'''
@@ -473,8 +513,8 @@ def work_page(w, lang):
           'datePublished': str(R['date']['v'] if 'date' in R else w['year'])}
     if art_f: ld['image'] = base_ + 'art/' + os.path.basename(art_f)
     if R.get('label', {}).get('v'): ld['recordLabel'] = str(R['label']['v'])
-    desc = (f'{w["title"]}（{w["year"]}年、{u[w["type"]]}）の記録、音楽性、周辺環境、証言、私見、その後。' if lang == 'ja' else
-            f'{w["title"]} ({w["year"]}, {u[w["type"]].lower()}): record, music, context, testimony, view and afterwards.')
+    desc = (f'{w["title"]}（{w["year"]}年、{u[w["type"]]}）の記録、収録曲、音楽性、周辺環境、証言、レビュー、私見、その後。' if lang == 'ja' else
+            f'{w["title"]} ({w["year"]}, {u[w["type"]].lower()}): record, tracklist, music, context, testimony, reviews, view and afterwards.')
     emit(lang, 'work', w['id'], w['title'], desc, body, {'type': 'work', 'w': w['id']}, ld, cur='works', refs=refs)
 
 # ---------------------------------------------------------------- 各ページ
@@ -513,7 +553,13 @@ def ev_li(e, lang, pg, refs=None):
     if refs is not None:
         for s in e['src']:
             if s not in refs.ids: refs.ids.append(s)
-    return f'<li data-kind="{e["kind"]}" style="--kc:{KC[e["kind"]]};--dc:{dc}"><span class="yr" id="y{p[0]}-{abs(hash(e[lang])) % 100000}">{p[0]}{f"<small>{small}</small>" if small else ""}</span><div><span class="chip">{u["kinds"][e["kind"]]}</span><p>{txt}</p><p class="src">{src}</p></div></li>'
+    art_html = ''
+    if e.get('work'):
+        af = art_file(W[e['work']])
+        if af:
+            art_html = f'<a class="tl-art" href="{rel(pg, path(lang, "work", e["work"]))}" tabindex="-1" aria-hidden="true"><img src="{rel(pg, "art/" + os.path.basename(af))}" alt="" width="80" height="80" loading="lazy" decoding="async"></a>'
+    body = f'<div class="tl-body"><span class="chip">{u["kinds"][e["kind"]]}</span><p>{txt}</p><p class="src">{src}</p></div>'
+    return f'<li data-kind="{e["kind"]}" style="--kc:{KC[e["kind"]]};--dc:{dc}"><span class="yr" id="y{p[0]}-{abs(hash(e[lang])) % 100000}">{p[0]}{f"<small>{small}</small>" if small else ""}</span><div class="tl-row">{art_html}{body}</div></li>'
 
 def top_page(lang):
     u = UI[lang]; pg = path(lang, 'top'); refs = Refs()
@@ -703,7 +749,7 @@ def about_page(lang):
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
                 ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
                 ('埋め込み', '埋め込みはYouTubeの公式動画だけです。優先順は公式MV、公式ライブ映像、公式音源（Topic）です。'),
-                ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。設置する際は、リンクの近くと共通フッターに広告である旨を表示し、Amazonアソシエイトの定型文を掲載します。現在、広告リンクは設置していません。'),
+                ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。リンクの近くと共通フッターに広告である旨を表示し、Amazonアソシエイトの定型文を掲載しています。'),
                 ('制作', 'DJ Naoyaman（宮崎直哉）。プロフィールは別ページにまとめています。')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
@@ -714,7 +760,7 @@ def about_page(lang):
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
                 ('Images and colour', 'Sleeve images appear on each work page as quotations for review and commentary, with their source shown. No official logos are used. Plate colours are taken from the artwork; works without an image yet are shown unprinted.'),
                 ('Embeds', 'Only official YouTube videos are embedded, in this order of preference: official video, official live footage, official audio (Topic).'),
-                ('Advertising', 'Affiliate links will appear only in the Own section of each work page, never inside the text. When they are added, a disclosure will sit next to them and in the site footer, together with the standard Amazon Associates statement. There are no advertising links at present.'),
+                ('Advertising', 'Affiliate links appear only in the Own section of each work page, never inside the text. A disclosure sits next to them and in the site footer, together with the standard Amazon Associates statement.'),
                 ('Made by', 'DJ Naoyaman (Naoya Miyazaki). See the profile page for more.')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["en"])}</dt><dd lang="ja">{esc(g["ja"])}</dd>' for g in GLOSS) + '</dl>'
         gh = 'Glossary (English and Japanese)'
@@ -736,7 +782,7 @@ def profile_page(lang):
         secs = [
          ('DJ', '<p>DJ歴は32年。かつてはプロダクションに所属し、日本中の媒体に音楽評を書いていた時期もありました。今もターンテーブルの前に立ち続けています。</p>'
                 f'<p>noteでは{A("「Artists inside the DJ bag」", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}というマガジンで、DJ Shadow、DJ Kentaro、J Dilla、RADIOHEADなど、一人のアーティストを前編・中編・後編や連話の形で深く掘っていくシリーズを続けています。</p>'),
-         ('名義', L(['DJ Naoyaman：DJ、音楽（このサイト）', '一見坊：妖怪', 'クランポック：鎌倉の歴史と地理', '湯気文吾：サウナ'])),
+         ('その他の名義', L(['一見坊：妖怪', 'クランポック：鎌倉の歴史と地理', '湯気文吾：サウナ'])),
          ('経歴', L(['みずほ情報総研株式会社（ロンドン・ニューヨーク向け大規模決済処理システム構築、ビジネスコンサルタント）',
                      '株式会社サイバーエージェント（インターネット広告代理事業部 マネジメント）',
                      '株式会社リッツ・インターナショナル 取締役（美容サービス事業およびクリニック経営を担当）',
@@ -764,7 +810,7 @@ def profile_page(lang):
         secs = [
          ('DJ', '<p>He has been a DJ for 32 years. For a time he was signed to a production company and wrote music reviews for media across Japan, and he still stands behind the turntables today.</p>'
                 f'<p>On note he runs the magazine {A("Artists inside the DJ bag", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}, a series that digs deep into one artist at a time, such as DJ Shadow, DJ Kentaro, J Dilla and Radiohead, over several instalments.</p>'),
-         ('Names', L(['DJ Naoyaman: DJ and music (this site)', 'Ikkenbo: yokai', 'Kuranpok: Kamakura history and geography', 'Yuge Bungo: saunas'])),
+         ('Other names', L(['Ikkenbo: yokai', 'Kuranpok: Kamakura history and geography', 'Yuge Bungo: saunas'])),
          ('Career', L(['Mizuho Information & Research Institute (large-scale payment systems for London and New York; business consultant)',
                        'CyberAgent (management, internet advertising agency division)',
                        'Ritz International, director (beauty services and clinic management)',
@@ -857,7 +903,7 @@ def verify():
     for w in WORKS:
         for k, v in w['records'].items():
             if not v.get('src') or any(s not in SRC for s in v['src']): bad.append(f'{w["id"]}.{k}')
-        for c in w['credits'] + w['notes'] + w['testimony'] + w['after'] + w.get('context', []):
+        for c in w['credits'] + w['notes'] + w['testimony'] + w['after'] + w.get('context', []) + w.get('tracklist', []) + w.get('reviews', []):
             if not c.get('src') or any(s not in SRC for s in c['src']): bad.append(w['id'])
         if w['embed']['mv'] and not w['embed']['mv'].get('src'): bad.append(w['id'] + '.embed')
     for e in EVENTS + NOW['items'] + NOW['delayed']:

@@ -16,6 +16,7 @@ html[lang="en"] body{line-height:1.65}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.2 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
 a{color:inherit;-webkit-tap-highlight-color:transparent}
 button{touch-action:manipulation}
+[hidden]{display:none!important}
 :focus-visible{outline:2px solid var(--paper);outline-offset:3px}
 .wrap{max-width:62rem;margin:0 auto;padding:0 1.25rem}
 p,li{max-width:40rem}
@@ -126,9 +127,15 @@ html[lang="en"] .rec dl>div{grid-template-columns:8rem 1fr}
 .after li{display:grid;grid-template-columns:6.4rem 1fr;gap:.75rem;margin:.55rem 0}
 .after .d{font-family:var(--f-mono);font-size:.78rem;padding-top:.12rem}
 blockquote{margin:0;padding:.1rem 0 .1rem 1rem;border-left:5px solid var(--tt)}
+blockquote+blockquote{margin-top:.9rem}
 blockquote .o{font-weight:700;font-size:1rem;line-height:1.55;margin:0 0 .3rem!important;font-family:var(--f-en)}
 blockquote .tr{font-weight:900;font-size:1.05rem;line-height:1.6;margin:0 0 .4rem!important}
 blockquote footer{font-size:.8rem}
+blockquote footer .rating{margin-left:.5rem;font-family:var(--f-mono);font-size:.76rem;padding:.05rem .4rem;border:1px solid currentColor}
+.tracklist{list-style:none;margin:0;padding:0!important;counter-reset:none}
+.tracklist li{display:flex;align-items:baseline;gap:.65rem;padding:.4rem 0;border-bottom:1px solid color-mix(in srgb,var(--fg,var(--paper)) 18%,transparent)}
+.tracklist li:last-child{border-bottom:none}
+.tracklist .n{font-family:var(--f-mono);font-size:.78rem;opacity:.7;flex:none;min-width:2rem}
 .view{background:var(--fg);color:var(--bg);padding:1.1rem 1.1rem .8rem}
 .view h2::before{background:var(--bg)}
 .view .todo{border-color:color-mix(in srgb,var(--bg) 60%,transparent)}
@@ -160,6 +167,10 @@ html[lang="en"] .view p{line-height:1.7}
 .tl li[hidden]{display:none}
 .tl .yr{font-family:var(--f-display);font-size:1.45rem;line-height:1;text-align:right;padding-top:.3rem}
 .tl .yr small{display:block;font-family:var(--f-mono);font-size:.62rem;color:var(--dim);margin-top:.2rem}
+.tl-row{display:flex;gap:.75rem;align-items:flex-start;min-width:0}
+.tl-art{flex:none;width:2.8rem;height:2.8rem;display:block;margin-top:.1rem}
+.tl-art img{width:100%;height:100%;object-fit:cover;box-shadow:2px 2px 0 var(--kc);display:block}
+.tl-body{min-width:0}
 .chip{display:inline-block;font-size:.7rem;font-weight:900;line-height:1.7;padding:0 .45rem;background:var(--kc);color:#000;margin-right:.35rem}
 .tl p{margin:.3rem 0 0;font-size:.92rem;max-width:36rem}
 .tl .src{font-size:.72rem;color:var(--dim)}

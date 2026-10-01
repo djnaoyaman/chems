@@ -1431,5 +1431,558 @@
   "url": "https://www.thechemicalbrothers.com/music-videos/for-that-beautiful-feeling",
   "date": "",
   "checked": "2026-10-01"
+ },
+ {
+  "id": "yt-mr",
+  "publisher": "YouTube",
+  "lang": "en",
+  "title": "The Chemical Brothers - Music: Response [Music video]",
+  "url": "https://www.youtube.com/watch?v=oNiV2Pm2x-k",
+  "date": "",
+  "checked": "2026-10-01",
+  "note": "依頼主指定の動画"
+ },
+ {
+  "id": "yt-ibia",
+  "publisher": "YouTube",
+  "lang": "en",
+  "title": "The Chemical Brothers - It Began In Afrika",
+  "url": "https://www.youtube.com/watch?v=hfX6HNhY0Pg",
+  "date": "",
+  "checked": "2026-10-01",
+  "note": "依頼主指定の動画"
+ },
+ {
+  "id": "client-fcs",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Dust Brothers - Fourteenth Century Sky EP (Collect Boy's Own, Collect 004)",
+  "url": "https://www.discogs.com/master/274987-The-Dust-Brothers-Fourteenth-Century-Sky-EP",
+  "date": "1994",
+  "checked": "2026-10-01",
+  "note": "ジャケット（レーベル面）画像は依頼主が所有する現物から提供。収録曲（A1 Chemical Beats / A2 One Too Many Mornings / B1 Dope Coil / B2 Her Jazz）とカタログ番号Collect 004が画像の記載と一致することをDiscogsで確認"
+ },
+ {
+  "id": "client-mmm",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Dust Brothers - My Mercury Mouth E.P (Junior Boy's Own, JBO 20)",
+  "url": "https://www.discogs.com/master/806285-The-Dust-Brothers-My-Mercury-Mouth-EP",
+  "date": "1994",
+  "checked": "2026-10-01",
+  "note": "ジャケット（レーベル面）画像は依頼主が所有する現物から提供。収録曲とカタログ番号JBO 20が画像の記載と一致することをDiscogsで確認"
+ },
+ {
+  "id": "cb-r-sometimes-i-feel-so-deserted-single",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Sometimes I Feel So Deserted (release page)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/sometimes-i-feel-so-deserted-single",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-v-sometimes-i-feel-so-deserted-video",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Sometimes I Feel So Deserted (video)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/sometimes-i-feel-so-deserted-video",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-sifsd",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Sometimes I Feel So Deserted",
+  "url": "https://www.discogs.com/master/830771-The-Chemical-Brothers-Sometimes-I-Feel-So-Deserted",
+  "date": "2015",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-r-wide-open-2",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Wide Open (release page)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/wide-open-2",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-v-wide-open-video",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Wide Open (video)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/wide-open-video",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-wo",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Wide Open (Edit)",
+  "url": "https://www.discogs.com/release/8287099-The-Chemical-Brothers-Wide-Open-Edit",
+  "date": "2016",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-r-eve-of-destruction-2",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Eve of Destruction (release page)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/eve-of-destruction-2",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "yt-eod",
+  "publisher": "YouTube",
+  "lang": "en",
+  "title": "The Chemical Brothers - Eve Of Destruction (Official Music Video)",
+  "url": "https://www.youtube.com/watch?v=sYsXKhBknyM",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-eod",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Eve Of Dubstruction / No Geography (Eve of Destruction)",
+  "url": "https://www.discogs.com/master/1586783-The-Chemical-Brothers-Eve-Of-Dubstruction",
+  "date": "2019",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-lh-1995",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME, \"Long Play\" column (Leave Home review)",
+  "url": "https://www.flickr.com/photos/nothingelseon/53489361113/",
+  "date": "1995-06-24",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "mmaker-lh-1995",
+  "publisher": "Melody Maker",
+  "lang": "en",
+  "title": "Melody Maker, Leave Home review",
+  "url": "https://www.flickr.com/photos/nothingelseon/53486066512/",
+  "date": "1995-06-24",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-epd",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Exit Planet Dust review",
+  "url": "https://www.allmusic.com/album/mw0000175359",
+  "date": "1995",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-epd-2015",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: How The Chemical Brothers revitalised UK dance with Exit Planet Dust (retrospective)",
+  "url": "https://www.nme.com/blogs/nme-blogs/how-the-chemical-brothers-revitalised-uk-dance-with-their-lairy-house-and-hip-hop-hybrid-exit-planet-767788",
+  "date": "2015-06-24",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-lis-1995",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME, Single of the Week (Life Is Sweet review)",
+  "url": "https://www.flickr.com/photos/nothingelseon/53549978265/",
+  "date": "1995-09-02",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "mmaker-lis-1995",
+  "publisher": "Melody Maker",
+  "lang": "en",
+  "title": "Melody Maker, Life Is Sweet review",
+  "url": "https://www.flickr.com/photos/nothingelseon/53543619196/",
+  "date": "1995-08-26",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-lof",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Loops of Fury review",
+  "url": "https://www.allmusic.com/album/loops-of-fury-mw0000182169",
+  "date": "1996",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "mmaker-ss-1996",
+  "publisher": "Melody Maker",
+  "lang": "en",
+  "title": "Melody Maker, Setting Sun review",
+  "url": "https://www.flickr.com/photos/nothingelseon/53724265140/",
+  "date": "1996-10-05",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "pitchfork-ss-2010",
+  "publisher": "Pitchfork",
+  "lang": "en",
+  "title": "Pitchfork: The Top 200 Tracks of the 1990s (Setting Sun entry)",
+  "url": "http://pitchfork.com/features/staff-lists/7852-the-top-200-tracks-of-the-1990s-50-21/1/",
+  "date": "2010",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-brb",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Block Rockin’ Beats review",
+  "url": "https://www.allmusic.com/song/block-rockin-beats-mt0008267782",
+  "date": "1997",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "billboard-brb-1997",
+  "publisher": "Billboard",
+  "lang": "en",
+  "title": "Billboard, Single Reviews (Block Rockin’ Beats), p.73",
+  "url": "https://www.worldradiohistory.com/Archive-All-Music/Billboard/90s/1997/Billboard-1997-04-26.pdf",
+  "date": "1997-04-26",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-dyoh",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Dig Your Own Hole review",
+  "url": "https://www.allmusic.com/album/dig-your-own-hole-mw0000100074",
+  "date": "1997",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "rs-dyoh-1997",
+  "publisher": "Rolling Stone",
+  "lang": "en",
+  "title": "Rolling Stone: Dig Your Own Hole review",
+  "url": "https://web.archive.org/web/20090419130136/http://www.rollingstone.com/artists/thechemicalbrothers/albums/album/103705/review/5945617/dig_your_own_hole",
+  "date": "1997-04-03",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "wp-fcs",
+  "publisher": "Wikipedia",
+  "lang": "en",
+  "title": "Fourteenth Century Sky",
+  "url": "https://en.wikipedia.org/wiki/Fourteenth_Century_Sky",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "wp-mmm",
+  "publisher": "Wikipedia",
+  "lang": "en",
+  "title": "My Mercury Mouth E.P",
+  "url": "https://en.wikipedia.org/wiki/My_Mercury_Mouth_E.P",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-sur",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Surrender review",
+  "url": "https://www.allmusic.com/album/surrender-mw0000244141",
+  "date": "1999",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "guardian-ibia-2002",
+  "publisher": "The Guardian",
+  "lang": "en",
+  "title": "The Guardian, It Began in Afrika mention",
+  "url": "https://web.archive.org/web/20221129142304/https://www.theguardian.com/lifeandstyle/2002/jan/25/shopping.popandrock",
+  "date": "2002-01-25",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "pitchfork-cwu",
+  "publisher": "Pitchfork",
+  "lang": "en",
+  "title": "Pitchfork: Come with Us review",
+  "url": "http://pitchfork.com/reviews/albums/1417-come-with-us/",
+  "date": "2002-01-30",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-sg",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: Star Guitar review",
+  "url": "https://www.nme.com/reviews/reviews-nme-5968-335262",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-cwu",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Come with Us review",
+  "url": "https://www.allmusic.com/album/come-with-us-mw0000212865",
+  "date": "2002",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-cwu",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: Come with Us review",
+  "url": "https://www.nme.com/reviews/reviews-nme-6011-335206",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-jpep",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Come With Us / Japan Only EP",
+  "url": "https://www.discogs.com/release/136568-The-Chemical-Brothers-Come-With-Us-Japan-Only-EP",
+  "date": "2002",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-tgp",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - The Golden Path (single)",
+  "url": "https://www.discogs.com/search/?q=The+Chemical+Brothers+The+Golden+Path",
+  "date": "2003",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-gyh",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Get Yourself High (CD single, CHEMSDJ19)",
+  "url": "https://www.discogs.com/search/?q=The+Chemical+Brothers+Get+Yourself+High",
+  "date": "2003",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-gal",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: Galvanize review",
+  "url": "https://www.nme.com/reviews/reviews-nme-7556-305490",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-ptb",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Push the Button review",
+  "url": "https://www.allmusic.com/album/push-the-button-mw0000139433",
+  "date": "2005",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "momh-ptb",
+  "publisher": "musicOMH",
+  "lang": "en",
+  "title": "musicOMH: Push the Button review",
+  "url": "https://www.musicomh.com/reviews/albums/the-chemical-brothers-push-the-button",
+  "date": "2005-01-24",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-watn",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: We Are the Night review",
+  "url": "https://www.allmusic.com/album/we-are-the-night-mw0000583913",
+  "date": "2007",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-watn",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: We Are the Night review",
+  "url": "https://www.nme.com/reviews/reviews-the-chemical-brothers-8764-327743",
+  "date": "2007-07-03",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-ev",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Escape Velocity (etched 12″ single)",
+  "url": "https://www.discogs.com/search/?q=The+Chemical+Brothers+Escape+Velocity",
+  "date": "2010",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "ra-fur",
+  "publisher": "Resident Advisor",
+  "lang": "en",
+  "title": "Resident Advisor: Further review",
+  "url": "https://ra.co/reviews/8034",
+  "date": "2010-09-30",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-fur",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Further review",
+  "url": "https://www.allmusic.com/album/further-mw0001989733",
+  "date": "2010",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "momh-fur",
+  "publisher": "musicOMH",
+  "lang": "en",
+  "title": "musicOMH: Further review",
+  "url": "https://www.musicomh.com/reviews/albums/the-chemical-brothers-further",
+  "date": "2010-06-14",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-r-swoon",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Swoon (release page)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/swoon",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-r-another-world-single2",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Another World (release page)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/another-world-single",
+  "date": "",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "cb-r-hanna",
+  "publisher": "The Chemical Brothers",
+  "lang": "en",
+  "title": "Official site: Hanna (Original Motion Picture Soundtrack)",
+  "url": "https://www.thechemicalbrothers.com/music-videos/hanna",
+  "date": "2011",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-tfv",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Theme For Velodrome (Official Song of the London 2012 Olympic Games)",
+  "url": "https://www.discogs.com/release/3840532-The-Chemical-Brothers-Theme-For-Velodrome-Official-Song-Of-The-London-2012-Olympic-Games",
+  "date": "2012-07-30",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "sj-go",
+  "publisher": "The Singles Jukebox",
+  "lang": "en",
+  "title": "The Singles Jukebox: The Chemical Brothers ft. Q-Tip - Go",
+  "url": "https://thesinglesjukebox.com/the-chemical-brothers-ft-q-tip-go/",
+  "date": "2015-06-01",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "rfs-go",
+  "publisher": "Renowned for Sound",
+  "lang": "en",
+  "title": "Renowned for Sound: Single Review - Go",
+  "url": "https://renownedforsound.com/single-review-the-chemical-brothers-go/",
+  "date": "2015",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-bite",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: Born in the Echoes review",
+  "url": "https://www.allmusic.com/album/born-in-the-echoes-mw0002844681",
+  "date": "2015",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "rfs-unl",
+  "publisher": "Renowned for Sound",
+  "lang": "en",
+  "title": "Renowned for Sound: Single Review - Under Neon Lights",
+  "url": "https://renownedforsound.com/single-review-the-chemical-brothers-under-neon-lights/",
+  "date": "2015",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-bite",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: Born in the Echoes review",
+  "url": "https://www.nme.com/reviews/reviews-the-chemical-brothers-16161-312508",
+  "date": "2015-07-07",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-ng",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: No Geography review",
+  "url": "https://www.allmusic.com/album/no-geography-mw0003249864",
+  "date": "2019",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "momh-ng",
+  "publisher": "musicOMH",
+  "lang": "en",
+  "title": "musicOMH: No Geography review",
+  "url": "https://www.musicomh.com/reviews/albums/the-chemical-brothers-no-geography",
+  "date": "2019-04-15",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-ng",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: No Geography review",
+  "url": "https://www.nme.com/reviews/chemical-brothers-no-geography-album-review-2474740",
+  "date": "2019-04-10",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "allmusic-ftbf",
+  "publisher": "AllMusic",
+  "lang": "en",
+  "title": "AllMusic: For That Beautiful Feeling review",
+  "url": "https://www.allmusic.com/album/for-that-beautiful-feeling-mw0004050769",
+  "date": "2023-09-08",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "nme-ftbf",
+  "publisher": "NME",
+  "lang": "en",
+  "title": "NME: For That Beautiful Feeling review",
+  "url": "https://www.nme.com/reviews/album/the-chemical-brothers-for-that-beautiful-feeling-album-review-3494094",
+  "date": "2023-09-06",
+  "checked": "2026-10-01"
+ },
+ {
+  "id": "discogs-gb",
+  "publisher": "Discogs",
+  "lang": "en",
+  "title": "The Chemical Brothers - Goodbye (Erol Alkan Rework / DJ Seinfeld Remix)",
+  "url": "https://www.discogs.com/search/?q=The+Chemical+Brothers+Goodbye+Erol+Alkan",
+  "date": "2023",
+  "checked": "2026-10-01"
  }
 ]
