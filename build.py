@@ -260,7 +260,6 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 {body}
 </main>
 <footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
-{open(os.path.join(ROOT, "creator-sites.en.html" if lang == "en" else "creator-sites.html"), encoding="utf-8").read()}
 <script>{JS}</script>
 </body>
 </html>
@@ -832,6 +831,20 @@ def profile_page(lang):
         ]
         src_h = 'Sources for this profile'; src_p = 'Compiled from the profiles on his own sites (checked 30 September 2026). All in Japanese.'
         h1, sub = 'DJ Naoyaman', 'Naoya Miyazaki'
+    # Extend the existing profile project list in the page's own language and layout.
+    creator_sites = [["ppp","掌蹠膿疱症.com","個人の体験と公開資料をもとに、掌蹠膿疱症の症状や治療の選択肢を整理する情報サイト。","Information on palmoplantar pustulosis, bringing together personal experience and published sources."],["youkai","一見坊の【日本妖怪学体系】","日本各地の妖怪と伝承を、出典・信頼度・地域のつながりから読み解く妖怪図鑑。","An encyclopedia of Japanese yokai, their folklore, regions and documented sources."],["sakanamushi","花鳥風月、そして魚と虫。","魚・虫・鳥・植物にまつわる漢字を、大きな文字と読み方クイズで楽しむ図鑑。","Explore kanji for fish, insects, birds and plants through illustrated reading quizzes."],["kuranpo","鎌・くらんぽ","鎌倉の社寺と歴史を、出発点から解散点までの散歩コースで案内する街歩きガイド。","Walking routes through Kamakura, connecting temples, shrines and local history."],["chems","my Chems","The Chemical Brothersの作品・人物・歴史を、出典つきの記録と私見でたどる日英の非公式アーカイブ。","An unofficial bilingual archive of The Chemical Brothers: works, people, history and listening notes."],["suburbia-classica","SUBURBIA CLASSICA","クラシックの名曲を、制作背景・構成・録音エピソードとともに聴く音楽ガイド。","A classical music selection with listening guides, composition histories and recording stories."],["cratediggin","CRATE DIGGIN’","Hip Hopの楽曲からサンプル、プロデューサー、街や時代をたどる音楽アーカイブ。","A Hip Hop archive exploring samples, producers, places and musical history."],["sanreikotaiyoku","酸冷交代浴のススメ","炭酸泉と水風呂の楽しみ方を、体験・施設情報・文献から編集する入浴ガイド。","A bathing guide to carbonated baths and cold water, combining experiences, facilities and references."],["gooooooooood_expression","gooooooooood* expression","Webの動き・文字・音・インタラクションを、実例と解説から学び、試せる表現図鑑。","An interactive encyclopedia of web expression: motion, typography, sound and interaction."],["bookkeeping","Book Keeping","日商簿記・全経簿記・USCPAの仕訳や計算を反復演習し、学習記録と復習につなげる学習サイト。","Practice bookkeeping and accounting for Nissho, Zenkei and USCPA with local learning records and review."]]
+    expanded = []
+    for heading, content in secs:
+        if heading in ('つくっているもの', 'Other projects'):
+            additions = []
+            for site_id, name, description_ja, description_en in creator_sites:
+                site_url = 'https://djnaoyaman.github.io/' + site_id + '/'
+                if site_id != 'chems' and site_url not in content:
+                    description = description_ja if lang == 'ja' else description_en
+                    additions.append('<li>' + A(name, site_url) + ('：' if lang == 'ja' else ': ') + esc(description) + '</li>')
+            content = content.replace('</ul>', ''.join(additions) + '</ul>')
+        expanded.append((heading, content))
+    secs = expanded
     srcs = '<ol class="srcs">' + ''.join(f'<li>{A(t, h)}</li>' for t, h in PROFILE_SRC) + '</ol>'
     body = (f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>{h1}</h1><p class="lead">{sub}</p></header>'
             f'<section class="s"><p>{esc(lead)}</p></section>'
