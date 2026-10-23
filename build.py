@@ -260,6 +260,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 {body}
 </main>
 <footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+{open(os.path.join(ROOT, "creator-sites.en.html" if lang == "en" else "creator-sites.html"), encoding="utf-8").read()}
 <script>{JS}</script>
 </body>
 </html>
@@ -1085,3 +1086,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
