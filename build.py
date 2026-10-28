@@ -18,7 +18,7 @@ P = {p['id']: p for p in PEOPLE}
 SRC = {s['id']: s for s in SOURCES}
 LANGS = ['ja', 'en']
 CSS = open(os.path.join(ROOT, 'src', 'site.css'), encoding='utf-8').read()
-JS = open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read()
+JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read()
 esc = lambda s: H.escape(str(s), quote=True)
 PAPER, BLACK = '#F2F1EC', '#000000'
 UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
