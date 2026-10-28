@@ -224,3 +224,11 @@ table.t td.d{font-family:var(--f-mono);font-size:.75rem;white-space:nowrap}
 .art.none{aspect-ratio:1/1;max-width:12rem;border:1.5px dashed color-mix(in srgb,var(--fg) 45%,transparent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem}
 .art.none .sym{font-family:var(--f-display);font-size:4rem;line-height:1;opacity:.35}
 .art.none figcaption{margin:0;font-weight:700}
+
+/* In normal flow, never over the video or transport; intentionally no animation. */
+.premium-playback-hint{display:flex;align-items:flex-start;gap:8px;grid-column:1/-1;margin:8px 0 0;padding:8px 0;border-top:1px solid currentColor;font-family:inherit;font-size:12px;line-height:1.6;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}
+.premium-playback-hint>span{flex:1;min-width:0;font-size:12px;line-height:1.6}
+.premium-playback-hint small{display:block;font-size:10px;line-height:1.6;opacity:.8}
+.premium-playback-hint a{color:inherit;text-decoration:underline;text-underline-offset:2px;margin-left:4px}
+.premium-playback-hint button{flex:none;min-width:28px;min-height:28px;padding:0;border:0;border-radius:0;background:transparent;color:inherit;font-family:inherit;font-size:20px;line-height:1;cursor:pointer}
+.premium-playback-hint :focus-visible{outline:2px solid currentColor;outline-offset:2px}

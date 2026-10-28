@@ -26,9 +26,12 @@ fit();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 if(!window.__chemsRz){window.__chemsRz=1;var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fit,120)})}
 
 /* YouTube：タップで読み込み、秒数リンクで再生点へ */
+var premiumHost=document.querySelector('.player[data-yt]');
+var premiumHint=premiumHost?window.PremiumPlaybackHint.create({host:premiumHost,key:'chems-premium-hint-v1',english:L==='en',get storage(){return window.sessionStorage;}}):null;
 function load(sec){var f=document.querySelector('.facade[data-yt]');var box=document.querySelector('.player');if(!box)return false;
   var id=(f&&f.dataset.yt)||box.dataset.yt;if(!id)return false;
 window.NaoyamanAnalytics&&window.NaoyamanAnalytics.track('video_open',{});
+  if(premiumHint)premiumHint.show();
   /* ファイルを直接開いた場合は参照元が送れず、YouTubeが再生を拒否する（エラー153）。その時はYouTubeで開く */
   if(!/^https?:$/.test(location.protocol)){window.open('https://www.youtube.com/watch?v='+id+(sec?'&t='+sec+'s':''),'_blank','noopener');return true}
   var ifr=document.createElement('iframe');
