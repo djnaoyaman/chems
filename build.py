@@ -1008,17 +1008,23 @@ def verify():
     ok(11, '版色が未抽出の作品数', 'warn' if un else True, f'{len(un)}/{len(WORKS)}件が未抽出')
     # 12 アートワーク
     bad_img = []
+    # Existing alembic identity rendered as UI icons, not record artwork.
+    device_icon_sha256 = {'src/icons/icon-192.png': '8fd5bde9676f540161f2d843c23fb360e22ff6b3176e208b706332aeb2b23fa5', 'src/icons/maskable-512.png': '80be30ed85f78baa85d24308cba458532016b31fc516e72e145dfe23ef83d9c9', 'src/icons/icon-32.png': '5877c53a02186d60c0f90181bc803915bcc4f2face09e05d527ff09468259b86', 'src/icons/maskable-192.png': '7f2eb0c4c7ef28f685538a835f2883120b14e4246a1c82b11ed781d68874361f', 'src/icons/icon-16.png': '4e7d798e68bd242c107695e8b4623c033b856c61a00d7c1d17c5d602a7e72925', 'src/icons/icon-48.png': '62e521d1e9b72247a6dd1db79f8448e1638e33a85c39a5bb98a897901882497b', 'src/icons/apple-touch-icon.png': 'c7fd81a273c1a5b0f79b348c9e2a1159799089821087b1999ad68cb32a418694', 'src/icons/icon-512.png': 'eb61dbe67d80fe46e051d18e68dce02b97b291c7724458c8cc3b10e3a8200930'}
     for r_, _, fs in os.walk(ROOT):
         if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST) or 'art_review' in r_: continue
         for f in fs:
             if f.lower().endswith(('.jpg', '.jpeg', '.webp', '.gif', '.png')):
-                if os.path.abspath(r_) != ART or f.rsplit('.', 1)[0] not in W: bad_img.append(os.path.join(os.path.relpath(r_, ROOT), f))
+                relative = os.path.join(os.path.relpath(r_, ROOT), f).replace(os.path.sep, '/')
+                if relative in device_icon_sha256:
+                    with open(os.path.join(r_, f), 'rb') as icon_file:
+                        if hashlib.sha256(icon_file.read()).hexdigest() != device_icon_sha256[relative]: bad_img.append(relative)
+                elif os.path.abspath(r_) != ART or f.rsplit('.', 1)[0] not in W: bad_img.append(relative)
     for r_, _, fs in os.walk(ROOT):
         if '.git' in r_: continue
         bad_img += [os.path.join(os.path.relpath(r_, ROOT), f) for f in fs if f.lower().endswith(('.mp3', '.wav', '.aif', '.aiff', '.flac', '.m4a', '.aac', '.ogg'))]
     no_src = [w['id'] for w in WORKS if art_file(w) and not w.get('art_src')]
     n_art = sum(1 for w in WORKS if art_file(w))
-    ok(12, '画像はart/の作品IDのものだけで出典付き。音源はリポジトリにない', True if not bad_img and not no_src else False, (', '.join(bad_img[:5] + no_src[:5])) or f'掲載 {n_art}/{len(WORKS)}件')
+    ok(12, '作品画像は出典付き、UIアイコンは既知ハッシュ一致。音源なし', True if not bad_img and not no_src else False, (', '.join(bad_img[:5] + no_src[:5])) or f'掲載 {n_art}/{len(WORKS)}件')
     # 13 脈動
     fast = [w['id'] for w in WORKS if ((w['bpm'] or 120) / 2 if (w['bpm'] or 120) > 180 else (w['bpm'] or 120)) / 60 > 3]
     ok(13, '脈動の変化が1秒に3回以下', not fast, ', '.join(fast))
