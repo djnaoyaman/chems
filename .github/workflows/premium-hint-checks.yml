@@ -1,7 +1,7 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'tests/test-premium-hint*.cjs', '.github/workflows/premium-hint-checks.yml']
+    paths: ['src/**', 'build.py', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - run: node tests/test-launch-package.cjs
       - run: node tests/test-premium-hint.cjs
       - run: npm install --no-save --package-lock=false playwright@1.56.1
       - run: npx playwright install --with-deps chromium
