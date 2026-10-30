@@ -236,6 +236,9 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta property="og:title" content="{esc(full)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:image" content="{og_url}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta property="og:image:alt" content="{esc(full)}">
 <meta property="og:url" content="{(base + pg) if base else rel(pg, pg)}">
 <meta property="og:locale" content="{'ja_JP' if lang == 'ja' else 'en_GB'}">
@@ -250,6 +253,10 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚗️</text></svg>">
+<link rel="icon" href="{rel(pg, 'icons/favicon.ico')}" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="{rel(pg, 'icons/apple-touch-icon.png')}" sizes="180x180">
+<link rel="manifest" href="{rel(pg, 'site.webmanifest')}">
+<meta name="apple-mobile-web-app-title" content="my Chems">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?{FONTS[lang]}&display=swap" rel="stylesheet">
 <style>{CSS}</style>{ld}
@@ -1092,6 +1099,8 @@ def main():
         make_ogp(pg, v['ogp_spec'], v['lang'])
     open(os.path.join(DIST, '.nojekyll'), 'w').close()
     write_seo_files()
+    shutil.copytree(os.path.join(ROOT, "src", "icons"), os.path.join(DIST, "icons"))
+    shutil.copy(os.path.join(ROOT, "src", "site.webmanifest"), DIST)
     res = verify()
     print(f'ページ {len(PAGES)}（日 {sum(1 for v in PAGES.values() if v["lang"] == "ja")} ／ 英 {sum(1 for v in PAGES.values() if v["lang"] == "en")}）')
     for n, t, s, dt in res: print(f'{n:>2} {s:<4} {t}' + (f'　{dt}' if dt else ''))
