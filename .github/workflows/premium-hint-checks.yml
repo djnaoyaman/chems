@@ -1,7 +1,7 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'tests/test-profile.py', 'tests/test-profile-browser.cjs', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
+    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-profile*', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -16,6 +16,7 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra
       - run: pip install pillow
       - run: python3 build.py
+      - run: python3 tests/test-wordmark.py
       - run: python3 tests/test-profile.py
       - uses: actions/setup-node@v4
         with:
@@ -25,6 +26,7 @@ jobs:
       - run: npm install --no-save --package-lock=false playwright@1.56.1
       - run: npx playwright install --with-deps chromium
       - run: node tests/test-premium-hint-browser.cjs
+      - run: node tests/test-wordmark-browser.cjs
       - run: node tests/test-profile-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
