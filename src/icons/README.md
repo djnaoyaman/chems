@@ -1,3 +1,7 @@
 # Device icons
 
-The existing ⚗️ favicon identity is retained. These UI assets are rendered from Noto Color Emoji on an opaque black background, not album artwork or official artist marks. Apple 180, PNG 16/32/48/192/512, and padded maskable 192/512. No additional remote image requests. The build validates the exact PNG SHA-256 allowlist, while retaining the artwork/source and audio-file checks.
+All device icons use the owner-approved ivory myChems wordmark from `src/brand/mychems-wordmark-ivory-1024.png` on opaque black. The full outline and aspect ratio are preserved; no emoji, substitute typeface, album artwork or official artist mark is used.
+
+Regenerate with `python3 tools/generate_icons.py` (Pillow required). Exports: Apple 180, PNG 16/32/48/192/512, ICO 16/32/48, and maskable 192/512. Maskable exports keep the wordmark inside the central 80% safe circle.
+
+The `mychems-` filenames avoid reusing cached alembic icons. The shared page template, 404 page and web manifest point to the new exports. The build validates PNG SHA-256 values while retaining artwork/source and audio-file checks. Update that allowlist if deliberately regenerating assets.

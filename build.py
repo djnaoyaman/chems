@@ -272,10 +272,9 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta name="author" content="{esc(CFG['author'])}">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚗️</text></svg>">
-<link rel="icon" href="{rel(pg, 'icons/favicon.ico')}" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="{rel(pg, 'icons/icon-32.png')}">
-<link rel="apple-touch-icon" href="{rel(pg, 'icons/apple-touch-icon.png')}" sizes="180x180">
+<link rel="icon" href="{rel(pg, 'icons/mychems-favicon.ico')}" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="{rel(pg, 'icons/mychems-icon-32.png')}">
+<link rel="apple-touch-icon" href="{rel(pg, 'icons/mychems-apple-touch-icon.png')}" sizes="180x180">
 <link rel="manifest" href="{rel(pg, 'site.webmanifest')}">
 <meta name="apple-mobile-web-app-title" content="my Chems">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -982,8 +981,8 @@ def verify():
     ok(11, '版色が未抽出の作品数', 'warn' if un else True, f'{len(un)}/{len(WORKS)}件が未抽出')
     # 12 アートワーク
     bad_img = []
-    # Existing alembic identity rendered as UI icons, not record artwork.
-    device_icon_sha256 = {'src/icons/icon-192.png': '8fd5bde9676f540161f2d843c23fb360e22ff6b3176e208b706332aeb2b23fa5', 'src/icons/maskable-512.png': '80be30ed85f78baa85d24308cba458532016b31fc516e72e145dfe23ef83d9c9', 'src/icons/icon-32.png': '5877c53a02186d60c0f90181bc803915bcc4f2face09e05d527ff09468259b86', 'src/icons/maskable-192.png': '7f2eb0c4c7ef28f685538a835f2883120b14e4246a1c82b11ed781d68874361f', 'src/icons/icon-16.png': '4e7d798e68bd242c107695e8b4623c033b856c61a00d7c1d17c5d602a7e72925', 'src/icons/icon-48.png': '62e521d1e9b72247a6dd1db79f8448e1638e33a85c39a5bb98a897901882497b', 'src/icons/apple-touch-icon.png': 'c7fd81a273c1a5b0f79b348c9e2a1159799089821087b1999ad68cb32a418694', 'src/icons/icon-512.png': 'eb61dbe67d80fe46e051d18e68dce02b97b291c7724458c8cc3b10e3a8200930'}
+    # Device icons exported from the approved myChems wordmark, not record artwork.
+    device_icon_sha256 = {'src/icons/mychems-apple-touch-icon.png': '7294953b0c38ad8a7ec06aee531f520b69b7f5fc6ed11f0177493e5736533b3f', 'src/icons/mychems-icon-16.png': '0bdad498213cc8e9976d1cbddb9ef5fd494058af02de01a2ac693030e540d943', 'src/icons/mychems-icon-192.png': '636eaa171ac7ba351d667286136af8f01d6028749f6c921fc5e719cf75f4855d', 'src/icons/mychems-icon-32.png': '95b171efb2655c50ca552f3ed1a00336e0decfdc7491347e16968e943412d9b8', 'src/icons/mychems-icon-48.png': 'a6b595b9a65137a993014f28b0974272bed0711695e26170126308d5b1898ab9', 'src/icons/mychems-icon-512.png': 'd694884ea0ead59c3ee4891fea51a37bd3520f5ef71f85a824cac7214b64044e', 'src/icons/mychems-maskable-192.png': 'e911905e89964a39a689d1002421e2feeada34f3799638f2b56abd0b16fa54f6', 'src/icons/mychems-maskable-512.png': '6ff9c116eddac4e34e7bf77eca345897bdc01d50b8d07678650f3ca2ba6c6468'}
     # Owner-approved custom wordmark, not Chemical Brothers artwork or official logo.
     device_icon_sha256['src/brand/mychems-wordmark-ivory-1024.png'] = 'f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849'
     for r_, _, fs in os.walk(ROOT):
@@ -1086,7 +1085,7 @@ def write_full_text_and_recovery():
         blocks.append('## ' + base + pg + '\n\n' + text)
     open(os.path.join(DIST, 'llms-full.txt'), 'w', encoding='utf-8').write('\n\n'.join(blocks) + '\n')
     # Absolute project URLs work even when GitHub serves this file for a deeply nested missing URL.
-    recovery = f'''<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin"><title>ページが見つかりません / Page not found | my Chems</title><meta name="description" content="my Chemsの作品・歴史アーカイブへ戻る案内。"><link rel="icon" href="{base}icons/favicon.ico"><link rel="apple-touch-icon" href="{base}icons/apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest"><meta name="theme-color" content="#000000"><style>{CSS}</style></head><body><main class="wrap page-h" id="main"><a href="{base}" aria-label="myChems"><img src="{base}brand/mychems-wordmark-ivory.svg" alt="myChems" width="1799" height="504" style="width:180px;height:auto"></a><h1>ページが見つかりません</h1><p>URLが変わったか、入力が違っている可能性があります。作品や年表から探してみてください。</p><p><a href="{base}">ホーム</a> · <a href="{base}works/">作品・周期表</a> · <a href="{base}timeline/">年表</a></p><section class="s" lang="en"><h2>Page not found</h2><p>The address may have changed or been mistyped. Browse the archive instead.</p><p><a href="{base}en/">English home</a> · <a href="{base}en/works/">Works</a> · <a href="{base}en/timeline/">Timeline</a></p></section><p class="small">非公式のファンアーカイブ / An unofficial fan archive.</p></main></body></html>'''
+    recovery = f'''<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin"><title>ページが見つかりません / Page not found | my Chems</title><meta name="description" content="my Chemsの作品・歴史アーカイブへ戻る案内。"><link rel="icon" href="{base}icons/mychems-favicon.ico"><link rel="apple-touch-icon" href="{base}icons/mychems-apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest"><meta name="theme-color" content="#000000"><style>{CSS}</style></head><body><main class="wrap page-h" id="main"><a href="{base}" aria-label="myChems"><img src="{base}brand/mychems-wordmark-ivory.svg" alt="myChems" width="1799" height="504" style="width:180px;height:auto"></a><h1>ページが見つかりません</h1><p>URLが変わったか、入力が違っている可能性があります。作品や年表から探してみてください。</p><p><a href="{base}">ホーム</a> · <a href="{base}works/">作品・周期表</a> · <a href="{base}timeline/">年表</a></p><section class="s" lang="en"><h2>Page not found</h2><p>The address may have changed or been mistyped. Browse the archive instead.</p><p><a href="{base}en/">English home</a> · <a href="{base}en/works/">Works</a> · <a href="{base}en/timeline/">Timeline</a></p></section><p class="small">非公式のファンアーカイブ / An unofficial fan archive.</p></main></body></html>'''
     open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8').write(recovery)
 
 def main():
