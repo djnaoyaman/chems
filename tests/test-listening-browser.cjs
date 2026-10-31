@@ -16,6 +16,8 @@ for(const lang of ['ja','en'])for(const width of [320,390,844,1280]){
  await page.goto('https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'works/');
  const select=page.locator('[data-listening=release]');await page.waitForFunction(()=>document.querySelector('[data-listening=release]').options.length===58);
  assert.equal(apiRequests,0);checks++;
+ await page.locator('a[href="#listening"]').click();const entryBox=await page.locator('#listening h2').boundingBox(),entryHeader=await page.locator('header.gh').boundingBox();assert(entryBox.y>=entryHeader.y+entryHeader.height-1);checks++;
+ await page.screenshot({path:path.join(out,`listening-entry-${lang}-${width}.png`)});
  await select.selectOption('epd');assert.equal(await page.locator('[data-listening=tracks] li').count(),11);checks++;
  assert(!(await page.locator('[data-listening=load]').isEnabled()));checks++;
  await page.getByRole('button',{name:/2\. In Dust We Trust/}).focus();await page.keyboard.press(width===390?'Space':'Enter');assert(await page.locator('[data-listening=load]').isEnabled());checks++;
