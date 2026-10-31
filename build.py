@@ -11,6 +11,10 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
 # This source revision changes shared archive navigation and the site-wide editorial structure.
 BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
+# Only the bilingual home/about descriptions changed in this editorial correction.
+EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
+def page_modified(key):
+    return EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -214,8 +218,9 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    modified = BRAND_UPDATED
-    modified_jst = '2026-10-31 20:50 JST'
+    modified = page_modified(key)
+    site_modified = EDITORIAL_UPDATED
+    modified_jst = '2026-10-31 21:39 JST'
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
     lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
@@ -271,7 +276,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <main id="main">
 {body}
 </main>
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{modified}">{modified_jst}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{site_modified}">{modified_jst}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -597,7 +602,7 @@ def top_page(lang):
 <section class="s"><h2 class="sh">{'アルバムでたどる' if lang == 'ja' else 'Follow the albums'}</h2><div class="archive-albums">{albums}</div><p><a class="more" href="{rel(pg, path(lang, 'works'))}">{'全' + str(len(WORKS)) + '作品を周期表で見る' if lang == 'ja' else 'Explore all ' + str(len(WORKS)) + ' works in the periodic table'}</a></p></section>
 <section class="s"><h2 class="sh">{'作品の向こう側へ' if lang == 'ja' else 'Beyond the record'}</h2><div class="archive-guides">{guide_html}</div></section>
 <section class="s"><h2 class="sh">{'記録と私見を分けて読む' if lang == 'ja' else 'Facts and personal views, kept apart'}</h2><p>{'発売・制作の事実には出典を。DJ Naoyamanの私見は独立した欄へ。速報や公演予定の配信は行わず、作品と歴史を読み直す場所として編集しています。' if lang == 'ja' else 'Release and production facts carry sources. DJ Naoyaman’s personal views have their own space. This site does not publish news or upcoming-event listings; it is edited as a record of the music and its history.'}</p><p><a class="more" href="{rel(pg, path(lang, 'about'))}">{u['about']}</a></p></section></div>'''
-    desc = 'ケミカル・ブラザーズの全アルバム、全シングル、全EPを、出典付きの記録と私見で読むアーカイブ。' if lang == 'ja' else 'Every album, single and EP by The Chemical Brothers, read through sourced records and views.'
+    desc = 'ケミカル・ブラザーズのアルバム、シングル、EPを、出典付きの記録と私見で読むアーカイブ。' if lang == 'ja' else 'An archive of albums, singles and EPs by The Chemical Brothers, read through sourced records and personal views.'
     base_ = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': CFG['site_name'][lang], 'url': base_ + pg, 'inLanguage': lang, 'description': desc,
           'about': {'@type': 'MusicGroup', 'name': 'The Chemical Brothers', 'sameAs': ['https://www.thechemicalbrothers.com/', 'https://en.wikipedia.org/wiki/The_Chemical_Brothers']},
@@ -747,7 +752,7 @@ def sources_page(lang):
 def about_page(lang):
     u = UI[lang]
     if lang == 'ja':
-        secs = [('方針', 'ニュース速報・今後の公演予定は扱いません。作品、制作、共作者、歴史を中心に編集します。ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。全アルバム、全シングル、全EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
+        secs = [('方針', 'ニュース速報・今後の公演予定は扱いません。作品、制作、共作者、歴史を中心に編集します。ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。このサイトで取り上げるアルバム、シングル、EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
                 ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。英語版の私見は日本語の原文からの翻訳です。'),
                 ('出典の扱い', '出典庫に全出典の媒体、日付、言語、確認日を記録し、使っているページへ逆リンクを張っています。'),
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
@@ -758,7 +763,7 @@ def about_page(lang):
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
     else:
-        secs = [('Policy', 'This site does not cover news or upcoming events. It focuses on works, production, collaborators and history. This archive reads The Chemical Brothers as a catalyst: something that starts a reaction and comes out of it unchanged. Every album, single and EP sits on the main shelf, everything else in the annex, laid out as a record of the reactions.'),
+        secs = [('Policy', 'This site does not cover news or upcoming events. It focuses on works, production, collaborators and history. This archive reads The Chemical Brothers as a catalyst: something that starts a reaction and comes out of it unchanged. The albums, singles and EPs covered here sit on the main shelf, everything else in the annex, laid out as a record of the reactions.'),
                 ('Facts and views', 'Every fact carries a source. Facts without one are left out, and their place stays marked as an empty slot. Views are written by DJ Naoyaman and set apart in inverted blocks. English views are translated from the Japanese original.'),
                 ('Sources', 'The Sources page records each source\'s publisher, date, language and the date it was checked, with links back to the pages that use it.'),
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
@@ -988,7 +993,7 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{BRAND_UPDATED}</lastmod>{alts}<priority>{prio}</priority></url>')
+        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{page_modified(v["key"])}</lastmod>{alts}<priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')
@@ -1005,7 +1010,7 @@ def write_seo_files():
     pages_md = '\n'.join(f'- [{u[k]}]({base}{path("en", k)})' for k in NAV) + f'\n- [{u["sources"]}]({base}{path("en", "sources")})\n- [{u["about"]}]({base}{path("en", "about")})\n- [{u["profile"]}]({base}{path("en", "profile")})'
     llms = f'''# {CFG['site_name']['en']}
 
-> An unofficial, fact-checked fan archive of the complete discography of The Chemical Brothers: every studio album, single and EP, with sourced release records, music and technology notes, context, testimony and a personal view by DJ Naoyaman (Naoya Miyazaki). Every factual claim on this site is tied to a cited source (see /sources/); opinion is always labelled as such and kept separate from fact. Available in Japanese (default) and English.
+> An unofficial fan archive documenting albums, singles and EPs by The Chemical Brothers, with sourced release records, music and technology notes, context, testimony and a personal view by DJ Naoyaman (Naoya Miyazaki). Every factual claim on this site is tied to a cited source (see /sources/); opinion is always labelled as such and kept separate from fact. Available in Japanese (default) and English.
 
 ## Key pages
 
@@ -1019,7 +1024,7 @@ def write_seo_files():
 
 - This is a fan-made archive, not affiliated with or endorsed by The Chemical Brothers or their label.
 - Each work page cites its sources inline; the sources index is at /sources/.
-- Japanese pages are canonical; English pages are at the same path under /en/.
+- Each language page has its own canonical URL. Japanese and English counterparts are connected with hreflang; English pages use /en/.
 '''
     open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8').write(llms)
 

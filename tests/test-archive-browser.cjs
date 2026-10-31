@@ -14,5 +14,9 @@ for(const lang of ['ja','en'])for(const width of [320,390,1280]){
  await page.goto(base+'/'+prefix+'now/index.html');assert.equal(await page.locator('.nowlist').count(),0);assert.equal(await page.locator('main li a').count(),5);checks+=2;
  await page.locator('main li a').first().click();assert.equal(await page.locator('.filters').count(),1);await page.locator('.filters button[data-k="album"]').click();assert.equal(await page.locator('.filters button[data-k="album"]').getAttribute('aria-pressed'),'true');checks+=2;
  await page.locator('.gf time').scrollIntoViewIfNeeded();assert(await page.locator('.gf time').isVisible());checks++;
+ await page.goto(base+'/'+prefix+'about/index.html');
+ assert(await page.locator('main').innerText().then(t=>lang==='ja'?t.includes('このサイトで取り上げる'):t.includes('covered here')));checks++;
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;
+ if(width===390||width===1280)await page.screenshot({path:path.resolve(root,'../test-artifacts',`about-editorial-${lang}-${width}.png`),fullPage:true});
  await page.close();
 }await browser.close();console.log(JSON.stringify({pass:true,checks,network:'all external requests blocked',playback:'not tested'}));})().catch(e=>{console.error(e);process.exit(1)});
