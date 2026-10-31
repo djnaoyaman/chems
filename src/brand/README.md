@@ -2,7 +2,7 @@
 
 Owner-selected design, 31 October 2026. This identifies the independent myChems site, not the official Chemical Brothers website.
 
-The approved outline is preserved byte for byte. Ivory (#F2F1EC) is used on the existing black header and OGP panels. SVG viewBox: 125 129 1799 504. Do not typeset a replacement or stretch its aspect ratio. The existing alembic device icons are intentionally unchanged.
+The approved outline is preserved byte for byte. Ivory (#F2F1EC) is used on the existing black header and OGP panels. SVG viewBox: 125 129 1799 504. Do not typeset a replacement or stretch its aspect ratio. Device icons now use this same approved wordmark on black, exported by `tools/generate_icons.py`.
 
 SHA-256:
 - mychems-wordmark-ivory.svg: 6d3a92e6054508ab36d61df103fc9dea611676ccbbb822b819102ddaac7fe49f
