@@ -4,7 +4,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 EXPECTED='2026-10-31T11:50:00+00:00'
-EDITORIAL='2026-10-31T12:39:00+00:00'
+EDITORIAL='2026-10-31T12:52:00+00:00'
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
@@ -18,19 +18,19 @@ class Archive(unittest.TestCase):
    self.assertTrue('ニュースの掲載は終了' in h or 'News coverage has ended' in h)
    self.assertNotIn('class="nowlist"',h);self.assertNotIn('TOMORA at Tokyo Garden',h)
  def test_dates(self):
-  expected=EXPECTED;pages=list((ROOT/'dist').rglob('*.html'));self.assertGreater(len(pages),200)
+  expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertGreater(len(pages),200)
   for p in pages:
    h=p.read_text();self.assertIn(f'<time datetime="{EDITORIAL}">',h)
-   expected=EDITORIAL if str(p.relative_to(ROOT/'dist')) in ('index.html','en/index.html','about/index.html','en/about/index.html') else EXPECTED
+   expected=EDITORIAL
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
   tree=ET.parse(ROOT/'dist/sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{EXPECTED,EDITORIAL})
+  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{EDITORIAL})
   self.assertEqual(len(tree.findall('.//s:lastmod',ns)),len(pages))
   for url in tree.findall('s:url',ns):
    loc=url.find('s:loc',ns).text
    relative=loc.removeprefix('https://djnaoyaman.github.io/chems/')
-   expected=EDITORIAL if relative in ('index.html','en/index.html','about/index.html','en/about/index.html') else EXPECTED
+   expected=EDITORIAL
    self.assertEqual(url.find('s:lastmod',ns).text,expected)
  def test_editorial_scope(self):
   llms=(ROOT/'dist/llms.txt').read_text()

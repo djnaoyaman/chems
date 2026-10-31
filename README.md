@@ -80,3 +80,9 @@ The fixed source revision timestamp records this actual shared-navigation and ed
 Publication dependency: merge the compact-profile PR into main first; retarget this archive PR to main; inspect the final diff and rerun exact-head CI before merging. Merging into a feature branch is not publication.
 
 Run `python3 tests/test-archive.py` after the build, plus the existing Node regression tests.
+
+## Reading utilities and recovery
+
+The 218 editorial pages retain their catalog, audio embeds and sources. Shared controls offer native sharing or copy/manual-select fallback, a back-to-top link and optional home-screen shortcut instructions (online web shortcut, not offline PWA). A bilingual noindex404 uses absolute project URLs and is excluded from the sitemap. `llms-full.txt` exports existing main-page text with canonical page links; it does not introduce new factual claims or grant rights to third-party material. No service worker, advertising, CSP or analytics setting changes. Shared utilities are an actual content/UI revision, so their source date advances the218 page lastmods; original release and profile-author dates are retained.
+
+Run `node tests/test-reading-tools.cjs` and the Playwright browser suite. Clipboard denial, share cancellation/failure, manual copy, keyboard entry, narrow/landscape layout and nested404 recovery are exercised with external requests blocked. Real device installation and real YouTube playback remain outside these tests.

@@ -6,6 +6,7 @@
 import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
 from urllib.parse import quote
 from datetime import date
+from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
@@ -13,8 +14,10 @@ DIST = os.path.join(ROOT, 'dist')
 BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 # Only the bilingual home/about descriptions changed in this editorial correction.
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
+# Shared reading controls and accessibility additions change every content page.
+SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
 def page_modified(key):
-    return EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED
+    return max(SHARED_TOOLS_UPDATED, EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED)
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -23,8 +26,8 @@ W = {w['id']: w for w in WORKS}
 P = {p['id']: p for p in PEOPLE}
 SRC = {s['id']: s for s in SOURCES}
 LANGS = ['ja', 'en']
-CSS = open(os.path.join(ROOT, 'src', 'site.css'), encoding='utf-8').read()
-JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read()
+CSS = open(os.path.join(ROOT, 'src', 'site.css'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.css'), encoding='utf-8').read()
+JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.js'), encoding='utf-8').read()
 esc = lambda s: H.escape(str(s), quote=True)
 PAPER, BLACK = '#F2F1EC', '#000000'
 UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
@@ -210,6 +213,10 @@ def breadcrumb_ld(lang, key, arg, title, pg, base):
     items.append({'@type': 'ListItem', 'position': len(items) + 1, 'name': title, 'item': base + pg})
     return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': items}
 
+def reading_tools(lang):
+    en = lang == 'en'
+    return f'''<aside class="reading-tools" aria-label="{'Reading tools' if en else '読むための道具'}"><div class="reading-tools-actions"><button type="button" data-share>{'Share' if en else '共有'}</button><button type="button" data-copy>{'Copy link' if en else 'リンクをコピー'}</button><a href="#top">{'Back to top' if en else 'ページ上部へ'}</a></div><p role="status" aria-live="polite"></p><div class="manual-copy" hidden><label>{'Page address' if en else 'ページのURL'}<input type="text" readonly aria-label="{'Page address' if en else 'ページのURL'}"></label></div><details><summary>{'Keep this site handy' if en else 'ホーム画面から開く'}</summary><p>{'On iPhone or iPad, open this site in Safari and choose Add to Home Screen from Share. On Android, check your browser menu for Add to Home screen. Availability and wording vary by browser. This is a web shortcut; an internet connection is needed.' if en else 'iPhone・iPadではSafariの共有メニューから「ホーム画面に追加」を選びます。Androidではブラウザのメニューにある「ホーム画面に追加」を確認してください。表示や対応状況はブラウザにより異なります。Webサイトへのショートカットです。利用にはインターネット接続が必要です。'}</p></details></aside>'''
+
 def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     u = UI[lang]; other = 'en' if lang == 'ja' else 'ja'
     alt = {l: path(l, key, arg) for l in LANGS}
@@ -219,8 +226,8 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = EDITORIAL_UPDATED
-    modified_jst = '2026-10-31 21:39 JST'
+    site_modified = SHARED_TOOLS_UPDATED
+    modified_jst = '2026-10-31 21:52 JST'
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
     lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
@@ -264,6 +271,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚗️</text></svg>">
 <link rel="icon" href="{rel(pg, 'icons/favicon.ico')}" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="{rel(pg, 'icons/icon-32.png')}">
 <link rel="apple-touch-icon" href="{rel(pg, 'icons/apple-touch-icon.png')}" sizes="180x180">
 <link rel="manifest" href="{rel(pg, 'site.webmanifest')}">
 <meta name="apple-mobile-web-app-title" content="my Chems">
@@ -271,11 +279,13 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <link href="https://fonts.googleapis.com/css2?{FONTS[lang]}&display=swap" rel="stylesheet">
 <style>{CSS}</style>{ld}
 </head>
-<body>
+<body id="top">
+<a class="skip-link" href="#main">{'本文へ' if lang == 'ja' else 'Skip to content'}</a>
 <header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><nav aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
-<main id="main">
+<main id="main" tabindex="-1">
 {body}
 </main>
+{reading_tools(lang)}
 <footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{site_modified}">{modified_jst}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
@@ -777,20 +787,20 @@ def about_page(lang):
     emit(lang, 'about', None, u['about'], secs[0][1][:120], body, {'type': 'plain', 'title': u['about']}, cur='about')
 
 
-PROFILE_MODIFIED = '2026-10-31T11:49:00+00:00'
+PROFILE_MODIFIED = '2026-10-31T12:52:00+00:00'
 
 def profile_page(lang):
     u = UI[lang]; pg = path(lang, 'profile')
     if lang == 'ja':
-        lead = 'The Chemical Brothersを聴きながら、気になった音や作品の背景を調べています。その記録を、聴き直すきっかけとして残すサイトです。'
+        lead = '世界一の非公式ファンサイトを目指して。The Chemical Brothersの作品を調べ、聴き、少しずつ記録する。myChemsは、日々育て続ける私のライフワークです。'
         policy = '事実には出典を添え、私見とは分けて記しています。'
         label = '作者について'
-        desc = 'my Chemsをつくる想い。DJ Naoyamanによる音楽と作品の記録。'
+        desc = 'myChemsを日々育てる想い。DJ Naoyamanによる非公式ファンアーカイブのライフワーク。'
     else:
-        lead = 'Listening to The Chemical Brothers leads me to explore the sounds and stories behind their work. I keep this record here as a reason to listen again.'
+        lead = "With the aim of building the world’s best unofficial fan site, I study and listen to The Chemical Brothers’ work, building a record little by little. myChems is my life’s work, growing day by day."
         policy = 'Facts carry sources; personal views are kept separate.'
         label = 'About the author'
-        desc = 'The idea behind my Chems: listening notes and a record of the music, edited by DJ Naoyaman.'
+        desc = 'The idea behind myChems: a lifelong, evolving unofficial fan archive by DJ Naoyaman.'
     # Editorial revision date: only this profile changes, never a build-time clock.
     updated = PROFILE_MODIFIED
     updated_label = '最終更新' if lang == 'ja' else 'Last updated'
@@ -977,7 +987,7 @@ def verify():
         if v['lang'] != 'ja': continue
         en = PAGES.get(path('en', v['key'], v['arg']))
         if not en: continue
-        tj = re.sub(r'<[^>]+>', ' ', v['html'].split('<main id="main">')[1]); te = re.sub(r'<[^>]+>', ' ', en['html'].split('<main id="main">')[1]).lower()
+        tj = re.sub(r'<[^>]+>', ' ', v['html'].split('<main id="main" tabindex="-1">')[1]); te = re.sub(r'<[^>]+>', ' ', en['html'].split('<main id="main" tabindex="-1">')[1]).lower()
         for g in GLOSS:
             if g['ja'] in tj and g['en'].lower() not in te: gb.append(f'{pg}:{g["ja"]}')
     ok(14, '造語の訳語が用語集と一致している', not gb, ', '.join(gb[:6]))
@@ -1020,6 +1030,10 @@ def write_seo_files():
 
 {chr(10).join(disc)}
 
+## Full text
+
+- [Full bilingual page text]({base}llms-full.txt)
+
 ## Notes for automated readers
 
 - This is a fan-made archive, not affiliated with or endorsed by The Chemical Brothers or their label.
@@ -1029,6 +1043,29 @@ def write_seo_files():
     open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8').write(llms)
 
 # ---------------------------------------------------------------- 実行
+class MainText(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.inside = False; self.parts = []
+    def handle_starttag(self, tag, attrs):
+        if tag == 'main': self.inside = True
+        if self.inside and tag in ('p','h1','h2','h3','li','dt','dd','tr','section'): self.parts.append('\n')
+    def handle_endtag(self, tag):
+        if tag == 'main': self.inside = False
+    def handle_data(self, text):
+        if self.inside: self.parts.append(text)
+
+def write_full_text_and_recovery():
+    base = CFG['base_url'].rstrip('/') + '/'
+    blocks = ['# my Chems — full archive text', 'Unofficial archive. Existing page text follows in Japanese and English. Facts and personal views retain their page labels. Citations are resolved on the linked source pages. This file does not grant rights to third-party material.']
+    for pg, v in sorted(PAGES.items()):
+        parser = MainText(); parser.feed(v['html'])
+        text = re.sub(r'\n[ \t]*\n+', '\n\n', ''.join(parser.parts)).strip()
+        blocks.append('## ' + base + pg + '\n\n' + text)
+    open(os.path.join(DIST, 'llms-full.txt'), 'w', encoding='utf-8').write('\n\n'.join(blocks) + '\n')
+    # Absolute project URLs work even when GitHub serves this file for a deeply nested missing URL.
+    recovery = f'''<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin"><title>ページが見つかりません / Page not found | my Chems</title><meta name="description" content="my Chemsの作品・歴史アーカイブへ戻る案内。"><link rel="icon" href="{base}icons/favicon.ico"><link rel="apple-touch-icon" href="{base}icons/apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest"><meta name="theme-color" content="#000000"><style>{CSS}</style></head><body><main class="wrap page-h" id="main"><a href="{base}" aria-label="myChems"><img src="{base}brand/mychems-wordmark-ivory.svg" alt="myChems" width="1799" height="504" style="width:180px;height:auto"></a><h1>ページが見つかりません</h1><p>URLが変わったか、入力が違っている可能性があります。作品や年表から探してみてください。</p><p><a href="{base}">ホーム</a> · <a href="{base}works/">作品・周期表</a> · <a href="{base}timeline/">年表</a></p><section class="s" lang="en"><h2>Page not found</h2><p>The address may have changed or been mistyped. Browse the archive instead.</p><p><a href="{base}en/">English home</a> · <a href="{base}en/works/">Works</a> · <a href="{base}en/timeline/">Timeline</a></p></section><p class="small">非公式のファンアーカイブ / An unofficial fan archive.</p></main></body></html>'''
+    open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8').write(recovery)
+
 def main():
     if os.path.exists(DIST): shutil.rmtree(DIST)
     os.makedirs(DIST)
@@ -1048,6 +1085,7 @@ def main():
         make_ogp(pg, v['ogp_spec'], v['lang'])
     open(os.path.join(DIST, '.nojekyll'), 'w').close()
     write_seo_files()
+    write_full_text_and_recovery()
     shutil.copytree(os.path.join(ROOT, "src", "brand"), os.path.join(DIST, "brand"))
     shutil.copytree(os.path.join(ROOT, "src", "icons"), os.path.join(DIST, "icons"))
     shutil.copy(os.path.join(ROOT, "src", "site.webmanifest"), DIST)

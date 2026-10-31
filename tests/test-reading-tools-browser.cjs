@@ -1,0 +1,24 @@
+'use strict';
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');
+(async()=>{const browser=await chromium.launch();let checks=0;fs.mkdirSync(out,{recursive:true});
+for(const lang of ['ja','en'])for(const width of [390,844]){
+ const page=await browser.newPage({viewport:{width,height:width===844?390:844},reducedMotion:'reduce'});
+ await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://djnaoyaman.github.io')return r.abort();let file=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');return r.fulfill({status:fs.existsSync(file)?200:404,path:fs.existsSync(file)?file:path.join(root,'404.html')});});
+ await page.goto('https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'about/');
+ await page.evaluate(()=>{window.copied=[];Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async u=>window.copied.push(u)}});Object.defineProperty(navigator,'share',{configurable:true,value:undefined});});
+ await page.keyboard.press('Tab');assert(await page.locator('.skip-link').isFocused());checks++;
+ await page.locator('[data-copy]').click();assert.equal(await page.evaluate(()=>window.copied.length),1);checks++;
+ await page.locator('[data-share]').click();assert.equal(await page.evaluate(()=>window.copied.length),2);checks++;
+ await page.evaluate(()=>Object.defineProperty(navigator,'share',{configurable:true,value:async()=>{window.shared=true}}));await page.locator('[data-share]').click();assert(await page.evaluate(()=>window.shared));checks++;
+ await page.evaluate(()=>Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async()=>{throw Error('denied')}}}));
+ await page.locator('[data-copy]').click();assert(await page.locator('.manual-copy input').isVisible());assert.equal(await page.locator('.manual-copy input').inputValue(),'https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'about/index.html');checks++;
+ await page.evaluate(()=>Object.defineProperty(navigator,'share',{configurable:true,value:async()=>{throw new DOMException('cancel','AbortError')}}));await page.locator('[data-share]').click();assert((await page.locator('.reading-tools [role=status]').innerText()).includes(lang==='ja'?'キャンセル':'cancelled'));assert(await page.locator('[data-share]').isEnabled());checks++;
+ await page.evaluate(()=>Object.defineProperty(navigator,'share',{configurable:true,value:async()=>{throw Error('unavailable')}}));await page.locator('[data-share]').click();assert(await page.locator('.manual-copy input').isVisible());checks++;
+ await page.locator('.reading-tools summary').click();assert(await page.locator('.reading-tools details p').isVisible());assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;
+ await page.locator('.reading-tools').screenshot({path:path.join(out,`reading-tools-${lang}-${width}.png`)});
+ await page.locator('.reading-tools-actions a').click();assert((await page.url()).endsWith('#top'));checks++;
+ await page.goto('https://djnaoyaman.github.io/chems/missing/deep/path');assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex,follow');assert.equal(await page.locator('main h1').count(),1);checks++;
+ await page.screenshot({path:path.join(out,`recovery-${lang}-${width}.png`)});await page.locator('a[href="https://djnaoyaman.github.io/chems/works/"]').click();assert(await page.locator('.filters').isVisible());checks++;
+ await page.close();
+}await browser.close();console.log(JSON.stringify({pass:true,checks,network:'all external resources blocked',devices:'desktop Chromium emulation; not real iOS installation'}));})().catch(e=>{console.error(e);process.exit(1)});

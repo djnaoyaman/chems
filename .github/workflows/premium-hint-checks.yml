@@ -1,7 +1,7 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
+    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', 'tests/test-reading-tools*.cjs', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: '22'
       - run: node tests/test-launch-package.cjs
+      - run: node tests/test-reading-tools.cjs
       - run: node tests/test-premium-hint.cjs
       - run: npm install --no-save --package-lock=false playwright@1.56.1
       - run: npx playwright install --with-deps chromium
@@ -30,6 +31,7 @@ jobs:
       - run: node tests/test-wordmark-browser.cjs
       - run: node tests/test-profile-browser.cjs
       - run: node tests/test-archive-browser.cjs
+      - run: node tests/test-reading-tools-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
