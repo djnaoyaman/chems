@@ -42,13 +42,14 @@ export function createApiLoader({ window, document, allowNetwork = false, timeou
 }
 
 export function createVisiblePlayerAdapter({ document, loadApi, origin, unavailableText = 'YouTube unavailable. This track remains selected.' }) {
-  let generation = 0, host, frame, blocked = false;
+  let generation = 0, host, frame, player, readyPlayer, blocked = false;
   function dispose() {
     generation++;
     // Detaching the visible iframe terminates that document; no undocumented player commands.
-    frame?.remove(); frame = undefined; host = undefined; blocked = false;
+    try { player?.destroy?.(); } catch {}
+    frame?.remove(); frame = undefined; player=readyPlayer=undefined; host = undefined; blocked = false;
   }
-  async function mount({ container, video, recording, edition, entry, selectionGeneration, onState, userRequested = false, continuePlayback = false }) {
+  async function mount({ container, video, recording, edition, entry, selectionGeneration, onState, userRequested = false, continuePlayback = false, requestPlay = false }) {
     dispose();
     const token = generation;
     const notify = (type, detail) => { if (token === generation) onState({ type, generation: selectionGeneration, entryId: entry.id, ...(detail ? { detail } : {}) }); };
@@ -60,7 +61,7 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
     host = container;
     const fail = detail => {
       if (token !== generation || blocked) return;
-      blocked = true; frame?.remove(); frame = undefined;
+      blocked = true; try { player?.destroy?.(); } catch {} readyPlayer=undefined; frame?.remove(); frame = undefined;
       host.replaceChildren(document.createTextNode(unavailableText));
       notify('error', detail);
     };
@@ -69,21 +70,17 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
       if (token !== generation) return { mounted: false, reason: 'Selection changed' };
       // Re-check mutable inputs after an asynchronous load.
       if (!admission(video, recording, edition, entry).allowed) { fail(); return { mounted:false, reason:'Evidence changed' }; }
-      frame = document.createElement('iframe');
-      frame.title = `YouTube player: ${recording.title} — ${recording.version}`;
-      frame.width = '480'; frame.height = '270';
-      if (continuePlayback) frame.allow = 'autoplay';
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      frame.src = `https://www.youtube.com/embed/${encodeURIComponent(video.id)}?enablejsapi=1&origin=${encodeURIComponent(site.origin)}&playsinline=1`;
+      // Let the official API create its standard visible iframe and permission attributes.
+      frame = document.createElement('div');
       const activeFrame = frame;
       host.replaceChildren(frame);
-      // No autoplay, mute, branding or controls overrides. Playback uses native visible controls.
-      new YT.Player(activeFrame, { events: {
+      player = new YT.Player(activeFrame, { host:'https://www.youtube.com', width:'100%',height:'100%',videoId:video.id,
+       playerVars:{origin:site.origin,playsinline:1},events: {
         onReady(event) {
           if (token !== generation || blocked || frame !== activeFrame) return;
           try {
-            notify('ready');
-            if (continuePlayback) event.target.loadVideoById({ videoId: video.id, startSeconds: 0 });
+            readyPlayer=event.target;notify('ready');
+            if (continuePlayback || requestPlay) event.target.loadVideoById({ videoId: video.id, startSeconds: 0 });
             else event.target.cueVideoById({ videoId: video.id, startSeconds: 0 });
           }
           catch { fail(); }
@@ -102,5 +99,7 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
       return { mounted: !blocked, reason: blocked ? 'Player unavailable' : 'Visible iframe mounted; await native controls' };
     } catch { fail(); return { mounted: false, reason: 'Player unavailable' }; }
   }
-  return { mount, dispose };
+  function play(){if(!blocked&&readyPlayer){readyPlayer.playVideo();return true;}return false;}
+  function pause(){if(!blocked&&readyPlayer){readyPlayer.pauseVideo();return true;}return false;}
+  return { mount, dispose, play, pause };
 }
