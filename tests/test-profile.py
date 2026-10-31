@@ -11,5 +11,6 @@ for name in ['profile/index.html','en/profile/index.html']:
  schemas=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',s,re.S)]
  assert any(x.get('@type')=='ProfilePage' and x['mainEntity']['url']=='https://djnaoyaman.github.io/profile.html' for x in schemas)
  assert ('事実には出典' in s if name.startswith('profile') else 'Facts carry sources' in s)
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==218
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==214
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T12:39:00+00:00</lastmod>')==4
 print('PASS compact bilingual profile, central author, 218 pages, two profile-specific source dates')

@@ -4,6 +4,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 EXPECTED='2026-10-31T11:50:00+00:00'
+EDITORIAL='2026-10-31T12:39:00+00:00'
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
@@ -19,12 +20,29 @@ class Archive(unittest.TestCase):
  def test_dates(self):
   expected=EXPECTED;pages=list((ROOT/'dist').rglob('*.html'));self.assertGreater(len(pages),200)
   for p in pages:
-   h=p.read_text();self.assertIn(f'<time datetime="{expected}">',h)
+   h=p.read_text();self.assertIn(f'<time datetime="{EDITORIAL}">',h)
+   expected=EDITORIAL if str(p.relative_to(ROOT/'dist')) in ('index.html','en/index.html','about/index.html','en/about/index.html') else EXPECTED
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
   tree=ET.parse(ROOT/'dist/sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{expected})
+  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{EXPECTED,EDITORIAL})
   self.assertEqual(len(tree.findall('.//s:lastmod',ns)),len(pages))
+  for url in tree.findall('s:url',ns):
+   loc=url.find('s:loc',ns).text
+   relative=loc.removeprefix('https://djnaoyaman.github.io/chems/')
+   expected=EDITORIAL if relative in ('index.html','en/index.html','about/index.html','en/about/index.html') else EXPECTED
+   self.assertEqual(url.find('s:lastmod',ns).text,expected)
+ def test_editorial_scope(self):
+  llms=(ROOT/'dist/llms.txt').read_text()
+  self.assertIn('Each language page has its own canonical URL.',llms)
+  self.assertNotIn('Japanese pages are canonical',llms)
+  self.assertNotIn('complete discography',llms)
+  for name in ('index.html','en/index.html','about/index.html','en/about/index.html'):
+   h=(ROOT/'dist'/name).read_text()
+   for phrase in ('全アルバム、全シングル、全EP','Every album, single and EP'):
+    self.assertNotIn(phrase,h)
+  for prefix in ('','en/'):
+   self.assertIn('data-k="all"',(ROOT/'dist'/prefix/'works/index.html').read_text())
  def test_research_preserved(self):
   self.assertEqual(len(json.loads((ROOT/'data/works.json').read_text())),57)
   self.assertEqual(len(json.loads((ROOT/'data/people.json').read_text())),36)
