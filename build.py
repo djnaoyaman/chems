@@ -6,9 +6,12 @@
 import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
 from urllib.parse import quote
 from datetime import date
+from update_dates import source_modified, japanese_timestamp
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
+SITE_MODIFIED = source_modified(ROOT)
+SITE_MODIFIED_JST = japanese_timestamp(SITE_MODIFIED)
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -212,7 +215,8 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    lds = [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
+    page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'dateModified': SITE_MODIFIED, 'inLanguage': lang}
+    lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     hre = ''.join(f'<link rel="alternate" hreflang="{l}" href="{(base + alt[l]) if base else rel(pg, alt[l])}">' for l in LANGS)
     hre += f'<link rel="alternate" hreflang="x-default" href="{(base + alt["ja"]) if base else rel(pg, alt["ja"])}">'
@@ -266,7 +270,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <main id="main">
 {body}
 </main>
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="site-updated">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{SITE_MODIFIED}">{SITE_MODIFIED_JST}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -598,7 +602,7 @@ def top_page(lang):
     base_ = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': CFG['site_name'][lang], 'url': base_ + pg, 'inLanguage': lang, 'description': desc,
           'about': {'@type': 'MusicGroup', 'name': 'The Chemical Brothers', 'sameAs': ['https://www.thechemicalbrothers.com/', 'https://en.wikipedia.org/wiki/The_Chemical_Brothers']},
-          'author': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://note.com/djnaoyaman'}}
+          'author': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://djnaoyaman.github.io/profile.html'}}
     emit(lang, 'top', None, CFG['site_name'][lang], desc, body, {'type': 'top'}, ld, refs=refs)
 
 def works_page(lang):
@@ -775,96 +779,27 @@ def about_page(lang):
     emit(lang, 'about', None, u['about'], secs[0][1][:120], body, {'type': 'plain', 'title': u['about']}, cur='about')
 
 
-PROFILE_SRC = [('一見坊の【日本妖怪学体系】 編者プロフィール', 'https://djnaoyaman.github.io/youkai/profile.html'),
-               ('掌蹠膿疱症.com このサイトについて', 'https://djnaoyaman.github.io/ppp/about.html'),
-               ('鎌・くらんぽ 編者プロフィール', 'https://djnaoyaman.github.io/kuranpo/profile.html'),
-               ('花鳥風月、そして魚と虫 作者', 'https://djnaoyaman.github.io/sakanamushi/')]
 def profile_page(lang):
     u = UI[lang]; pg = path(lang, 'profile')
-    L = lambda items: '<ul class="plain">' + ''.join(f'<li>{x}</li>' for x in items) + '</ul>'
-    A = lambda t, h: f'<a href="{esc(h)}" target="_blank" rel="noopener">{esc(t)}</a>'
     if lang == 'ja':
-        lead = ('このサイトの私見を書いているDJ Naoyamanは、宮崎直哉（みやざき なおや）のDJとしての名義です。'
-                'note.comを主な発表媒体にしているエッセイスト・コンテンツクリエイターで、マーケター、ブランディングプロデューサーでもあります。')
-        secs = [
-         ('DJ', '<p>DJ歴は32年。かつてはプロダクションに所属し、日本中の媒体に音楽評を書いていた時期もありました。今もターンテーブルの前に立ち続けています。</p>'
-                f'<p>noteでは{A("「Artists inside the DJ bag」", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}というマガジンで、DJ Shadow、DJ Kentaro、J Dilla、RADIOHEADなど、一人のアーティストを前編・中編・後編や連話の形で深く掘っていくシリーズを続けています。</p>'),
-         ('その他の名義', L(['一見坊：妖怪', 'クランポック：鎌倉の歴史と地理', '湯気文吾：サウナ'])),
-         ('経歴', L(['みずほ情報総研株式会社（ロンドン・ニューヨーク向け大規模決済処理システム構築、ビジネスコンサルタント）',
-                     '株式会社サイバーエージェント（インターネット広告代理事業部 マネジメント）',
-                     '株式会社リッツ・インターナショナル 取締役（美容サービス事業およびクリニック経営を担当）',
-                     '株式会社フライング・ブレイン 代表取締役（上流マーケティング企画会社として、アパレル・ウェルネスを中心に50以上のブランドの上流マーケティング・ブランディングを担当）',
-                     '紫波金魚 代表', 'あづまねエリアブランディングプロデューサー（岩手県紫波郡紫波町、2024年〜）',
-                     '現在は、複数のウェルネス・ヘルスケア領域の企業でマーケティングディレクターを務めています'])),
-         ('学歴', L(['足立区立梅島小学校 卒業', '足立区立第四中学校 卒業', '明治学院高校 卒業', '青山学院大学 文学部 教育学科 中退', '明治大学 商学部 商学科 卒業'])),
-         ('過去に関わったブランド', L(['バロックジャパンリミテッド', 'ウォルト・ディズニー', 'ZOZOTOWN', 'Coca-Cola', 'MARK STYLER', '英・インターナショナル', '恵山株式会社'])),
-         ('関わっているブランド', L(['MINERALion、Lypo-C（株式会社スピック）', 'KINS（株式会社KINS）', 'madama・hada（株式会社WSP）', 'Goto no Tsubaki（五島の椿株式会社）', 'ReFa、SIXPAD（株式会社MTG）'])),
-         ('活動領域', '<p>小説家、エッセイスト、マーケティング、会計、ブランディング、DJ、演劇、スパイス料理、ほか。</p>'),
-         ('講演実績', '<p>東京工科大学、関東学院大学、神奈川大学、和光大学、専修大学、紫波町、五島市、砥部市、ほか。</p>'),
-         ('つくっているもの', L([A('一見坊の【日本妖怪学体系】', 'https://djnaoyaman.github.io/youkai/') + '：47都道府県と全国区の日本の妖怪を、伝承・出典・信頼度つきでまとめた個人編集のデータベース',
-                                  A('鎌・くらんぽ', 'https://djnaoyaman.github.io/kuranpo/') + '：鎌倉市内の神社仏閣を散歩コースで整理した個人編集のガイド',
-                                  A('花鳥風月、そして魚と虫', 'https://djnaoyaman.github.io/sakanamushi/') + '：魚偏・虫偏をはじめとする難読漢字を一字ずつ読む漢字クイズ図鑑',
-                                  A('掌蹠膿疱症.com', 'https://djnaoyaman.github.io/ppp/') + '：個人の記録と公開資料をもとに整理した情報サイト',
-                                  A('note', 'https://note.com/djnaoyaman') + '：エッセイ、DJ関連の連載',
-                                  A('サウナイキタイ', 'https://sauna-ikitai.com/saunners/12991') + '：「湯気文吾」の名義で全国のサウナを巡る記録'])),
-         ('書くときの姿勢', '<p>どのサイトでも、確認できる事実と、自分の解釈や感想をできるだけ分けて書いています。このサイトでも、事実には出典を付け、私見は私見として分けています。</p>'),
-        ]
-        src_h = 'このプロフィールの出典'; src_p = '制作者が自分のサイトに掲載しているプロフィールをもとにまとめています（2026年9月30日確認）。'
-        h1, sub = 'DJ Naoyaman', '宮崎直哉'
+        lead = 'The Chemical Brothersを聴きながら、気になった音や作品の背景を調べています。その記録を、聴き直すきっかけとして残すサイトです。'
+        policy = '事実には出典を添え、私見とは分けて記しています。'
+        label = '作者について'
+        desc = 'my Chemsをつくる想い。DJ Naoyamanによる音楽と作品の記録。'
     else:
-        lead = ('DJ Naoyaman, who writes the views on this site, is the DJ name of Naoya Miyazaki. '
-                'He is an essayist and content creator who publishes mainly on note.com, as well as a marketer and branding producer.')
-        secs = [
-         ('DJ', '<p>He has been a DJ for 32 years. For a time he was signed to a production company and wrote music reviews for media across Japan, and he still stands behind the turntables today.</p>'
-                f'<p>On note he runs the magazine {A("Artists inside the DJ bag", "https://note.com/djnaoyaman/m/m7297e4a9e02b")}, a series that digs deep into one artist at a time, such as DJ Shadow, DJ Kentaro, J Dilla and Radiohead, over several instalments.</p>'),
-         ('Other names', L(['Ikkenbo: yokai', 'Kuranpok: Kamakura history and geography', 'Yuge Bungo: saunas'])),
-         ('Career', L(['Mizuho Information & Research Institute (large-scale payment systems for London and New York; business consultant)',
-                       'CyberAgent (management, internet advertising agency division)',
-                       'Ritz International, director (beauty services and clinic management)',
-                       'Flying Brain, CEO (upstream marketing and branding for more than 50 brands, mainly apparel and wellness)',
-                       'Shiwa Kingyo, representative', 'Area branding producer for Azumane, Shiwa, Iwate (2024–)',
-                       'Currently marketing director at several wellness and healthcare companies'])),
-         ('Education', L(['Umejima Elementary School, Adachi', 'Adachi No. 4 Junior High School', 'Meiji Gakuin High School', 'Aoyama Gakuin University, College of Literature, Department of Education (left before graduating)', 'Meiji University, School of Commerce (graduated)'])),
-         ('Past brands', L(['Baroque Japan Limited', 'The Walt Disney Company', 'ZOZOTOWN', 'Coca-Cola', 'MARK STYLER', '英・インターナショナル (apparel group)', '恵山株式会社'])),
-         ('Current brands', L(['MINERALion, Lypo-C (SPIC)', 'KINS (KINS Inc.)', 'madama・hada (WSP)', 'Goto no Tsubaki', 'ReFa, SIXPAD (MTG)'])),
-         ('Fields', '<p>Fiction, essays, marketing, accounting, branding, DJing, theatre, spice cooking and more.</p>'),
-         ('Talks', '<p>Tokyo University of Technology, Kanto Gakuin University, Kanagawa University, Wako University, Senshu University, the towns and cities of Shiwa, Goto and Tobe, and others.</p>'),
-         ('Other projects', L([A('Ikkenbo no Nihon Yokaigaku Taikei', 'https://djnaoyaman.github.io/youkai/') + ': a personally edited database of Japanese yokai, with sources and reliability ratings',
-                               A('Kama Kuranpo', 'https://djnaoyaman.github.io/kuranpo/') + ': a personally edited guide to the temples and shrines of Kamakura, organised as walks',
-                               A('Kachofugetsu, soshite sakana to mushi', 'https://djnaoyaman.github.io/sakanamushi/') + ': a quiz book of hard-to-read kanji for fish, insects, birds and plants',
-                               A('note', 'https://note.com/djnaoyaman') + ': essays and DJ-related series',
-                               A('Sauna Ikitai', 'https://sauna-ikitai.com/saunners/12991') + ': a record of saunas across Japan, as Yuge Bungo'])),
-         ('How he writes', '<p>On every site he keeps verifiable facts and his own interpretation apart as far as possible. Here too, facts carry sources and views are marked as views.</p>'),
-        ]
-        src_h = 'Sources for this profile'; src_p = 'Compiled from the profiles on his own sites (checked 30 September 2026). All in Japanese.'
-        h1, sub = 'DJ Naoyaman', 'Naoya Miyazaki'
-    # Extend the existing profile project list in the page's own language and layout.
-    creator_sites = [["ppp","掌蹠膿疱症.com","個人の体験と公開資料をもとに、掌蹠膿疱症の症状や治療の選択肢を整理する情報サイト。","Information on palmoplantar pustulosis, bringing together personal experience and published sources."],["youkai","一見坊の【日本妖怪学体系】","日本各地の妖怪と伝承を、出典・信頼度・地域のつながりから読み解く妖怪図鑑。","An encyclopedia of Japanese yokai, their folklore, regions and documented sources."],["sakanamushi","花鳥風月、そして魚と虫。","魚・虫・鳥・植物にまつわる漢字を、大きな文字と読み方クイズで楽しむ図鑑。","Explore kanji for fish, insects, birds and plants through illustrated reading quizzes."],["kuranpo","鎌・くらんぽ","鎌倉の社寺と歴史を、出発点から解散点までの散歩コースで案内する街歩きガイド。","Walking routes through Kamakura, connecting temples, shrines and local history."],["chems","my Chems","The Chemical Brothersの作品・人物・歴史を、出典つきの記録と私見でたどる日英の非公式アーカイブ。","An unofficial bilingual archive of The Chemical Brothers: works, people, history and listening notes."],["suburbia-classica","SUBURBIA CLASSICA","クラシックの名曲を、制作背景・構成・録音エピソードとともに聴く音楽ガイド。","A classical music selection with listening guides, composition histories and recording stories."],["cratediggin","CRATE DIGGIN’","Hip Hopの楽曲からサンプル、プロデューサー、街や時代をたどる音楽アーカイブ。","A Hip Hop archive exploring samples, producers, places and musical history."],["sanreikotaiyoku","酸冷交代浴のススメ","炭酸泉と水風呂の楽しみ方を、体験・施設情報・文献から編集する入浴ガイド。","A bathing guide to carbonated baths and cold water, combining experiences, facilities and references."],["gooooooooood_expression","gooooooooood* expression","Webの動き・文字・音・インタラクションを、実例と解説から学び、試せる表現図鑑。","An interactive encyclopedia of web expression: motion, typography, sound and interaction."],["bookkeeping","Book Keeping","日商簿記・全経簿記・USCPAの仕訳や計算を反復演習し、学習記録と復習につなげる学習サイト。","Practice bookkeeping and accounting for Nissho, Zenkei and USCPA with local learning records and review."]]
-    expanded = []
-    for heading, content in secs:
-        if heading in ('つくっているもの', 'Other projects'):
-            additions = []
-            for site_id, name, description_ja, description_en in creator_sites:
-                site_url = 'https://djnaoyaman.github.io/' + site_id + '/'
-                if site_id != 'chems' and site_url not in content:
-                    description = description_ja if lang == 'ja' else description_en
-                    additions.append('<li>' + A(name, site_url) + ('：' if lang == 'ja' else ': ') + esc(description) + '</li>')
-            content = content.replace('</ul>', ''.join(additions) + '</ul>')
-        expanded.append((heading, content))
-    secs = expanded
-    srcs = '<ol class="srcs">' + ''.join(f'<li>{A(t, h)}</li>' for t, h in PROFILE_SRC) + '</ol>'
-    body = (f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>{h1}</h1><p class="lead">{sub}</p></header>'
-            f'<section class="s"><p>{esc(lead)}</p></section>'
-            + ''.join(f'<section class="s"><h2 class="sh">{t}</h2>{x}</section>' for t, x in secs)
-            + f'<section class="s"><h2 class="sh">{src_h}</h2><p class="muted small">{src_p}</p>{srcs}</section></div>')
-    desc = 'my Chemsの私見を書いているDJ Naoyaman（宮崎直哉）のプロフィール。' if lang == 'ja' else 'Profile of DJ Naoyaman (Naoya Miyazaki), who writes the views on my Chems.'
-    ld = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'mainEntity': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://note.com/djnaoyaman'}}
+        lead = 'Listening to The Chemical Brothers leads me to explore the sounds and stories behind their work. I keep this record here as a reason to listen again.'
+        policy = 'Facts carry sources; personal views are kept separate.'
+        label = 'About the author'
+        desc = 'The idea behind my Chems: listening notes and a record of the music, edited by DJ Naoyaman.'
+    body = f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>DJ Naoyaman</h1></header><section class="s"><p>{esc(lead)}</p><p>{esc(policy)}</p><p><a class="more" href="https://djnaoyaman.github.io/profile.html">{label}</a></p></section></div>'
+    ld = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'mainEntity': {'@type': 'Person', 'name': 'DJ Naoyaman', 'url': 'https://djnaoyaman.github.io/profile.html'}}
     emit(lang, 'profile', None, u['profile'], desc, body, {'type': 'plain', 'title': 'DJ Naoyaman', 'sub': u['profile']}, ld, cur='about')
 
 # ---------------------------------------------------------------- OGP
 def make_ogp(pg, spec, lang):
     from PIL import Image, ImageDraw, ImageFont
     B = '/usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc'; Rg = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
+    if not os.path.exists(B): B = '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc'
     F = lambda p, s: ImageFont.truetype(p, s, index=0)
     im = Image.new('RGB', (1200, 630), (0, 0, 0)); d = ImageDraw.Draw(im)
     hexrgb = lambda h: tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))
@@ -1050,7 +985,7 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
+        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{SITE_MODIFIED}</lastmod>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')
