@@ -23,10 +23,10 @@ for(const lang of ['ja','en'])for(const width of [320,390,844,1280]){
  assert(await page.evaluate(()=>document.activeElement.matches('[data-listening=tracks] button[aria-current=true]')));checks++;
  await page.locator('[data-listening=load]').focus();await page.keyboard.press('Enter');
  await page.waitForFunction(()=>window.__listeningCue?.videoId==='YtnBsvu72kY');assert.equal(apiRequests,1);checks++;
- const frame=page.locator('[data-listening=visual] iframe');assert.equal(await frame.count(),1);assert.match(await frame.getAttribute('src'),/YtnBsvu72kY/);const box=await frame.boundingBox();assert(box.width>=200&&box.height>=200);checks++;
+ const frame=page.locator('[data-listening=visual] iframe');assert.equal(await frame.count(),1);assert.match(await frame.getAttribute('src'),/YtnBsvu72kY/);const box=await frame.boundingBox();assert(box.width>=200&&box.height>=200);const headerBox=await page.locator('header.gh').boundingBox();assert(box.y>=headerBox.y+headerBox.height-1);assert(box.y+box.height<=page.viewportSize().height+1);checks++;
  await page.evaluate(()=>window.__listeningMock.onStateChange({data:1}));assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'再生中':'Playing'));checks++;
  await page.evaluate(()=>window.__listeningMock.onStateChange({data:2}));assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'一時停止':'Paused'));checks++;await page.evaluate(()=>window.__listeningMock.onStateChange({data:1}));
- await frame.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,`listening-${lang}-${width}.png`)});
+ await page.screenshot({path:path.join(out,`listening-${lang}-${width}.png`)});
  await page.locator('#listening').screenshot({path:path.join(out,`listening-section-${lang}-${width}.png`)});
  await page.evaluate(()=>window.__listeningMock.onError({data:101}));assert.equal(await frame.count(),0);assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'曲は飛ばさず':'remains'));checks++;
  assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('2.'));checks++;

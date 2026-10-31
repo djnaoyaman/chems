@@ -58,7 +58,7 @@ if (host) {
  $('next').addEventListener('click',()=>{queue=move(queue,1);renderQueue();});
  $('load').addEventListener('click',async()=>{
   if(!queue)return;const entry=edition.entries[queue.index];$('load').disabled=true;
-  await adapter.mount({container:$('visual'),video:data.videos[entry.videoKey],recording:data.recordings[entry.recordingId],edition,entry,selectionGeneration:queue.generation,userRequested:true,onState:event=>{
+  const mounted = await adapter.mount({container:$('visual'),video:data.videos[entry.videoKey],recording:data.recordings[entry.recordingId],edition,entry,selectionGeneration:queue.generation,userRequested:true,onState:event=>{
    const next=receive(queue,event);if(next===queue)return;queue=next;
    if(event.type==='error'){
     sessionFailures.set(entry.id,{reason:event.detail||'session-player-error',observedAt:new Date().toISOString()});
@@ -67,6 +67,8 @@ if (host) {
    }
    status(({ready:t.ready,playing:t.playing,paused:t.paused,buffering:t.buffering,ended:t.ended})[event.type]||t.error);
   }});
+  // Explicit load should leave the native player visible below the fixed site header.
+  if(mounted.mounted)$('visual').scrollIntoView({block:'center',behavior:'auto'});
  });
  window.addEventListener('pagehide',()=>adapter.dispose());
  window.addEventListener('pageshow',event=>{if(event.persisted&&data&&edition&&queue)renderQueue();});
