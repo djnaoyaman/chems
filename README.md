@@ -17,7 +17,7 @@ YouTubeの埋め込み可否と日本での再生制限も確かめる場合は�
 
 ## データ
 
-- `data/works.json` … 本棚54作品。事実はすべて `{"v": 値, "src": [出典ID]}` の形で持つ
+- `data/works.json` … 本棚57作品。事実はすべて `{"v": 値, "src": [出典ID]}` の形で持つ
 - `data/people.json` / `events.json` / `now.json` / `shelf.json` / `glossary.json`
 - `data/sources.json` … 出典庫。ここにないIDを使うとビルドが止まる
 - 版色は `works.json` の `plates` に4色を入れ、`status` を `"extracted"` にする。未抽出の作品は未刷りの紙色で出る
@@ -70,3 +70,13 @@ rekordboxの値を優先し、解析値では上書きしない（`--overwrite`�
     python3 tools/preview_bundle.py preview.html
 
 全ページを1枚のHTMLにまとめる。スマホなどでページ間リンクを確かめる用。
+
+## Evergreen archive (2026-10-31)
+
+News coverage and upcoming-event listings have ended. The bilingual home page now prioritises the listening routes, albums, historical timeline and credited collaborators. Old `now/` URLs remain as a navigation guide, not an active news archive. `data/now.json` is retained as original research material but is never rendered; retired future-event records remain in `notes/retired-news/`. Historical source references and release dates are not rewritten.
+
+The fixed source revision timestamp records this actual shared-navigation and editorial restructuring, not a build/deployment time. Visible JST, WebPage.dateModified and sitemap lastmod agree. Original release/publication and source-check dates are preserved. The separately approved wordmark and compact profile are retained.
+
+Publication dependency: merge the compact-profile PR into main first; retarget this archive PR to main; inspect the final diff and rerun exact-head CI before merging. Merging into a feature branch is not publication.
+
+Run `python3 tests/test-archive.py` after the build, plus the existing Node regression tests.

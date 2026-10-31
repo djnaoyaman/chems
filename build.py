@@ -9,8 +9,8 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
-# This source revision changes the shared wordmark and OGP on every page.
-BRAND_UPDATED = '2026-10-31T10:40:00+00:00'
+# This source revision changes shared archive navigation and the site-wide editorial structure.
+BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -27,7 +27,7 @@ UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
 
 # ---------------------------------------------------------------- 文言
 UI = {
- 'ja': {'works': '周期表', 'timeline': '年表', 'equations': '反応式', 'chain': '連鎖反応', 'now': '現在地', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': 'プロフィール',
+ 'ja': {'works': '作品・周期表', 'timeline': '年表', 'equations': '共作者', 'chain': '関係図', 'now': 'アーカイブへの案内', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': 'プロフィール',
         'lang_other': 'EN', 'album': 'スタジオアルバム', 'single': 'シングル', 'ep': 'EP',
         'listen': '聴く', 'record': '記録', 'tracklist': '収録曲', 'music': '音楽性', 'tech': 'テクノロジー', 'context': '周辺環境', 'testimony': '証言', 'reviews': 'レビュー', 'view': '私見', 'after': 'その後', 'own': '持つ', 'src': '出典',
         'date': '発売日', 'year': '発売', 'on': '収録', 'label': 'レーベル', 'formats': '形態', 'uk': 'UK最高位', 'charts': '各国の最高位', 'certs': '認定', 'featured': '参加', 'mv': 'MV監督', 'artwork': 'アートワーク', 'notes': '注記', 'guest': 'アルバムへの参加', 'singles_from': 'このアルバムのシングル', 'album_mv': 'アルバム収録曲のMV',
@@ -52,7 +52,7 @@ UI = {
         'noads': 'DJ Naoyamanは、Amazonアソシエイト・プログラムの参加者です。このプログラムは、サイトがAmazon.co.jpへのリンクを通じて紹介料を得られる手段を提供することを目的としています。', 'checked': '確認日',
         'own_link': 'Amazon.co.jpで探す', 'own_note': '上記はAmazonアソシエイトのリンクです。',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
- 'en': {'works': 'Periodic table', 'timeline': 'Timeline', 'equations': 'Equations', 'chain': 'Chain reaction', 'now': 'Now', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Profile',
+ 'en': {'works': 'Works / periodic table', 'timeline': 'Timeline', 'equations': 'Collaborators', 'chain': 'Connections', 'now': 'Archive guide', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Profile',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
         'listen': 'Listen', 'record': 'Record', 'tracklist': 'Tracklist', 'music': 'Music', 'tech': 'Technology', 'context': 'Context', 'testimony': 'Testimony', 'reviews': 'Reviews', 'view': 'View', 'after': 'Afterwards', 'own': 'Own', 'src': 'Sources',
         'date': 'Released', 'year': 'Released', 'on': 'On', 'label': 'Label', 'formats': 'Formats', 'uk': 'UK peak', 'charts': 'Peak positions', 'certs': 'Certifications', 'featured': 'Featuring', 'mv': 'Video', 'artwork': 'Artwork', 'notes': 'Notes', 'guest': 'Guest on the album', 'singles_from': 'Singles from the album', 'album_mv': 'Videos for album tracks',
@@ -193,7 +193,7 @@ def signature(is_top, lang):
 # ---------------------------------------------------------------- 共通レイアウト
 FONTS = {'ja': 'family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;700;900',
          'en': 'family=Anton&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600'}
-NAV = ['works', 'timeline', 'equations', 'chain', 'now', 'shelf']
+NAV = ['works', 'timeline', 'equations', 'chain', 'shelf']
 CRUMB_PARENT = {'work': 'works', 'cat': 'shelf', 'person': 'equations'}
 
 def breadcrumb_ld(lang, key, arg, title, pg, base):
@@ -214,8 +214,8 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    modified = PROFILE_MODIFIED if key == 'profile' else BRAND_UPDATED
-    modified_jst = '2026-10-31 20:49 JST' if key == 'profile' else '2026-10-31 19:40 JST'
+    modified = BRAND_UPDATED
+    modified_jst = '2026-10-31 20:50 JST'
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
     lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
@@ -575,30 +575,28 @@ def ev_li(e, lang, pg, refs=None):
 
 def top_page(lang):
     u = UI[lang]; pg = path(lang, 'top'); refs = Refs()
-    q = ['なぜ11年前の曲が、', 'いま鳴るのか。'] if lang == 'ja' else ['Why is an eleven-', 'year-old song', 'ringing out now?']
-    fh = '「Go」のUKシングルチャート最高位' if lang == 'ja' else 'UK Singles Chart peak of "Go"'
-    v = lambda y, n: f'<span class="y">{y}{"年" if lang == "ja" else ""}</span><span class="v">{n}<small>{"位" if lang == "ja" else ""}</small></span>' if lang == 'ja' else f'<span class="y">{y}</span><span class="v"><small>No.</small> {n}</span>'
-    src = '出典：' if lang == 'ja' else 'Sources: '
-    refs.ids += ['oc-go', 'wp-go']
+    q = ['作品を聴く。', '反応をたどる。'] if lang == 'ja' else ['Listen to the works.', 'Trace the connections.']
+    intro = ('ケミカル・ブラザーズの作品、音、映像と、それを生んだ人びと。ニュースの速さではなく、一作ずつ深く読み、聴くためのアーカイブ。' if lang == 'ja' else
+             'The Chemical Brothers: records, sounds, images and the people behind them. An archive for listening closely, one work at a time—not a news feed.')
+    counts = {k: sum(w['type'] == k for w in WORKS) for k in ('album', 'single', 'ep')}
+    stats = (' / '.join(f'{counts[k]} {u[k]}' for k in counts))
     hero = f'''<section class="hero"><div class="ht pulse" aria-hidden="true" style="--bpm-eff:120"></div><div class="wrap">
-<h1 class="q">{''.join(f'<span class="print">{esc(x)}</span>' for x in q)}</h1>
-<div class="fact"><p class="fh">{fh}</p>{v(2015, 46)}{v(2026, 4)}<p class="src">{src}<a href="{SRC['oc-go']['url']}" target="_blank" rel="noopener">Official Charts</a>{'、' if lang == 'ja' else ', '}<a href="{SRC['wp-go']['url']}" target="_blank" rel="noopener">Wikipedia</a></p></div>
-<div class="hero-foot"><a class="jump" href="{rel(pg, path(lang, 'work', 'go'))}">{'「Go」のページを読む' if lang == 'ja' else 'Read the “Go” page'}</a><button class="motion" type="button"></button></div>
-</div></section>'''
-    nows = sorted(NOW['items'], key=lambda x: x['date'], reverse=True)[:3]
-    now_html = '<ul class="nowlist">' + ''.join(f'<li><span class="d">{fdate(x["date"], lang)}</span><p>{esc(x[lang])}</p></li>' for x in nows) + '</ul>'
-    for x in nows: refs.ids += [s for s in x['src'] if s not in refs.ids]
-    mini = '<div class="ptable mini">' + ''.join(tile(w, lang, pg, show_name=False) for w in WORKS) + '</div>'
-    evs = all_events(lang)[-5:][::-1]
-    tl = '<ol class="tl">' + ''.join(ev_li(e, lang, pg, refs) for e in evs) + '</ol>'
-    about = ('触媒は、反応を起こしても自分は消費されずに残る。このアーカイブは、ケミカル・ブラザーズをその触媒として読み、全アルバム、全シングル、全EPを反応の記録として並べます。事実には出典を付け、私見は私見として分けています。' if lang == 'ja' else
-             'A catalyst starts a reaction and comes out of it unchanged. This archive reads The Chemical Brothers as one, and lays out every album, single and EP as a record of the reactions. Facts carry sources; views are kept apart as views.')
+<p class="archive-kicker">THE CHEMICAL BROTHERS / LISTENING ARCHIVE</p>
+<h1 class="q">{''.join(f'<span class="print">{esc(x)}</span>' for x in q)}</h1><p class="archive-intro">{intro}</p>
+<p class="archive-stats">{stats}</p><div class="hero-foot"><a class="jump" href="{rel(pg, path(lang, 'works'))}">{'作品から探す' if lang == 'ja' else 'Explore the works'}</a><a class="more" href="#start">{'どこから聴く？' if lang == 'ja' else 'Where to begin?'}</a><button class="motion" type="button"></button></div></div></section>'''
+    routes = [
+        ('epd', 'はじまりから' if lang == 'ja' else 'Start at the beginning', '最初のスタジオアルバムから、次の作品へ。' if lang == 'ja' else 'Begin with the first studio album, then follow the next work.'),
+        ('dyoh', 'アルバムを深く' if lang == 'ja' else 'Go inside an album', '収録曲、参加者、制作の記録を行き来する。' if lang == 'ja' else 'Move between tracks, collaborators and production notes.'),
+        ('sg', '映像から聴く' if lang == 'ja' else 'Listen through film', 'MVと楽曲、監督のほかの仕事をたどる。' if lang == 'ja' else 'Connect the video, the track and the director’s other work.')]
+    starts = ''.join(f'<article class="archive-route">{tile(W[wid], lang, pg)}<h3>{title}</h3><p>{text}</p><a class="more" href="{rel(pg, path(lang, "work", wid))}">{esc(W[wid]["title"])}</a></article>' for wid, title, text in routes)
+    albums = ''.join(tile(w, lang, pg) for w in WORKS if w['type'] == 'album')
+    guides = [('timeline', '発売順と時代背景を読む。' if lang == 'ja' else 'Read releases alongside their historical context.'), ('equations', '声、演奏、映像、アートワークを担う人びと。' if lang == 'ja' else 'Meet the voices, players, filmmakers and visual artists.'), ('chain', '出典のあるクレジットから作品同士をつなぐ。' if lang == 'ja' else 'Follow connections grounded in credited collaborations.'), ('shelf', 'ミックス、ライブ映画、リミックス、別名義の作品へ。' if lang == 'ja' else 'Explore mixes, concert films, remixes and side projects.')]
+    guide_html = ''.join(f'<a class="archive-guide" href="{rel(pg, path(lang, key))}"><h3>{u[key]}</h3><p>{text}</p></a>' for key, text in guides)
     body = hero + f'''<div class="wrap">
-<section class="s"><h2 class="sh">{u['now']}</h2>{now_html}<p><a class="more" href="{rel(pg, path(lang, 'now'))}">{'現在地をすべて見る' if lang == 'ja' else 'See everything in Now'}</a></p></section>
-<section class="s"><h2 class="sh">{u['works']}</h2>{mini}<p><a class="more" href="{rel(pg, path(lang, 'works'))}">{'周期表を開く' if lang == 'ja' else 'Open the periodic table'}</a></p></section>
-<section class="s"><h2 class="sh">{u['timeline']}</h2>{tl}<p><a class="more" href="{rel(pg, path(lang, 'timeline'))}">{'年表を開く' if lang == 'ja' else 'Open the timeline'}</a></p></section>
-<section class="s"><h2 class="sh">{u['about']}</h2><p>{about}</p><p><a class="more" href="{rel(pg, path(lang, 'about'))}">{'方針と用語集' if lang == 'ja' else 'Policy and glossary'}</a></p></section>
-</div>'''
+<section class="s" id="start"><h2 class="sh">{'聴き始める、3つの入口' if lang == 'ja' else 'Three ways into the music'}</h2><p class="muted">{'順位ではなく、読み方の提案です。' if lang == 'ja' else 'Reading routes, not a ranking.'}</p><div class="archive-routes">{starts}</div></section>
+<section class="s"><h2 class="sh">{'アルバムでたどる' if lang == 'ja' else 'Follow the albums'}</h2><div class="archive-albums">{albums}</div><p><a class="more" href="{rel(pg, path(lang, 'works'))}">{'全' + str(len(WORKS)) + '作品を周期表で見る' if lang == 'ja' else 'Explore all ' + str(len(WORKS)) + ' works in the periodic table'}</a></p></section>
+<section class="s"><h2 class="sh">{'作品の向こう側へ' if lang == 'ja' else 'Beyond the record'}</h2><div class="archive-guides">{guide_html}</div></section>
+<section class="s"><h2 class="sh">{'記録と私見を分けて読む' if lang == 'ja' else 'Facts and personal views, kept apart'}</h2><p>{'発売・制作の事実には出典を。DJ Naoyamanの私見は独立した欄へ。速報や公演予定の配信は行わず、作品と歴史を読み直す場所として編集しています。' if lang == 'ja' else 'Release and production facts carry sources. DJ Naoyaman’s personal views have their own space. This site does not publish news or upcoming-event listings; it is edited as a record of the music and its history.'}</p><p><a class="more" href="{rel(pg, path(lang, 'about'))}">{u['about']}</a></p></section></div>'''
     desc = 'ケミカル・ブラザーズの全アルバム、全シングル、全EPを、出典付きの記録と私見で読むアーカイブ。' if lang == 'ja' else 'Every album, single and EP by The Chemical Brothers, read through sourced records and views.'
     base_ = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': CFG['site_name'][lang], 'url': base_ + pg, 'inLanguage': lang, 'description': desc,
@@ -616,7 +614,7 @@ def works_page(lang):
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
     body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header>{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
-    emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': '54'}, cur='works')
+    emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
 
 def shelf_pages(lang):
     u = UI[lang]; pg = path(lang, 'shelf')
@@ -720,25 +718,19 @@ def chain_page(lang):
     svg.append('</svg>')
     legend = [('#F2F1EC', '参加' if lang == 'ja' else 'Featured'), ('#FFDE22', 'MV' if lang == 'ja' else 'Video'), ('#3DE0E0', 'アートワーク' if lang == 'ja' else 'Artwork')]
     lg = '<p class="legend">' + '　'.join(f'<span class="chip" style="--kc:{c}">{t}</span>' for c, t in legend) + '</p>'
-    lead = ('外周が本棚の54作品（発売順）、内側が人物。線はクレジットで確認できた共演とMV制作、アートワークだけです。サンプリングや言及など影響の線は、出典がそろいしだい足します。' if lang == 'ja' else
-            'The outer ring is the 54 works of the main shelf in release order; the inner ring is people. Lines show only collaborations, videos and artwork confirmed by the credits. Lines of influence, such as samples and citations, will be added once sourced.')
+    lead = (f'外周が本棚の{len(WORKS)}作品（発売順）、内側が人物。線はクレジットで確認できた共演とMV制作、アートワークだけです。サンプリングや言及など影響の線は、出典がそろいしだい足します。' if lang == 'ja' else
+            f'The outer ring is the {len(WORKS)} works of the main shelf in release order; the inner ring is people. Lines show only collaborations, videos and artwork confirmed by the credits. Lines of influence, such as samples and citations, will be added once sourced.')
     lst = ''.join(f'<li><a href="{rel(pg, path(lang, "person", p["id"]))}">{esc(p["name"][lang])}</a> → ' + ('、' if lang == 'ja' else ', ').join(f'<a href="{rel(pg, path(lang, "work", i))}">{esc(W[i]["title"])}</a>' for i in dict.fromkeys(w["id"] for w, _ in person_works(p["id"]))) + '</li>' for p in PEOPLE)
     body = f'''<div class="wrap"><header class="page-h"><h1>{u['chain']}</h1><p class="lead">{lead}</p></header>{lg}<div class="chain">{''.join(svg)}</div>
 <section class="s"><h2 class="sh">{'線の一覧' if lang == 'ja' else 'All lines'}</h2><ul class="plain">{lst}</ul></section>{refs.html(lang)}</div>'''
     emit(lang, 'chain', None, u['chain'], lead, body, {'type': 'plain', 'title': u['chain'], 'sub': f'{len(edges)}'}, refs=refs)
 
 def now_page(lang):
-    u = UI[lang]; pg = path(lang, 'now'); refs = Refs()
-    items = sorted(NOW['items'], key=lambda x: x['date'], reverse=True)
-    li = ''.join(f'<li><span class="d">{fdate(x["date"], lang)}</span><p>{esc(x[lang])}{refs(x["src"])}' + (f' <a href="{rel(pg, path(lang, "work", x["work"]))}">{esc(W[x["work"]]["title"])}</a>' if x.get('work') else '') + '</p></li>' for x in items)
-    dl = ''.join(f'<li><span class="d">{x["from"]}→{x["to"]}</span><p><a href="{rel(pg, path(lang, "work", x["work"]))}">{esc(W[x["work"]]["title"])}</a>{"：" if lang == "ja" else ": "}{esc(x[lang])}{refs(x["src"])}</p></li>' for x in NOW['delayed'])
-    upd = max(x['date'] for x in items if x['date'] <= CFG['checked'])
-    lead = f'{"更新" if lang == "ja" else "Updated"} {fdate(CFG["checked"], lang)}'
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['now']}</h1><p class="lead">{lead}</p></header>
-<section class="s"><h2 class="sh">{'最新の出来事' if lang == 'ja' else 'Latest'}</h2><ul class="nowlist">{li}</ul></section>
-<section class="s"><h2 class="sh">{'時間差反応' if lang == 'ja' else 'Delayed reactions'}</h2><p class="muted small">{'発表から時間をおいて起きた反応の記録。' if lang == 'ja' else 'A record of reactions that arrived long after release.'}</p><ul class="nowlist">{dl}</ul></section>
-<p><a class="more" href="{rel(pg, path(lang, 'timeline'))}">{'年表へ' if lang == 'ja' else 'Go to the timeline'}</a></p>{refs.html(lang)}</div>'''
-    emit(lang, 'now', None, u['now'], lead, body, {'type': 'plain', 'title': u['now'], 'sub': fdate(CFG['checked'], 'en')}, refs=refs)
+    u = UI[lang]; pg = path(lang, 'now')
+    lead = ('ニュースの掲載は終了しました。作品と歴史を読むアーカイブへ再構成しています。' if lang == 'ja' else 'News coverage has ended. The site is now organised around the music and its history.')
+    links = ''.join(f'<li><a href="{rel(pg, path(lang, k))}">{u[k]}</a></li>' for k in NAV)
+    body = f'<div class="wrap"><header class="page-h"><h1>{u["now"]}</h1><p class="lead">{lead}</p></header><section class="s"><h2 class="sh">{"次に読む" if lang == "ja" else "Continue exploring"}</h2><ul>{links}</ul></section></div>'
+    emit(lang, 'now', None, u['now'], lead, body, {'type': 'plain', 'title': u['now']})
 
 def sources_page(lang):
     u = UI[lang]; pg = path(lang, 'sources')
@@ -755,7 +747,7 @@ def sources_page(lang):
 def about_page(lang):
     u = UI[lang]
     if lang == 'ja':
-        secs = [('方針', 'ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。全アルバム、全シングル、全EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
+        secs = [('方針', 'ニュース速報・今後の公演予定は扱いません。作品、制作、共作者、歴史を中心に編集します。ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。全アルバム、全シングル、全EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
                 ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。英語版の私見は日本語の原文からの翻訳です。'),
                 ('出典の扱い', '出典庫に全出典の媒体、日付、言語、確認日を記録し、使っているページへ逆リンクを張っています。'),
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
@@ -766,7 +758,7 @@ def about_page(lang):
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
     else:
-        secs = [('Policy', 'This archive reads The Chemical Brothers as a catalyst: something that starts a reaction and comes out of it unchanged. Every album, single and EP sits on the main shelf, everything else in the annex, laid out as a record of the reactions.'),
+        secs = [('Policy', 'This site does not cover news or upcoming events. It focuses on works, production, collaborators and history. This archive reads The Chemical Brothers as a catalyst: something that starts a reaction and comes out of it unchanged. Every album, single and EP sits on the main shelf, everything else in the annex, laid out as a record of the reactions.'),
                 ('Facts and views', 'Every fact carries a source. Facts without one are left out, and their place stays marked as an empty slot. Views are written by DJ Naoyaman and set apart in inverted blocks. English views are translated from the Japanese original.'),
                 ('Sources', 'The Sources page records each source\'s publisher, date, language and the date it was checked, with links back to the pages that use it.'),
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
@@ -848,7 +840,7 @@ def make_ogp(pg, spec, lang):
         halftone(760, 0, 1200, 630, (26, 26, 255))
         wordmark(64, 48, 240)
         if spec['type'] == 'top':
-            lines = ['なぜ11年前の曲が、', 'いま鳴るのか。'] if lang == 'ja' else ['WHY IS AN ELEVEN-YEAR-OLD', 'SONG RINGING OUT NOW?']
+            lines = ['作品を聴く。', '反応をたどる。'] if lang == 'ja' else ['LISTEN TO THE WORKS.', 'TRACE THE CONNECTIONS.']
             f = F(B, 84 if lang == 'ja' else 62)
         else:
             f = F(B, 104); lines = wrap_text(spec['title'], f, 1000)
@@ -996,7 +988,7 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{PROFILE_MODIFIED if v["key"] == "profile" else BRAND_UPDATED}</lastmod>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
+        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{BRAND_UPDATED}</lastmod>{alts}<priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')
