@@ -1,7 +1,7 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'update_dates.py', 'tests/test-profile.py', 'tests/test-profile-browser.cjs', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
+    paths: ['src/**', 'build.py', 'tests/test-profile.py', 'tests/test-profile-browser.cjs', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
@@ -10,8 +10,6 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

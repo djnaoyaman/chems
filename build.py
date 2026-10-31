@@ -6,12 +6,9 @@
 import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
 from urllib.parse import quote
 from datetime import date
-from update_dates import source_modified, japanese_timestamp
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
-SITE_MODIFIED = source_modified(ROOT)
-SITE_MODIFIED_JST = japanese_timestamp(SITE_MODIFIED)
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -215,8 +212,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'dateModified': SITE_MODIFIED, 'inLanguage': lang}
-    lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
+    lds = [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     hre = ''.join(f'<link rel="alternate" hreflang="{l}" href="{(base + alt[l]) if base else rel(pg, alt[l])}">' for l in LANGS)
     hre += f'<link rel="alternate" hreflang="x-default" href="{(base + alt["ja"]) if base else rel(pg, alt["ja"])}">'
@@ -270,7 +266,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <main id="main">
 {body}
 </main>
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="site-updated">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{SITE_MODIFIED}">{SITE_MODIFIED_JST}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -779,6 +775,8 @@ def about_page(lang):
     emit(lang, 'about', None, u['about'], secs[0][1][:120], body, {'type': 'plain', 'title': u['about']}, cur='about')
 
 
+PROFILE_MODIFIED = '2026-10-31T10:05:00+00:00'
+
 def profile_page(lang):
     u = UI[lang]; pg = path(lang, 'profile')
     if lang == 'ja':
@@ -791,15 +789,17 @@ def profile_page(lang):
         policy = 'Facts carry sources; personal views are kept separate.'
         label = 'About the author'
         desc = 'The idea behind my Chems: listening notes and a record of the music, edited by DJ Naoyaman.'
-    body = f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>DJ Naoyaman</h1></header><section class="s"><p>{esc(lead)}</p><p>{esc(policy)}</p><p><a class="more" href="https://djnaoyaman.github.io/profile.html">{label}</a></p></section></div>'
-    ld = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'mainEntity': {'@type': 'Person', 'name': 'DJ Naoyaman', 'url': 'https://djnaoyaman.github.io/profile.html'}}
+    # Editorial revision date: only this profile changes, never a build-time clock.
+    updated = PROFILE_MODIFIED
+    updated_label = '最終更新' if lang == 'ja' else 'Last updated'
+    body = f'<div class="wrap"><header class="page-h"><p class="muted small">{u["profile"]}</p><h1>DJ Naoyaman</h1></header><section class="s"><p>{esc(lead)}</p><p>{esc(policy)}</p><p><a class="more" href="https://djnaoyaman.github.io/profile.html">{label}</a></p><p class="muted small profile-updated">{updated_label}: <time datetime="{updated}">2026-10-31 19:05 JST</time></p></section></div>'
+    ld = {'@context': 'https://schema.org', '@type': 'ProfilePage', 'dateModified': updated, 'mainEntity': {'@type': 'Person', 'name': 'DJ Naoyaman', 'url': 'https://djnaoyaman.github.io/profile.html'}}
     emit(lang, 'profile', None, u['profile'], desc, body, {'type': 'plain', 'title': 'DJ Naoyaman', 'sub': u['profile']}, ld, cur='about')
 
 # ---------------------------------------------------------------- OGP
 def make_ogp(pg, spec, lang):
     from PIL import Image, ImageDraw, ImageFont
     B = '/usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc'; Rg = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
-    if not os.path.exists(B): B = '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc'
     F = lambda p, s: ImageFont.truetype(p, s, index=0)
     im = Image.new('RGB', (1200, 630), (0, 0, 0)); d = ImageDraw.Draw(im)
     hexrgb = lambda h: tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))
@@ -985,7 +985,8 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{SITE_MODIFIED}</lastmod>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
+        profile_lastmod = f'<lastmod>{PROFILE_MODIFIED}</lastmod>' if pg in ('profile/index.html', 'en/profile/index.html') else ''
+        urls.append(f'<url><loc>{base}{pg}</loc>{profile_lastmod}{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')
