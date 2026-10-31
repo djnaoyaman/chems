@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {createBufferingNotice} from '../src/listening/buffering.mjs';
+function fixture(){let callbacks=[],calls=[],cancelled=[];const notice=createBufferingNotice({schedule:(cb,ms)=>{assert.equal(ms,15000);callbacks.push(cb);return callbacks.length;},cancel:id=>cancelled.push(id),onSlow:e=>calls.push(e)});return {notice,callbacks,calls,cancelled};}
+const e=(type='buffering',generation=1)=>({type,generation,entryId:'a'});
+test('only buffering schedules and repeated buffering does not delay notice',()=>{const f=fixture();f.notice.event(e('ready'));assert.equal(f.callbacks.length,0);f.notice.event(e());f.notice.event(e());assert.equal(f.callbacks.length,1);f.callbacks[0]();assert.equal(f.calls.length,1);assert.equal(f.notice.event(e()),true);assert.equal(f.callbacks.length,1);});
+for(const type of ['playing','paused','ended','error','autoplay-blocked'])test(`${type} cancels stale notice`,()=>{const f=fixture();f.notice.event(e());f.notice.event(e(type));f.callbacks[0]();assert.equal(f.calls.length,0);assert.deepEqual(f.cancelled,[1]);});
+test('new generation ignores old timer even after cancellation races',()=>{const f=fixture();f.notice.event(e());f.notice.event(e('buffering',2));f.callbacks[0]();assert.equal(f.calls.length,0);f.callbacks[1]();assert.equal(f.calls[0].generation,2);});
+test('selection, Stop or pagehide clear makes timer harmless',()=>{const f=fixture();f.notice.event(e());f.notice.clear();f.callbacks[0]();assert.equal(f.calls.length,0);});
+test('new buffering episode after playing may notify once again',()=>{const f=fixture();f.notice.event(e());f.callbacks[0]();f.notice.event(e('playing'));f.notice.event(e());f.callbacks[1]();assert.equal(f.calls.length,2);});

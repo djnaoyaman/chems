@@ -17,7 +17,7 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
 SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
-LISTENING_UPDATED = '2026-10-31T15:25:00+00:00'
+LISTENING_UPDATED = '2026-10-31T16:10:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
@@ -630,13 +630,15 @@ def listening_section(lang):
     intro = (f'発売順で作品を選び、確認できた公式YouTube音源を聴くための棚です。現在は{total}曲枠のうち{matched}曲で公式配信と録音版を照合済み。実再生は未確認です。未照合の曲を別版や非公式投稿で埋めません。' if ja else
              f'Choose a release chronologically and listen through official YouTube sources. {matched} of {total} track entries currently have official-source and recording matches; playback remains untested. Missing tracks are not replaced with other versions or unofficial uploads.')
     return f'''<section id="listening" class="listening-shell" aria-labelledby="listening-title"><h2 id="listening-title">{title}</h2><p>{intro}</p>
-<div class="listening-grid"><div><label>{'種類' if ja else 'Release type'}<select data-listening="type"><option value="all">{'収録作品すべて' if ja else 'All cataloged releases'}</option><option value="album">{'アルバム' if ja else 'Albums'}</option><option value="ep">EP</option><option value="single">{'シングル' if ja else 'Singles'}</option></select></label>
+<button type="button" data-listening="start" disabled>{'▶ 照合済みの公式音源から聴く' if ja else '▶ Start with a matched official recording'}</button>
+<p data-listening="summary" role="status" aria-live="polite"></p><div class="listening-grid"><div><label>{'種類' if ja else 'Release type'}<select data-listening="type"><option value="all">{'収録作品すべて' if ja else 'All cataloged releases'}</option><option value="album">{'アルバム' if ja else 'Albums'}</option><option value="ep">EP</option><option value="single">{'シングル' if ja else 'Singles'}</option></select></label>
 <label>{'作品' if ja else 'Release'}<select data-listening="release"><option value="">{'作品を選ぶ' if ja else 'Choose a release'}</option></select></label>
 <ol class="listening-tracklist" data-listening="tracks"></ol></div>
-<div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
+<aside class="listening-dock" data-listening="dock" aria-label="{'音楽プレイヤー' if ja else 'Music player'}" hidden><div class="listening-dock-top"><span>MYCHEMS / LISTENING</span><button type="button" data-listening="close" aria-label="{'停止して閉じる' if ja else 'Stop and close'}">×</button></div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
 <div class="listening-visual" data-listening="visual" aria-label="YouTube player">{'動画はまだ読み込んでいません。' if ja else 'No video loaded.'}</div>
-<p class="listening-continuity"><label><input type="checkbox" data-listening="continuous"> {'この作品を曲順に続けて聴く（未照合・再生不可の曲で停止）' if ja else 'Continue in this release (stop at unmatched or unavailable tracks)'}</label></p><p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'公式動画を読み込む' if ja else 'Load official video'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button></div><p class="listening-sources" data-listening="sources"></p>
-<p class="small">{'動画を読み込むとYouTubeに接続します。再生可否は地域・環境・時期によって変わります。ページを移動すると再生は終了します。' if ja else 'Loading a video connects to YouTube. Availability depends on region, environment and time. Navigating away stops playback.'}</p></div></div>
+<p data-listening="now" class="listening-now"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'▶ 再生' if ja else '▶ Play'}</button><button type="button" data-listening="pause" disabled>{'一時停止' if ja else 'Pause'}</button><button type="button" data-listening="stop" disabled>{'停止' if ja else 'Stop'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button><button type="button" data-listening="full" aria-expanded="false">{'拡大' if ja else 'Expand'}</button></div>
+<p class="listening-continuity"><label><input type="checkbox" data-listening="continuous"> {'この作品を曲順に続けて聴く（未照合・再生不可の曲で停止）' if ja else 'Continue in this release (stop at unmatched or unavailable tracks)'}</label></p><p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><p class="listening-sources" data-listening="sources"></p>
+<p class="small">{'動画を読み込むとYouTubeに接続します。再生可否は地域・環境・時期によって変わります。ページを移動すると再生は終了します。' if ja else 'Loading a video connects to YouTube. Availability depends on region, environment and time. Navigating away stops playback.'}</p></aside></div>
 <noscript>{'このプレイヤーにはJavaScriptが必要です。作品の記事と既存のYouTubeリンクをご利用ください。' if ja else 'This player needs JavaScript. Articles and their existing YouTube links remain available.'}</noscript></section>'''
 
 def works_page(lang):

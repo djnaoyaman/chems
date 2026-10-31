@@ -5,7 +5,7 @@ function setup() {
  const nodes=[], callbacks=[];
  const document={createTextNode:text=>({text}),createElement:tag=>({tag,remove(){this.removed=true;}}),head:{append:n=>nodes.push(n)}};
  const container={replaceChildren(...items){this.children=items;}};
- const YT={Player:function(frame,options){callbacks.push(options.events);this.frame=frame;}};
+ const YT={Player:function(frame,options){callbacks.push(options.events);this.frame=frame;frame.options=options;this.destroy=()=>frame.remove();}};
  const channelId='UC'+'X'.repeat(22),id='X'.repeat(11),at='2026-10-31T00:00:00Z';
  const recording={id:'r',title:'Title',version:'Album mix'},entry={id:'e',recordingId:'r'},edition={id:'edition'};
  const video={id,testOnly:false,channelId,officialEvidence:{channelId,channelType:'artist',videoId:id,sourceUrl:'https://example.invalid/proof',checkedAt:at,reviewed:true,reviewer:'synthetic-test'},match:{recordingId:'r',entryId:'e',editionId:'edition',title:'Title',version:'Album mix',sourceUrl:'https://example.invalid/edition',checkedAt:at,reviewed:true},availability:{state:'available',embeddable:true,checkedAt:at}};
@@ -29,8 +29,7 @@ test('no request or evidence means no loader call or iframe',async()=>{
 test('visible frame, native play and documented cue only',async()=>{
  const s=setup(),a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT});
  assert.equal((await a.mount(s.args)).mounted,true);const f=s.container.children[0];
- assert.equal(f.width,'480');assert.equal(f.height,'270');assert.equal(f.referrerPolicy,'strict-origin-when-cross-origin');
- assert.match(f.src,/enablejsapi=1&origin=/);assert.doesNotMatch(f.src,/autoplay|mute|controls|branding/);
+ assert.equal(f.tag,'div');assert.equal(f.options.host,'https://www.youtube.com');assert.deepEqual(f.options.playerVars,{origin:'https://example.invalid',playsinline:1});assert.equal(f.options.videoId,'X'.repeat(11));
  let cue;s.callbacks[0].onReady({target:{cueVideoById:x=>cue=x}});assert.deepEqual(cue,{videoId:'X'.repeat(11),startSeconds:0});assert.equal(s.events[0].type,'ready');
  a.dispose();assert.equal(f.removed,true);s.callbacks[0].onError();assert.equal(s.events.length,1);
 });
@@ -72,6 +71,7 @@ test('API readiness is not playback; playing and ended do not advance selection'
 
 test('continuation loads only on ready, blocked playback remains visible with manual guidance',async()=>{
  const s=setup(),a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT});await a.mount({...s.args,continuePlayback:true});let load=0;
- assert.equal(s.container.children[0].allow,'autoplay');s.callbacks[0].onReady({target:{loadVideoById:v=>{load++;assert.equal(v.videoId,s.args.video.id);},cueVideoById:()=>assert.fail('not cue')}});assert.equal(load,1);
+ assert.equal(s.container.children[0].options.host,'https://www.youtube.com');s.callbacks[0].onReady({target:{loadVideoById:v=>{load++;assert.equal(v.videoId,s.args.video.id);},cueVideoById:()=>assert.fail('not cue')}});assert.equal(load,1);
  s.callbacks[0].onAutoplayBlocked();assert.equal(s.events.at(-1).type,'autoplay-blocked');assert.notEqual(s.container.children[0].removed,true);a.dispose();s.callbacks[0].onAutoplayBlocked();assert.equal(s.events.length,2);
 });
+test('explicit track-click requests play through standard API, pause/resume are manual',async()=>{const s=setup(),a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT});await a.mount({...s.args,requestPlay:true});let loaded,played=0,paused=0;s.callbacks[0].onReady({target:{loadVideoById:v=>loaded=v,playVideo:()=>played++,pauseVideo:()=>paused++}});assert.equal(loaded.videoId,s.args.video.id);assert(a.play());assert(a.pause());assert.equal(played,1);assert.equal(paused,1);a.dispose();assert.equal(a.play(),false);});
