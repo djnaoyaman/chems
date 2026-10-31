@@ -66,7 +66,7 @@ if (host) {
  $('previous').addEventListener('click',()=>{queue=move(queue,-1);renderQueue();});
  $('next').addEventListener('click',()=>{queue=move(queue,1);renderQueue();});
  async function loadSelected(continuePlayback = false, requestPlay = true) {
-  if(!queue)return;$('dock').hidden=false;const entry=edition.entries[queue.index],requestedGeneration=queue.generation;$('load').disabled=true;
+  if(!queue)return;$('dock').hidden=false;$('dock').scrollTop=0;const entry=edition.entries[queue.index],requestedGeneration=queue.generation;$('load').disabled=true;
   buffering.clear();$('stop').disabled=false;pendingAuto=continuePlayback;continuity=session(entry.id,queue.generation,$('continuous').checked);
   const mounted = await adapter.mount({container:$('visual'),video:data.videos[entry.videoKey],recording:data.recordings[entry.recordingId],edition,entry,selectionGeneration:queue.generation,userRequested:true,continuePlayback,requestPlay,onState:event=>{
    if(!queue)return;const next=receive(queue,event);if(next===queue)return;queue=next;
@@ -95,7 +95,7 @@ if (host) {
  $('pause').addEventListener('click',()=>adapter.pause());
  $('stop').addEventListener('click',()=>{renderQueue();status(ja?'停止しました。別の曲を選べます。':'Stopped. You can choose another track.');if(!$('load').disabled)$('load').focus();});
  $('close').addEventListener('click',()=>{renderQueue();$('dock').hidden=true;$('dock').classList.remove('is-expanded');$('full').setAttribute('aria-expanded','false');$('full').textContent=ja?'拡大':'Expand';$('start').focus();});
- $('full').addEventListener('click',()=>{const expanded=$('dock').classList.toggle('is-expanded');$('full').setAttribute('aria-expanded',String(expanded));$('full').textContent=expanded?(ja?'縮小':'Reduce'):(ja?'拡大':'Expand');});
+ $('full').addEventListener('click',()=>{const expanded=$('dock').classList.toggle('is-expanded');$('dock').scrollTop=0;$('full').setAttribute('aria-expanded',String(expanded));$('full').textContent=expanded?(ja?'縮小':'Reduce'):(ja?'拡大':'Expand');});
  $('dock').addEventListener('keydown',e=>{if(e.key==='Escape'&&$('dock').classList.contains('is-expanded')){e.preventDefault();$('full').click();$('full').focus();}});
  $('start').addEventListener('click',()=>{for(const r of chronological(data.releases)){const ed=data.editions[r.editionIds[0]],index=ed.entries.findIndex(e=>!sessionFailures.has(e.id)&&admission(data.videos[e.videoKey],data.recordings[e.recordingId],ed,e).allowed);if(index<0)continue;$('type').value='all';listReleases();$('release').value=r.id;chooseRelease(r.id);queue=move(queue,index);renderQueue();$('dock').hidden=false;void loadSelected(false,true);break;}});
  $('continuous').addEventListener('change',()=>{if(pendingAuto&&!$('continuous').checked){renderQueue();return;}if(continuity)continuity={...continuity,optedIn:$('continuous').checked};});
