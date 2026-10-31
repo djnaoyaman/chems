@@ -233,6 +233,11 @@ table.t td.d{font-family:var(--f-mono);font-size:.75rem;white-space:nowrap}
 .premium-playback-hint button{flex:none;min-width:28px;min-height:28px;padding:0;border:0;border-radius:0;background:transparent;color:inherit;font-family:inherit;font-size:20px;line-height:1;cursor:pointer}
 .premium-playback-hint :focus-visible{outline:2px solid currentColor;outline-offset:2px}
 
+/* Approved myChems outline: no font substitution or distortion. */
+.gh .home{display:flex;align-items:center;flex:none;min-height:44px}
+.gh .site-wordmark{display:block;width:180px;height:auto;max-width:100%}
+@media(max-width:640px){.gh-in{display:grid;grid-template-columns:1fr auto;gap:.15rem 1rem}.gh .home{grid-column:1;grid-row:1}.gh .lang{grid-column:2;grid-row:1}.gh nav{grid-column:1 / -1;grid-row:2;width:100%}.gh .site-wordmark{width:180px}}
+
 /* Evergreen archive routes */
 .archive-kicker,.archive-stats{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.06em}
 .archive-intro{font-size:1.05rem;max-width:38rem;margin-top:1.7rem}

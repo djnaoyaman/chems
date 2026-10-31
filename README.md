@@ -75,6 +75,8 @@ rekordboxの値を優先し、解析値では上書きしない（`--overwrite`�
 
 News coverage and upcoming-event listings have ended. The bilingual home page now prioritises the listening routes, albums, historical timeline and credited collaborators. Old `now/` URLs remain as a navigation guide, not an active news archive. `data/now.json` is retained as original research material but is never rendered; retired future-event records remain in `notes/retired-news/`. Historical source references and release dates are not rewritten.
 
-`update_dates.py` derives a shared site-source modification time from full Git history for build/config/data/text/art/style dependencies. It is displayed in JST and emitted as ISO `WebPage.dateModified`, sitemap `lastmod`, and `site-updated.json`. CI-only changes and redeploys do not advance the content clock. Source-check dates remain separate; the fixed export fallback is local-preview-only.
+The fixed source revision timestamp records this actual shared-navigation and editorial restructuring, not a build/deployment time. Visible JST, WebPage.dateModified and sitemap lastmod agree. Original release/publication and source-check dates are preserved. The separately approved wordmark and compact profile are retained.
+
+Publication dependency: merge the compact-profile PR into main first; retarget this archive PR to main; inspect the final diff and rerun exact-head CI before merging. Merging into a feature branch is not publication.
 
 Run `python3 tests/test-archive.py` after the build, plus the existing Node regression tests.
