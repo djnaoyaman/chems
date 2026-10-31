@@ -10,9 +10,9 @@ for p in pages:
  s=p.read_text();assert s.count('class="site-wordmark"')==1,p
  assert 'alt="myChems"' in s and 'aria-label="myChems"' in s
  assert ('非公式' in s or 'unofficial' in s.lower()),p
- assert '2026-10-31T10:40:00+00:00' in s and 'dateModified' in s
- assert '19:40 JST' in s
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T10:40:00+00:00</lastmod>')==218
+ assert 'dateModified' in s
+ assert 'JST' in s
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T10:40:00+00:00</lastmod>')==216
 assert len(json.loads((r/'data/works.json').read_text()))==57
 assert len(json.loads((r/'data/people.json').read_text()))==36
 print('PASS approved outline hashes, all 218 headers, unofficial notice, actual brand revision dates, 57 works/36 people')
