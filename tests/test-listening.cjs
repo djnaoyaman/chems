@@ -14,11 +14,11 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  assert(admission(v,data.recordings[entry.recordingId],e,entry).allowed);
  assert(!JSON.stringify(data).includes('6iiGQmWCCyI'));assert(!JSON.stringify(data.videos).includes('4QKi8DorEpM'));
  for(const lang of ['','en/']){
-  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('14:07:00+00:00'));
+  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('14:18:00+00:00'));
   const work=fs.readFileSync(path.join(dist,lang,'works/exit-planet-dust/index.html'),'utf8');assert(!work.includes('listening/listening.mjs'));assert(work.includes('30p2UWAegeQ'));
  }
  const protectedFiles=JSON.parse(fs.readFileSync(path.join(root,'tests/listening-protected.json')));
  for(const [file,hash] of Object.entries(protectedFiles)){assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex'),hash,file);}
- assert(!fs.readFileSync(path.join(root,'src/listening/listening.mjs'),'utf8').includes('localStorage'));
+ const app=fs.readFileSync(path.join(root,'src/listening/listening.mjs'),'utf8');assert(!app.includes('localStorage'));assert(!app.includes('video.availability='));assert(app.includes('sessionFailures.set'));assert(app.includes("'pageshow'"));assert(app.includes('preventScroll:true'));
  console.log(JSON.stringify({pass:true,releases:57,trackOccurrences:225,officialMatched:allowed,playbackChecked:0,protectedFiles:Object.keys(protectedFiles).length}));
 })().catch(e=>{console.error(e);process.exit(1)});

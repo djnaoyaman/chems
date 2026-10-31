@@ -66,6 +66,6 @@ test('documented errors distinguish embedding denial and identity failures witho
 test('API readiness is not playback; playing and ended do not advance selection',async()=>{
  const s=setup(),a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT});await a.mount(s.args);
  s.callbacks[0].onReady({target:{cueVideoById(){}}});assert.equal(s.events[0].type,'ready');
- s.callbacks[0].onStateChange({data:1});s.callbacks[0].onStateChange({data:0});
- assert.deepEqual(s.events.map(e=>e.type),['ready','playing','ended']);assert.ok(s.events.every(e=>e.entryId==='e'));
+ s.callbacks[0].onStateChange({data:1});s.callbacks[0].onStateChange({data:2});s.callbacks[0].onStateChange({data:3});s.callbacks[0].onStateChange({data:0});
+ assert.deepEqual(s.events.map(e=>e.type),['ready','playing','paused','buffering','ended']);assert.ok(s.events.every(e=>e.entryId==='e'));
 });

@@ -89,6 +89,8 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
           // Official IFrame API example: 1 playing, 0 ended. Never auto-advance.
           if (event.data === 1) notify('playing');
           else if (event.data === 0) notify('ended');
+          else if (event.data === 2) notify('paused');
+          else if (event.data === 3) notify('buffering');
         }
       }});
       return { mounted: !blocked, reason: blocked ? 'Player unavailable' : 'Visible iframe mounted; await native controls' };
