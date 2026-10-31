@@ -48,7 +48,7 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
     // Detaching the visible iframe terminates that document; no undocumented player commands.
     frame?.remove(); frame = undefined; host = undefined; blocked = false;
   }
-  async function mount({ container, video, recording, edition, entry, selectionGeneration, onState, userRequested = false }) {
+  async function mount({ container, video, recording, edition, entry, selectionGeneration, onState, userRequested = false, continuePlayback = false }) {
     dispose();
     const token = generation;
     const notify = (type, detail) => { if (token === generation) onState({ type, generation: selectionGeneration, entryId: entry.id, ...(detail ? { detail } : {}) }); };
@@ -72,6 +72,7 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
       frame = document.createElement('iframe');
       frame.title = `YouTube player: ${recording.title} — ${recording.version}`;
       frame.width = '480'; frame.height = '270';
+      if (continuePlayback) frame.allow = 'autoplay';
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
       frame.src = `https://www.youtube.com/embed/${encodeURIComponent(video.id)}?enablejsapi=1&origin=${encodeURIComponent(site.origin)}&playsinline=1`;
       const activeFrame = frame;
@@ -80,13 +81,18 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
       new YT.Player(activeFrame, { events: {
         onReady(event) {
           if (token !== generation || blocked || frame !== activeFrame) return;
-          try { event.target.cueVideoById({ videoId: video.id, startSeconds: 0 }); notify('ready'); }
+          try {
+            notify('ready');
+            if (continuePlayback) event.target.loadVideoById({ videoId: video.id, startSeconds: 0 });
+            else event.target.cueVideoById({ videoId: video.id, startSeconds: 0 });
+          }
           catch { fail(); }
         },
+        onAutoplayBlocked() { if (token === generation && !blocked && frame === activeFrame) notify('autoplay-blocked'); },
         onError(event) { fail(classifyPlayerError(event?.data)); },
         onStateChange(event) {
           if (token !== generation || blocked || frame !== activeFrame) return;
-          // Official IFrame API example: 1 playing, 0 ended. Never auto-advance.
+          // Report actual states; the separately opted-in release controller decides advancement.
           if (event.data === 1) notify('playing');
           else if (event.data === 0) notify('ended');
           else if (event.data === 2) notify('paused');

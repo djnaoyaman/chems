@@ -69,3 +69,9 @@ test('API readiness is not playback; playing and ended do not advance selection'
  s.callbacks[0].onStateChange({data:1});s.callbacks[0].onStateChange({data:2});s.callbacks[0].onStateChange({data:3});s.callbacks[0].onStateChange({data:0});
  assert.deepEqual(s.events.map(e=>e.type),['ready','playing','paused','buffering','ended']);assert.ok(s.events.every(e=>e.entryId==='e'));
 });
+
+test('continuation loads only on ready, blocked playback remains visible with manual guidance',async()=>{
+ const s=setup(),a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT});await a.mount({...s.args,continuePlayback:true});let load=0;
+ assert.equal(s.container.children[0].allow,'autoplay');s.callbacks[0].onReady({target:{loadVideoById:v=>{load++;assert.equal(v.videoId,s.args.video.id);},cueVideoById:()=>assert.fail('not cue')}});assert.equal(load,1);
+ s.callbacks[0].onAutoplayBlocked();assert.equal(s.events.at(-1).type,'autoplay-blocked');assert.notEqual(s.container.children[0].removed,true);a.dispose();s.callbacks[0].onAutoplayBlocked();assert.equal(s.events.length,2);
+});

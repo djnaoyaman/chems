@@ -17,7 +17,7 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
 SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
-LISTENING_UPDATED = '2026-10-31T14:50:00+00:00'
+LISTENING_UPDATED = '2026-10-31T15:25:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
@@ -635,7 +635,7 @@ def listening_section(lang):
 <ol class="listening-tracklist" data-listening="tracks"></ol></div>
 <div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
 <div class="listening-visual" data-listening="visual" aria-label="YouTube player">{'動画はまだ読み込んでいません。' if ja else 'No video loaded.'}</div>
-<p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'公式動画を読み込む' if ja else 'Load official video'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button></div><p class="listening-sources" data-listening="sources"></p>
+<p class="listening-continuity"><label><input type="checkbox" data-listening="continuous"> {'この作品を曲順に続けて聴く（未照合・再生不可の曲で停止）' if ja else 'Continue in this release (stop at unmatched or unavailable tracks)'}</label></p><p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'公式動画を読み込む' if ja else 'Load official video'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button></div><p class="listening-sources" data-listening="sources"></p>
 <p class="small">{'動画を読み込むとYouTubeに接続します。再生可否は地域・環境・時期によって変わります。ページを移動すると再生は終了します。' if ja else 'Loading a video connects to YouTube. Availability depends on region, environment and time. Navigating away stops playback.'}</p></div></div>
 <noscript>{'このプレイヤーにはJavaScriptが必要です。作品の記事と既存のYouTubeリンクをご利用ください。' if ja else 'This player needs JavaScript. Articles and their existing YouTube links remain available.'}</noscript></section>'''
 

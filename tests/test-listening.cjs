@@ -7,14 +7,14 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  assert.equal(data.editions['fcs-unresolved-edition'].entries[0].positionLabel,'A1');
  assert.equal(data.releases.length,57);assert.equal(Object.values(data.editions).reduce((n,e)=>n+e.entries.length,0),225);
  let allowed=0,checked=0;for(const e of Object.values(data.editions)){const c=queueCoverage(e,data.recordings,data.videos);allowed+=c.allowed;checked+=c.playbackChecked;}
- assert.equal(allowed,7);assert.equal(checked,0);
+ assert.equal(allowed,16);assert.equal(checked,0);
  const e=data.editions['epd-official-site-sequence'],entry=e.entries[1],v=data.videos[entry.videoKey];
  for(const [position,title,id] of [[2,'In Dust We Trust','YtnBsvu72kY'],[3,'Song To The Siren (Live From Sabresonic Nightclub, United Kingdom/1994)','D7R4Z0T5ViA'],[4,'Three Little Birdies Down Beats','kJqSFi0ukEY'],[7,"Chico’s Groove".replace('’',"'"),'F8smPDj7r4w'],[8,'One Too Many Mornings','wA-FVMPg49I'],[9,'Life Is Sweet','cpTTNGzTKRo'],[11,'Alive Alone','q9rrZzrgA2I']]){const item=e.entries[position-1];assert.equal(data.recordings[item.recordingId].title,title);assert.equal(data.videos[item.videoKey].id,id);}
  assert.equal(e.entries.length,11);assert.equal(v.id,'YtnBsvu72kY');assert.equal(v.officialEvidence.providerName,'Universal Music Group');assert.equal(v.availability.state,'unchecked');assert.equal(v.channelId,undefined);
  assert(admission(v,data.recordings[entry.recordingId],e,entry).allowed);
  assert(!JSON.stringify(data).includes('6iiGQmWCCyI'));assert(!JSON.stringify(data.videos).includes('4QKi8DorEpM'));
  for(const lang of ['','en/']){
-  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('14:50:00+00:00'));
+  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('15:25:00+00:00'));
   const work=fs.readFileSync(path.join(dist,lang,'works/exit-planet-dust/index.html'),'utf8');assert(!work.includes('listening/listening.mjs'));assert(work.includes('30p2UWAegeQ'));
  }
  const protectedFiles=JSON.parse(fs.readFileSync(path.join(root,'tests/listening-protected.json')));

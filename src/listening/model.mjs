@@ -52,7 +52,7 @@ export function move(q, delta) {
 export function receive(q, event) {
   // Future adapter must stamp each callback with the selection generation and entry ID.
   if (event.generation !== q.generation || event.entryId !== q.entries[q.index]?.id) return q;
-  if (!['ready','playing','paused','buffering','unavailable','ended','error'].includes(event.type)) return q;
+  if (!['ready','playing','paused','buffering','unavailable','ended','error','autoplay-blocked'].includes(event.type)) return q;
   // End/error never advances silently: missing tracks stay represented.
   return { ...q, status: event.type };
 }
