@@ -10,4 +10,4 @@ The creator's sites are introduced within the existing biography and project sec
 - [CRATE DIGGIN’](https://djnaoyaman.github.io/cratediggin/): Hip Hopの楽曲からサンプル、プロデューサー、街や時代をたどる音楽アーカイブ。
 - [酸冷交代浴のススメ](https://djnaoyaman.github.io/sanreikotaiyoku/): 炭酸泉と水風呂の楽しみ方を、体験・施設情報・文献から編集する入浴ガイド。
 - [gooooooooood* expression](https://djnaoyaman.github.io/gooooooooood_expression/): Webの動き・文字・音・インタラクションを、実例と解説から学び、試せる表現図鑑。
-- [Book Keeping](https://djnaoyaman.github.io/bookkeeping/): 日商簿記・全経簿記・USCPAの仕訳や計算を反復演習し、学習記録と復習につなげる学習サイト。
+- [IL MASTRO](https://djnaoyaman.github.io/bookkeeping/): 日商簿記・全経簿記・USCPAの仕訳や計算を反復演習し、学習記録と復習につなげる学習サイト。
