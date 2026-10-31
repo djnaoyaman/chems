@@ -9,3 +9,5 @@ SHA-256:
 - mychems-wordmark-ivory-1024.png: f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849
 
 PNG is the approved transparent raster used by the existing Pillow OGP generator; SVG is the web header asset. Navigation, music information, biography and news policy are outside this change.
+
+Brand consumers: all bilingual headers and the 404 header use the SVG; all OGP/Twitter images and device icons use the approved PNG. The standalone `notes/preview.html` embeds the SVG and device icons so moving that file cannot break its logo. Legacy icon filenames are compatibility copies of the current exports, never a separate design.

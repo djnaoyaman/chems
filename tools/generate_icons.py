@@ -6,6 +6,7 @@ ratio on black; maskable exports fit inside the central 80% safe circle.
 """
 import hashlib
 import json
+import shutil
 from pathlib import Path
 
 from PIL import Image
@@ -14,6 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'src/icons'
 SOURCE = ROOT / 'src/brand/mychems-wordmark-ivory-1024.png'
 SOURCE_SHA256 = 'f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849'
+
+
+def write_compatibility_aliases():
+    # Existing bookmarks and automatic browser requests can retain old URLs.
+    for source in DEST.glob('mychems-*'):
+        shutil.copyfile(source, DEST / source.name.removeprefix('mychems-'))
 
 
 def render(size, maskable=False):
@@ -35,6 +42,7 @@ if __name__ == '__main__':
         render(size, maskable=True).save(DEST / f'mychems-maskable-{size}.png')
     render(48).save(DEST / 'mychems-favicon.ico', sizes=[(16, 16), (32, 32), (48, 48)],
                     append_images=[render(16), render(32)])
+    write_compatibility_aliases()
     hashes = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in sorted(DEST.glob('mychems-*.png'))}
+              for p in sorted(DEST.glob('*.png'))}
     print(json.dumps(hashes, indent=2))

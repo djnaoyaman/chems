@@ -71,6 +71,12 @@ rekordboxの値を優先し、解析値では上書きしない（`--overwrite`�
 
 全ページを1枚のHTMLにまとめる。スマホなどでページ間リンクを確かめる用。
 
+保存済みの `notes/preview.html` を更新する場合は `python3 tools/preview_bundle.py notes/preview.html` を実行します。ロゴ・favicon・Apple Touch icon は埋め込み式で、HTMLを別の場所に移しても同じデザインを表示します。
+
+## ロゴと関連画像
+
+ヘッダー・404・SNS共有画像・端末用アイコンは、`src/brand/` の承認済み myChems ロゴを共通で使用します。端末用画像は `python3 tools/generate_icons.py` で生成し、`build.py` の画像ハッシュ一覧も更新します。旧アイコンのURLと、ルートの `favicon.ico`・`apple-touch-icon.png`・`apple-touch-icon-precomposed.png` にも同じ画像を配信します。`python3 tests/test-device-icons.py` で全ページの参照先・互換画像・マスク領域を検証できます。
+
 ## Evergreen archive (2026-10-31)
 
 News coverage and upcoming-event listings have ended. The bilingual home page now prioritises the listening routes, albums, historical timeline and credited collaborators. Old `now/` URLs remain as a navigation guide, not an active news archive. `data/now.json` is retained as original research material but is never rendered; retired future-event records remain in `notes/retired-news/`. Historical source references and release dates are not rewritten.

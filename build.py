@@ -982,7 +982,7 @@ def verify():
     # 12 アートワーク
     bad_img = []
     # Device icons exported from the approved myChems wordmark, not record artwork.
-    device_icon_sha256 = {'src/icons/mychems-apple-touch-icon.png': '7294953b0c38ad8a7ec06aee531f520b69b7f5fc6ed11f0177493e5736533b3f', 'src/icons/mychems-icon-16.png': '0bdad498213cc8e9976d1cbddb9ef5fd494058af02de01a2ac693030e540d943', 'src/icons/mychems-icon-192.png': '636eaa171ac7ba351d667286136af8f01d6028749f6c921fc5e719cf75f4855d', 'src/icons/mychems-icon-32.png': '95b171efb2655c50ca552f3ed1a00336e0decfdc7491347e16968e943412d9b8', 'src/icons/mychems-icon-48.png': 'a6b595b9a65137a993014f28b0974272bed0711695e26170126308d5b1898ab9', 'src/icons/mychems-icon-512.png': 'd694884ea0ead59c3ee4891fea51a37bd3520f5ef71f85a824cac7214b64044e', 'src/icons/mychems-maskable-192.png': 'e911905e89964a39a689d1002421e2feeada34f3799638f2b56abd0b16fa54f6', 'src/icons/mychems-maskable-512.png': '6ff9c116eddac4e34e7bf77eca345897bdc01d50b8d07678650f3ca2ba6c6468'}
+    device_icon_sha256 = {'src/icons/apple-touch-icon.png': '7294953b0c38ad8a7ec06aee531f520b69b7f5fc6ed11f0177493e5736533b3f', 'src/icons/icon-16.png': '0bdad498213cc8e9976d1cbddb9ef5fd494058af02de01a2ac693030e540d943', 'src/icons/icon-192.png': '636eaa171ac7ba351d667286136af8f01d6028749f6c921fc5e719cf75f4855d', 'src/icons/icon-32.png': '95b171efb2655c50ca552f3ed1a00336e0decfdc7491347e16968e943412d9b8', 'src/icons/icon-48.png': 'a6b595b9a65137a993014f28b0974272bed0711695e26170126308d5b1898ab9', 'src/icons/icon-512.png': 'd694884ea0ead59c3ee4891fea51a37bd3520f5ef71f85a824cac7214b64044e', 'src/icons/maskable-192.png': 'e911905e89964a39a689d1002421e2feeada34f3799638f2b56abd0b16fa54f6', 'src/icons/maskable-512.png': '6ff9c116eddac4e34e7bf77eca345897bdc01d50b8d07678650f3ca2ba6c6468', 'src/icons/mychems-apple-touch-icon.png': '7294953b0c38ad8a7ec06aee531f520b69b7f5fc6ed11f0177493e5736533b3f', 'src/icons/mychems-icon-16.png': '0bdad498213cc8e9976d1cbddb9ef5fd494058af02de01a2ac693030e540d943', 'src/icons/mychems-icon-192.png': '636eaa171ac7ba351d667286136af8f01d6028749f6c921fc5e719cf75f4855d', 'src/icons/mychems-icon-32.png': '95b171efb2655c50ca552f3ed1a00336e0decfdc7491347e16968e943412d9b8', 'src/icons/mychems-icon-48.png': 'a6b595b9a65137a993014f28b0974272bed0711695e26170126308d5b1898ab9', 'src/icons/mychems-icon-512.png': 'd694884ea0ead59c3ee4891fea51a37bd3520f5ef71f85a824cac7214b64044e', 'src/icons/mychems-maskable-192.png': 'e911905e89964a39a689d1002421e2feeada34f3799638f2b56abd0b16fa54f6', 'src/icons/mychems-maskable-512.png': '6ff9c116eddac4e34e7bf77eca345897bdc01d50b8d07678650f3ca2ba6c6468'}
     # Owner-approved custom wordmark, not Chemical Brothers artwork or official logo.
     device_icon_sha256['src/brand/mychems-wordmark-ivory-1024.png'] = 'f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849'
     for r_, _, fs in os.walk(ROOT):
@@ -1116,6 +1116,11 @@ def main():
         json.dump(listening, handle, ensure_ascii=False, separators=(',', ':'))
     shutil.copytree(os.path.join(ROOT, "src", "brand"), os.path.join(DIST, "brand"))
     shutil.copytree(os.path.join(ROOT, "src", "icons"), os.path.join(DIST, "icons"))
+    # Conventional URLs are requested by browsers and existing home-screen entries.
+    for name, source in [('favicon.ico', 'mychems-favicon.ico'),
+                         ('apple-touch-icon.png', 'mychems-apple-touch-icon.png'),
+                         ('apple-touch-icon-precomposed.png', 'mychems-apple-touch-icon.png')]:
+        shutil.copy(os.path.join(ROOT, 'src', 'icons', source), os.path.join(DIST, name))
     shutil.copy(os.path.join(ROOT, "src", "site.webmanifest"), DIST)
     res = verify()
     print(f'ページ {len(PAGES)}（日 {sum(1 for v in PAGES.values() if v["lang"] == "ja")} ／ 英 {sum(1 for v in PAGES.values() if v["lang"] == "en")}）')
