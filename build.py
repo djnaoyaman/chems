@@ -9,6 +9,8 @@ from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
+# This source revision changes the shared wordmark and OGP on every page.
+BRAND_UPDATED = '2026-10-31T10:40:00+00:00'
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -212,7 +214,8 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    lds = [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
+    page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': BRAND_UPDATED}
+    lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     hre = ''.join(f'<link rel="alternate" hreflang="{l}" href="{(base + alt[l]) if base else rel(pg, alt[l])}">' for l in LANGS)
     hre += f'<link rel="alternate" hreflang="x-default" href="{(base + alt["ja"]) if base else rel(pg, alt["ja"])}">'
@@ -262,11 +265,11 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <style>{CSS}</style>{ld}
 </head>
 <body>
-<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}">{esc(site)}</a><nav aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
+<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><nav aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
 <main id="main">
 {body}
 </main>
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{BRAND_UPDATED}">2026-10-31 19:40 JST</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -869,6 +872,10 @@ def make_ogp(pg, spec, lang):
     im = Image.new('RGB', (1200, 630), (0, 0, 0)); d = ImageDraw.Draw(im)
     hexrgb = lambda h: tuple(int(h[i:i + 2], 16) for i in (1, 3, 5))
     site = CFG['site_name'][lang]
+    def wordmark(x, y, width):
+        mark = Image.open(os.path.join(ROOT, 'src', 'brand', 'mychems-wordmark-ivory-1024.png')).convert('RGBA')
+        mark = mark.resize((width, round(mark.height * width / mark.width)), Image.Resampling.LANCZOS)
+        im.paste(mark, (x, y), mark)
     def halftone(x0, y0, x1, y1, col, step=14):
         for yy in range(y0, y1, step):
             for xx in range(x0, x1, step):
@@ -897,12 +904,12 @@ def make_ogp(pg, spec, lang):
         y = 315 - (len(lines) * size * 1.08) / 2
         for ln in lines:
             d.text((470 + 5, y + 4), ln, font=f, fill=(228, 0, 124)); d.text((470, y), ln, font=f, fill=(242, 241, 236)); y += size * 1.08
-        d.text((470, 36), site, font=F(B, 28), fill=(242, 241, 236))
+        wordmark(470, 30, 200)
         yr = fdate(w['records']['date']['v'], lang) if 'date' in w['records'] else str(w['year'])
         d.text((470, 560), yr, font=F(Rg, 28), fill=(170, 170, 165))
     else:
         halftone(760, 0, 1200, 630, (26, 26, 255))
-        d.text((64, 56), site, font=F(B, 32), fill=(242, 241, 236))
+        wordmark(64, 48, 240)
         if spec['type'] == 'top':
             lines = ['なぜ11年前の曲が、', 'いま鳴るのか。'] if lang == 'ja' else ['WHY IS AN ELEVEN-YEAR-OLD', 'SONG RINGING OUT NOW?']
             f = F(B, 84 if lang == 'ja' else 62)
@@ -1010,6 +1017,8 @@ def verify():
     bad_img = []
     # Existing alembic identity rendered as UI icons, not record artwork.
     device_icon_sha256 = {'src/icons/icon-192.png': '8fd5bde9676f540161f2d843c23fb360e22ff6b3176e208b706332aeb2b23fa5', 'src/icons/maskable-512.png': '80be30ed85f78baa85d24308cba458532016b31fc516e72e145dfe23ef83d9c9', 'src/icons/icon-32.png': '5877c53a02186d60c0f90181bc803915bcc4f2face09e05d527ff09468259b86', 'src/icons/maskable-192.png': '7f2eb0c4c7ef28f685538a835f2883120b14e4246a1c82b11ed781d68874361f', 'src/icons/icon-16.png': '4e7d798e68bd242c107695e8b4623c033b856c61a00d7c1d17c5d602a7e72925', 'src/icons/icon-48.png': '62e521d1e9b72247a6dd1db79f8448e1638e33a85c39a5bb98a897901882497b', 'src/icons/apple-touch-icon.png': 'c7fd81a273c1a5b0f79b348c9e2a1159799089821087b1999ad68cb32a418694', 'src/icons/icon-512.png': 'eb61dbe67d80fe46e051d18e68dce02b97b291c7724458c8cc3b10e3a8200930'}
+    # Owner-approved custom wordmark, not Chemical Brothers artwork or official logo.
+    device_icon_sha256['src/brand/mychems-wordmark-ivory-1024.png'] = 'f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849'
     for r_, _, fs in os.walk(ROOT):
         if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST) or 'art_review' in r_: continue
         for f in fs:
@@ -1050,7 +1059,7 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
+        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{BRAND_UPDATED}</lastmod>{alts}<changefreq>weekly</changefreq><priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')
@@ -1105,6 +1114,7 @@ def main():
         make_ogp(pg, v['ogp_spec'], v['lang'])
     open(os.path.join(DIST, '.nojekyll'), 'w').close()
     write_seo_files()
+    shutil.copytree(os.path.join(ROOT, "src", "brand"), os.path.join(DIST, "brand"))
     shutil.copytree(os.path.join(ROOT, "src", "icons"), os.path.join(DIST, "icons"))
     shutil.copy(os.path.join(ROOT, "src", "site.webmanifest"), DIST)
     res = verify()
