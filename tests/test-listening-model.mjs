@@ -1,0 +1,69 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { admission, dateLabel, chronological, createQueue, move, receive, queueCoverage } from '../src/listening/model.mjs';
+function evidenceFixture() {
+  // Synthetic unit-test contract ONLY, not approved source data or a real uploader.
+  const at = '2026-10-31T00:00:00Z', channelId = 'UC' + 'X'.repeat(22), id = 'X'.repeat(11);
+  const recording = {id:'r',title:'Title',version:'Album mix'};
+  const entry = {id:'entry',recordingId:'r',videoKey:'v'};
+  const edition = {id:'edition',entries:[entry,{id:'missing',recordingId:'absent'}]};
+  const video = {id, testOnly:false, channelId, officialEvidence:{videoId:id, channelId,channelType:'artist',sourceUrl:'https://example.invalid/evidence',checkedAt:at,reviewed:true,reviewer:'synthetic-test'},match:{editionId:'edition',entryId:'entry',recordingId:'r',title:'Title',version:'Album mix',sourceUrl:'https://example.invalid/edition',checkedAt:at,reviewed:true},availability:{state:'available',embeddable:true,checkedAt:at}};
+  return { video, recording, edition, entry };
+}
+function allowed(f) { return admission(f.video,f.recording,f.edition,f.entry).allowed; }
+test('complete synthetic contract accepted only as schema test',()=>assert.equal(allowed(evidenceFixture()),true));
+test('test-only and unreviewed sources rejected',()=>{
+  let f=evidenceFixture();f.video.testOnly=true;assert.equal(allowed(f),false);
+  f=evidenceFixture();f.video.officialEvidence.reviewed=false;assert.equal(allowed(f),false);
+  f=evidenceFixture();delete f.video.officialEvidence.channelId;assert.equal(allowed(f),false);
+  f=evidenceFixture();f.video.officialEvidence.channelId='UC'+'Y'.repeat(22);assert.equal(allowed(f),false);
+});
+test('exact title/version, recording and edition required',()=>{
+  for(const key of ['title','version','recordingId','editionId','entryId']){const f=evidenceFixture();f.video.match[key]='different';assert.equal(allowed(f),false,key);}
+});
+test('unavailable and unembeddable denied',()=>{
+  for(const state of ['unavailable','region-blocked']){const f=evidenceFixture();f.video.availability.state=state;assert.equal(allowed(f),false);}
+  const f=evidenceFixture();f.video.availability.embeddable=false;assert.equal(allowed(f),false);
+});
+test('missing item retained, never silently skipped on error/end',()=>{
+ const f=evidenceFixture();let q=createQueue(f.edition);q=move(q,1);
+ assert.equal(q.entries[q.index].id,'missing');
+ for(const type of ['unavailable','ended','error'])assert.equal(receive(q,{generation:q.generation,entryId:'missing',type}).index,1);
+ assert.equal(queueCoverage(f.edition,{r:f.recording},{v:f.video}).complete,false);
+});
+test('out-of-order callbacks ignored',()=>{
+ const f=evidenceFixture(),q=move(createQueue(f.edition),1);
+ assert.equal(receive(q,{generation:0,entryId:'entry',type:'ended'}),q);
+ assert.equal(receive(q,{generation:q.generation,entryId:'entry',type:'error'}),q);
+ assert.equal(receive(q,{generation:q.generation,entryId:'missing',type:'unavailable'}).status,'unavailable');
+});
+test('date precision retained without invented exact dates',()=>{
+ assert.equal(dateLabel({year:1994,precision:'early'}),'1994 (early)');
+ assert.equal(dateLabel({year:1994,precision:'late'}),'1994 (late)');
+ assert.equal(dateLabel({year:2001,precision:'year'}),'2001 (day unknown)');
+ assert.equal(dateLabel({year:1995,precision:'day',value:'1995-06-26'}),'1995-06-26');
+ assert.deepEqual(chronological([{date:{year:1995},editorialOrder:1},{date:{year:1994},editorialOrder:2}]).map(x=>x.date.year),[1994,1995]);
+});
+test('reselecting a release invalidates old callbacks even for same entry',()=>{const f=evidenceFixture(),old=createQueue(f.edition),fresh=createQueue(f.edition);assert.equal(receive(fresh,{generation:old.generation,entryId:'entry',type:'ended'}),fresh);});
+
+test('empty unresolved editions never invent a track or allow queue movement',()=>{
+ const e={id:'empty',entries:[]},q=createQueue(e);assert.equal(q.index,-1);assert.equal(move(q,1),q);assert.equal(move(q,-1),q);
+ assert.deepEqual(queueCoverage(e,{},{}),{allowed:0,total:0,playbackChecked:0,complete:false});
+});
+
+test('explicit unchecked runtime status can load only reviewed official exact matches, never counts as tested',()=>{
+ const f=evidenceFixture();f.video.availability={state:'unchecked',embeddable:null};
+ assert.equal(allowed(f),true);assert.match(admission(f.video,f.recording,f.edition,f.entry).reason,/not yet checked/);
+ assert.equal(queueCoverage(f.edition,{r:f.recording},{v:f.video}).playbackChecked,0);
+ f.video.officialEvidence.reviewed=false;assert.equal(allowed(f),false);
+});
+
+test('reviewed distributor OAC evidence does not invent an unobserved channel ID',()=>{
+ const f=evidenceFixture();delete f.video.channelId;
+ f.video.officialEvidence={videoId:f.video.id,channelType:'provided-music',providerName:'Synthetic label',autoGenerated:true,officialArtistBadge:true,sourceUrl:'https://www.youtube.com/watch?v='+f.video.id,checkedAt:'2026-10-31T00:00:00Z',reviewed:true,reviewer:'synthetic-test'};
+ assert.equal(allowed(f),true);
+ f.video.officialEvidence.officialArtistBadge=false;assert.equal(allowed(f),false);
+ f.video.officialEvidence.officialArtistBadge=true;f.video.officialEvidence.autoGenerated=false;assert.equal(allowed(f),false);
+ f.video.officialEvidence.autoGenerated=true;f.video.officialEvidence.sourceUrl='https://example.invalid/fan';assert.equal(allowed(f),false);
+});

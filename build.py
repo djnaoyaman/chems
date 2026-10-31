@@ -5,7 +5,8 @@
 """
 import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
 from urllib.parse import quote
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
+from tools.listening_catalog import catalog as listening_catalog
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -16,8 +17,9 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
 SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
+LISTENING_UPDATED = '2026-10-31T14:07:00+00:00'
 def page_modified(key):
-    return max(SHARED_TOOLS_UPDATED, EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED)
+    return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -226,8 +228,9 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = SHARED_TOOLS_UPDATED
-    modified_jst = '2026-10-31 21:52 JST'
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED)
+    modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
+    listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
     lds = [page_ld] + [x for x in (jsonld, breadcrumb_ld(lang, key, arg, title, pg, base) if base else None) if x]
     ld = ''.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
@@ -277,7 +280,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta name="apple-mobile-web-app-title" content="my Chems">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?{FONTS[lang]}&display=swap" rel="stylesheet">
-<style>{CSS}</style>{ld}
+<style>{CSS}</style>{ld}{listening_assets}
 </head>
 <body id="top">
 <a class="skip-link" href="#main">{'本文へ' if lang == 'ja' else 'Skip to content'}</a>
@@ -619,6 +622,23 @@ def top_page(lang):
           'author': {'@type': 'Person', 'name': 'DJ Naoyaman', 'alternateName': ['宮崎直哉', 'Naoya Miyazaki'], 'url': 'https://djnaoyaman.github.io/profile.html'}}
     emit(lang, 'top', None, CFG['site_name'][lang], desc, body, {'type': 'top'}, ld, refs=refs)
 
+def listening_section(lang):
+    ja = lang == 'ja'
+    matched = len(J('listening-sources.json')['bindings'])
+    total = sum(len(w.get('tracklist', [])) for w in WORKS)
+    title = '公式音源で聴く' if ja else 'Listen to official recordings'
+    intro = (f'発売順で作品を選び、確認できた公式YouTube音源を聴くための棚です。現在は{total}曲枠のうち{matched}曲で公式配信と録音版を照合済み。実再生は未確認です。未照合の曲を別版や非公式投稿で埋めません。' if ja else
+             f'Choose a release chronologically and listen through official YouTube sources. {matched} of {total} track entries currently have official-source and recording matches; playback remains untested. Missing tracks are not replaced with other versions or unofficial uploads.')
+    return f'''<section id="listening" class="listening-shell" aria-labelledby="listening-title"><h2 id="listening-title">{title}</h2><p>{intro}</p>
+<div class="listening-grid"><div><label>{'種類' if ja else 'Release type'}<select data-listening="type"><option value="all">{'収録作品すべて' if ja else 'All cataloged releases'}</option><option value="album">{'アルバム' if ja else 'Albums'}</option><option value="ep">EP</option><option value="single">{'シングル' if ja else 'Singles'}</option></select></label>
+<label>{'作品' if ja else 'Release'}<select data-listening="release"><option value="">{'作品を選ぶ' if ja else 'Choose a release'}</option></select></label>
+<ol class="listening-tracklist" data-listening="tracks"></ol></div>
+<div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
+<div class="listening-visual" data-listening="visual" aria-label="YouTube player">{'動画はまだ読み込んでいません。' if ja else 'No video loaded.'}</div>
+<p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'公式動画を読み込む' if ja else 'Load official video'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button></div><p class="listening-sources" data-listening="sources"></p>
+<p class="small">{'動画を読み込むとYouTubeに接続します。再生可否は地域・環境・時期によって変わります。ページを移動すると再生は終了します。' if ja else 'Loading a video connects to YouTube. Availability depends on region, environment and time. Navigating away stops playback.'}</p></div></div>
+<noscript>{'このプレイヤーにはJavaScriptが必要です。作品の記事と既存のYouTubeリンクをご利用ください。' if ja else 'This player needs JavaScript. Articles and their existing YouTube links remain available.'}</noscript></section>'''
+
 def works_page(lang):
     u = UI[lang]; pg = path(lang, 'works')
     kinds = [('all', u['kinds']['all']), ('album', u['album']), ('single', u['single']), ('ep', 'EP')]
@@ -627,8 +647,9 @@ def works_page(lang):
             'Rows are eras (studio album periods), columns are formats. A work sits in the era of its album, or of the latest studio album if it has none. Atomic numbers follow release order and are provisional until release dates are confirmed.')
     legend = ('白い枠線はEP、左の帯は所属アルバムの版色。版色が未抽出の作品は未刷りの紙色で表示しています。' if lang == 'ja' else
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header>{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
+    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
+    body += '<div class="wrap">' + listening_section(lang) + '</div>'
     emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
 
 def shelf_pages(lang):
@@ -1086,6 +1107,12 @@ def main():
     open(os.path.join(DIST, '.nojekyll'), 'w').close()
     write_seo_files()
     write_full_text_and_recovery()
+    listening = listening_catalog(WORKS, J('listening-sources.json'))
+    for release in listening['releases']:
+        release['articlePath'] = {lang: rel(path(lang, 'works'), path(lang, 'work', release['id'])) for lang in LANGS}
+    shutil.copytree(os.path.join(ROOT, 'src', 'listening'), os.path.join(DIST, 'listening'))
+    with open(os.path.join(DIST, 'listening', 'catalog.json'), 'w', encoding='utf-8') as handle:
+        json.dump(listening, handle, ensure_ascii=False, separators=(',', ':'))
     shutil.copytree(os.path.join(ROOT, "src", "brand"), os.path.join(DIST, "brand"))
     shutil.copytree(os.path.join(ROOT, "src", "icons"), os.path.join(DIST, "icons"))
     shutil.copy(os.path.join(ROOT, "src", "site.webmanifest"), DIST)

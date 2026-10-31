@@ -1,0 +1,36 @@
+'use strict';
+const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');
+(async()=>{const browser=await chromium.launch();let checks=0;fs.mkdirSync(out,{recursive:true});
+for(const lang of ['ja','en'])for(const width of [320,390,844,1280]){
+ const page=await browser.newPage({viewport:{width,height:width===844?390:900},reducedMotion:'reduce'});let apiRequests=0;const errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/*',r=>{const u=new URL(r.request().url());
+  if(u.href==='https://www.youtube.com/iframe_api'){apiRequests++;return r.fulfill({contentType:'application/javascript',body:`window.YT={Player:function(frame,options){window.__listeningMock=options.events;queueMicrotask(()=>options.events.onReady({target:{cueVideoById:value=>{window.__listeningCue=value;}}}));}};window.onYouTubeIframeAPIReady();`});}
+  if(u.hostname==='www.youtube.com' && u.pathname.startsWith('/embed/'))return r.fulfill({contentType:'text/html',body:'<!doctype html><title>Mock YouTube frame</title><body style="background:#111;color:white;font:18px sans-serif">YouTube frame mock — no audio or network playback</body>'});
+  if(u.origin!=='https://djnaoyaman.github.io')return r.abort();
+  let file=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');
+  if(!fs.existsSync(file))return r.fulfill({status:404,body:'missing'});
+  return r.fulfill({path:file,...(file.endsWith('.mjs')?{contentType:'application/javascript'}:{})});
+ });
+ await page.goto('https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'works/');
+ const select=page.locator('[data-listening=release]');await page.waitForFunction(()=>document.querySelector('[data-listening=release]').options.length===58);
+ assert.equal(apiRequests,0);checks++;
+ await select.selectOption('epd');assert.equal(await page.locator('[data-listening=tracks] li').count(),11);checks++;
+ assert(!(await page.locator('[data-listening=load]').isEnabled()));checks++;
+ await page.getByRole('button',{name:/2\. In Dust We Trust/}).click();assert(await page.locator('[data-listening=load]').isEnabled());checks++;
+ assert((await page.locator('[data-listening=coverage]').innerText()).includes('7/11'));checks++;
+ await page.locator('[data-listening=load]').focus();await page.keyboard.press('Enter');
+ await page.waitForFunction(()=>window.__listeningCue?.videoId==='YtnBsvu72kY');assert.equal(apiRequests,1);checks++;
+ const frame=page.locator('[data-listening=visual] iframe');assert.equal(await frame.count(),1);assert.match(await frame.getAttribute('src'),/YtnBsvu72kY/);const box=await frame.boundingBox();assert(box.width>=200&&box.height>=200);checks++;
+ await page.evaluate(()=>window.__listeningMock.onStateChange({data:1}));assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'再生中':'Playing'));checks++;
+ await page.locator('#listening').screenshot({path:path.join(out,`listening-${lang}-${width}.png`)});
+ await page.evaluate(()=>window.__listeningMock.onError({data:101}));assert.equal(await frame.count(),0);assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'曲は飛ばさず':'remains'));checks++;
+ assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('2.'));checks++;
+ await page.locator('[data-listening=next]').click();assert(await page.locator('[data-listening=load]').isEnabled());assert.equal(apiRequests,1);checks++;
+ await page.locator('[data-listening=previous]').click();assert(!(await page.locator('[data-listening=load]').isEnabled()));assert.equal(apiRequests,1);checks++;
+ await page.getByRole('button',{name:/5\. Fuck Up Beats/}).click();assert(!(await page.locator('[data-listening=load]').isEnabled()));checks++;
+ await page.locator('[data-listening=type]').selectOption('single');assert.equal(await select.locator('option').count(),41);assert.equal(await frame.count(),0);checks++;
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);checks++;
+ await page.close();
+}await browser.close();console.log(JSON.stringify({pass:true,checks,network:'all external resources mocked or blocked; no actual YouTube playback',viewports:[320,390,844,1280]}));})().catch(e=>{console.error(e);process.exit(1)});
