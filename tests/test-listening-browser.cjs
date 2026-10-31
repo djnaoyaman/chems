@@ -6,7 +6,7 @@ for(const lang of ['ja','en'])for(const width of [320,390,844,1280]){
  const page=await browser.newPage({viewport:{width,height:width===844?390:900},reducedMotion:'reduce'});let apiRequests=0;const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/*',r=>{const u=new URL(r.request().url());
-  if(u.href==='https://www.youtube.com/iframe_api'){apiRequests++;return r.fulfill({contentType:'application/javascript',body:`window.YT={Player:function(frame,options){window.__listeningMock=options.events;queueMicrotask(()=>options.events.onReady({target:{cueVideoById:value=>{window.__listeningCue=value;}}}));}};window.onYouTubeIframeAPIReady();`});}
+  if(u.href==='https://www.youtube.com/iframe_api'){apiRequests++;return r.fulfill({contentType:'application/javascript',body:`window.YT={Player:function(frame,options){window.__listeningMock=options.events;queueMicrotask(()=>options.events.onReady({target:{cueVideoById:value=>{window.__listeningCue=value;},loadVideoById:value=>{window.__listeningAuto=value;}}}));}};window.onYouTubeIframeAPIReady();`});}
   if(u.hostname==='www.youtube.com' && u.pathname.startsWith('/embed/'))return r.fulfill({contentType:'text/html',body:'<!doctype html><title>Mock YouTube frame</title><body style="background:#111;color:white;font:18px sans-serif">YouTube frame mock: no audio or network playback</body>'});
   if(u.origin!=='https://djnaoyaman.github.io')return r.abort();
   let file=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');
@@ -39,6 +39,20 @@ for(const lang of ['ja','en'])for(const width of [320,390,844,1280]){
  await page.evaluate(()=>{dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true}));dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}));});assert(await page.locator('[data-listening=load]').isEnabled());assert.equal(await frame.count(),0);assert(!(await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'再生中':'Playing'));checks++;
  await page.locator('[data-listening=previous]').click();assert(!(await page.locator('[data-listening=load]').isEnabled()));assert.equal(apiRequests,1);checks++;
  await page.getByRole('button',{name:/5\. Fuck Up Beats/}).click();assert(!(await page.locator('[data-listening=load]').isEnabled()));checks++;
+
+ // Opt-in continuous mode: real state callbacks simulated, never actual audio evidence.
+ assert(!(await page.locator('[data-listening=continuous]').isChecked()));
+ await page.locator('[data-listening=continuous]').check();
+ await page.getByRole('button',{name:/3\. Song To The Siren/}).click();await page.locator('[data-listening=load]').click();
+ await page.waitForFunction(()=>window.__listeningCue?.videoId==='D7R4Z0T5ViA');
+ await page.evaluate(()=>{window.__oldPlayer=window.__listeningMock;window.__listeningMock.onStateChange({data:1});window.__listeningMock.onStateChange({data:0});});
+ await page.waitForFunction(()=>window.__listeningAuto?.videoId==='kJqSFi0ukEY');assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('4.'));checks++;
+ await page.evaluate(()=>{window.__oldPlayer.onStateChange({data:0});window.__listeningMock.onStateChange({data:0});});assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('4.'));checks++;
+ await page.evaluate(()=>{window.__listeningMock.onStateChange({data:1});window.__listeningMock.onStateChange({data:0});});assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('5.'));assert.equal(await frame.count(),0);assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'飛ばしていません':'No track was skipped'));checks++;
+ await page.getByRole('button',{name:/3\. Song To The Siren/}).click();await page.locator('[data-listening=load]').click();await page.waitForFunction(()=>window.__listeningCue?.videoId==='D7R4Z0T5ViA');
+ await page.evaluate(()=>window.__listeningMock.onAutoplayBlocked());assert((await page.locator('[data-listening=status]').innerText()).includes(lang==='ja'?'再生ボタン':'play button'));assert.equal(await frame.count(),1);checks++;
+ await page.locator('[data-listening=continuous]').uncheck();await page.evaluate(()=>{window.__listeningMock.onStateChange({data:1});window.__listeningMock.onStateChange({data:0});});assert((await page.locator('[data-listening=tracks] button[aria-current=true]').innerText()).startsWith('3.'));checks++;
+ await page.locator('#listening').screenshot({path:path.join(out,`listening-continuous-${lang}-${width}.png`)});
  await page.locator('[data-listening=type]').selectOption('single');assert.equal(await select.locator('option').count(),41);assert.equal(await frame.count(),0);checks++;
  const overflow=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,items:[...document.querySelectorAll('body *')].filter(e=>e.getBoundingClientRect().right>innerWidth+1).slice(0,12).map(e=>({tag:e.tagName,cls:e.className,right:e.getBoundingClientRect().right,width:e.getBoundingClientRect().width}))}));if(overflow.scroll>overflow.width+1)console.error(JSON.stringify({lang,width,overflow}));
  assert(overflow.scroll<=overflow.width+1);assert.deepEqual(errors,[]);checks++;
