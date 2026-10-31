@@ -21,7 +21,7 @@ if (host) {
   const first=document.createElement('option');first.value='';first.textContent=t.choose;$('release').append(first);
   for(const r of chronological(data.releases)) {
    if ($('type').value !== 'all' && r.type !== $('type').value) continue;
-   const option=document.createElement('option');option.value=r.id;option.textContent=`${dateLabel(r.date)} — ${r.title}`;$('release').append(option);
+   const option=document.createElement('option');option.value=r.id;const ed=data.editions[r.editionIds[0]],count=queueCoverage(ed,data.recordings,data.videos).allowed;option.textContent=`${dateLabel(r.date)} — ${r.title} (${count} ${ja?'音源照合':'matched'})`;$('release').append(option);
   }
   if ([...$('release').options].some(o=>o.value===selected)) $('release').value=selected;
  }
@@ -66,7 +66,7 @@ if (host) {
  $('previous').addEventListener('click',()=>{queue=move(queue,-1);renderQueue();});
  $('next').addEventListener('click',()=>{queue=move(queue,1);renderQueue();});
  async function loadSelected(continuePlayback = false, requestPlay = true) {
-  if(!queue)return;$('dock').hidden=false;const entry=edition.entries[queue.index];$('load').disabled=true;
+  if(!queue)return;$('dock').hidden=false;const entry=edition.entries[queue.index],requestedGeneration=queue.generation;$('load').disabled=true;
   buffering.clear();$('stop').disabled=false;pendingAuto=continuePlayback;continuity=session(entry.id,queue.generation,$('continuous').checked);
   const mounted = await adapter.mount({container:$('visual'),video:data.videos[entry.videoKey],recording:data.recordings[entry.recordingId],edition,entry,selectionGeneration:queue.generation,userRequested:true,continuePlayback,requestPlay,onState:event=>{
    if(!queue)return;const next=receive(queue,event);if(next===queue)return;queue=next;
@@ -89,18 +89,18 @@ if (host) {
    else if(effect?.type==='release-ended')status(ct.end);
   }});
   // Explicit load should leave the native player visible below the fixed site header.
-  if(!mounted.mounted)$('pause').disabled=true;
+  if(!mounted.mounted&&queue?.generation===requestedGeneration&&edition?.entries[queue.index]?.id===entry.id)$('pause').disabled=true;
  }
  $('load').addEventListener('click',()=>{if(!adapter.play())void loadSelected(false,true);});
  $('pause').addEventListener('click',()=>adapter.pause());
- $('stop').addEventListener('click',()=>{renderQueue();status(ja?'停止しました。別の曲を選べます。':'Stopped. You can choose another track.');});
- $('close').addEventListener('click',()=>{renderQueue();$('dock').hidden=true;$('dock').classList.remove('is-expanded');$('full').setAttribute('aria-expanded','false');$('start').focus();});
+ $('stop').addEventListener('click',()=>{renderQueue();status(ja?'停止しました。別の曲を選べます。':'Stopped. You can choose another track.');if(!$('load').disabled)$('load').focus();});
+ $('close').addEventListener('click',()=>{renderQueue();$('dock').hidden=true;$('dock').classList.remove('is-expanded');$('full').setAttribute('aria-expanded','false');$('full').textContent=ja?'拡大':'Expand';$('start').focus();});
  $('full').addEventListener('click',()=>{const expanded=$('dock').classList.toggle('is-expanded');$('full').setAttribute('aria-expanded',String(expanded));$('full').textContent=expanded?(ja?'縮小':'Reduce'):(ja?'拡大':'Expand');});
  $('dock').addEventListener('keydown',e=>{if(e.key==='Escape'&&$('dock').classList.contains('is-expanded')){e.preventDefault();$('full').click();$('full').focus();}});
  $('start').addEventListener('click',()=>{for(const r of chronological(data.releases)){const ed=data.editions[r.editionIds[0]],index=ed.entries.findIndex(e=>!sessionFailures.has(e.id)&&admission(data.videos[e.videoKey],data.recordings[e.recordingId],ed,e).allowed);if(index<0)continue;$('type').value='all';listReleases();$('release').value=r.id;chooseRelease(r.id);queue=move(queue,index);renderQueue();$('dock').hidden=false;void loadSelected(false,true);break;}});
  $('continuous').addEventListener('change',()=>{if(pendingAuto&&!$('continuous').checked){renderQueue();return;}if(continuity)continuity={...continuity,optedIn:$('continuous').checked};});
  window.addEventListener('pagehide',()=>{buffering.clear();$('stop').disabled=true;continuity=null;pendingAuto=false;adapter.dispose();});
  window.addEventListener('pageshow',event=>{if(event.persisted&&data&&edition&&queue)renderQueue();});
- try {const response=await fetch(new URL('catalog.json',import.meta.url));if(!response.ok)throw Error();data=await response.json();listReleases();status(t.select);}
- catch {status(t.loadError);}
+ try {const response=await fetch(new URL('catalog.json',import.meta.url));if(!response.ok)throw Error();data=await response.json();listReleases();$('start').disabled=false;status(t.select);}
+ catch {$('summary').textContent=t.loadError;status(t.loadError);}
 }
