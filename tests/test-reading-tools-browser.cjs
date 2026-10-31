@@ -7,7 +7,7 @@ for(const lang of ['ja','en'])for(const width of [390,844]){
  await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://djnaoyaman.github.io')return r.abort();let file=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');return r.fulfill({status:fs.existsSync(file)?200:404,path:fs.existsSync(file)?file:path.join(root,'404.html')});});
  await page.goto('https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'about/');
  await page.evaluate(()=>{window.copied=[];Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async u=>window.copied.push(u)}});Object.defineProperty(navigator,'share',{configurable:true,value:undefined});});
- await page.keyboard.press('Tab');assert(await page.locator('.skip-link').isFocused());checks++;
+ await page.keyboard.press('Tab');assert(await page.locator('.skip-link').evaluate(el=>el===document.activeElement));checks++;
  await page.locator('[data-copy]').click();assert.equal(await page.evaluate(()=>window.copied.length),1);checks++;
  await page.locator('[data-share]').click();assert.equal(await page.evaluate(()=>window.copied.length),2);checks++;
  await page.evaluate(()=>Object.defineProperty(navigator,'share',{configurable:true,value:async()=>{window.shared=true}}));await page.locator('[data-share]').click();assert(await page.evaluate(()=>window.shared));checks++;
