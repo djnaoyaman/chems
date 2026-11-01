@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createApiLoader, createVisiblePlayerAdapter, classifyPlayerError } from '../src/listening/youtube-adapter.mjs';
+import { createQueue, receive } from '../src/listening/model.mjs';
+import { createBufferingNotice } from '../src/listening/buffering.mjs';
 function setup() {
  const nodes=[], callbacks=[];
  const document={createTextNode:text=>({text}),createElement:tag=>({tag,remove(){this.removed=true;}}),head:{append:n=>nodes.push(n)}};
@@ -11,6 +13,24 @@ function setup() {
  const video={id,testOnly:false,channelId,officialEvidence:{channelId,channelType:'artist',videoId:id,sourceUrl:'https://example.invalid/proof',checkedAt:at,reviewed:true,reviewer:'synthetic-test'},match:{recordingId:'r',entryId:'e',editionId:'edition',title:'Title',version:'Album mix',sourceUrl:'https://example.invalid/edition',checkedAt:at,reviewed:true},availability:{state:'available',embeddable:true,checkedAt:at}};
  const events=[];return {nodes,document,container,YT,callbacks,events,args:{container,video,recording,entry,edition,selectionGeneration:17,userRequested:true,onState:e=>events.push(e)}};
 }
+
+for (const [native,type] of [[-1,'unstarted'],[5,'cued']]) test(`buffering to ${type} clears the notice and permits later playback/recovery`,async()=>{
+ const s=setup();let now=0,id=0,slow=0;const tasks=new Map();
+ const timers={setTimeout(fn,ms){tasks.set(++id,{fn,at:now+ms});return id;},clearTimeout(id){tasks.delete(id);}};
+ const advance=ms=>{now+=ms;for(const [key,t] of [...tasks])if(t.at<=now){tasks.delete(key);t.fn();}};
+ const notice=createBufferingNotice({schedule:timers.setTimeout,cancel:timers.clearTimeout,onSlow:()=>slow++});
+ let q=createQueue({id:'edition',entries:[s.args.entry]});
+ const a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT,timers});
+ const mount=()=>a.mount({...s.args,selectionGeneration:q.generation,onState:e=>{const next=receive(q,e);assert.notEqual(next,q);q=next;notice.event(e);}});
+ await mount();let cb=s.callbacks.at(-1);cb.onReady({target:{cueVideoById(){}}});
+ cb.onStateChange({data:3});advance(5000);cb.onStateChange({data:native});assert.equal(q.status,type);advance(16000);assert.equal(slow,0);
+ cb.onStateChange({data:3});advance(16000);assert.equal(slow,1);cb.onStateChange({data:native});assert.equal(q.status,type);advance(16000);assert.equal(slow,1);
+ cb.onStateChange({data:3});cb.onStateChange({data:1});advance(16000);assert.equal(q.status,'playing');assert.equal(slow,1);
+ cb.onStateChange({data:2});assert.equal(q.status,'paused');cb.onStateChange({data:3});cb.onError({data:101});advance(16000);assert.equal(q.status,'error');assert.equal(slow,1);
+ cb.onStateChange({data:native});assert.equal(q.status,'error');assert.equal(s.callbacks.length,1);
+ await mount();assert.equal(s.callbacks.length,2);cb=s.callbacks.at(-1);cb.onReady({target:{cueVideoById(){}}});cb.onStateChange({data:native});cb.onStateChange({data:1});assert.equal(q.status,'playing');
+ notice.clear();a.dispose();cb.onStateChange({data:native});advance(16000);assert.equal(q.status,'playing');
+});
 test('native-ready watchdog fails once and stale readiness cannot revive a timed-out player',async()=>{
  const s=setup();let timeout;const timers={setTimeout(fn){timeout=fn;return 1;},clearTimeout(){}};
  const a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT,timers});

@@ -99,6 +99,8 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
           else if (event.data === 0) notify('ended');
           else if (event.data === 2) notify('paused');
           else if (event.data === 3) notify('buffering');
+          else if (event.data === -1) notify('unstarted');
+          else if (event.data === 5) notify('cued');
         }
       }});
       return { mounted: !blocked, reason: blocked ? 'Player unavailable' : 'Visible iframe mounted; await native controls' };
