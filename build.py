@@ -16,7 +16,7 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 # Only the bilingual home/about descriptions changed in this editorial correction.
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
-SHARED_TOOLS_UPDATED = '2026-11-01T08:30:00+00:00'
+SHARED_TOOLS_UPDATED = '2026-11-01T07:57:00+00:00'
 LISTENING_UPDATED = '2026-11-01T07:20:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
