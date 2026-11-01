@@ -38,3 +38,13 @@ Parent review refinements, without additional round credit:
 Fresh evidence names: `density-{lang}-{width}.json`, `usability-{lang}-390.png`, `listening-inline-ja-320.png`, `listening-inline-en-1440.png`, `landscape-dock-scrolled-{lang}.png`, `sources-title-200-{lang}.png`, and `sources-right-edge-200-{lang}.png`. Desktop emulation and mocked media remain the limits; no physical touch or real YouTube playback tests. Parent retains ready/merge/deploy authority for PR #22.
 
 Combined integration validation: 218-page build, all static/archive/brand/data guards, 43 pure player cases, and all ten browser suites passed locally (Premium 66, archive 84, reading tools 44, player 520, entry 8, discovery 140, reading audit 228, sources scroll 10, plus wordmark/profile matrices). Final screenshot review also constrained the decorative menu icon to 24px with unit line height so it remains inside its 44px button under 200% text enlargement; discovery and sources browser suites were repeated. Exact-head CI remains the publication gate.
+
+## Loading/recovery refinement: native waiting states
+
+Follow-up to round 19, not an additional round. Baseline main: 5ab5746254f9ed4f5bc11ca82fcec5635dc9fb5a; no open PRs and clean tracked checkout before edits. Parent assigned sole implementation ownership.
+
+Code inspection found that native -1 (unstarted) and 5 (cued) were omitted by the adapter and queue model. Consequently buffering followed by either state could retain an obsolete delayed-loading notice. The adapter now emits both states, the model admits them, and the UI displays bilingual waiting-to-play guidance. The existing non-buffering event path cancels the timer; selection, admission, continuity, Stop and retry logic are unchanged.
+
+Offline unit and browser sequences cover both states before and after the 15-second notice, more than 15 seconds of subsequent waiting, fresh buffering, Play/Pause, error, no automatic retry, explicit retry and stale callbacks. Browser evidence uses actual desktop Chromium with all external transport blocked or fulfilled by fixtures, in Japanese and English. New screenshots: native-unstarted-{ja,en}-390.png and native-cued-{ja,en}-390.png. Existing full regression retains Stop/destroy, repeated clicks and native-readiness timeout coverage.
+
+This is a status-accuracy correction only. No event trace established that these states caused the separately observed real-media failure (0:00 without established audio/time advancement). No real YouTube request or retry was made for this patch. All 54 bindings/225 slots, release/research dates and brand assets are unchanged. Parent retains ready/merge/Pages authority.

@@ -18,6 +18,17 @@ for(const lang of ['ja','en'])for(const width of [320,375,390,430,768,844,1280,1
  await $('start').focus();await page.keyboard.press('Enter');await page.waitForFunction(()=>window.__listeningAuto?.videoId==='4QKi8DorEpM');
  assert(await $('dock').isVisible());assert.equal(await $('release').inputValue(),'epd');assert((await $('tracks').locator('button[aria-current=true]').innerText()).startsWith('1.'));assert.equal(await $('tracks').locator('li').count(),11);assert.equal(apiRequests,1);checks++;
  assert((await $('coverage').innerText()).includes('10/11'));assert.equal(await frame.count(),1);const box=await frame.boundingBox();assert(box.width>=200&&box.height>=200);checks++;
+ if(width===390)for(const native of [-1,5]){
+  const emit=data=>page.evaluate(data=>window.__listeningMock.onStateChange({data}),data);
+  const waiting=lang==='ja'?'再生待ちです。表示中のYouTube再生ボタンで開始できます。':'Waiting to play. Use the visible YouTube play button to start.';
+  const selected=await $('now').innerText(),mounts=await page.evaluate(()=>window.__mounts);
+  await emit(3);await page.clock.fastForward(5000);await emit(native);await page.clock.fastForward(16000);assert.equal(await $('status').innerText(),waiting);checks++;
+  await emit(3);await page.clock.fastForward(16000);assert((await $('status').innerText()).includes(lang==='ja'?'時間がかか':'longer than'));await emit(native);assert.equal(await $('status').innerText(),waiting);await page.clock.fastForward(16000);assert.equal(await $('status').innerText(),waiting);checks++;
+  await page.screenshot({path:path.join(out,`native-${native===5?'cued':'unstarted'}-${lang}-390.png`)});
+  await emit(3);await $('load').click();assert((await $('status').innerText()).includes(lang==='ja'?'再生中':'Playing'));await $('pause').click();const paused=await $('status').innerText();assert(paused.includes(lang==='ja'?'一時停止':'Paused'));await page.clock.fastForward(16000);assert.equal(await $('status').innerText(),paused);assert.equal(await page.evaluate(()=>window.__mounts),mounts);checks++;
+  await emit(3);await page.evaluate(()=>{window.__waitingOld=window.__listeningMock;window.__listeningMock.onError({data:101});});const failed=await $('status').innerText();await page.clock.fastForward(16000);assert.equal(await $('status').innerText(),failed);assert(await $('retry').isVisible());assert.equal(await frame.count(),0);assert.equal(await page.evaluate(()=>window.__mounts),mounts);checks++;
+  await $('retry').click();await page.waitForFunction(n=>window.__mounts===n+1,mounts);await page.evaluate(native=>window.__waitingOld.onStateChange({data:native}),native);await emit(native);assert.equal(await $('status').innerText(),waiting);await $('load').click();assert((await $('status').innerText()).includes(lang==='ja'?'再生中':'Playing'));assert.equal(await $('now').innerText(),selected);assert((await $('coverage').innerText()).includes('10/11'));checks++;
+ }
  assert(!(await $('continuous').isChecked()));await page.evaluate(()=>window.__listeningMock.onStateChange({data:1}));assert((await $('status').innerText()).includes(lang==='ja'?'再生中':'Playing'));checks++;
  await $('pause').click();assert((await $('status').innerText()).includes(lang==='ja'?'一時停止':'Paused'));await $('load').click();assert((await $('status').innerText()).includes(lang==='ja'?'再生中':'Playing'));checks++;
  await $('full').click();assert.equal(await $('full').getAttribute('aria-expanded'),'true');await $('full').press('Escape');assert.equal(await $('full').getAttribute('aria-expanded'),'false');checks++;
