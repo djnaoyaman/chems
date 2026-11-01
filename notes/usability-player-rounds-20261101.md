@@ -22,3 +22,19 @@ All browser operations below use actual Windows desktop Chromium, both languages
 Expanded browser regression: 496 assertions, plus 8 loading/failure/keyboard assertions. Pure listening suite: 43 cases including the new native-readiness watchdog test. Build validates 218 bilingual pages, internal links (now correctly strips query strings), metadata, artwork/icon hashes and contrast. Known inherited limits: ten works lack extracted palette, nine lack artwork, actual video embedding/playback untested. Test screenshots are excluded only from repository artwork-source auditing; published images remain protected.
 
 Draft status: exact-head full CI and parent screenshot review required before ready/merge. PR #21 independently handles menu/typography/list discovery. No claim that mocked transport resolves all YouTube/device failures.
+
+## Integration and review refinements (same 20 rounds)
+
+PR #21 was published by the parent at main `5ef2fb795de747f773a6d6555e72b2fb4106fd00`. Its exact-commit Pages workflow `41288539167` has successful build and deploy jobs. This branch merges that main into the existing Draft PR #22, retaining both feature sets, all browser audits, and both protected CSS/JS hashes. Conflicts were resolved individually; the shared and listening UI revision moves to the actual new refinement time `2026-11-01T08:22:00+00:00`. Original release, research and profile-author dates are untouched.
+
+Parent review refinements, without additional round credit:
+
+- Mobile header now keeps the 180px logo alongside two 44px controls; menu icon has an explicit localized accessible name. Guide and listening link share a compact hierarchy. At 390px the first card is y513 (JA) / y545 (EN), versus roughly y690 previously; 320px is y591 / y573. All filter/menu/language controls have a 44px minimum in both dimensions.
+- At 320px inline transport uses two columns and nonwrapping full labels. Tests assert no label overflow, including Japanese 再生 and 一時停止.
+- Desktop inline native video occupies a bounded left column (at least 200×200, at most 360px tall), with track title and transport alongside it. All six transport buttons must fit within the 900px viewport after the player is brought into view.
+- At 844×390 the fixed dock retains internal scrolling. Tests focus each control and require its full rectangle below the sticky dock header, inside the viewport, and hit-testable. A dedicated scrolled screenshot shows the transport; compact landscape header avoids covering its first row.
+- Sources tables explicitly announce horizontal scrolling, expose a focusable named region, and explain arrow-key operation. At 200% text enlargement, tests perform actual horizontal keyboard and wheel scrolling, focus a Title link, and capture Title/right-edge views. Document-width checks alone are not treated as evidence that every table column is visible.
+
+Fresh evidence names: `density-{lang}-{width}.json`, `usability-{lang}-390.png`, `listening-inline-ja-320.png`, `listening-inline-en-1440.png`, `landscape-dock-scrolled-{lang}.png`, `sources-title-200-{lang}.png`, and `sources-right-edge-200-{lang}.png`. Desktop emulation and mocked media remain the limits; no physical touch or real YouTube playback tests. Parent retains ready/merge/deploy authority for PR #22.
+
+Combined integration validation: 218-page build, all static/archive/brand/data guards, 43 pure player cases, and all ten browser suites passed locally (Premium 66, archive 84, reading tools 44, player 520, entry 8, discovery 140, reading audit 228, sources scroll 10, plus wordmark/profile matrices). Final screenshot review also constrained the decorative menu icon to 24px with unit line height so it remains inside its 44px button under 200% text enlargement; discovery and sources browser suites were repeated. Exact-head CI remains the publication gate.

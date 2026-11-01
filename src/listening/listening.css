@@ -26,3 +26,16 @@ html:has(.listening-dock.is-inline:not([hidden])){scroll-padding-bottom:0}.liste
 [data-listening=selection]{font-size:.9rem;line-height:1.7;margin:.5rem 0}
 @media(max-width:600px){.listening-picker{grid-template-columns:minmax(0,1fr)}.listening-shell{padding:1rem}.listening-dock .listening-controls button{flex:1 1 28%}}
 @media(prefers-reduced-motion:reduce){.listening-shell *{scroll-behavior:auto!important}}
+.listening-dock{scroll-padding-top:6.5rem;scroll-padding-bottom:1rem}
+.listening-controls button{white-space:nowrap}
+.listening-dock.is-inline .listening-visual{outline:1px solid #555}
+@media(max-height:500px){.listening-dock:not(.is-inline){scroll-padding-top:56px}.listening-dock:not(.is-inline) .listening-dock-top>span{display:none}}
+@media(max-width:380px){.listening-dock .listening-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.listening-dock .listening-controls button{padding:.6rem .3rem}}
+@media(min-width:1000px){
+ .listening-dock.is-inline{display:grid;grid-template-columns:minmax(200px,1.35fr) minmax(240px,1fr);gap:.4rem 1.25rem;align-items:start}
+ .listening-dock.is-inline>.listening-dock-top,.listening-dock.is-inline>h3{grid-column:1/-1}
+ .listening-dock.is-inline>.listening-visual{grid-column:1;grid-row:3/10;min-height:200px;aspect-ratio:16/9}
+ .listening-dock.is-inline>p,.listening-dock.is-inline>.listening-controls,.listening-dock.is-inline>[data-listening=retry]{grid-column:2;margin:.3rem 0}
+ .listening-dock.is-inline>.listening-sources,.listening-dock.is-inline>.small{grid-column:1/-1}
+ .listening-dock.is-inline .listening-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+}

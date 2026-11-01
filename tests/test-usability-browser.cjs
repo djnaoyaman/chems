@@ -1,0 +1,20 @@
+// Offline desktop Chromium: every external request is blocked, never real playback.
+const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch();const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');fs.mkdirSync(out,{recursive:true});let checks=0;
+for(const lang of ['ja','en'])for(const width of [320,375,390,430,768,844,1280,1440]){
+ const page=await browser.newPage({viewport:{width,height:width===844?390:900},reducedMotion:'reduce'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://djnaoyaman.github.io')return r.abort();let f=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');return fs.existsSync(f)?r.fulfill({path:f,...(f.endsWith('.mjs')?{contentType:'application/javascript'}:{})}):r.fulfill({status:404,body:'missing'});});
+ const base='https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'');await page.goto(base+'works/');
+ const tiles=page.locator('#ptable .el');await page.waitForFunction(()=>document.querySelector('[data-catalog-count]').textContent);
+ assert.equal(await tiles.count(),57);assert.equal(await tiles.locator('.nm').first().evaluate(e=>parseFloat(getComputedStyle(e).fontSize))>=13,true);checks++;
+ if(width===320||width===390){const first=await tiles.first().boundingBox();assert(first.y<(width===320?650:590),`first card ${lang}/${width}: ${first.y}`);for(const selector of ['.nav-toggle','.gh .lang','.filters button']){for(const e of await page.locator(selector).all()){const b=await e.boundingBox();assert(b.height>=44&&b.width>=44);}}fs.writeFileSync(path.join(out,`density-${lang}-${width}.json`),JSON.stringify({firstCardY:first.y,logoWidth:(await page.locator('.site-wordmark').boundingBox()).width}));checks++;}
+ if(width<=760){await page.locator('.nav-toggle').click();assert(await page.locator('#site-nav').isVisible());await page.screenshot({path:path.join(out,"menu-"+lang+"-"+width+".png")});await page.keyboard.press('Escape');assert(await page.locator('#site-nav').isHidden());assert(await page.locator('.nav-toggle').evaluate(e=>e===document.activeElement));checks++;}
+ await page.locator('.filters[data-target=ptable] [data-k=ep]').click();assert.equal(await page.locator('#ptable .el:visible').count(),7);assert(await page.locator('#ptable').evaluate(e=>e.classList.contains('is-filtered')));checks++;
+ await page.screenshot({path:path.join(out,"ep-filter-"+lang+"-"+width+".png")});await page.locator('#work-search').fill('zzzz');assert.equal(await page.locator('#ptable .el:visible').count(),0);assert((await page.locator('[data-catalog-count]').innerText()).includes('0'));checks++;
+ await page.locator('[data-catalog-reset]').click();assert.equal(await page.locator('#ptable .el:visible').count(),57);checks++;
+ await page.locator('#work-search').fill('ＤＩＧ');assert.equal(await page.locator('#ptable .el:visible').count(),1);await page.reload();assert.equal(await page.locator('#ptable .el:visible').count(),1);checks++;
+ await page.locator('#ptable .el:visible').click();assert.equal(await page.locator('h1').count(),1);await page.goBack();assert.equal(await page.locator('#ptable .el:visible').count(),1);checks++;
+ await page.locator('[data-catalog-reset]').click();await page.locator('[data-view=table]').click();assert.equal(await page.locator('#ptable .stack').count(),33);assert.equal(await tiles.count(),57);await page.locator('[data-view=list]').click();assert.equal(await tiles.count(),57);checks++;
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.deepEqual(errors,[]);checks++;
+ await page.screenshot({path:path.join(out,`usability-${lang}-${width}.png`)});await page.close();
+}await browser.close();console.log(JSON.stringify({pass:true,checks,network:'external blocked',device:'desktop Chromium emulation; not physical iOS'}));})().catch(e=>{console.error(e);process.exit(1)});
