@@ -20,6 +20,8 @@ SHARED_TOOLS_UPDATED = '2026-11-01T08:22:00+00:00'
 LISTENING_UPDATED = '2026-11-01T09:23:00+00:00'
 # A narrow bilingual profile wording revision, independent of the listening catalog.
 PROFILE_MODIFIED = '2026-11-01T10:08:00+00:00'
+# Shared profile-link labels only; editorial page dates are preserved.
+PROFILE_LINKS_UPDATED = '2026-11-01T11:12:00+00:00'
 def page_modified(key):
     if key == 'profile':
         return max(SHARED_TOOLS_UPDATED, PROFILE_MODIFIED)
@@ -40,7 +42,7 @@ UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
 
 # ---------------------------------------------------------------- 文言
 UI = {
- 'ja': {'works': '作品・周期表', 'timeline': '年表', 'equations': '共作者', 'chain': '関係図', 'now': 'アーカイブへの案内', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': 'プロフィール',
+ 'ja': {'works': '作品・周期表', 'timeline': '年表', 'equations': '共作者', 'chain': '関係図', 'now': 'アーカイブへの案内', 'shelf': '別棚', 'about': 'このサイトについて', 'sources': '出典庫', 'profile': '編者',
         'lang_other': 'EN', 'album': 'スタジオアルバム', 'single': 'シングル', 'ep': 'EP',
         'listen': '聴く', 'record': '記録', 'tracklist': '収録曲', 'music': '音楽性', 'tech': 'テクノロジー', 'context': '周辺環境', 'testimony': '証言', 'reviews': 'レビュー', 'view': '私見', 'after': 'その後', 'own': '持つ', 'src': '出典',
         'date': '発売日', 'year': '発売', 'on': '収録', 'label': 'レーベル', 'formats': '形態', 'uk': 'UK最高位', 'charts': '各国の最高位', 'certs': '認定', 'featured': '参加', 'mv': 'MV監督', 'artwork': 'アートワーク', 'notes': '注記', 'guest': 'アルバムへの参加', 'singles_from': 'このアルバムのシングル', 'album_mv': 'アルバム収録曲のMV',
@@ -65,7 +67,7 @@ UI = {
         'noads': 'DJ Naoyamanは、Amazonアソシエイト・プログラムの参加者です。このプログラムは、サイトがAmazon.co.jpへのリンクを通じて紹介料を得られる手段を提供することを目的としています。', 'checked': '確認日',
         'own_link': 'Amazon.co.jpで探す', 'own_note': '上記はAmazonアソシエイトのリンクです。',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
- 'en': {'works': 'Works / periodic table', 'timeline': 'Timeline', 'equations': 'Collaborators', 'chain': 'Connections', 'now': 'Archive guide', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Profile',
+ 'en': {'works': 'Works / periodic table', 'timeline': 'Timeline', 'equations': 'Collaborators', 'chain': 'Connections', 'now': 'Archive guide', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Editor',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
         'listen': 'Listen', 'record': 'Record', 'tracklist': 'Tracklist', 'music': 'Music', 'tech': 'Technology', 'context': 'Context', 'testimony': 'Testimony', 'reviews': 'Reviews', 'view': 'View', 'after': 'Afterwards', 'own': 'Own', 'src': 'Sources',
         'date': 'Released', 'year': 'Released', 'on': 'On', 'label': 'Label', 'formats': 'Formats', 'uk': 'UK peak', 'charts': 'Peak positions', 'certs': 'Certifications', 'featured': 'Featuring', 'mv': 'Video', 'artwork': 'Artwork', 'notes': 'Notes', 'guest': 'Guest on the album', 'singles_from': 'Singles from the album', 'album_mv': 'Videos for album tracks',
@@ -232,7 +234,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}

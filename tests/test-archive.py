@@ -7,6 +7,7 @@ EXPECTED='2026-10-31T11:50:00+00:00'
 EDITORIAL='2026-11-01T08:22:00+00:00'
 LISTENING='2026-11-01T09:23:00+00:00'
 PROFILE='2026-11-01T10:08:00+00:00'
+LABELS='2026-11-01T11:12:00+00:00'
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
@@ -22,7 +23,7 @@ class Archive(unittest.TestCase):
  def test_dates(self):
   expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertGreater(len(pages),200)
   for p in pages:
-   h=p.read_text();self.assertIn(f'<time datetime="{PROFILE}">',h)
+   h=p.read_text();self.assertIn(f'<time datetime="{LABELS}">',h)
    expected=LISTENING if p.relative_to(ROOT/'dist').as_posix() in ('works/index.html','en/works/index.html') else (PROFILE if p.relative_to(ROOT/'dist').as_posix() in ('profile/index.html','en/profile/index.html') else EDITORIAL)
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
