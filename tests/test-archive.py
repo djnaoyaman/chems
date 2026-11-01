@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 EXPECTED='2026-10-31T11:50:00+00:00'
 EDITORIAL='2026-10-31T12:52:00+00:00'
-LISTENING='2026-11-01T04:46:00+00:00'
+LISTENING='2026-11-01T05:09:00+00:00'
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
