@@ -25,8 +25,9 @@ PROFILE_LINKS_UPDATED = '2026-11-01T11:12:00+00:00'
 # Footer cleanup and work-page disclosure wording; archive content is unchanged.
 FOOTER_UPDATED = '2026-11-01T12:24:00+00:00'
 JAPANESE_UPDATED = '2026-11-01T12:30:00+00:00'
+COVERS_UPDATED = '2026-11-01T12:38:00+00:00'
 def page_modified(key):
-    return JAPANESE_UPDATED
+    return COVERS_UPDATED if key in ('works', 'about') else JAPANESE_UPDATED
 
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
@@ -236,7 +237,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED, COVERS_UPDATED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
@@ -309,7 +310,7 @@ def emit(lang, key, arg, title, desc, body, ogp_spec, jsonld=None, cur=None, ref
         for i in refs.ids: USAGE.setdefault(i, set()).add((lang, pg, title))
 
 # ---------------------------------------------------------------- 部品
-def tile(w, lang, pg, cls='', show_name=True):
+def tile(w, lang, pg, cls='', show_name=True, cover=False):
     bg, i1, i2, _ = palette(w); fg = text_on(bg); sc = i1 if cr(i1, bg) >= 3 else fg
     band = ''
     if w['type'] == 'single' and w.get('album'):
@@ -317,8 +318,18 @@ def tile(w, lang, pg, cls='', show_name=True):
         if palette(W[w['album']])[0] == bg: band = f';--band:{UNPRINTED[2]}'
     nm = f'<span class="nm">{esc(w["title"])}<br>{w["year"]}</span><span class="release-format">{UI[lang][w["type"]]}</span>' if show_name else ''
     no = f'<span class="no">{w["atomic"]}</span>' if show_name else ''
+    contents = f'{no}<span class="sym">{esc(w["symbol"])}</span>{nm}'
+    if cover:
+        # These two assets are parent-album key visuals, not this single's sleeve.
+        artwork = art_file(w) if w['id'] not in ('gtko', 'wgtt') else None
+        if artwork:
+            image = f'<img src="{rel(pg, "art/" + os.path.basename(artwork))}" alt="" width="256" height="256" loading="lazy" decoding="async">'
+        else:
+            image = '<span class="catalog-cover-missing">ジャケット未掲載</span>'
+        contents = f'<span class="catalog-cover">{image}</span><span class="catalog-card-meta">{contents}</span>'
+        cls += ' catalog-cover-card'
     return (f'<a class="el {w["type"]} {cls}" data-kind="{w["type"]}" data-search="{esc(w["title"])} {w["year"]}" data-order="{w["atomic"]}" href="{rel(pg, path(lang, "work", w["id"]))}" style="--bg:{bg};--fg:{fg};--ink2:{i2};--sc:{sc}{band}" '
-            f'aria-label="{esc(w["title"])}（{w["year"]}）">{no}<span class="sym">{esc(w["symbol"])}</span>{nm}</a>')
+            f'aria-label="{esc(w["title"])}（{w["year"]}）">{contents}</a>')
 
 def ptable(lang, pg):
     u = UI[lang]
@@ -327,7 +338,7 @@ def ptable(lang, pg):
         cols = []
         for t in ['album', 'single', 'ep']:
             ws = [w for w in WORKS if w['era'] == k and w['type'] == t]
-            cols.append(''.join(tile(w, lang, pg) for w in ws) or '<div class="none"></div>')
+            cols.append(''.join(tile(w, lang, pg, cover=True) for w in ws) or '<div class="none"></div>')
         lab = lj if lang == 'ja' else le
         h += f'<div class="era">{y}{f"<small>{lab}</small>" if lab else ""}</div>' + ''.join(f'<div class="stack">{c}</div>' for c in cols)
     return f'<div class="ptable" id="ptable">{h}</div>'
@@ -650,7 +661,7 @@ def works_page(lang):
     legend = ('白い枠線はEP、左の帯は所属アルバムの版色。版色が未抽出の作品は未刷りの紙色で表示しています。' if lang == 'ja' else
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
     search = f'<div class="catalog-search"><label for="work-search">{"作品名・年で探す" if lang == "ja" else "Find a title or year"}</label><div><input id="work-search" type="search" autocomplete="off" aria-controls="ptable"><button type="button" data-catalog-reset>{"解除" if lang == "ja" else "Reset"}</button></div><p data-catalog-count role="status" aria-live="polite"></p></div>'
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{'57作品を発売順の一覧や周期表から探す。作品名・年・種類で絞り込めます。' if lang == 'ja' else 'Explore 57 releases in order or in the periodic table. Find a title, year or format.'}</p><div class="catalog-intro-tools"><details class="catalog-guide"><summary>{'周期表の読み方' if lang == 'ja' else 'Table guide'}</summary><p>{lead}</p></details><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Official listening'} ↓</a></div></header>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
+    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{'57作品を発売順の一覧や周期表から探す。作品名・年・種類で絞り込めます。' if lang == 'ja' else 'Explore 57 releases in order or in the periodic table. Find a title, year or format.'}</p><div class="catalog-intro-tools"><details class="catalog-guide"><summary>{'周期表の読み方' if lang == 'ja' else 'Table guide'}</summary><p>{lead}</p></details><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Official listening'} ↓</a></div></header>{search}{fl}{ptable(lang, pg)}<p class="catalog-art-note small">ジャケットは作品を見分けるための縮小画像です。出典・クレジットは各作品ページに記載しています。</p><p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
     body += '<div class="wrap">' + listening_section(lang) + '</div>'
     emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
@@ -790,7 +801,7 @@ def about_page(lang):
                 ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。'),
                 ('出典の扱い', '出典庫に全出典の媒体、日付、言語、確認日を記録し、使っているページへ逆リンクを張っています。'),
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
-                ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
+                ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。作品一覧には、各作品ページへつながる識別用の縮小画像を掲載します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
                 ('埋め込み', '埋め込みはYouTubeの公式動画だけです。優先順は公式MV、公式ライブ映像、公式音源（Topic）です。'),
                 ('購入リンク', '各作品ページの「持つ」欄からAmazon.co.jpの検索結果へ移動できます。レビュー本文には購入リンクを入れません。'),
                 ('制作', 'DJ Naoyaman（宮崎直哉）。プロフィールは別ページにまとめています。')]

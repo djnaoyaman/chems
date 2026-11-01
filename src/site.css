@@ -307,3 +307,22 @@ html{scroll-padding-top:8rem} [id]{scroll-margin-top:8rem}
  .gh nav{grid-row:2}.page-h:has(+.catalog-search){padding:1.25rem 0 .25rem}
  .catalog-search{margin:.5rem 0 .75rem}.catalog-search label{margin-bottom:.25rem}.catalog-views{margin-bottom:.6rem}
 }
+
+/* Catalog-only identification thumbnails; symbolic tiles elsewhere stay unchanged. */
+.ptable .catalog-cover-card{min-width:0;gap:.65rem;padding:.65rem}
+.ptable .catalog-cover{display:flex;align-items:center;justify-content:center;aspect-ratio:1;width:100%;min-width:0;background:rgba(0,0,0,.12)}
+.ptable .catalog-cover img{display:block;width:100%;height:100%;object-fit:contain;aspect-ratio:1}
+.ptable .catalog-cover-missing{font-size:.75rem;text-align:center;padding:.5rem;overflow-wrap:anywhere}
+.ptable .catalog-card-meta{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.ptable .catalog-card-meta .sym{font-size:1.15rem;line-height:1.1}
+.ptable .catalog-card-meta .nm{font-size:.875rem;line-height:1.5;overflow-wrap:anywhere}
+.ptable .catalog-card-meta .release-format{font-size:.75rem}
+.catalog-art-note{color:var(--dim);margin-top:1rem}
+@media(max-width:760px){
+ .ptable.is-filtered{grid-template-columns:minmax(0,1fr)}
+ .ptable.is-filtered .catalog-cover-card{display:grid;grid-template-columns:112px minmax(0,1fr);gap:.8rem;align-items:center;padding:.6rem;min-height:0}
+ .ptable.is-filtered .catalog-card-meta .nm{font-size:.9375rem}
+ .ptable:not(.is-filtered) .catalog-cover-card{padding:.3rem;gap:.4rem}
+ .ptable:not(.is-filtered) .catalog-card-meta .nm{font-size:.8125rem}
+ .ptable:not(.is-filtered) .catalog-cover-missing{font-size:.65rem;padding:.2rem}
+}
