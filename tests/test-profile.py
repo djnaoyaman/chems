@@ -18,3 +18,7 @@ assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T09:23:00+00:00</
 print('PASS compact bilingual profile, central author, 218 pages, two profile-specific source dates')
 
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T10:08:00+00:00</lastmod>')==2
+
+for p in pages:
+ s=p.read_text(); label="Editor" if p.relative_to(d).parts[0]=="en" else "編者"
+ assert re.search(r'<a href="[^\"]+">'+label+r'</a>',s),p
