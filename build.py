@@ -18,7 +18,11 @@ EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
 SHARED_TOOLS_UPDATED = '2026-11-01T08:22:00+00:00'
 LISTENING_UPDATED = '2026-11-01T09:23:00+00:00'
+# A narrow bilingual profile wording revision, independent of the listening catalog.
+PROFILE_MODIFIED = '2026-11-01T10:08:00+00:00'
 def page_modified(key):
+    if key == 'profile':
+        return max(SHARED_TOOLS_UPDATED, PROFILE_MODIFIED)
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
@@ -228,7 +232,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
@@ -810,20 +814,19 @@ def about_page(lang):
     emit(lang, 'about', None, u['about'], secs[0][1][:120], body, {'type': 'plain', 'title': u['about']}, cur='about')
 
 
-PROFILE_MODIFIED = '2026-10-31T12:52:00+00:00'
 
 def profile_page(lang):
     u = UI[lang]; pg = path(lang, 'profile')
     if lang == 'ja':
-        lead = '世界一の非公式ファンサイトを目指して。The Chemical Brothersの作品を調べ、聴き、少しずつ記録する。myChemsは、日々育て続ける私のライフワークです。'
+        lead = 'The Chemical Brothersの作品を調べ、聴き、少しずつ記録しています。何度でも聴き返すきっかけになるよう、これからも育てていきたいと思います。'
         policy = '事実には出典を添え、私見とは分けて記しています。'
         label = '作者について'
-        desc = 'myChemsを日々育てる想い。DJ Naoyamanによる非公式ファンアーカイブのライフワーク。'
+        desc = 'The Chemical Brothersを聴き、調べ、記録する。DJ Naoyamanによる非公式ファンアーカイブの制作動機。'
     else:
-        lead = "With the aim of building the world’s best unofficial fan site, I study and listen to The Chemical Brothers’ work, building a record little by little. myChems is my life’s work, growing day by day."
+        lead = "I listen to and research The Chemical Brothers’ work, building a record little by little. I hope to keep adding to it as a reason to return to their music."
         policy = 'Facts carry sources; personal views are kept separate.'
         label = 'About the author'
-        desc = 'The idea behind myChems: a lifelong, evolving unofficial fan archive by DJ Naoyaman.'
+        desc = 'Listening, researching and keeping a record: the idea behind DJ Naoyaman’s unofficial Chemical Brothers fan archive.'
     # Editorial revision date: only this profile changes, never a build-time clock.
     updated = PROFILE_MODIFIED
     updated_label = '最終更新' if lang == 'ja' else 'Last updated'
