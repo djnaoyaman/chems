@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');
 (async()=>{const browser=await chromium.launch();let checks=0;fs.mkdirSync(out,{recursive:true});
-for(const lang of ['ja','en'])for(const width of [390,844]){
+for(const lang of ['ja'])for(const width of [390,844]){
  const page=await browser.newPage({viewport:{width,height:width===844?390:844},reducedMotion:'reduce'});
  await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://djnaoyaman.github.io')return r.abort();let file=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');return r.fulfill({status:fs.existsSync(file)?200:404,path:fs.existsSync(file)?file:path.join(root,'404.html')});});
  await page.goto('https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'')+'about/');
@@ -18,6 +18,7 @@ for(const lang of ['ja','en'])for(const width of [390,844]){
  await page.locator('.reading-tools summary').click();assert(await page.locator('.reading-tools details p').isVisible());assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks++;
  await page.locator('.reading-tools').screenshot({path:path.join(out,`reading-tools-${lang}-${width}.png`)});
  await page.locator('.reading-tools-actions a').click();assert((await page.url()).endsWith('#top'));checks++;
+ await page.goto('https://djnaoyaman.github.io/chems/en/works/');assert.equal(await page.locator('main h1').innerText(),'ページが見つかりません');assert((await page.url()).includes('/en/works/'));assert.equal(await page.locator('meta[http-equiv=refresh]').count(),0);checks++;
  await page.goto('https://djnaoyaman.github.io/chems/missing/deep/path');assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex,follow');assert.equal(await page.locator('main h1').count(),1);checks++;
  await page.screenshot({path:path.join(out,`recovery-${lang}-${width}.png`)});await page.locator('a[href="https://djnaoyaman.github.io/chems/works/"]').click();assert(await page.locator('.filters[data-target=ptable]').isVisible());checks++;
  await page.close();

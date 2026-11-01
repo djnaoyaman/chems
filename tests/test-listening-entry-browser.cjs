@@ -1,6 +1,6 @@
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
 (async()=>{const browser=await chromium.launch();let checks=0;const root=path.resolve(__dirname,'../dist');
-for(const lang of ['ja','en']){
+for(const lang of ['ja']){
  const page=await browser.newPage({viewport:{width:390,height:844}});let releaseCatalog;const catalogGate=new Promise(r=>releaseCatalog=r);let failure=false;
  await page.route('**/*',async r=>{const u=new URL(r.request().url());if(u.hostname==='www.youtube-nocookie.com')return r.fulfill({contentType:'text/html',body:'Mock frame; no audio'});if(u.origin!=='https://djnaoyaman.github.io')return r.abort();let f=path.join(root,u.pathname.replace(/^\/chems\//,''));if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');if(u.pathname.endsWith('/catalog.json')){await catalogGate;if(failure)return r.fulfill({status:503,body:'unavailable'});}return fs.existsSync(f)?r.fulfill({path:f,...(f.endsWith('.mjs')?{contentType:'application/javascript'}:{})}):r.fulfill({status:404,body:'missing'});});
  const base='https://djnaoyaman.github.io/chems/'+(lang==='en'?'en/':'');await page.goto(base+'works/',{waitUntil:'domcontentloaded'});

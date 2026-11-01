@@ -1,6 +1,6 @@
 # my Chems
 
-日英1対1の静的サイト。`build.py` が `data/` と `texts/` から `dist/` に全ページとOGPを生成し、最後に検証スイート（14項目）を回す。NGが1つでもあれば終了コード1で止まり、GitHub Actionsでは公開されない。
+日本語に集中した静的サイト。英語版の公開生成・切替・転送は廃止し、旧英語URLは404になります。`texts/en/`は非公開の過去原稿として保管します。`build.py` が `data/` と `texts/` から `dist/` に全ページとOGPを生成し、最後に検証スイート（14項目）を回す。NGが1つでもあれば終了コード1で止まり、GitHub Actionsでは公開されない。
 
 ## ビルド
 
@@ -11,7 +11,7 @@ YouTubeの埋め込み可否と日本での再生制限も確かめる場合は�
 
 ## 設定（config.json）
 
-- `site_name` … 日英のサイト名
+- `site_name` … サイト名（公開は日本語のみ）
 - `site_name_signature` … 署名コメントに入る名前
 - `base_url` … 公開URL。入れるとcanonical、hreflang、og:imageが絶対URLになる
 
@@ -24,7 +24,7 @@ YouTubeの埋め込み可否と日本での再生制限も確かめる場合は�
 
 ## 本文（texts/ja, texts/en）
 
-作品IDごとに `{id}.md`。1行目の `rev: N` は日英で一致させる（片方だけの更新を検証で弾くため）。
+作品IDごとに `{id}.md`。1行目の `rev: N` は日本語原稿の改訂番号です。保管済み英訳との同期は不要です。
 
     ## view      私見
     ## music     音楽性
@@ -79,7 +79,7 @@ rekordboxの値を優先し、解析値では上書きしない（`--overwrite`�
 
 ## Evergreen archive (2026-10-31)
 
-News coverage and upcoming-event listings have ended. The bilingual home page now prioritises the listening routes, albums, historical timeline and credited collaborators. Old `now/` URLs remain as a navigation guide, not an active news archive. `data/now.json` is retained as original research material but is never rendered; retired future-event records remain in `notes/retired-news/`. Historical source references and release dates are not rewritten.
+News coverage and upcoming-event listings have ended. The Japanese home page now prioritises the listening routes, albums, historical timeline and credited collaborators. Old `now/` URLs remain as a navigation guide, not an active news archive. `data/now.json` is retained as original research material but is never rendered; retired future-event records remain in `notes/retired-news/`. Historical source references and release dates are not rewritten.
 
 The fixed source revision timestamp records this actual shared-navigation and editorial restructuring, not a build/deployment time. Visible JST, WebPage.dateModified and sitemap lastmod agree. Original release/publication and source-check dates are preserved. The separately approved wordmark and compact profile are retained.
 
@@ -89,13 +89,13 @@ Run `python3 tests/test-archive.py` after the build, plus the existing Node regr
 
 ## Reading utilities and recovery
 
-The 218 editorial pages retain their catalog, audio embeds and sources. Shared controls offer native sharing or copy/manual-select fallback, a back-to-top link and optional home-screen shortcut instructions (online web shortcut, not offline PWA). A bilingual noindex404 uses absolute project URLs and is excluded from the sitemap. `llms-full.txt` exports existing main-page text with canonical page links; it does not introduce new factual claims or grant rights to third-party material. No service worker, advertising, CSP or analytics setting changes. Shared utilities are an actual content/UI revision, so their source date advances the218 page lastmods; original release and profile-author dates are retained.
+The 109 editorial pages retain their catalog, audio embeds and sources. Shared controls offer native sharing or copy/manual-select fallback, a back-to-top link and optional home-screen shortcut instructions (online web shortcut, not offline PWA). A Japanese-only noindex 404 uses absolute project URLs and is excluded from the sitemap. `llms-full.txt` exports existing main-page text with canonical page links; it does not introduce new factual claims or grant rights to third-party material. No service worker, advertising, CSP or analytics setting changes. Shared utilities are an actual content/UI revision, so their source date advances the 109 page lastmods; original release and profile-author dates are retained.
 
 Run `node tests/test-reading-tools.cjs` and the Playwright browser suite. Clipboard denial, share cancellation/failure, manual copy, keyboard entry, narrow/landscape layout and nested404 recovery are exercised with external requests blocked. Real device installation and real YouTube playback remain outside these tests.
 
 ## Official listening pilot
 
-The bilingual works indexes include a visible, click-to-load YouTube player. Existing work-page embeds are unchanged. `data/listening-sources.json` is a separate reviewed source/recording ledger; `tools/listening_catalog.py` joins only exact bindings to the 57 works / 225 track occurrences. Missing tracks remain present rather than being replaced by unofficial uploads or a different mix.
+The Japanese works index includes a visible, click-to-load YouTube player. Existing work-page embeds are unchanged. `data/listening-sources.json` is a separate reviewed source/recording ledger; `tools/listening_catalog.py` joins only exact bindings to the 57 works / 225 track occurrences. Missing tracks remain present rather than being replaced by unofficial uploads or a different mix.
 
 Initial pilot: seven of Exit Planet Dust’s eleven entries are source-matched: In Dust We Trust; Song To The Siren (Sabresonic 1994 live version); Three Little Birdies Down Beats; Chico’s Groove; One Too Many Mornings; Life Is Sweet; Alive Alone. Each has Universal Music Group-delivered, autogenerated Official Artist Channel metadata naming the album. This is not a claim of a physical pressing/master, complete album coverage, or successful playback: the ordinary browser check timed out before Play, and runtime status remains `unchecked`. Digital delivery dates are not substituted for the existing original-release date.
 

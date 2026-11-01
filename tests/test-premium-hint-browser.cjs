@@ -6,7 +6,7 @@ const pages=walk(root).filter(p=>p.endsWith('.html')&&fs.readFileSync(p,'utf8').
 assert(pages.length>0);
 for(const p of pages){const s=fs.readFileSync(p,'utf8');assert(s.includes('chems-premium-hint-v1'));assert(s.includes('www.youtube-nocookie.com/embed/'));}
 (async()=>{const browser=await chromium.launch({headless:true});let checks=0;
-for(const lang of ['ja','en'])for(const width of [320,390,1280])for(const blocked of [false,true]){
+for(const lang of ['ja'])for(const width of [320,390,1280])for(const blocked of [false,true]){
  const source=pages.find(p=>fs.readFileSync(p,'utf8').includes('<html lang="'+lang+'"'));
  assert(source,'page for '+lang);
  const page=await browser.newPage({viewport:{width,height:844},reducedMotion:'reduce'});
