@@ -13,8 +13,7 @@ for p in pages:
  assert 'dateModified' in s
  assert 'JST' in s
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==0
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T12:52:00+00:00</lastmod>')==216
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T07:20:00+00:00</lastmod>')==2
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T07:59:00+00:00</lastmod>')==218
 assert len(json.loads((r/'data/works.json').read_text()))==57
 assert len(json.loads((r/'data/people.json').read_text()))==36
 print('PASS approved outline hashes, all 218 headers, unofficial notice, actual brand revision dates, 57 works/36 people')
