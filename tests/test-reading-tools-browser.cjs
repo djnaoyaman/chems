@@ -19,6 +19,6 @@ for(const lang of ['ja','en'])for(const width of [390,844]){
  await page.locator('.reading-tools').screenshot({path:path.join(out,`reading-tools-${lang}-${width}.png`)});
  await page.locator('.reading-tools-actions a').click();assert((await page.url()).endsWith('#top'));checks++;
  await page.goto('https://djnaoyaman.github.io/chems/missing/deep/path');assert.equal(await page.locator('meta[name=robots]').getAttribute('content'),'noindex,follow');assert.equal(await page.locator('main h1').count(),1);checks++;
- await page.screenshot({path:path.join(out,`recovery-${lang}-${width}.png`)});await page.locator('a[href="https://djnaoyaman.github.io/chems/works/"]').click();assert(await page.locator('.filters').isVisible());checks++;
+ await page.screenshot({path:path.join(out,`recovery-${lang}-${width}.png`)});await page.locator('a[href="https://djnaoyaman.github.io/chems/works/"]').click();assert(await page.locator('.filters[data-target=ptable]').isVisible());checks++;
  await page.close();
 }await browser.close();console.log(JSON.stringify({pass:true,checks,network:'all external resources blocked',devices:'desktop Chromium emulation; not real iOS installation'}));})().catch(e=>{console.error(e);process.exit(1)});

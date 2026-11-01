@@ -12,7 +12,7 @@ for(const lang of ['ja','en'])for(const width of [320,390,1280]){
  fs.mkdirSync(path.resolve(root,'../test-artifacts'),{recursive:true});await page.screenshot({path:path.resolve(root,'../test-artifacts',`archive-${lang}-${width}.png`),fullPage:true});
  await page.locator('.archive-route .more').first().click();assert(await page.locator('h1').innerText());await page.goBack();assert.equal(await page.locator('.archive-route').count(),3);checks+=2;
  await page.goto(base+'/'+prefix+'now/index.html');assert.equal(await page.locator('.nowlist').count(),0);assert.equal(await page.locator('main li a').count(),5);checks+=2;
- await page.locator('main li a').first().click();assert.equal(await page.locator('.filters').count(),1);await page.locator('.filters button[data-k="album"]').click();assert.equal(await page.locator('.filters button[data-k="album"]').getAttribute('aria-pressed'),'true');checks+=2;
+ await page.locator('main li a').first().click();assert.equal(await page.locator('.filters[data-target=ptable]').count(),1);await page.locator('.filters button[data-k="album"]').click();assert.equal(await page.locator('.filters button[data-k="album"]').getAttribute('aria-pressed'),'true');checks+=2;
  await page.locator('.gf time').scrollIntoViewIfNeeded();assert(await page.locator('.gf time').isVisible());checks++;
  await page.goto(base+'/'+prefix+'about/index.html');
  assert(await page.locator('main').innerText().then(t=>lang==='ja'?t.includes('このサイトで取り上げる'):t.includes('covered here')));checks++;
