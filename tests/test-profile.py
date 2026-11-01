@@ -25,6 +25,8 @@ for p in pages:
 
 
 
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:30:00+00:00</lastmod>')==107
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:30:00+00:00</lastmod>')==95
 
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:38:00+00:00</lastmod>')==2
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:38:00+00:00</lastmod>')==1
+
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T13:06:00+00:00</lastmod>')==13

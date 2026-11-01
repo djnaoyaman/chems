@@ -26,7 +26,12 @@ PROFILE_LINKS_UPDATED = '2026-11-01T11:12:00+00:00'
 FOOTER_UPDATED = '2026-11-01T12:24:00+00:00'
 JAPANESE_UPDATED = '2026-11-01T12:30:00+00:00'
 COVERS_UPDATED = '2026-11-01T12:38:00+00:00'
-def page_modified(key):
+ARTWORK_UPDATED = '2026-11-01T13:06:00+00:00'
+ARTWORK_WORKS = {'sw', 'wo', 'eod'}
+ARTWORK_PEOPLE = {'adam-smith', 'marcus-lyall', 'beck', 'dom-and-nic', 'aurora', 'nene'}
+def page_modified(key, arg=None):
+    if key in ('works', 'timeline', 'chain', 'sources') or key == 'work' and arg in ARTWORK_WORKS or key == 'person' and arg in ARTWORK_PEOPLE:
+        return ARTWORK_UPDATED
     return COVERS_UPDATED if key in ('works', 'about') else JAPANESE_UPDATED
 
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
@@ -236,8 +241,8 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     base = CFG['base_url'].rstrip('/') + '/' if CFG['base_url'] else ''
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
-    modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED, COVERS_UPDATED)
+    modified = page_modified(key, arg)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED, COVERS_UPDATED, ARTWORK_UPDATED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
@@ -1023,7 +1028,7 @@ def write_seo_files():
         alts = ''.join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{base}{path(l, v["key"], v["arg"])}"/>' for l in LANGS)
         alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{base}{path("ja", v["key"], v["arg"])}"/>'
         prio = '1.0' if v['key'] == 'top' else ('0.8' if v['key'] == 'work' else '0.6')
-        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{page_modified(v["key"])}</lastmod>{alts}<priority>{prio}</priority></url>')
+        urls.append(f'<url><loc>{base}{pg}</loc><lastmod>{page_modified(v["key"], v["arg"])}</lastmod>{alts}<priority>{prio}</priority></url>')
     sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
                + ''.join(urls) + '\n</urlset>\n')

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sw",
+    "source_id": "cb-r-swoon",
+    "page": "https://www.thechemicalbrothers.com/music-videos/swoon",
+    "image": "https://cdn.prod.website-files.com/5c5083b6483ac43c0d6e4e18/5c66b7fb239db72517eaf1a5_swoon.jpeg",
+    "dimensions": [
+      640,
+      640
+    ],
+    "sha256": "896cd1399e7f47f0efa571d7f462a239513e21a57301295fa12be791077a9203",
+    "checked": "2026-11-01",
+    "identity": "Official artist release page title + visible sleeve title + existing catalog tracklist match; territory unspecified; no territory assertion",
+    "rights": "Copyright retained; artist page links https://www.umusic.co.uk/terms.html; no blanket reuse licence established. Candidate for same modest review/commentary identification use as existing site.",
+    "visual_check": true,
+    "file": "art/sw.jpg"
+  },
+  {
+    "id": "wo",
+    "source_id": "cb-r-wide-open-2",
+    "page": "https://www.thechemicalbrothers.com/music-videos/wide-open-2",
+    "image": "https://cdn.prod.website-files.com/5c5083b6483ac43c0d6e4e18/5c71d0d32d05ce7882979172_wide%20open.jpeg",
+    "dimensions": [
+      640,
+      640
+    ],
+    "sha256": "b46156507a1ec5e09153a5de08e5f6daae8d3e8c4ce268153098cd577dbdfe19",
+    "checked": "2026-11-01",
+    "identity": "Official artist release page title + visible sleeve title + existing catalog tracklist match; territory unspecified; no territory assertion",
+    "rights": "Copyright retained; artist page links https://www.umusic.co.uk/terms.html; no blanket reuse licence established. Candidate for same modest review/commentary identification use as existing site.",
+    "visual_check": true,
+    "file": "art/wo.jpg"
+  },
+  {
+    "id": "eod",
+    "source_id": "cb-r-eve-of-destruction-2",
+    "page": "https://www.thechemicalbrothers.com/music-videos/eve-of-destruction-2",
+    "image": "https://cdn.prod.website-files.com/5c5083b6483ac43c0d6e4e18/5cffd926479c93769d597d59_Screenshot%202019-06-11%20at%2017.13.38.png",
+    "dimensions": [
+      320,
+      320
+    ],
+    "sha256": "a3befafabf3c7030151ded959556e9bd750c9407241ad2f810d115a856301186",
+    "checked": "2026-11-01",
+    "identity": "Official artist release page title + visible sleeve title + existing catalog tracklist match; territory unspecified; no territory assertion",
+    "rights": "Copyright retained; artist page links https://www.umusic.co.uk/terms.html; no blanket reuse licence established. Candidate for same modest review/commentary identification use as existing site.",
+    "visual_check": true,
+    "file": "art/eod.png"
+  }
+]
