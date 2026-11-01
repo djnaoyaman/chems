@@ -251,5 +251,42 @@ table.t td.d{font-family:var(--f-mono);font-size:.75rem;white-space:nowrap}
 .archive-guides{grid-template-columns:repeat(2,minmax(0,1fr))}
 .archive-guide{display:block;padding:1rem;border:1px solid var(--hair);text-decoration:none}
 .archive-guide:hover,.archive-route:focus-within{border-color:var(--paper)}
+.el .nm{font-size:.875rem;line-height:1.5}
+.el{padding:.65rem;min-height:44px}
+.el .no{font-size:.75rem;line-height:1.4}
+.ph{font-size:.875rem}
+.era{font-size:1.2rem}.era small{font-size:.75rem;line-height:1.5}
+.ptable{gap:10px;grid-template-columns:3.8rem repeat(3,minmax(0,1fr))}
+.ptable.is-filtered{grid-template-columns:repeat(auto-fill,minmax(min(100%,14rem),1fr))}
+.ptable.is-filtered .el{min-height:7rem}
+.catalog-search{margin:1.5rem 0 1rem;max-width:40rem}
+.catalog-search label{display:block;font-weight:700;margin-bottom:.4rem}
+.catalog-search>div{display:flex;gap:.5rem}
+.catalog-search input{min-width:0;flex:1;background:#151515;color:var(--paper);border:1px solid #888;font:inherit;padding:.6rem}
+.catalog-search button,.nav-toggle{font:inherit;color:inherit;background:transparent;border:1px solid #888;padding:.5rem .8rem;min-height:44px;cursor:pointer}
+[data-catalog-count]{font-size:.875rem;color:var(--dim);margin:.5rem 0}
+.gh nav a{font-size:.9rem;min-height:44px}.gh .lang{min-height:44px}
+.nav-toggle{display:none}
+html{scroll-padding-top:8rem} [id]{scroll-margin-top:8rem}
+.filters button,button.motion{min-height:44px}
+.years{gap:.4rem}.years a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid var(--hair);padding:.25rem}
+.srcs{font-size:.8125rem;line-height:1.8}.srcs li{margin:.6rem 0}
+.people a span,.worklist small,.cats a span{font-size:.875rem;line-height:1.6}
+.rec dd,.pn a{min-width:0;overflow-wrap:anywhere}.pn a{padding:.5rem 0}
+.wtitle{overflow-wrap:anywhere;line-height:1.08}.wtitle .plate{display:none}
+.hero .plate{opacity:.3}
+.page-h .lead,.archive-route p,.archive-guide p{font-size:1rem;line-height:1.75}
+@media(max-width:760px){
+ .gh-in{display:flex;flex-wrap:wrap;gap:.4rem .5rem;padding-left:1rem;padding-right:1rem}.gh .home{margin-right:auto}.gh .site-wordmark{width:clamp(112px,30vw,150px)}.nav-toggle{font-size:.875rem;padding:.4rem .5rem}
+ .nav-ready .nav-toggle{display:block}.gh nav{flex-basis:100%;flex-wrap:wrap;gap:.2rem .9rem;overflow:visible}
+ .nav-ready .gh nav{display:none}.nav-ready .gh nav.is-open{display:flex}.gh nav a{flex:1 0 40%;white-space:normal}
+ .gh .lang{padding:0 .5rem}.ptable{grid-template-columns:2.8rem repeat(3,minmax(0,1fr));gap:5px}
+ .ptable .el{padding:.4rem}.ptable .nm{font-size:.8125rem;line-height:1.5}
+ .ptable .sym,.ptable .album .sym{font-size:1.5rem}.ptable .ph{font-size:.75rem}
+ .ptable.is-filtered{grid-template-columns:repeat(auto-fill,minmax(min(100%,12rem),1fr))}
+ .wrap{padding-left:1rem;padding-right:1rem}
+}
+@media(max-width:480px){.ptable:not(.mini):not(.is-filtered){grid-template-columns:2.6rem repeat(3,minmax(0,1fr))}.ptable .el .nm{overflow-wrap:anywhere}.rec dl>div,html[lang=en] .rec dl>div{grid-template-columns:1fr;gap:.1rem}.after li{grid-template-columns:1fr;gap:.15rem}.charts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 .site-updated{font-size:.75rem;color:var(--dim)}
 @media(max-width:600px){.archive-routes,.archive-guides{grid-template-columns:1fr}.archive-albums{grid-template-columns:repeat(2,minmax(0,1fr))}.archive-intro{font-size:.94rem}}

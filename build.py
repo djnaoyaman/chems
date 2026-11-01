@@ -16,7 +16,7 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 # Only the bilingual home/about descriptions changed in this editorial correction.
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
-SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
+SHARED_TOOLS_UPDATED = '2026-11-01T08:30:00+00:00'
 LISTENING_UPDATED = '2026-11-01T07:20:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
@@ -29,7 +29,7 @@ P = {p['id']: p for p in PEOPLE}
 SRC = {s['id']: s for s in SOURCES}
 LANGS = ['ja', 'en']
 CSS = open(os.path.join(ROOT, 'src', 'site.css'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.css'), encoding='utf-8').read()
-JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.js'), encoding='utf-8').read()
+JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'discovery.js'), encoding='utf-8').read()
 esc = lambda s: H.escape(str(s), quote=True)
 PAPER, BLACK = '#F2F1EC', '#000000'
 UNPRINTED = ['#F2F1EC', '#000000', '#8A8A85', '#000000']
@@ -283,7 +283,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 </head>
 <body id="top">
 <a class="skip-link" href="#main">{'本文へ' if lang == 'ja' else 'Skip to content'}</a>
-<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><nav aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
+<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>{'メニュー' if lang == 'ja' else 'Menu'}</button><nav id="site-nav" aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
 <main id="main" tabindex="-1">
 {body}
 </main>
@@ -311,7 +311,7 @@ def tile(w, lang, pg, cls='', show_name=True):
         if palette(W[w['album']])[0] == bg: band = f';--band:{UNPRINTED[2]}'
     nm = f'<span class="nm">{esc(w["title"])}<br>{w["year"]}</span>' if show_name else ''
     no = f'<span class="no">{w["atomic"]}</span>' if show_name else ''
-    return (f'<a class="el {w["type"]} {cls}" data-kind="{w["type"]}" href="{rel(pg, path(lang, "work", w["id"]))}" style="--bg:{bg};--fg:{fg};--ink2:{i2};--sc:{sc}{band}" '
+    return (f'<a class="el {w["type"]} {cls}" data-kind="{w["type"]}" data-search="{esc(w["title"])} {w["year"]}" data-order="{w["atomic"]}" href="{rel(pg, path(lang, "work", w["id"]))}" style="--bg:{bg};--fg:{fg};--ink2:{i2};--sc:{sc}{band}" '
             f'aria-label="{esc(w["title"])}（{w["year"]}）">{no}<span class="sym">{esc(w["symbol"])}</span>{nm}</a>')
 
 def ptable(lang, pg):
@@ -648,7 +648,8 @@ def works_page(lang):
             'Rows are eras (studio album periods), columns are formats. A work sits in the era of its album, or of the latest studio album if it has none. Atomic numbers follow release order and are provisional until release dates are confirmed.')
     legend = ('白い枠線はEP、左の帯は所属アルバムの版色。版色が未抽出の作品は未刷りの紙色で表示しています。' if lang == 'ja' else
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
+    search = f'<div class="catalog-search"><label for="work-search">{"作品名・年で探す" if lang == "ja" else "Find a title or year"}</label><div><input id="work-search" type="search" autocomplete="off" aria-controls="ptable"><button type="button" data-catalog-reset>{"解除" if lang == "ja" else "Reset"}</button></div><p data-catalog-count role="status" aria-live="polite"></p></div>'
+    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
     body += '<div class="wrap">' + listening_section(lang) + '</div>'
     emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
