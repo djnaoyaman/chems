@@ -104,3 +104,7 @@ Current source ledger: 79/225 source-matched occurrences (Exit Planet Dust 10, D
 Buffering guidance: after 15 seconds of uninterrupted buffering, one informational notice offers Stop or another track. No retry, automatic skip, availability diagnosis or source-count change. Stop disposes the visible player and cancels continuation; stale timers and callbacks cannot update a newer selection. A live PR9 observation reached buffering but currentTime remained zero; successful playback is still unverified.
 
 Playback usability revision after user feedback: a one-click matched-source entry and direct track-click playback request open a visible lower-right dock inspired by Premium Cuts. YouTube's documented constructor creates its standard iframe, with site origin and playsinline; no permission/branding suppression. Play/pause/Stop, close-with-stop and expanded visible view stay accessible. Missing positions remain explicit and stop continuous playback. This fixes the concrete multi-step/disabled-first-track entry problem; it is not proof that every user's streaming problem is solved. A control observation of Premium Cuts also stalled at currentTime zero in the cloud browser, so that observation alone cannot diagnose a Chems-specific network failure. Real playback remains unverified.
+
+## サイト全体の最終更新日時
+
+共通フッターは、公開入力（日本語本文・データ・画像・表示コード）の最新Gitコミット日時をJSTで表示します。Actionsは完全な履歴を取得し、再ビルドやメモ・テストだけの変更では日時を進めません。Git履歴のないソースZIPでは `tools/site_updated.py` の明示的なソース改訂日時を使います。作品の発売日、出典確認日、各ページの編集履歴は別管理で変更しません。検証: `python3 tests/test-site-updated.py`。

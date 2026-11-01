@@ -7,10 +7,12 @@ import json, os, re, sys, math, shutil, posixpath, hashlib, html as H
 from urllib.parse import quote
 from datetime import date, datetime, timedelta, timezone
 from tools.listening_catalog import catalog as listening_catalog
+from tools.site_updated import site_updated
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
+SITE_UPDATED = site_updated(ROOT)
 # This source revision changes shared archive navigation and the site-wide editorial structure.
 BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 # Only the bilingual home/about descriptions changed in this editorial correction.
@@ -242,7 +244,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key, arg)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED, COVERS_UPDATED, ARTWORK_UPDATED)
+    site_modified = SITE_UPDATED
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
