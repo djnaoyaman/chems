@@ -7,8 +7,9 @@ await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='ht
 for(const file of ['index.html','profile/index.html']){
 await page.goto('https://chems.test/'+(lang==='en'?'en/':'')+file);const mark=page.locator('.site-wordmark');await mark.waitFor();
 assert(await mark.evaluate(e=>e.complete&&e.naturalWidth>0));const box=await mark.boundingBox();assert(Math.abs(box.width/box.height-1799/504)<0.01);assert(box.width>=179&&box.x>=0&&box.x+box.width<=width);
+if(width<=760)await page.locator('.nav-toggle').click();
 assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));const nav=await page.locator('.gh nav').boundingBox(),language=await page.locator('.gh .lang').boundingBox();
-assert(box.x+box.width<=language.x+1);if(width<=640)assert(nav.y>=box.y+box.height-1);else assert(nav.x>=box.x+box.width-1);
+assert(box.x+box.width<=language.x+1);if(width<=760)assert(nav.y>=box.y+box.height-1);else assert(nav.x>=box.x+box.width-1);
 assert(await page.locator('.gh .home').getAttribute('aria-label')==='myChems');
 await page.screenshot({path:path.join(out,`brand-${lang}-${width}-${file.replaceAll('/','-')}.png`),fullPage:false});
 await page.locator('.gh .home').click();assert(page.url().endsWith('index.html'));

@@ -309,7 +309,7 @@ def tile(w, lang, pg, cls='', show_name=True):
     if w['type'] == 'single' and w.get('album'):
         band = f';--band:{palette(W[w["album"]])[0]}'
         if palette(W[w['album']])[0] == bg: band = f';--band:{UNPRINTED[2]}'
-    nm = f'<span class="nm">{esc(w["title"])}<br>{w["year"]}</span>' if show_name else ''
+    nm = f'<span class="nm">{esc(w["title"])}<br>{w["year"]}</span><span class="release-format">{UI[lang][w["type"]]}</span>' if show_name else ''
     no = f'<span class="no">{w["atomic"]}</span>' if show_name else ''
     return (f'<a class="el {w["type"]} {cls}" data-kind="{w["type"]}" data-search="{esc(w["title"])} {w["year"]}" data-order="{w["atomic"]}" href="{rel(pg, path(lang, "work", w["id"]))}" style="--bg:{bg};--fg:{fg};--ink2:{i2};--sc:{sc}{band}" '
             f'aria-label="{esc(w["title"])}（{w["year"]}）">{no}<span class="sym">{esc(w["symbol"])}</span>{nm}</a>')
@@ -649,7 +649,7 @@ def works_page(lang):
     legend = ('白い枠線はEP、左の帯は所属アルバムの版色。版色が未抽出の作品は未刷りの紙色で表示しています。' if lang == 'ja' else
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
     search = f'<div class="catalog-search"><label for="work-search">{"作品名・年で探す" if lang == "ja" else "Find a title or year"}</label><div><input id="work-search" type="search" autocomplete="off" aria-controls="ptable"><button type="button" data-catalog-reset>{"解除" if lang == "ja" else "Reset"}</button></div><p data-catalog-count role="status" aria-live="polite"></p></div>'
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{lead}</p></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
+    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{'57作品を発売順の一覧や周期表から探す。作品名・年・種類で絞り込めます。' if lang == 'ja' else 'Explore 57 releases in order or in the periodic table. Find a title, year or format.'}</p><details class="catalog-guide"><summary>{'周期表の読み方' if lang == 'ja' else 'How to read the periodic table'}</summary><p>{lead}</p></details></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
     body += '<div class="wrap">' + listening_section(lang) + '</div>'
     emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
@@ -987,7 +987,7 @@ def verify():
     # Owner-approved custom wordmark, not Chemical Brothers artwork or official logo.
     device_icon_sha256['src/brand/mychems-wordmark-ivory-1024.png'] = 'f1ceb108a91185601869704cd9ee57bb8d507020cb241e68414936dc2675f849'
     for r_, _, fs in os.walk(ROOT):
-        if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST) or 'art_review' in r_: continue
+        if '.git' in r_ or os.path.sep + 'dist' in r_ or r_.startswith(DIST) or 'art_review' in r_ or os.path.sep + 'test-artifacts' in r_: continue
         for f in fs:
             if f.lower().endswith(('.jpg', '.jpeg', '.webp', '.gif', '.png')):
                 relative = os.path.join(os.path.relpath(r_, ROOT), f).replace(os.path.sep, '/')

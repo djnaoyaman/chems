@@ -32,7 +32,7 @@ for page in pages:
     parsed = Icons()
     parsed.feed(source)
     assert {'icon', 'apple-touch-icon', 'manifest'} <= {a['rel'] for a in parsed.links}, page
-    url = urljoin(BASE, str(page.relative_to(DIST)))
+    url = urljoin(BASE, page.relative_to(DIST).as_posix())
     for attrs in parsed.links:
         resolved = urljoin(url, attrs['href'])
         assert resolved.startswith(BASE), (page, resolved)
