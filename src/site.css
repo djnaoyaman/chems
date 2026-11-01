@@ -277,6 +277,7 @@ html{scroll-padding-top:8rem} [id]{scroll-margin-top:8rem}
 .rec dd,.pn a{min-width:0;overflow-wrap:anywhere}.pn a{padding:.5rem 0}
 .wtitle{overflow-wrap:anywhere;line-height:1.08}.wtitle .plate{display:none}
 .work :focus-visible{outline-color:var(--fg)}
+.wrap,.gh-in,.work-in,.gf-in{padding-left:max(1.25rem,env(safe-area-inset-left));padding-right:max(1.25rem,env(safe-area-inset-right))}
 .hero .plate{opacity:.3}
 .page-h .lead,.archive-route p,.archive-guide p{font-size:1rem;line-height:1.75}
 @media(max-width:760px){

@@ -1,7 +1,7 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-device-icons.py', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', 'tests/test-reading-tools*.cjs', 'tests/test-listening*', 'tests/listening-protected.json', 'tools/listening_catalog.py', 'tools/generate_icons.py', 'tools/preview_bundle.py', 'notes/preview.html', '.github/workflows/premium-hint-checks.yml']
+    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-device-icons.py', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', 'tests/test-reading-tools*.cjs', 'tests/test-reading-audit*', 'tests/test-usability*', 'tests/test-listening*', 'tests/listening-protected.json', 'tools/listening_catalog.py', 'tools/generate_icons.py', 'tools/preview_bundle.py', 'notes/preview.html', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
