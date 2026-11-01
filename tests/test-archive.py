@@ -7,7 +7,11 @@ EXPECTED='2026-10-31T11:50:00+00:00'
 EDITORIAL='2026-11-01T08:22:00+00:00'
 LISTENING='2026-11-01T09:23:00+00:00'
 PROFILE='2026-11-01T10:08:00+00:00'
-LABELS='2026-11-01T12:38:00+00:00'
+LABELS='2026-11-01T13:06:00+00:00'
+COVERS='2026-11-01T12:38:00+00:00'
+ART_PAGES={'works/index.html','timeline/index.html','chain/index.html','sources/index.html','works/swoon/index.html','works/wide-open-2/index.html','works/eve-of-destruction-2/index.html'} | {'equations/'+p+'/index.html' for p in ('adam-smith','marcus-lyall','beck','dom-and-nic','aurora','nene')}
+def expected_date(p):
+ return LABELS if p in ART_PAGES else COVERS if p=='about/index.html' else JAPANESE
 JAPANESE='2026-11-01T12:30:00+00:00'
 DISCLOSURE=LABELS
 class Archive(unittest.TestCase):
@@ -26,16 +30,16 @@ class Archive(unittest.TestCase):
   expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertEqual(len(pages),109)
   for p in pages:
    h=p.read_text();self.assertIn(f'<time datetime="{LABELS}">',h)
-   expected=LABELS if p.relative_to(ROOT/'dist').as_posix() in ('works/index.html','about/index.html') else JAPANESE
+   expected=expected_date(p.relative_to(ROOT/'dist').as_posix())
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
   tree=ET.parse(ROOT/'dist/sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{JAPANESE,LABELS})
+  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{JAPANESE,COVERS,LABELS})
   self.assertEqual(len(tree.findall('.//s:lastmod',ns)),len(pages))
   for url in tree.findall('s:url',ns):
    loc=url.find('s:loc',ns).text
    relative=loc.removeprefix('https://djnaoyaman.github.io/chems/')
-   expected=LABELS if relative in ('works/index.html','about/index.html') else JAPANESE
+   expected=expected_date(relative)
    self.assertEqual(url.find('s:lastmod',ns).text,expected)
  def test_editorial_scope(self):
   llms=(ROOT/'dist/llms.txt').read_text()
@@ -98,8 +102,8 @@ class Archive(unittest.TestCase):
   h=(ROOT/'dist/works/index.html').read_text()
   cards=re.findall(r'<a class="el [^"\n]*catalog-cover-card".*?</a>',h,re.S)
   self.assertEqual(len(cards),57)
-  self.assertEqual(sum('<img ' in x for x in cards),46)
-  self.assertEqual(sum('catalog-cover-missing' in x for x in cards),11)
+  self.assertEqual(sum('<img ' in x for x in cards),49)
+  self.assertEqual(sum('catalog-cover-missing' in x for x in cards),8)
   for card in cards:
    self.assertIn('class="catalog-card-meta"',card)
    self.assertIn('class="nm"',card)
@@ -108,4 +112,14 @@ class Archive(unittest.TestCase):
    if '<img ' in card:
     self.assertIn('alt=""',card);self.assertIn('loading="lazy"',card);self.assertIn('decoding="async"',card)
   self.assertNotRegex((ROOT/'dist/index.html').read_text(),r'<a class="[^"]*catalog-cover-card')
+ def test_three_official_sleeves(self):
+  expected={'sw':('swoon','jpg','cb-r-swoon'),'wo':('wide-open-2','jpg','cb-r-wide-open-2'),'eod':('eve-of-destruction-2','png','cb-r-eve-of-destruction-2')}
+  works=json.loads((ROOT/'data/works.json').read_text())
+  for wid,(slug,ext,src) in expected.items():
+   w=next(w for w in works if w['id']==wid)
+   self.assertEqual(w['art_src'],[src])
+   self.assertTrue((ROOT/'dist/art'/f'{wid}.{ext}').exists())
+   h=(ROOT/'dist/works'/slug/'index.html').read_text()
+   self.assertIn('art/'+wid+'.'+ext,h)
+   self.assertIn('https://www.thechemicalbrothers.com/music-videos/'+slug,h)
 if __name__=='__main__':unittest.main()

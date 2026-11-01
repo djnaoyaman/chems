@@ -38,7 +38,7 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  assert(admission(v,data.recordings[entry.recordingId],e,entry).allowed);
  assert(!JSON.stringify(data).includes('6iiGQmWCCyI'));
  for(const lang of ['']){
-  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('2026-11-01T12:38:00+00:00'));
+  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('2026-11-01T13:06:00+00:00'));
   const work=fs.readFileSync(path.join(dist,lang,'works/exit-planet-dust/index.html'),'utf8');assert(!work.includes('listening/listening.mjs'));assert(work.includes('30p2UWAegeQ'));
  }
  const protectedFiles=JSON.parse(fs.readFileSync(path.join(root,'tests/listening-protected.json')));
