@@ -24,12 +24,10 @@ PROFILE_MODIFIED = '2026-11-01T10:08:00+00:00'
 PROFILE_LINKS_UPDATED = '2026-11-01T11:12:00+00:00'
 # Footer cleanup and work-page disclosure wording; archive content is unchanged.
 FOOTER_UPDATED = '2026-11-01T12:24:00+00:00'
+JAPANESE_UPDATED = '2026-11-01T12:30:00+00:00'
 def page_modified(key):
-    if key in ('work', 'about'):
-        return FOOTER_UPDATED
-    if key == 'profile':
-        return max(SHARED_TOOLS_UPDATED, PROFILE_MODIFIED)
-    return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
+    return JAPANESE_UPDATED
+
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
 CFG = json.load(open(os.path.join(ROOT, 'config.json'), encoding='utf-8'))
 WORKS, PEOPLE, SOURCES = J('works.json'), J('people.json'), J('sources.json')
@@ -37,7 +35,7 @@ EVENTS, NOW, SHELF, GLOSS = J('events.json'), J('now.json'), J('shelf.json'), J(
 W = {w['id']: w for w in WORKS}
 P = {p['id']: p for p in PEOPLE}
 SRC = {s['id']: s for s in SOURCES}
-LANGS = ['ja', 'en']
+LANGS = ['ja']
 CSS = open(os.path.join(ROOT, 'src', 'site.css'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.css'), encoding='utf-8').read()
 JS = open(os.path.join(ROOT, 'src', 'premium-playback-hint.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'site.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'launch-tools.js'), encoding='utf-8').read() + '\n' + open(os.path.join(ROOT, 'src', 'discovery.js'), encoding='utf-8').read()
 esc = lambda s: H.escape(str(s), quote=True)
@@ -69,7 +67,7 @@ UI = {
         'prev': '前の作品', 'next': '次の作品', 'atomic': '原子番号',
         'unofficial': 'このサイトはThe Chemical Brothersの公式サイトではありません。ファンによる非公式のアーカイブです。',
         'checked': '確認日',
-        'own_link': 'Amazon.co.jpで探す', 'own_note': 'Amazonのアソシエイトとして、DJ Naoyamanは適格販売により収入を得ています。',
+        'own_link': 'Amazon.co.jpで探す',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
  'en': {'works': 'Works / periodic table', 'timeline': 'Timeline', 'equations': 'Collaborators', 'chain': 'Connections', 'now': 'Archive guide', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Editor',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
@@ -94,7 +92,7 @@ UI = {
         'prev': 'Previous', 'next': 'Next', 'atomic': 'Atomic number',
         'unofficial': 'This is not the official site of The Chemical Brothers. It is an unofficial fan archive.',
         'checked': 'Checked',
-        'own_link': 'Find it on Amazon.co.jp', 'own_note': 'As an Amazon Associate, DJ Naoyaman earns from qualifying purchases.',
+        'own_link': 'Find it on Amazon.co.jp',
         'kinds': {'all': 'All', 'work': 'Work', 'live': 'Live', 'japan': 'Japan', 'society': 'Society', 'scene': 'Scene', 'tech': 'Technology'}},
 }
 KC = {'work': '#F2F1EC', 'live': '#FFDE22', 'japan': '#FF3355', 'society': '#A9A9A2', 'scene': '#3DE0E0', 'tech': '#9EF01A'}
@@ -230,7 +228,7 @@ def reading_tools(lang):
     return f'''<aside class="reading-tools" aria-label="{'Reading tools' if en else '読むための道具'}"><div class="reading-tools-actions"><button type="button" data-share>{'Share' if en else '共有'}</button><button type="button" data-copy>{'Copy link' if en else 'リンクをコピー'}</button><a href="#top">{'Back to top' if en else 'ページ上部へ'}</a></div><p role="status" aria-live="polite"></p><div class="manual-copy" hidden><label>{'Page address' if en else 'ページのURL'}<input type="text" readonly aria-label="{'Page address' if en else 'ページのURL'}"></label></div><details><summary>{'Keep this site handy' if en else 'ホーム画面から開く'}</summary><p>{'On iPhone or iPad, open this site in Safari and choose Add to Home Screen from Share. On Android, check your browser menu for Add to Home screen. Availability and wording vary by browser. This is a web shortcut; an internet connection is needed.' if en else 'iPhone・iPadではSafariの共有メニューから「ホーム画面に追加」を選びます。Androidではブラウザのメニューにある「ホーム画面に追加」を確認してください。表示や対応状況はブラウザにより異なります。Webサイトへのショートカットです。利用にはインターネット接続が必要です。'}</p></details></aside>'''
 
 def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
-    u = UI[lang]; other = 'en' if lang == 'ja' else 'ja'
+    u = UI[lang]
     alt = {l: path(l, key, arg) for l in LANGS}
     site = CFG['site_name'][lang]
     full = site if key == 'top' else f'{title}｜{site}' if lang == 'ja' else f'{title} | {site}'
@@ -238,7 +236,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED, JAPANESE_UPDATED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
@@ -250,7 +248,6 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     ga = CFG.get('ga_measurement_id', '')
     gtag = f'''<script async src="https://www.googletagmanager.com/gtag/js?id={ga}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','{ga}');</script>''' if ga else ''
-    og_locale_alt = 'en_GB' if lang == 'ja' else 'ja_JP'
     return f'''<!DOCTYPE html>
 {signature(key == 'top', lang)}
 <html lang="{lang}">
@@ -272,7 +269,6 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 <meta property="og:image:alt" content="{esc(full)}">
 <meta property="og:url" content="{(base + pg) if base else rel(pg, pg)}">
 <meta property="og:locale" content="{'ja_JP' if lang == 'ja' else 'en_GB'}">
-<meta property="og:locale:alternate" content="{og_locale_alt}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(full)}">
 <meta name="twitter:description" content="{esc(desc)}">
@@ -293,7 +289,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 </head>
 <body id="top">
 <a class="skip-link" href="#main">{'本文へ' if lang == 'ja' else 'Skip to content'}</a>
-<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{'メニュー' if lang == 'ja' else 'Menu'}" hidden><span aria-hidden="true">☰</span></button><nav id="site-nav" aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}" aria-label="{u['lang_other']}"><span class="lang-full">{u['lang_other']}</span><span class="lang-short" aria-hidden="true">{'EN' if other == 'en' else 'JA'}</span></a></div></header>
+<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{'メニュー' if lang == 'ja' else 'Menu'}" hidden><span aria-hidden="true">☰</span></button><nav id="site-nav" aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav></div></header>
 <main id="main" tabindex="-1">
 {body}
 </main>
@@ -517,14 +513,9 @@ def work_page(w, lang):
     else:
         af = ''
     after = f'<section class="blk"><h2>{u["after"]}</h2>{af}</section>'
-    tag = CFG.get('amazon_associate_tag')
-    if tag:
-        q = quote(f'{w["title"]} The Chemical Brothers')
-        az_url = f'https://www.amazon.co.jp/s?k={q}&tag={quote(tag)}'
-        own_body = (f'<p><a class="own-link" href="{az_url}" target="_blank" rel="nofollow sponsored noopener">{u["own_link"]}</a></p>'
-                    f'<p id="ad-disclosure" class="muted small">{u["own_note"]}</p>')
-    else:
-        own_body = ''
+    q = quote(f'{w["title"]} The Chemical Brothers')
+    az_url = f'https://www.amazon.co.jp/s?k={q}'
+    own_body = f'<p><a class="own-link" href="{az_url}" target="_blank" rel="noopener">{u["own_link"]}</a></p>'
     own = f'<section class="blk"><h2>{u["own"]}</h2>{own_body}</section>'
     # 前後
     k = WORKS.index(w)
@@ -796,12 +787,12 @@ def about_page(lang):
     u = UI[lang]
     if lang == 'ja':
         secs = [('方針', 'ニュース速報・今後の公演予定は扱いません。作品、制作、共作者、歴史を中心に編集します。ケミカル・ブラザーズを「触媒」として読むアーカイブです。触媒は反応を起こしても、自分は消費されずに残る。このサイトで取り上げるアルバム、シングル、EPを本棚に、それ以外を別棚に置き、反応の記録として並べています。'),
-                ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。英語版の私見は日本語の原文からの翻訳です。'),
+                ('事実と私見', '事実には必ず出典を付けます。出典のない事実は載せず、空欄の枠のまま残します。私見はDJ Naoyaman名義で書き、色を反転させたブロックに分けています。'),
                 ('出典の扱い', '出典庫に全出典の媒体、日付、言語、確認日を記録し、使っているページへ逆リンクを張っています。'),
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
                 ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
                 ('埋め込み', '埋め込みはYouTubeの公式動画だけです。優先順は公式MV、公式ライブ映像、公式音源（Topic）です。'),
-                ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。リンクの近くにAmazonアソシエイトとして収入を得る旨を明記しています。'),
+                ('購入リンク', '各作品ページの「持つ」欄からAmazon.co.jpの検索結果へ移動できます。レビュー本文には購入リンクを入れません。'),
                 ('制作', 'DJ Naoyaman（宮崎直哉）。プロフィールは別ページにまとめています。')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
@@ -812,7 +803,7 @@ def about_page(lang):
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
                 ('Images and colour', 'Sleeve images appear on each work page as quotations for review and commentary, with their source shown. No official logos are used. Plate colours are taken from the artwork; works without an image yet are shown unprinted.'),
                 ('Embeds', 'Only official YouTube videos are embedded, in this order of preference: official video, official live footage, official audio (Topic).'),
-                ('Advertising', 'Affiliate links appear only in the Own section of each work page, never inside the text. The Amazon Associates earnings disclosure appears next to each link.'),
+                ('Purchase links', 'The Own section of each work page links to search results on Amazon.co.jp. Purchase links do not appear inside the review text.'),
                 ('Made by', 'DJ Naoyaman (Naoya Miyazaki). See the profile page for more.')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["en"])}</dt><dd lang="ja">{esc(g["ja"])}</dd>' for g in GLOSS) + '</dl>'
         gh = 'Glossary (English and Japanese)'
@@ -913,18 +904,10 @@ def verify():
     for e in EVENTS + NOW['items'] + NOW['delayed']:
         if not e.get('src') or any(s not in SRC for s in e['src']): bad.append(e['date'])
     ok(1, '出典のない事実項目が0件', not bad, ', '.join(bad[:5]))
-    # 2 日英のペアと改訂番号
-    pairs = []
-    for pg, v in PAGES.items():
-        other = path('en' if v['lang'] == 'ja' else 'ja', v['key'], v['arg'])
-        if other not in PAGES: pairs.append(pg)
-    revs = []
-    for f in os.listdir(os.path.join(ROOT, 'texts', 'ja')):
-        a = text_blocks(f[:-3], 'ja')[1]; b = text_blocks(f[:-3], 'en')[1]
-        if a != b: revs.append(f)
-    for f in os.listdir(os.path.join(ROOT, 'texts', 'en')):
-        if not os.path.exists(os.path.join(ROOT, 'texts', 'ja', f)): revs.append(f)
-    ok(2, '日英がそろい、片方だけの更新がない', not pairs and not revs, ', '.join(pairs + revs))
+    # 2 公開本文は日本語のみ。保管済み英訳との改訂同期は不要。
+    bad_ja = [pg for pg, v in PAGES.items() if v['lang'] != 'ja' or pg.startswith('en/')]
+    missing = [w['id'] for w in WORKS if path('ja', 'work', w['id']) not in PAGES]
+    ok(2, '日本語本文のみを公開し、全作品の日本語ページがある', not bad_ja and not missing, ', '.join(bad_ja + missing))
     # 3 内部リンク切れ
     broken = []
     for pg, v in PAGES.items():
@@ -937,9 +920,9 @@ def verify():
     # 4 OGP
     miss = [pg for pg, v in PAGES.items() if not os.path.exists(os.path.join(DIST, v['ogp'])) or 'og:image' not in v['html']]
     ok(4, '全ページに専用のOGP画像がある', not miss, ', '.join(miss[:5]))
-    # 5 広告表記
-    ad = [pg for pg, v in PAGES.items() if 'class="own-link' in v['html'] and 'id="ad-disclosure"' not in v['html']]
-    ok(5, '「持つ」リンクのあるページに広告表記がある', not ad, ', '.join(ad))
+    # 5 購入リンクは紹介タグのない通常URL。
+    ad = [pg for pg,v in PAGES.items() if re.search(r'(?:[?&]|&amp;)tag=', v['html']) or 'id="ad-disclosure"' in v['html']]
+    ok(5, '購入リンクに紹介タグや収益開示が残っていない', not ad, ', '.join(ad))
     # 6 コントラスト
     cbad = []
     for w in WORKS:
@@ -978,7 +961,8 @@ def verify():
             if not m: hb.append(pg); continue
             tgt = posixpath.normpath(posixpath.join(posixpath.dirname(pg), m.group(1))) if not m.group(1).startswith('http') else None
             if tgt and tgt not in PAGES: hb.append(pg)
-    ok(9, 'hreflangが日英で相互に張られている', not hb, ', '.join(hb[:5]))
+    hb += [pg for pg,v in PAGES.items() if 'hreflang="en"' in v['html'] or 'class="lang"' in v['html'] or f'<link rel="canonical" href="{CFG["base_url"].rstrip("/")}/{pg}">' not in v['html']]
+    ok(9, '日本語canonicalとhreflangが整合し、英語版への切替がない', not hb, ', '.join(hb[:5]))
     # 10 JSON-LD
     jl = 0
     for v in PAGES.values():
@@ -1013,16 +997,9 @@ def verify():
     # 13 脈動
     fast = [w['id'] for w in WORKS if ((w['bpm'] or 120) / 2 if (w['bpm'] or 120) > 180 else (w['bpm'] or 120)) / 60 > 3]
     ok(13, '脈動の変化が1秒に3回以下', not fast, ', '.join(fast))
-    # 14 用語集
-    gb = []
-    for pg, v in PAGES.items():
-        if v['lang'] != 'ja': continue
-        en = PAGES.get(path('en', v['key'], v['arg']))
-        if not en: continue
-        tj = re.sub(r'<[^>]+>', ' ', v['html'].split('<main id="main" tabindex="-1">')[1]); te = re.sub(r'<[^>]+>', ' ', en['html'].split('<main id="main" tabindex="-1">')[1]).lower()
-        for g in GLOSS:
-            if g['ja'] in tj and g['en'].lower() not in te: gb.append(f'{pg}:{g["ja"]}')
-    ok(14, '造語の訳語が用語集と一致している', not gb, ', '.join(gb[:6]))
+    # 14 日本語用語集。原語の語彙は引き続き参照用として保持する。
+    gb = [str(i) for i,g in enumerate(GLOSS) if not g.get('ja') or not g.get('en')]
+    ok(14, '用語集の日本語見出しと原語が欠けていない', not gb, ', '.join(gb))
     return res
 
 # ---------------------------------------------------------------- SEO/LLMO
@@ -1043,34 +1020,34 @@ def write_seo_files():
     # robots.txt
     robots = f'User-agent: *\nAllow: /\n\nSitemap: {base}sitemap.xml\n'
     open(os.path.join(DIST, 'robots.txt'), 'w', encoding='utf-8').write(robots)
-    # llms.txt（llmstxt.org準拠。LLM/検索エンジンの要約用に英語で用意）
-    u = UI['en']
+    # llms.txt（日本語の案内と日本語canonical URL）
+    u = UI['ja']
     disc = []
     for w in WORKS:
         r = w['records']; yr = r.get('date', {}).get('v', str(w['year']))
-        disc.append(f'- [{w["title"]}]({base}{path("en", "work", w["id"])}) — {u[w["type"]]}, {str(yr)[:4]}')
-    pages_md = '\n'.join(f'- [{u[k]}]({base}{path("en", k)})' for k in NAV) + f'\n- [{u["sources"]}]({base}{path("en", "sources")})\n- [{u["about"]}]({base}{path("en", "about")})\n- [{u["profile"]}]({base}{path("en", "profile")})'
-    llms = f'''# {CFG['site_name']['en']}
+        disc.append(f'- [{w["title"]}]({base}{path("ja", "work", w["id"])}) — {u[w["type"]]}, {str(yr)[:4]}')
+    pages_md = '\n'.join(f'- [{u[k]}]({base}{path("ja", k)})' for k in NAV) + f'\n- [{u["sources"]}]({base}{path("ja", "sources")})\n- [{u["about"]}]({base}{path("ja", "about")})\n- [{u["profile"]}]({base}{path("ja", "profile")})'
+    llms = f'''# {CFG['site_name']['ja']}
 
-> An unofficial fan archive documenting albums, singles and EPs by The Chemical Brothers, with sourced release records, music and technology notes, context, testimony and a personal view by DJ Naoyaman (Naoya Miyazaki). Every factual claim on this site is tied to a cited source (see /sources/); opinion is always labelled as such and kept separate from fact. Available in Japanese (default) and English.
+> ケミカル・ブラザーズの作品と歴史をたどる、日本語の非公式ファンアーカイブ。発売・制作の事実には出典を付け、DJ Naoyamanの私見とは分けて掲載します。
 
-## Key pages
+## 主なページ
 
 {pages_md}
 
-## Discography ({len(WORKS)} works, in release order)
+## 作品一覧（{len(WORKS)}作品、発売順）
 
 {chr(10).join(disc)}
 
-## Full text
+## 全文
 
-- [Full bilingual page text]({base}llms-full.txt)
+- [日本語ページの全文]({base}llms-full.txt)
 
-## Notes for automated readers
+## 自動読み取りについて
 
-- This is a fan-made archive, not affiliated with or endorsed by The Chemical Brothers or their label.
-- Each work page cites its sources inline; the sources index is at /sources/.
-- Each language page has its own canonical URL. Japanese and English counterparts are connected with hreflang; English pages use /en/.
+- The Chemical Brothersおよび所属レーベルの公式サイトではありません。
+- 各作品ページの出典は本文中に示し、出典庫にもまとめています。
+- 公開本文は日本語のみです。各ページのcanonical URLを参照してください。
 '''
     open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8').write(llms)
 
@@ -1088,14 +1065,14 @@ class MainText(HTMLParser):
 
 def write_full_text_and_recovery():
     base = CFG['base_url'].rstrip('/') + '/'
-    blocks = ['# my Chems — full archive text', 'Unofficial archive. Existing page text follows in Japanese and English. Facts and personal views retain their page labels. Citations are resolved on the linked source pages. This file does not grant rights to third-party material.']
+    blocks = ['# my Chems — 日本語アーカイブ全文', '非公式のファンアーカイブです。既存の日本語本文を掲載し、事実と私見の区別を維持しています。引用の出典は各ページに示しています。このファイルは第三者の素材の利用許諾を与えるものではありません。']
     for pg, v in sorted(PAGES.items()):
         parser = MainText(); parser.feed(v['html'])
         text = re.sub(r'\n[ \t]*\n+', '\n\n', ''.join(parser.parts)).strip()
         blocks.append('## ' + base + pg + '\n\n' + text)
     open(os.path.join(DIST, 'llms-full.txt'), 'w', encoding='utf-8').write('\n\n'.join(blocks) + '\n')
     # Absolute project URLs work even when GitHub serves this file for a deeply nested missing URL.
-    recovery = f'''<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin"><title>ページが見つかりません / Page not found | my Chems</title><meta name="description" content="my Chemsの作品・歴史アーカイブへ戻る案内。"><link rel="icon" href="{base}icons/mychems-favicon.ico"><link rel="apple-touch-icon" href="{base}icons/mychems-apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest"><meta name="theme-color" content="#000000"><style>{CSS}</style></head><body><main class="wrap page-h" id="main"><a href="{base}" aria-label="myChems"><img src="{base}brand/mychems-wordmark-ivory.svg" alt="myChems" width="1799" height="504" style="width:180px;height:auto"></a><h1>ページが見つかりません</h1><p>URLが変わったか、入力が違っている可能性があります。作品や年表から探してみてください。</p><p><a href="{base}">ホーム</a> · <a href="{base}works/">作品・周期表</a> · <a href="{base}timeline/">年表</a></p><section class="s" lang="en"><h2>Page not found</h2><p>The address may have changed or been mistyped. Browse the archive instead.</p><p><a href="{base}en/">English home</a> · <a href="{base}en/works/">Works</a> · <a href="{base}en/timeline/">Timeline</a></p></section><p class="small">非公式のファンアーカイブ / An unofficial fan archive.</p></main></body></html>'''
+    recovery = f'''<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,follow"><meta name="referrer" content="strict-origin-when-cross-origin"><title>ページが見つかりません | my Chems</title><meta name="description" content="my Chemsの作品・歴史アーカイブへ戻る案内。"><link rel="icon" href="{base}icons/mychems-favicon.ico"><link rel="apple-touch-icon" href="{base}icons/mychems-apple-touch-icon.png"><link rel="manifest" href="{base}site.webmanifest"><meta name="theme-color" content="#000000"><style>{CSS}</style></head><body><main class="wrap page-h" id="main"><a href="{base}" aria-label="myChems"><img src="{base}brand/mychems-wordmark-ivory.svg" alt="myChems" width="1799" height="504" style="width:180px;height:auto"></a><h1>ページが見つかりません</h1><p>URLが変わったか、入力が違っている可能性があります。作品や年表から探してみてください。</p><p><a href="{base}">ホーム</a> · <a href="{base}works/">作品・周期表</a> · <a href="{base}timeline/">年表</a></p><p class="small">非公式のファンアーカイブ。</p></main></body></html>'''
     open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8').write(recovery)
 
 def main():

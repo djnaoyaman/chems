@@ -25,7 +25,7 @@ class Icons(HTMLParser):
 
 
 pages = list(DIST.rglob('*.html'))
-assert len(pages) == 219
+assert len(pages) == 110
 for page in pages:
     source = page.read_text()
     assert '⚗' not in source, page
@@ -74,4 +74,4 @@ assert 'noindex,nofollow' in preview
 for name in ('mychems-icon-32.png', 'mychems-apple-touch-icon.png'):
     embedded = base64.b64encode((DIST / 'icons' / name).read_bytes()).decode()
     assert 'data:image/png;base64,' + embedded in preview
-print('PASS 219 pages, manifest, current/legacy/root icons, safe circles, standalone preview branding')
+print('PASS 110 pages, manifest, current/legacy/root icons, safe circles, standalone preview branding')

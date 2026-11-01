@@ -37,8 +37,8 @@ const root=path.resolve(__dirname,'..'),dist=path.join(root,'dist');
  assert.equal(e.entries.length,11);assert.equal(v.id,'YtnBsvu72kY');assert.equal(v.officialEvidence.providerName,'Universal Music Group');assert.equal(v.availability.state,'unchecked');assert.equal(v.channelId,undefined);
  assert(admission(v,data.recordings[entry.recordingId],e,entry).allowed);
  assert(!JSON.stringify(data).includes('6iiGQmWCCyI'));
- for(const lang of ['','en/']){
-  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('2026-11-01T09:23:00+00:00'));
+ for(const lang of ['']){
+  const h=fs.readFileSync(path.join(dist,lang,'works/index.html'),'utf8');assert(h.includes('id="listening"'));assert(h.includes('type="module"'));assert(h.includes('2026-11-01T12:30:00+00:00'));
   const work=fs.readFileSync(path.join(dist,lang,'works/exit-planet-dust/index.html'),'utf8');assert(!work.includes('listening/listening.mjs'));assert(work.includes('30p2UWAegeQ'));
  }
  const protectedFiles=JSON.parse(fs.readFileSync(path.join(root,'tests/listening-protected.json')));

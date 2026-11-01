@@ -1,6 +1,6 @@
 const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
 (async()=>{const browser=await chromium.launch();const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');let checks=0;
-for(const lang of ['','en/']){const page=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});
+for(const lang of ['']){const page=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});
 await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://chems.test')return r.abort();let f=path.join(root,u.pathname);return fs.existsSync(f)?r.fulfill({path:f}):r.fulfill({status:404,body:'missing'});});
 await page.goto('https://chems.test/'+lang+'sources/index.html');await page.addStyleTag({content:'html{font-size:200%}'});const region=page.getByRole('region');assert.equal(await region.getAttribute('tabindex'),'0');assert(await page.locator('.scroll-hint').isVisible());assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth));checks++;
 await region.focus();await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('.scroll').scrollLeft>0);checks++;

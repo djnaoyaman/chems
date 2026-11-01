@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'../dist'),base='https://chems.test';
 (async()=>{const browser=await chromium.launch({headless:true});let checks=0;
-for(const lang of ['ja','en'])for(const width of [320,390,1280]){
+for(const lang of ['ja'])for(const width of [320,390,1280]){
  const page=await browser.newPage({viewport:{width,height:900},reducedMotion:'reduce'});
  await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!==base)return r.abort();let f=path.join(root,u.pathname);if(fs.existsSync(f)&&fs.statSync(f).isDirectory())f=path.join(f,'index.html');return fs.existsSync(f)?r.fulfill({path:f}):r.fulfill({status:404,body:'missing'});});
  const prefix=lang==='ja'?'':'en/';await page.goto(base+'/'+prefix+'index.html');

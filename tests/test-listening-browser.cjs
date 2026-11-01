@@ -2,7 +2,7 @@
 const {chromium}=require('playwright'),fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');
 (async()=>{const browser=await chromium.launch();let checks=0;fs.mkdirSync(out,{recursive:true});
-for(const lang of ['ja','en'])for(const width of [320,375,390,430,768,844,1280,1440]){
+for(const lang of ['ja'])for(const width of [320,375,390,430,768,844,1280,1440]){
  const page=await browser.newPage({viewport:{width,height:width===844?390:900},reducedMotion:'reduce'});let apiRequests=0;const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/*',r=>{const u=new URL(r.request().url());
