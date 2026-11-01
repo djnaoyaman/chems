@@ -21,4 +21,6 @@ print('PASS approved outline hashes, all 109 headers, unofficial notice, actual 
 
 
 
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:30:00+00:00</lastmod>')==109
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:30:00+00:00</lastmod>')==107
+
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:38:00+00:00</lastmod>')==2

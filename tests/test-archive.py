@@ -7,7 +7,8 @@ EXPECTED='2026-10-31T11:50:00+00:00'
 EDITORIAL='2026-11-01T08:22:00+00:00'
 LISTENING='2026-11-01T09:23:00+00:00'
 PROFILE='2026-11-01T10:08:00+00:00'
-LABELS='2026-11-01T12:30:00+00:00'
+LABELS='2026-11-01T12:38:00+00:00'
+JAPANESE='2026-11-01T12:30:00+00:00'
 DISCLOSURE=LABELS
 class Archive(unittest.TestCase):
  def test_home(self):
@@ -25,16 +26,16 @@ class Archive(unittest.TestCase):
   expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertEqual(len(pages),109)
   for p in pages:
    h=p.read_text();self.assertIn(f'<time datetime="{LABELS}">',h)
-   expected=LABELS
+   expected=LABELS if p.relative_to(ROOT/'dist').as_posix() in ('works/index.html','about/index.html') else JAPANESE
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
   tree=ET.parse(ROOT/'dist/sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{LABELS})
+  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{JAPANESE,LABELS})
   self.assertEqual(len(tree.findall('.//s:lastmod',ns)),len(pages))
   for url in tree.findall('s:url',ns):
    loc=url.find('s:loc',ns).text
    relative=loc.removeprefix('https://djnaoyaman.github.io/chems/')
-   expected=LABELS
+   expected=LABELS if relative in ('works/index.html','about/index.html') else JAPANESE
    self.assertEqual(url.find('s:lastmod',ns).text,expected)
  def test_editorial_scope(self):
   llms=(ROOT/'dist/llms.txt').read_text()
@@ -93,4 +94,18 @@ class Archive(unittest.TestCase):
    self.assertEqual(set(release['articlePath']),{'ja'})
   preview=(ROOT/'notes/preview.html').read_text()
   self.assertNotIn('"en/index.html"',preview)
+ def test_catalog_covers(self):
+  h=(ROOT/'dist/works/index.html').read_text()
+  cards=re.findall(r'<a class="el [^"\n]*catalog-cover-card".*?</a>',h,re.S)
+  self.assertEqual(len(cards),57)
+  self.assertEqual(sum('<img ' in x for x in cards),46)
+  self.assertEqual(sum('catalog-cover-missing' in x for x in cards),11)
+  for card in cards:
+   self.assertIn('class="catalog-card-meta"',card)
+   self.assertIn('class="nm"',card)
+   self.assertEqual(card.count('<a '),1)
+   self.assertNotRegex(card,r'art/(?:gtko|wgtt)\.jpg')
+   if '<img ' in card:
+    self.assertIn('alt=""',card);self.assertIn('loading="lazy"',card);self.assertIn('decoding="async"',card)
+  self.assertNotRegex((ROOT/'dist/index.html').read_text(),r'<a class="[^"]*catalog-cover-card')
 if __name__=='__main__':unittest.main()
