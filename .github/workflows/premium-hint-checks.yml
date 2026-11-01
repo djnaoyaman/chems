@@ -1,15 +1,18 @@
 name: Check transient Premium hint
 on:
   pull_request:
-    paths: ['src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-device-icons.py', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', 'tests/test-reading-tools*.cjs', 'tests/test-reading-audit*', 'tests/test-usability*', 'tests/test-sources-scroll*', 'tests/test-listening*', 'tests/listening-protected.json', 'tools/listening_catalog.py', 'tools/generate_icons.py', 'tools/preview_bundle.py', 'notes/preview.html', '.github/workflows/premium-hint-checks.yml']
+    paths: ['art/**', 'texts/ja/**', 'config.json', 'src/**', 'build.py', 'tests/test-wordmark*', 'tests/test-device-icons.py', 'tests/test-profile*', 'tests/test-archive*', 'data/**', 'tests/test-premium-hint*.cjs', 'tests/test-launch-package.cjs', 'tests/test-reading-tools*.cjs', 'tests/test-reading-audit*', 'tests/test-usability*', 'tests/test-sources-scroll*', 'tests/test-listening*', 'tests/listening-protected.json', 'tools/listening_catalog.py', 'tools/site_updated.py', 'tests/test-site-updated.py', 'tools/generate_icons.py', 'tools/preview_bundle.py', 'notes/preview.html', '.github/workflows/premium-hint-checks.yml']
 permissions:
   contents: read
 jobs:
   hint:
-    runs-on: ubuntu-latest
+    # Playwright 1.56.1 supports Ubuntu 24.04; do not float to unsupported images.
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -20,6 +23,7 @@ jobs:
       - run: python3 tests/test-device-icons.py
       - run: python3 tests/test-profile.py
       - run: python3 tests/test-archive.py
+      - run: python3 tests/test-site-updated.py
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

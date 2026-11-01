@@ -14,6 +14,8 @@ def expected_date(p):
  return LABELS if p in ART_PAGES else COVERS if p=='about/index.html' else JAPANESE
 JAPANESE='2026-11-01T12:30:00+00:00'
 DISCLOSURE=LABELS
+from tools.site_updated import site_updated
+SITE_UPDATED=site_updated(ROOT)
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('',):
@@ -29,7 +31,7 @@ class Archive(unittest.TestCase):
  def test_dates(self):
   expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertEqual(len(pages),109)
   for p in pages:
-   h=p.read_text();self.assertIn(f'<time datetime="{LABELS}">',h)
+   h=p.read_text();self.assertIn(f'<time datetime="{SITE_UPDATED}">',h)
    expected=expected_date(p.relative_to(ROOT/'dist').as_posix())
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
