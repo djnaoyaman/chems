@@ -13,7 +13,7 @@ for p in pages:
  assert 'dateModified' in s
  assert 'JST' in s
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==0
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T08:22:00+00:00</lastmod>')==214
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T08:22:00+00:00</lastmod>')==98
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T09:23:00+00:00</lastmod>')==2
 assert len(json.loads((r/'data/works.json').read_text()))==57
 assert len(json.loads((r/'data/people.json').read_text()))==36

@@ -7,7 +7,8 @@ EXPECTED='2026-10-31T11:50:00+00:00'
 EDITORIAL='2026-11-01T08:22:00+00:00'
 LISTENING='2026-11-01T09:23:00+00:00'
 PROFILE='2026-11-01T10:08:00+00:00'
-LABELS='2026-11-01T11:12:00+00:00'
+LABELS='2026-11-01T12:24:00+00:00'
+DISCLOSURE=LABELS
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
@@ -24,16 +25,16 @@ class Archive(unittest.TestCase):
   expected=EXPECTED;pages=[p for p in (ROOT/'dist').rglob('*.html') if p.name != '404.html'];self.assertGreater(len(pages),200)
   for p in pages:
    h=p.read_text();self.assertIn(f'<time datetime="{LABELS}">',h)
-   expected=LISTENING if p.relative_to(ROOT/'dist').as_posix() in ('works/index.html','en/works/index.html') else (PROFILE if p.relative_to(ROOT/'dist').as_posix() in ('profile/index.html','en/profile/index.html') else EDITORIAL)
+   expected=DISCLOSURE if ('/works/' in '/'+p.relative_to(ROOT/'dist').as_posix() and p.parent.name!='works' or p.relative_to(ROOT/'dist').as_posix() in ('about/index.html','en/about/index.html')) else LISTENING if p.relative_to(ROOT/'dist').as_posix() in ('works/index.html','en/works/index.html') else (PROFILE if p.relative_to(ROOT/'dist').as_posix() in ('profile/index.html','en/profile/index.html') else EDITORIAL)
    blocks=[json.loads(x) for x in re.findall(r'<script type="application/ld\+json">(.*?)</script>',h)]
    self.assertTrue(any(x.get('@type')=='WebPage' and x.get('dateModified')==expected for x in blocks),p)
   tree=ET.parse(ROOT/'dist/sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
-  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{EDITORIAL,LISTENING,PROFILE})
+  self.assertEqual({x.text for x in tree.findall('.//s:lastmod',ns)},{EDITORIAL,LISTENING,PROFILE,DISCLOSURE})
   self.assertEqual(len(tree.findall('.//s:lastmod',ns)),len(pages))
   for url in tree.findall('s:url',ns):
    loc=url.find('s:loc',ns).text
    relative=loc.removeprefix('https://djnaoyaman.github.io/chems/')
-   expected=LISTENING if relative in ('works/index.html','en/works/index.html') else (PROFILE if relative in ('profile/index.html','en/profile/index.html') else EDITORIAL)
+   expected=DISCLOSURE if ('/works/' in '/'+relative and relative not in ('works/index.html','en/works/index.html') or relative in ('about/index.html','en/about/index.html')) else LISTENING if relative in ('works/index.html','en/works/index.html') else (PROFILE if relative in ('profile/index.html','en/profile/index.html') else EDITORIAL)
    self.assertEqual(url.find('s:lastmod',ns).text,expected)
  def test_editorial_scope(self):
   llms=(ROOT/'dist/llms.txt').read_text()
@@ -53,4 +54,23 @@ class Archive(unittest.TestCase):
   self.assertEqual(json.loads((ROOT/'config.json').read_text())['checked'],'2026-10-01')
   self.assertFalse(any('予定' in x['ja'] for x in json.loads((ROOT/'data/events.json').read_text())))
   self.assertEqual(len(json.loads((ROOT/'notes/retired-news/events-before-20261031.json').read_text())),22)
+ def test_footer_disclosures(self):
+  for p in (ROOT/'dist').rglob('*.html'):
+   if p.name=='404.html':continue
+   h=p.read_text()
+   footer=re.search(r'<footer class="gf">(.*?)</footer>',h,re.S).group(1)
+   self.assertNotIn('thechemicalbrothers.com',footer)
+   self.assertNotIn('ad-disclosure',footer)
+   self.assertNotIn('Amazon',footer)
+   if 'class="own-link"' in h:
+    self.assertEqual(h.count('id="ad-disclosure"'),1)
+    self.assertIn('tag=naoyaman-22',h)
+    self.assertTrue('適格販売により収入を得ています' in h or 'earns from qualifying purchases' in h)
+   else:self.assertNotIn('id="ad-disclosure"',h)
+  for prefix in ('','en/'):
+   about=(ROOT/'dist'/prefix/'about/index.html').read_text()
+   self.assertNotIn('共通フッター',about)
+   self.assertNotIn('in the site footer',about)
+   work=(ROOT/'dist'/prefix/'works/come-with-us/index.html').read_text()
+   self.assertIn('https://www.thechemicalbrothers.com/',work)
 if __name__=='__main__':unittest.main()

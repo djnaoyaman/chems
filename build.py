@@ -22,7 +22,11 @@ LISTENING_UPDATED = '2026-11-01T09:23:00+00:00'
 PROFILE_MODIFIED = '2026-11-01T10:08:00+00:00'
 # Shared profile-link labels only; editorial page dates are preserved.
 PROFILE_LINKS_UPDATED = '2026-11-01T11:12:00+00:00'
+# Footer cleanup and work-page disclosure wording; archive content is unchanged.
+FOOTER_UPDATED = '2026-11-01T12:24:00+00:00'
 def page_modified(key):
+    if key in ('work', 'about'):
+        return FOOTER_UPDATED
     if key == 'profile':
         return max(SHARED_TOOLS_UPDATED, PROFILE_MODIFIED)
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
@@ -64,8 +68,8 @@ UI = {
         'from_album': '所属アルバム', 'included': '収録', 'nonalbum': 'アルバム未収録',
         'prev': '前の作品', 'next': '次の作品', 'atomic': '原子番号',
         'unofficial': 'このサイトはThe Chemical Brothersの公式サイトではありません。ファンによる非公式のアーカイブです。',
-        'noads': 'DJ Naoyamanは、Amazonアソシエイト・プログラムの参加者です。このプログラムは、サイトがAmazon.co.jpへのリンクを通じて紹介料を得られる手段を提供することを目的としています。', 'checked': '確認日',
-        'own_link': 'Amazon.co.jpで探す', 'own_note': '上記はAmazonアソシエイトのリンクです。',
+        'checked': '確認日',
+        'own_link': 'Amazon.co.jpで探す', 'own_note': 'Amazonのアソシエイトとして、DJ Naoyamanは適格販売により収入を得ています。',
         'kinds': {'all': 'すべて', 'work': '作品', 'live': 'ライブ', 'japan': '日本', 'society': '社会', 'scene': 'シーン', 'tech': '技術'}},
  'en': {'works': 'Works / periodic table', 'timeline': 'Timeline', 'equations': 'Collaborators', 'chain': 'Connections', 'now': 'Archive guide', 'shelf': 'Annex', 'about': 'About', 'sources': 'Sources', 'profile': 'Editor',
         'lang_other': '日本語', 'album': 'Studio album', 'single': 'Single', 'ep': 'EP',
@@ -89,8 +93,8 @@ UI = {
         'from_album': 'From the album', 'included': 'Included on', 'nonalbum': 'Non-album single',
         'prev': 'Previous', 'next': 'Next', 'atomic': 'Atomic number',
         'unofficial': 'This is not the official site of The Chemical Brothers. It is an unofficial fan archive.',
-        'noads': 'DJ Naoyaman is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for sites to earn fees by linking to Amazon.co.jp.', 'checked': 'Checked',
-        'own_link': 'Find it on Amazon.co.jp', 'own_note': 'The link above is an Amazon Associates affiliate link.',
+        'checked': 'Checked',
+        'own_link': 'Find it on Amazon.co.jp', 'own_note': 'As an Amazon Associate, DJ Naoyaman earns from qualifying purchases.',
         'kinds': {'all': 'All', 'work': 'Work', 'live': 'Live', 'japan': 'Japan', 'society': 'Society', 'scene': 'Scene', 'tech': 'Technology'}},
 }
 KC = {'work': '#F2F1EC', 'live': '#FFDE22', 'japan': '#FF3355', 'society': '#A9A9A2', 'scene': '#3DE0E0', 'tech': '#9EF01A'}
@@ -234,7 +238,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
     og_url = (base + ogp) if base else rel(pg, ogp)
     nav = ''.join(f'<a href="{rel(pg, path(lang, n))}"{" aria-current=\"page\"" if n == (cur or key) else ""}>{u[n]}</a>' for n in NAV)
     modified = page_modified(key)
-    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED)
+    site_modified = max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED, PROFILE_MODIFIED, PROFILE_LINKS_UPDATED, FOOTER_UPDATED)
     modified_jst = datetime.fromisoformat(site_modified).astimezone(timezone(timedelta(hours=9))).strftime('%Y-%m-%d %H:%M JST')
     listening_assets = (f'<link rel="stylesheet" href="{rel(pg, "listening/listening.css")}"><script type="module" src="{rel(pg, "listening/listening.mjs")}"></script>' if key == 'works' else '')
     page_ld = {'@context': 'https://schema.org', '@type': 'WebPage', 'url': base + pg, 'name': title, 'inLanguage': lang, 'dateModified': modified}
@@ -294,7 +298,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 {body}
 </main>
 {reading_tools(lang)}
-<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a><a href="https://www.thechemicalbrothers.com/" target="_blank" rel="noopener">thechemicalbrothers.com</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{site_modified}">{modified_jst}</time></p><p id="ad-disclosure">{u['noads']}</p></div></footer>
+<footer class="gf"><div class="gf-in"><nav><a href="{rel(pg, path(lang, 'about'))}">{u['about']}</a><a href="{rel(pg, path(lang, 'profile'))}">{u['profile']}</a><a href="{rel(pg, path(lang, 'sources'))}">{u['sources']}</a></nav><p>{u['unofficial']}</p><p class="brand-updated small">{'サイト最終更新' if lang == 'ja' else 'Site last updated'}: <time datetime="{site_modified}">{modified_jst}</time></p></div></footer>
 <script>{JS}</script>
 </body>
 </html>
@@ -518,7 +522,7 @@ def work_page(w, lang):
         q = quote(f'{w["title"]} The Chemical Brothers')
         az_url = f'https://www.amazon.co.jp/s?k={q}&tag={quote(tag)}'
         own_body = (f'<p><a class="own-link" href="{az_url}" target="_blank" rel="nofollow sponsored noopener">{u["own_link"]}</a></p>'
-                    f'<p class="muted small">{u["own_note"]}</p>')
+                    f'<p id="ad-disclosure" class="muted small">{u["own_note"]}</p>')
     else:
         own_body = ''
     own = f'<section class="blk"><h2>{u["own"]}</h2>{own_body}</section>'
@@ -797,7 +801,7 @@ def about_page(lang):
                 ('引用', '証言は短く引用し、原語と訳を並べます。歌詞は載せません。'),
                 ('画像と色', 'ジャケット画像は、各作品ページでの紹介と批評のための引用として掲載し、出典を示します。公式ロゴは使いません。版色はアートワークから抽出し、画像がまだない作品は未刷りの紙色で表示します。'),
                 ('埋め込み', '埋め込みはYouTubeの公式動画だけです。優先順は公式MV、公式ライブ映像、公式音源（Topic）です。'),
-                ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。リンクの近くと共通フッターに広告である旨を表示し、Amazonアソシエイトの定型文を掲載しています。'),
+                ('広告表記', 'アフィリエイトのリンクは各作品ページの「持つ」欄にだけ置き、レビュー本文には入れません。リンクの近くにAmazonアソシエイトとして収入を得る旨を明記しています。'),
                 ('制作', 'DJ Naoyaman（宮崎直哉）。プロフィールは別ページにまとめています。')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["ja"])}</dt><dd>{esc(g["en"])}</dd>' for g in GLOSS) + '</dl>'
         gh = '用語集（日英）'
@@ -808,7 +812,7 @@ def about_page(lang):
                 ('Quotes', 'Testimony is quoted briefly, in the original language with a translation. No lyrics are reproduced.'),
                 ('Images and colour', 'Sleeve images appear on each work page as quotations for review and commentary, with their source shown. No official logos are used. Plate colours are taken from the artwork; works without an image yet are shown unprinted.'),
                 ('Embeds', 'Only official YouTube videos are embedded, in this order of preference: official video, official live footage, official audio (Topic).'),
-                ('Advertising', 'Affiliate links appear only in the Own section of each work page, never inside the text. A disclosure sits next to them and in the site footer, together with the standard Amazon Associates statement.'),
+                ('Advertising', 'Affiliate links appear only in the Own section of each work page, never inside the text. The Amazon Associates earnings disclosure appears next to each link.'),
                 ('Made by', 'DJ Naoyaman (Naoya Miyazaki). See the profile page for more.')]
         gl = '<dl class="gloss">' + ''.join(f'<dt>{esc(g["en"])}</dt><dd lang="ja">{esc(g["ja"])}</dd>' for g in GLOSS) + '</dl>'
         gh = 'Glossary (English and Japanese)'

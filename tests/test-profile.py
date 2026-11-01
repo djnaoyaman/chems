@@ -13,7 +13,7 @@ for name in ['profile/index.html','en/profile/index.html']:
  assert ('これからも育てていきたいと思います' in s if name.startswith('profile') else 'I hope to keep adding to it' in s)
  assert ('事実には出典' in s if name.startswith('profile') else 'Facts carry sources' in s)
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==0
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T08:22:00+00:00</lastmod>')==214
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T08:22:00+00:00</lastmod>')==98
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T09:23:00+00:00</lastmod>')==2
 print('PASS compact bilingual profile, central author, 218 pages, two profile-specific source dates')
 
@@ -22,3 +22,5 @@ assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T10:08:00+00:00</
 for p in pages:
  s=p.read_text(); label="Editor" if p.relative_to(d).parts[0]=="en" else "編者"
  assert re.search(r'<a href="[^\"]+">'+label+r'</a>',s),p
+
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T12:24:00+00:00</lastmod>')==116
