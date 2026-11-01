@@ -11,6 +11,12 @@ function setup() {
  const video={id,testOnly:false,channelId,officialEvidence:{channelId,channelType:'artist',videoId:id,sourceUrl:'https://example.invalid/proof',checkedAt:at,reviewed:true,reviewer:'synthetic-test'},match:{recordingId:'r',entryId:'e',editionId:'edition',title:'Title',version:'Album mix',sourceUrl:'https://example.invalid/edition',checkedAt:at,reviewed:true},availability:{state:'available',embeddable:true,checkedAt:at}};
  const events=[];return {nodes,document,container,YT,callbacks,events,args:{container,video,recording,entry,edition,selectionGeneration:17,userRequested:true,onState:e=>events.push(e)}};
 }
+test('native-ready watchdog fails once and stale readiness cannot revive a timed-out player',async()=>{
+ const s=setup();let timeout;const timers={setTimeout(fn){timeout=fn;return 1;},clearTimeout(){}};
+ const a=createVisiblePlayerAdapter({document:s.document,origin:'https://example.invalid',loadApi:async()=>s.YT,timers});
+ await a.mount(s.args);timeout();timeout();s.callbacks[0].onReady({target:{cueVideoById:()=>assert.fail('late readiness')}});
+ assert.equal(s.events.length,1);assert.equal(s.events[0].detail,'player-ready-timeout');a.dispose();
+});
 test('no network by default; mock opted-in loader only appends declared script',async()=>{
  const s=setup(),window={};await assert.rejects(createApiLoader({window,document:s.document})());assert.equal(s.nodes.length,0);
  const load=createApiLoader({window,document:s.document,allowNetwork:true}),p=load();assert.equal(load(),p);

@@ -16,8 +16,8 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 # Only the bilingual home/about descriptions changed in this editorial correction.
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
-SHARED_TOOLS_UPDATED = '2026-11-01T07:57:00+00:00'
-LISTENING_UPDATED = '2026-11-01T07:20:00+00:00'
+SHARED_TOOLS_UPDATED = '2026-11-01T08:22:00+00:00'
+LISTENING_UPDATED = '2026-11-01T08:22:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
@@ -283,7 +283,7 @@ def layout(lang, key, arg, pg, title, desc, body, ogp, jsonld=None, cur=None):
 </head>
 <body id="top">
 <a class="skip-link" href="#main">{'本文へ' if lang == 'ja' else 'Skip to content'}</a>
-<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>{'メニュー' if lang == 'ja' else 'Menu'}</button><nav id="site-nav" aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}">{u['lang_other']}</a></div></header>
+<header class="gh"><div class="gh-in"><a class="home" href="{rel(pg, path(lang, 'top'))}" aria-label="myChems"><img class="site-wordmark" src="{rel(pg, 'brand/mychems-wordmark-ivory.svg')}" alt="myChems" width="1799" height="504"></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{'メニュー' if lang == 'ja' else 'Menu'}" hidden><span aria-hidden="true">☰</span></button><nav id="site-nav" aria-label="{'サイト内' if lang == 'ja' else 'Site'}">{nav}</nav><a class="lang" href="{rel(pg, alt[other])}" hreflang="{other}" lang="{other}" aria-label="{u['lang_other']}"><span class="lang-full">{u['lang_other']}</span><span class="lang-short" aria-hidden="true">{'EN' if other == 'en' else 'JA'}</span></a></div></header>
 <main id="main" tabindex="-1">
 {body}
 </main>
@@ -458,7 +458,7 @@ def work_page(w, lang):
             else:
                 main = f'<span>{esc(t["title"])}</span>'
             trows += f'<li>{no}{main}{refs(t.get("src", []))}</li>'
-        tracklist = f'<section class="blk"><h2>{u["tracklist"]}</h2><ol class="tracklist">{trows}</ol></section>'
+        tracklist = f'<section class="blk"><h2>{u["tracklist"]}</h2><p><a class="release-listen-link" href="{rel(pg, path(lang, 'works'))}?release={w['id']}#listening">{'収録曲を見る・聴く' if lang == 'ja' else 'Browse / listen to these tracks'}</a></p><ol class="tracklist">{trows}</ol></section>'
     else:
         tracklist = ''
     tx, _ = text_blocks(w['id'], lang)
@@ -630,13 +630,13 @@ def listening_section(lang):
              f'Choose a release chronologically and listen through official YouTube sources. {matched} of {total} track entries currently have official-source and recording matches; playback remains untested. Missing tracks are not replaced with other versions or unofficial uploads.')
     return f'''<section id="listening" class="listening-shell" aria-labelledby="listening-title"><h2 id="listening-title">{title}</h2><p>{intro}</p>
 <button type="button" data-listening="start" disabled>{'▶ 照合済みの公式音源から聴く' if ja else '▶ Start with a matched official recording'}</button>
-<p data-listening="summary" role="status" aria-live="polite"></p><div class="listening-grid"><div><label>{'種類' if ja else 'Release type'}<select data-listening="type"><option value="all">{'収録作品すべて' if ja else 'All cataloged releases'}</option><option value="album">{'アルバム' if ja else 'Albums'}</option><option value="ep">EP</option><option value="single">{'シングル' if ja else 'Singles'}</option></select></label>
-<label>{'作品' if ja else 'Release'}<select data-listening="release"><option value="">{'作品を選ぶ' if ja else 'Choose a release'}</option></select></label>
-<ol class="listening-tracklist" data-listening="tracks"></ol></div>
-<aside class="listening-dock" data-listening="dock" aria-label="{'音楽プレイヤー' if ja else 'Music player'}" hidden><div class="listening-dock-top"><span>MYCHEMS / LISTENING</span><button type="button" data-listening="close" aria-label="{'停止して閉じる' if ja else 'Stop and close'}">×</button></div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
+<p data-listening="summary" role="status" aria-live="polite">{'作品と曲目を読み込み中…' if ja else 'Loading releases and tracks…'}</p><div class="listening-grid"><div class="listening-picker"><label>{'種類' if ja else 'Release type'}<select data-listening="type" disabled><option value="all">{'収録作品すべて' if ja else 'All cataloged releases'}</option><option value="album">{'アルバム' if ja else 'Albums'}</option><option value="ep">EP</option><option value="single">{'シングル' if ja else 'Singles'}</option></select></label>
+<label>{'作品' if ja else 'Release'}<select data-listening="release" disabled><option value="">{'作品を選ぶ' if ja else 'Choose a release'}</option></select></label>
+<label class="listening-search">{'作品名で絞り込む' if ja else 'Filter release titles'}<input type="search" data-listening="search" autocomplete="off" disabled></label><p data-listening="selection" role="status"></p><ol class="listening-tracklist" data-listening="tracks"></ol></div>
+<aside class="listening-dock" data-listening="dock" aria-label="{'音楽プレイヤー' if ja else 'Music player'}" hidden><div class="listening-dock-top"><span>MYCHEMS / LISTENING</span><button type="button" data-listening="pin" aria-pressed="true">{'ページ内へ' if ja else 'Move inline'}</button><button type="button" data-listening="close" aria-label="{'停止して閉じる' if ja else 'Stop and close'}">×</button></div><h3 data-listening="heading">{'作品を選んでください' if ja else 'Choose a release'}</h3><p data-listening="edition"></p><p data-listening="coverage"></p>
 <div class="listening-visual" data-listening="visual" aria-label="YouTube player">{'動画はまだ読み込んでいません。' if ja else 'No video loaded.'}</div>
 <p data-listening="now" class="listening-now"></p><div class="listening-controls"><button type="button" data-listening="previous" disabled>{'前の曲' if ja else 'Previous track'}</button><button type="button" data-listening="load" disabled>{'▶ 再生' if ja else '▶ Play'}</button><button type="button" data-listening="pause" disabled>{'一時停止' if ja else 'Pause'}</button><button type="button" data-listening="stop" disabled>{'停止' if ja else 'Stop'}</button><button type="button" data-listening="next" disabled>{'次の曲' if ja else 'Next track'}</button><button type="button" data-listening="full" aria-expanded="false">{'拡大' if ja else 'Expand'}</button></div>
-<p class="listening-continuity"><label><input type="checkbox" data-listening="continuous"> {'この作品を曲順に続けて聴く（未照合・再生不可の曲で停止）' if ja else 'Continue in this release (stop at unmatched or unavailable tracks)'}</label></p><p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><p class="listening-sources" data-listening="sources"></p>
+<p class="listening-continuity"><label><input type="checkbox" data-listening="continuous"> {'この作品を曲順に続けて聴く（未照合・再生不可の曲で停止）' if ja else 'Continue in this release (stop at unmatched or unavailable tracks)'}</label></p><button type="button" data-listening="retry" hidden>{'この曲を再試行' if ja else 'Retry this track'}</button><p class="listening-status" data-listening="status" role="status" aria-live="polite"></p><p class="listening-sources" data-listening="sources"></p>
 <p class="small">{'動画を読み込むとYouTubeに接続します。再生可否は地域・環境・時期によって変わります。ページを移動すると再生は終了します。' if ja else 'Loading a video connects to YouTube. Availability depends on region, environment and time. Navigating away stops playback.'}</p></aside></div>
 <noscript>{'このプレイヤーにはJavaScriptが必要です。作品の記事と既存のYouTubeリンクをご利用ください。' if ja else 'This player needs JavaScript. Articles and their existing YouTube links remain available.'}</noscript></section>'''
 
@@ -649,7 +649,7 @@ def works_page(lang):
     legend = ('白い枠線はEP、左の帯は所属アルバムの版色。版色が未抽出の作品は未刷りの紙色で表示しています。' if lang == 'ja' else
               'Dashed outlines mark EPs; the band on the left is the plate colour of the parent album. Works without extracted plate colours are shown unprinted.')
     search = f'<div class="catalog-search"><label for="work-search">{"作品名・年で探す" if lang == "ja" else "Find a title or year"}</label><div><input id="work-search" type="search" autocomplete="off" aria-controls="ptable"><button type="button" data-catalog-reset>{"解除" if lang == "ja" else "Reset"}</button></div><p data-catalog-count role="status" aria-live="polite"></p></div>'
-    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{'57作品を発売順の一覧や周期表から探す。作品名・年・種類で絞り込めます。' if lang == 'ja' else 'Explore 57 releases in order or in the periodic table. Find a title, year or format.'}</p><details class="catalog-guide"><summary>{'周期表の読み方' if lang == 'ja' else 'How to read the periodic table'}</summary><p>{lead}</p></details></header><p><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Listen to official recordings'} ↓</a></p>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
+    body = f'''<div class="wrap"><header class="page-h"><h1>{u['works']}</h1><p class="lead">{'57作品を発売順の一覧や周期表から探す。作品名・年・種類で絞り込めます。' if lang == 'ja' else 'Explore 57 releases in order or in the periodic table. Find a title, year or format.'}</p><div class="catalog-intro-tools"><details class="catalog-guide"><summary>{'周期表の読み方' if lang == 'ja' else 'Table guide'}</summary><p>{lead}</p></details><a href="#listening">{'公式音源で聴く' if lang == 'ja' else 'Official listening'} ↓</a></div></header>{search}{fl}{ptable(lang, pg)}<p class="legend">{legend}</p>
 <p><a class="more" href="{rel(pg, path(lang, 'shelf'))}">{'別棚（プロモ盤、ミックス、コンピ、サントラ、リミックス、TOMORA）' if lang == 'ja' else 'Annex (promos, mixes, compilations, soundtracks, remixes, TOMORA)'}</a></p></div>'''
     body += '<div class="wrap">' + listening_section(lang) + '</div>'
     emit(lang, 'works', None, u['works'], lead, body, {'type': 'plain', 'title': u['works'], 'sub': str(len(WORKS))}, cur='works')
@@ -920,7 +920,7 @@ def verify():
     broken = []
     for pg, v in PAGES.items():
         for m in re.finditer(r'(?:href|src)="([^"#:]+?)(#[^"]*)?"', v['html']):
-            u_ = m.group(1)
+            u_ = m.group(1).split('?', 1)[0]
             if u_.startswith(('http', 'data:', 'mailto:')) or u_ == '': continue
             tgt = posixpath.normpath(posixpath.join(posixpath.dirname(pg), u_))
             if not os.path.exists(os.path.join(DIST, tgt)): broken.append(f'{pg} → {u_}')

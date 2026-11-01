@@ -4,8 +4,8 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 EXPECTED='2026-10-31T11:50:00+00:00'
-EDITORIAL='2026-11-01T07:57:00+00:00'
-LISTENING='2026-11-01T07:57:00+00:00'
+EDITORIAL='2026-11-01T08:22:00+00:00'
+LISTENING='2026-11-01T08:22:00+00:00'
 class Archive(unittest.TestCase):
  def test_home(self):
   for prefix in ('','en/'):
@@ -52,4 +52,3 @@ class Archive(unittest.TestCase):
   self.assertFalse(any('予定' in x['ja'] for x in json.loads((ROOT/'data/events.json').read_text())))
   self.assertEqual(len(json.loads((ROOT/'notes/retired-news/events-before-20261031.json').read_text())),22)
 if __name__=='__main__':unittest.main()
-

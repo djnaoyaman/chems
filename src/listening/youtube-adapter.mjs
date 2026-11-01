@@ -41,10 +41,11 @@ export function createApiLoader({ window, document, allowNetwork = false, timeou
   };
 }
 
-export function createVisiblePlayerAdapter({ document, loadApi, origin, unavailableText = 'YouTube unavailable. This track remains selected.' }) {
-  let generation = 0, host, frame, player, readyPlayer, blocked = false;
+export function createVisiblePlayerAdapter({ document, loadApi, origin, unavailableText = 'YouTube unavailable. This track remains selected.', timers = globalThis, readyTimeoutMs = 15000 }) {
+  let generation = 0, host, frame, player, readyPlayer, blocked = false, readyTimer;
   function dispose() {
     generation++;
+    timers.clearTimeout(readyTimer);
     // Detaching the visible iframe terminates that document; no undocumented player commands.
     try { player?.destroy?.(); } catch {}
     frame?.remove(); frame = undefined; player=readyPlayer=undefined; host = undefined; blocked = false;
@@ -61,6 +62,7 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
     host = container;
     const fail = detail => {
       if (token !== generation || blocked) return;
+      timers.clearTimeout(readyTimer);
       blocked = true; try { player?.destroy?.(); } catch {} readyPlayer=undefined; frame?.remove(); frame = undefined;
       host.replaceChildren(document.createTextNode(unavailableText));
       notify('error', detail);
@@ -74,10 +76,13 @@ export function createVisiblePlayerAdapter({ document, loadApi, origin, unavaila
       frame = document.createElement('div');
       const activeFrame = frame;
       host.replaceChildren(frame);
+      readyTimer=timers.setTimeout(()=>fail('player-ready-timeout'),readyTimeoutMs);
+      readyTimer?.unref?.();
       player = new YT.Player(activeFrame, { host:'https://www.youtube.com', width:'100%',height:'100%',videoId:video.id,
        playerVars:{origin:site.origin,playsinline:1},events: {
         onReady(event) {
           if (token !== generation || blocked || frame !== activeFrame) return;
+          timers.clearTimeout(readyTimer);
           try {
             readyPlayer=event.target;notify('ready');
             if (continuePlayback || requestPlay) event.target.loadVideoById({ videoId: video.id, startSeconds: 0 });

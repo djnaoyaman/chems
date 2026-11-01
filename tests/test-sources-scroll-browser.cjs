@@ -1,0 +1,11 @@
+const {chromium}=require('playwright'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch();const root=path.resolve(__dirname,'../dist'),out=path.resolve(__dirname,'../test-artifacts');let checks=0;
+for(const lang of ['','en/']){const page=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});
+await page.route('**/*',r=>{const u=new URL(r.request().url());if(u.origin!=='https://chems.test')return r.abort();let f=path.join(root,u.pathname);return fs.existsSync(f)?r.fulfill({path:f}):r.fulfill({status:404,body:'missing'});});
+await page.goto('https://chems.test/'+lang+'sources/index.html');await page.addStyleTag({content:'html{font-size:200%}'});const region=page.getByRole('region');assert.equal(await region.getAttribute('tabindex'),'0');assert(await page.locator('.scroll-hint').isVisible());assert(await region.evaluate(e=>e.scrollWidth>e.clientWidth));checks++;
+await region.focus();await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowRight');await page.waitForFunction(()=>document.querySelector('.scroll').scrollLeft>0);checks++;
+const before=await region.evaluate(e=>e.scrollLeft);await region.hover();await page.mouse.wheel(600,0);await page.waitForFunction(n=>document.querySelector('.scroll').scrollLeft>n,before);checks++;
+await page.waitForTimeout(250);
+const title=page.locator('table tbody tr').first().locator('td').nth(1);await title.locator('a').focus();assert(await title.locator('a').evaluate(e=>e===document.activeElement));const cell=await title.boundingBox(),box=await region.boundingBox();assert(cell.x<box.x+box.width&&cell.x+cell.width>box.x);checks++;
+await page.screenshot({path:path.join(out,'sources-title-200-'+(lang?'en':'ja')+'.png')});await region.evaluate(e=>e.scrollLeft=e.scrollWidth);assert(await region.evaluate(e=>Math.abs(e.scrollLeft-(e.scrollWidth-e.clientWidth))<=1));await page.screenshot({path:path.join(out,'sources-right-edge-200-'+(lang?'en':'ja')+'.png')});checks++;
+await page.close();}await browser.close();console.log(JSON.stringify({pass:true,checks,limits:'desktop emulated horizontal keyboard/wheel scrolling; not physical touch'}));})().catch(e=>{console.error(e);process.exit(1)});

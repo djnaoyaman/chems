@@ -39,7 +39,10 @@ window.NaoyamanAnalytics&&window.NaoyamanAnalytics.track('video_open',{});
   ifr.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1&origin='+encodeURIComponent(location.origin)+(sec?'&start='+sec:'');
   ifr.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';ifr.allowFullscreen=true;ifr.title=box.dataset.title||'YouTube';
   window.NaoyamanAnalytics&&window.NaoyamanAnalytics.track('video_seek_request',{position_seconds:sec});
-  box.dataset.yt=id;var old=box.querySelector('.facade,iframe');if(old)old.replaceWith(ifr);else box.prepend(ifr);return true}
+  var message=box.querySelector('.embed-status');if(!message){message=document.createElement('p');message.className='embed-status alt';message.setAttribute('role','status');box.append(message)}
+  message.textContent=L==='en'?'Loading YouTube. If it cannot start, use the YouTube link below.':'YouTubeを読み込み中です。開始できない場合は下のYouTubeリンクをご利用ください。';
+  ifr.addEventListener('load',function(){message.textContent=L==='en'?'YouTube frame loaded. Playback uses its own controls.':'YouTubeのフレームを読み込みました。再生は動画内の操作をご利用ください。'});
+  box.dataset.yt=id;var old=box.querySelector('.facade,iframe');if(old)old.replaceWith(ifr);else box.prepend(ifr);ifr.focus();return true}
 if(!window.__chemsDoc){window.__chemsDoc=1;document.addEventListener('click',function(e){
   var f=e.target.closest('.facade[data-yt]');if(f){e.preventDefault();load(0);return}
   var t=e.target.closest('a.ts[data-t]');if(t){if(load(parseInt(t.dataset.t,10))){e.preventDefault();document.querySelector('.player').scrollIntoView({behavior:reduce.matches?'auto':'smooth',block:'center'})}}

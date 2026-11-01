@@ -1,5 +1,9 @@
 (function(){'use strict';
 const en=document.documentElement.lang==='en';
+document.querySelectorAll('.scroll:has(table)').forEach((region,i)=>{
+ region.tabIndex=0;region.setAttribute('role','region');region.setAttribute('aria-label',en?'Scrollable table':'横にスクロールできる表');
+ const hint=document.createElement('p');hint.className='scroll-hint';hint.id='table-scroll-help-'+i;hint.textContent=en?'Scroll sideways to read every column. Keyboard: focus the table and use the arrow keys.':'横にスクロールすると全ての列を読めます。キーボードでは表に移動して矢印キーを使います。';region.before(hint);region.setAttribute('aria-describedby',hint.id);
+});
 const nav=document.getElementById('site-nav'),toggle=document.querySelector('.nav-toggle');
 if(nav&&toggle){
  toggle.hidden=false;document.documentElement.classList.add('nav-ready');
