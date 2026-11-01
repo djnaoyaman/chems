@@ -14,5 +14,5 @@ for name in ['profile/index.html','en/profile/index.html']:
  assert ('事実には出典' in s if name.startswith('profile') else 'Facts carry sources' in s)
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T11:50:00+00:00</lastmod>')==0
 assert (d/'sitemap.xml').read_text().count('<lastmod>2026-10-31T12:52:00+00:00</lastmod>')==216
-assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T04:46:00+00:00</lastmod>')==2
+assert (d/'sitemap.xml').read_text().count('<lastmod>2026-11-01T05:09:00+00:00</lastmod>')==2
 print('PASS compact bilingual profile, central author, 218 pages, two profile-specific source dates')

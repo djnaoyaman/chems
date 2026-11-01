@@ -17,7 +17,7 @@ BRAND_UPDATED = '2026-10-31T11:50:00+00:00'
 EDITORIAL_UPDATED = '2026-10-31T12:39:00+00:00'
 # Shared reading controls and accessibility additions change every content page.
 SHARED_TOOLS_UPDATED = '2026-10-31T12:52:00+00:00'
-LISTENING_UPDATED = '2026-11-01T04:46:00+00:00'
+LISTENING_UPDATED = '2026-11-01T05:09:00+00:00'
 def page_modified(key):
     return max(SHARED_TOOLS_UPDATED, LISTENING_UPDATED if key == 'works' else (EDITORIAL_UPDATED if key in ('top', 'about') else BRAND_UPDATED))
 J = lambda n: json.load(open(os.path.join(ROOT, 'data', n), encoding='utf-8'))
